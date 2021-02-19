@@ -4,5 +4,6 @@ doc/build
 oceanbolt.sdk.egg-info
 runner.py
 *.pyc
-.ipynb_checkpoints
+build
+dist
 .idea

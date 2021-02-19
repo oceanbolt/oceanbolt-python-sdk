@@ -1,6 +1,6 @@
 from oceanbolt.sdk.client import APIClient
-from oceanbolt.sdk.helpers import (validate,pb_list_to_pandas, pb_timeseries_to_pandas)
-from datetime import date
+from oceanbolt.sdk.helpers import (validate, pb_list_to_pandas, pb_timeseries_to_pandas)
+
 
 class PortCalls:
     """
@@ -38,6 +38,7 @@ class PortCallTimeseries:
     def get_raw(self, **kwargs):
         kwargs = validate(kwargs)
         return self.client.get_port_call_timeseries(kwargs)
+
 
 class PortParticulars:
     """

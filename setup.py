@@ -23,8 +23,8 @@ with open("README.md") as fh:
 setuptools.setup(
     name='oceanbolt.sdk',
     description="A Python wrapper around the Oceanbolt client API",
-    #use_scm_version=True,
-    #setup_requires=["setuptools_scm"],
+    # use_scm_version=True,
+    # setup_requires=["setuptools_scm"],
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/oceanbolt/oceanbolt-python-sdk",

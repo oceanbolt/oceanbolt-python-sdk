@@ -42,7 +42,6 @@ class APIClient:
         self.drydockClient = drydock.DrydockServiceClient(credentials=creds)
         self.entitiesClient = entities.EntityServiceClient(credentials=creds)
 
-
     def _tonnage_client(self):
         return self.tonnageClient
 

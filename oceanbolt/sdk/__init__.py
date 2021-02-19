@@ -16,8 +16,6 @@
 #
 
 from .client import APIClient
-from .helpers import APIClient
-
 
 __all__ = (
     'APIClient',

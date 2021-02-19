@@ -31,6 +31,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -e .
+        python -m pip install extras_require
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -41,16 +42,11 @@ jobs:
       run: |
         pytest
     - name: Install pypa/build
-      run: >-
-        python -m
-        pip install
-        build
-        --user
+      run: |
+        python -m pip install build --user
     - name: Build a binary wheel and a source tarball
-      run: >-
-        python -m
-        build
-        --sdist
-        --wheel
-        --outdir dist/
-        .
+      run: |
+        python -m build --sdist --wheel --outdir dist/ .
+    - name: Build a binary wheel and a source tarball
+      run: |
+        twine check dist/*

@@ -30,7 +30,6 @@ from grpc.experimental import aio  # type: ignore
 from oceanbolt.com.entities_v3.types import service
 
 from .base import EntityServiceTransport, DEFAULT_CLIENT_INFO
-from .grpc import EntityServiceGrpcTransport
 
 
 class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):

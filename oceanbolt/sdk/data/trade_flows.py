@@ -1,5 +1,5 @@
 from oceanbolt.sdk.client import APIClient
-from oceanbolt.sdk.helpers import (validate,pb_list_to_pandas, pb_timeseries_to_pandas)
+from oceanbolt.sdk.helpers import (validate, pb_list_to_pandas, pb_timeseries_to_pandas)
 
 
 class TradeFlows:
