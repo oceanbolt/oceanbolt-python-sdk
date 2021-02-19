@@ -1,21 +1,18 @@
-name: Build python package
+name: Release python package
 
 on: [push]
 
 jobs:
-  build:
 
+  release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.8
     - name: Cache pip
       uses: actions/cache@v2
       with:
@@ -32,15 +29,6 @@ jobs:
         pip install flake8 pytest twine
         pip install -e .
         python -m pip install extras_require
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#    - name: Test with pytest
-#      run: |
-#        pytest
     - name: Install pypa/build
       run: |
         python -m pip install build twine --user
@@ -50,3 +38,9 @@ jobs:
     - name: Twine Check
       run: |
         twine check dist/*
+    - name: Publish package to pypi on release
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
