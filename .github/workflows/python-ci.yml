@@ -29,7 +29,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest twine
         pip install -e .
         python -m pip install extras_require
     - name: Lint with flake8
@@ -46,5 +46,13 @@ jobs:
         python -m pip install build twine --user
     - name: Build a binary wheel and a source tarball
       run: |
-        python -m build --sdist --wheel --outdir dist/ .
+        python -m build --sdist --wheel --outdir dist/
+    - name: Twine Check
+      run: |
         twine check dist/*
+    - name: Publish package to pypi on release
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
