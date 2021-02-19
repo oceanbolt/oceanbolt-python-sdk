@@ -1,0 +1,12 @@
+recursive-include oceanbolt/com/drydock *.py
+recursive-include oceanbolt/com/drydock_v3 *.py
+recursive-include oceanbolt/com/entities *.py
+recursive-include oceanbolt/com/entities_v3 *.py
+recursive-include oceanbolt/com/portcalls *.py
+recursive-include oceanbolt/com/portcalls_v3 *.py
+recursive-include oceanbolt/com/tonnage *.py
+recursive-include oceanbolt/com/tonnage_v3 *.py
+recursive-include oceanbolt/com/congestion *.py
+recursive-include oceanbolt/com/congestion_v3 *.py
+recursive-include oceanbolt/com/tradeflows *.py
+recursive-include oceanbolt/com/tradeflows_v3 *.py

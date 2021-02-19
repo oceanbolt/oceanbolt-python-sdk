@@ -1,0 +1,707 @@
+# -*- coding: utf-8 -*-
+
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+import proto  # type: ignore
+
+
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+
+
+__protobuf__ = proto.module(
+    package='oceanbolt.com.tradeflows.v3',
+    manifest={
+        'EmptyParams',
+        'EmptyResponse',
+        'TradeFlowDataRequest',
+        'GetTradeFlowsResponse',
+        'GetLocationVolumeResponse',
+        'LocationVolume',
+        'GetTradeFlowAggregationResponse',
+        'AggregationGroup',
+        'AggregationRow',
+        'GetTradeFlowTimeseriesResponse',
+        'TimeseriesGroup',
+        'TimeseriesRow',
+        'GeoPoint',
+        'TradeFlow',
+        'GetTradeFlowHistogramResponse',
+        'HistogramGroup',
+    },
+)
+
+
+class EmptyParams(proto.Message):
+    r""""""
+
+
+class EmptyResponse(proto.Message):
+    r""""""
+
+
+class TradeFlowDataRequest(proto.Message):
+    r"""Trade flow data requests object. This is shared between all
+    trade flows queries
+
+    Attributes:
+        frequency (str):
+            Frequency determines the granularity/period grouping of the
+            timeseries. Allowed values are: **["daily", "weekly",
+            "monthly","quarterly "yearly"]**. Default value is
+            "monthly". This parameter only applies to the
+            **/tradeflows/timeseries** endpoint.
+        commodity (Sequence[str]):
+            List of commodities to get data for (get a list of all
+            commodities from **/entities/commodities**).
+        commodity_group (Sequence[str]):
+            List of commodity groups to get data for (get a list of all
+            commodity groups from **/entities/commodities**).
+        flow_direction (str):
+            This controls whether to group the date by export
+            date/import date. Allowed values are \**["export","import"].
+            Default value is "export". This parameter only applies to
+            the **/tradeflows/timeseries** endpoint.
+        imo (Sequence[int]):
+            List of unique vessel identifiers (IMO numbers). This allows
+            filtering to show data only for a subset of vessels.
+            Example: [1234567,7654321].
+        load_port_id (Sequence[int]):
+
+        load_port_unlocode (Sequence[str]):
+            List of five letter UNLOCODEs for load
+            (export) ports to filter on.
+        discharge_port_id (Sequence[int]):
+
+        discharge_port_unlocode (Sequence[str]):
+            List of five letter UNLOCODEs for discharge
+            (import) ports to filter on.
+        load_berth_id (Sequence[int]):
+
+        discharge_berth_id (Sequence[int]):
+
+        segment (Sequence[str]):
+            List of vessel segments to filter on. Allowed values can be
+            obtained from the **/entities/segments** endpoint. Cannot be
+            supplied alongside subSegment
+        sub_segment (Sequence[str]):
+            List of vessel sub segments to filter on. Allowed values can
+            be obtained from the **/entities/segments** endpoint. Cannot
+            be supplied alongside segment
+        start_date (str):
+            The UTC start date of the date filter
+        end_date (str):
+            The UTC end date of the date filter
+        load_country_code (Sequence[str]):
+            List of two letter ISO country codes for
+            loading (export) countries to filter on.
+        discharge_country_code (Sequence[str]):
+            List of two letter ISO country codes for
+            discharge (import) countries to filter on.
+        load_region (Sequence[str]):
+            List of loading regions to filter on. Allowed values can be
+            obtained from the **/entities/regions** endpoint.
+        discharge_region (Sequence[str]):
+            List of discharge regions to filter on. Allowed values can
+            be obtained from the **/entities/regions** endpoint.
+        status (Sequence[str]):
+
+        exclude_intra_country (bool):
+            Determines whether to include/exclude intra
+            country voyages. Default is to include.
+        exclude_unknown_destinations (bool):
+            Determines whether to include/exclude voyages
+            with unknown destination. Default is to include.
+        exclude_missing_load_berth (bool):
+            Determines whether to include/exclude voyages with that have
+            a missing load_berth_id. Default is to include.
+        exclude_missing_discharge_berth (bool):
+            Determines whether to include/exclude voyages with that have
+            a missing discharge_berth_id. Default is to include.
+        next_token (str):
+            The pagination token specifying which page of
+            results to return in the response. If no token
+            is provided, the default page is the first page.
+        max_results (int):
+            An optional limit for the number of resources
+            returned in a single call.
+        format_ (str):
+            The return format of the data ["csv","json", "xlsx"].
+            Default is "json".
+        group_by (str):
+            Determines the grouping of the timeseries data. This
+            parameter only applies to the **/tradeflows/timeseries**
+            endpoint.
+        pivot_by (str):
+            Not implemented.
+        tall_format (bool):
+            Not implemented.
+        metric (str):
+            The metric to retrieve for timeseries aggregations. Allowed
+            values:
+            ["volume","count","ton_mile_calculated","ton_mile_actual","average_haul","average_speed"].
+            Default is "volume.
+        parceling (Sequence[str]):
+            List of parceling statuses to retrieve. Allowed values are:
+            ["include","exclude","only"].
+        limit_groups (bool):
+            Flag to indicate whether grouped timeseries
+            should be limited to top N entries. If the
+            parameter is present, the endpoint will only
+            return the top N groups, and the remaining
+            entries will be grouped into others.
+        last_n_days (int):
+            Short hand parameter for quickly getting data for the last N
+            days. Cannot be supplied along either start_date or
+            end_date.
+        sort (str):
+            Specifies whether results should be sorted in ascending or
+            descing order. Allowed values: ["asc","desc"].
+    """
+
+    frequency = proto.Field(proto.STRING, number=1)
+
+    commodity = proto.RepeatedField(proto.STRING, number=2)
+
+    commodity_group = proto.RepeatedField(proto.STRING, number=30)
+
+    flow_direction = proto.Field(proto.STRING, number=3)
+
+    imo = proto.RepeatedField(proto.INT32, number=4)
+
+    load_port_id = proto.RepeatedField(proto.INT32, number=19)
+
+    load_port_unlocode = proto.RepeatedField(proto.STRING, number=28)
+
+    discharge_port_id = proto.RepeatedField(proto.INT32, number=20)
+
+    discharge_port_unlocode = proto.RepeatedField(proto.STRING, number=29)
+
+    load_berth_id = proto.RepeatedField(proto.INT32, number=5)
+
+    discharge_berth_id = proto.RepeatedField(proto.INT32, number=18)
+
+    segment = proto.RepeatedField(proto.STRING, number=6)
+
+    sub_segment = proto.RepeatedField(proto.STRING, number=27)
+
+    start_date = proto.Field(proto.STRING, number=7)
+
+    end_date = proto.Field(proto.STRING, number=8)
+
+    load_country_code = proto.RepeatedField(proto.STRING, number=9)
+
+    discharge_country_code = proto.RepeatedField(proto.STRING, number=10)
+
+    load_region = proto.RepeatedField(proto.STRING, number=11)
+
+    discharge_region = proto.RepeatedField(proto.STRING, number=12)
+
+    status = proto.RepeatedField(proto.STRING, number=32)
+
+    exclude_intra_country = proto.Field(proto.BOOL, number=13)
+
+    exclude_unknown_destinations = proto.Field(proto.BOOL, number=14)
+
+    exclude_missing_load_berth = proto.Field(proto.BOOL, number=24)
+
+    exclude_missing_discharge_berth = proto.Field(proto.BOOL, number=25)
+
+    next_token = proto.Field(proto.STRING, number=15)
+
+    max_results = proto.Field(proto.INT32, number=16)
+
+    format_ = proto.Field(proto.STRING, number=17)
+
+    group_by = proto.Field(proto.STRING, number=21)
+
+    pivot_by = proto.Field(proto.STRING, number=34)
+
+    tall_format = proto.Field(proto.BOOL, number=35)
+
+    metric = proto.Field(proto.STRING, number=22)
+
+    parceling = proto.RepeatedField(proto.STRING, number=26)
+
+    limit_groups = proto.Field(proto.BOOL, number=31)
+
+    last_n_days = proto.Field(proto.INT32, number=33)
+
+    sort = proto.Field(proto.STRING, number=36)
+
+
+class GetTradeFlowsResponse(proto.Message):
+    r"""Response object for trade flow queries
+
+    Attributes:
+        data (Sequence[oceanbolt.com.tradeflows_v3.types.TradeFlow]):
+
+        next_token (str):
+
+        prev_token (str):
+
+        csv (str):
+
+        xlsx (str):
+
+    """
+
+    data = proto.RepeatedField(proto.MESSAGE, number=7,
+        message='TradeFlow',
+    )
+
+    next_token = proto.Field(proto.STRING, number=1)
+
+    prev_token = proto.Field(proto.STRING, number=2)
+
+    csv = proto.Field(proto.STRING, number=8)
+
+    xlsx = proto.Field(proto.STRING, number=9)
+
+
+class GetLocationVolumeResponse(proto.Message):
+    r"""
+
+    Attributes:
+        data (Sequence[oceanbolt.com.tradeflows_v3.types.LocationVolume]):
+
+    """
+
+    data = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='LocationVolume',
+    )
+
+
+class LocationVolume(proto.Message):
+    r"""
+
+    Attributes:
+        location_name (str):
+
+        location_id (str):
+
+        value (google.protobuf.wrappers_pb2.DoubleValue):
+
+        coords (oceanbolt.com.tradeflows_v3.types.GeoPoint):
+
+    """
+
+    location_name = proto.Field(proto.STRING, number=1)
+
+    location_id = proto.Field(proto.STRING, number=2)
+
+    value = proto.Field(proto.MESSAGE, number=3,
+        message=wrappers.DoubleValue,
+    )
+
+    coords = proto.Field(proto.MESSAGE, number=4,
+        message='GeoPoint',
+    )
+
+
+class GetTradeFlowAggregationResponse(proto.Message):
+    r"""
+
+    Attributes:
+        data (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationGroup]):
+
+        file_url (str):
+
+    """
+
+    data = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='AggregationGroup',
+    )
+
+    file_url = proto.Field(proto.STRING, number=2)
+
+
+class AggregationGroup(proto.Message):
+    r"""
+
+    Attributes:
+        group (str):
+
+        rows (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationRow]):
+
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='AggregationRow',
+    )
+
+
+class AggregationRow(proto.Message):
+    r"""
+
+    Attributes:
+        category (str):
+
+        value (google.protobuf.wrappers_pb2.DoubleValue):
+
+    """
+
+    category = proto.Field(proto.STRING, number=1)
+
+    value = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.DoubleValue,
+    )
+
+
+class GetTradeFlowTimeseriesResponse(proto.Message):
+    r"""Response object for trade flow timeseries queries
+
+    Attributes:
+        timeseries (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesGroup]):
+            Timeseries data groups
+        csv (str):
+            Link to download csv file, if format was
+            specified to be "csv".
+        xlsx (str):
+            Link to download excel file, if format was
+            specified to be "xlsx".
+    """
+
+    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='TimeseriesGroup',
+    )
+
+    csv = proto.Field(proto.STRING, number=4)
+
+    xlsx = proto.Field(proto.STRING, number=5)
+
+
+class TimeseriesGroup(proto.Message):
+    r"""Trade flow timeseries group
+
+    Attributes:
+        group (str):
+            Name of the group. This will be "default", if
+            no grouping was specified in the query.
+        group_value (google.protobuf.wrappers_pb2.DoubleValue):
+            Helper variable to calculate top groups. Not
+            returned.
+        rows (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesRow]):
+            Rows of timeseries data
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    group_value = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.DoubleValue,
+    )
+
+    rows = proto.RepeatedField(proto.MESSAGE, number=3,
+        message='TimeseriesRow',
+    )
+
+
+class TimeseriesRow(proto.Message):
+    r"""Trade flow timeseries row
+
+    Attributes:
+        date (str):
+            UTC date timestamp of the timeseries row
+        value (google.protobuf.wrappers_pb2.DoubleValue):
+            The value of the timeseries row
+    """
+
+    date = proto.Field(proto.STRING, number=1)
+
+    value = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.DoubleValue,
+    )
+
+
+class GeoPoint(proto.Message):
+    r"""
+
+    Attributes:
+        lat (float):
+
+        lon (float):
+
+    """
+
+    lat = proto.Field(proto.DOUBLE, number=1)
+
+    lon = proto.Field(proto.DOUBLE, number=2)
+
+
+class TradeFlow(proto.Message):
+    r"""Trade flow object
+
+    Attributes:
+        voyage_id (str):
+            Unique ID for the voyage. This can be shared
+            across multiple flows in the case of parceling
+            voyages.
+        flow_id (str):
+            Unique ID for the trade flow. This will
+            always be unique to the flow.
+        imo (int):
+            IMO number of the vessel.
+        vessel_name (str):
+            Name of the vessel.
+        segment (str):
+            Segment of the vessel.
+        sub_segment (str):
+            Sub segment of the vessel.
+        dwt (float):
+            DWT of the vessel.
+        commodity (str):
+            Name of the commodity.
+        commodity_value (str):
+            Database friendly name of the commodity.
+        commodity_group (str):
+            Name of the commodity group.
+        volume (float):
+            Volume loaded in metric tons.
+        load_port_id (int):
+            Oceanbolt database ID of the load port.
+        load_port_name (str):
+            Name of the load port.
+        load_port_unlocode (str):
+            UNLOCODE of the load port.
+        load_berth_id (int):
+            Oceanbolt database ID of the load berth/load
+            terminal.
+        load_berth_name (str):
+            Name of the load berth/load terminal.
+        load_country_code (str):
+            ISO 2-letter country code of the load
+            country.
+        load_country (str):
+            Name of the load country.
+        load_region (str):
+            Name of the load region.
+        load_port_arrived_at (str):
+            UTC timestamp for when the vessel arrived at
+            the load port.
+        load_port_berthed_at (str):
+            UTC timestamp for when the vessel berthed in
+            the load port.
+        load_port_departed_at (str):
+            UTC timestamp for when the vessel departed
+            the load port.
+        load_port_days_total (float):
+            Total duration of the load port call (in
+            days).
+        load_port_days_berthed (float):
+            Number of days the vessel was at berth in the
+            load port.
+        load_port_days_waiting (float):
+            Number of days the vessel was waiting at the
+            load port before shifting to berth.
+        discharge_port_id (int):
+            Oceanbolt database ID of the load berth/load
+            terminal.
+        discharge_port_name (str):
+            Name of the load port.
+        discharge_port_unlocode (str):
+            UNLOCODE of the load port.
+        discharge_berth_id (int):
+            Oceanbolt database ID of the load berth/load
+            terminal.
+        discharge_berth_name (str):
+            Name of the load berth/load terminal.
+        discharge_country_code (str):
+            ISO 2-letter country code of the load
+            country.
+        discharge_country (str):
+            Name of the load country.
+        discharge_region (str):
+            Name of the load region.
+        discharge_port_arrived_at (str):
+            UTC timestamp for when the vessel arrived at
+            the load port.
+        discharge_port_berthed_at (str):
+            UTC timestamp for when the vessel berthed in
+            the load port.
+        discharge_port_departed_at (str):
+            UTC timestamp for when the vessel departed
+            the load port.
+        discharge_port_days_total (float):
+            Total duration of the load port call (in
+            days).
+        discharge_port_days_berthed (float):
+            Number of days the vessel was at berth in the
+            load port.
+        discharge_port_days_waiting (float):
+            Number of days the vessel was waiting at the
+            load port before shifting to berth.
+        days_steaming (float):
+            Number of days the vessel was steaming (the
+            time from when it left the load port until it
+            arrived at the discharge port).
+        days_total_duration (float):
+            Total duration of the voyage (in days).
+        distance_calculated (float):
+            Calculated distance in nautical miles between
+            load port and discharge port. Based on port
+            distance tables.
+        distance_actual (float):
+            Actual distance sailed in nautical miles
+            between load port and discharge port. Based on
+            AIS tracks.
+        eta (str):
+            Captain's Reported ETA
+        destination (str):
+            Captain's Reported Destination
+        status (str):
+            Status of the trade flow.
+        parceling (bool):
+            Flag indicating whether the trade flow was
+            part of a parceling voyage or a single voyage.
+    """
+
+    voyage_id = proto.Field(proto.STRING, number=52)
+
+    flow_id = proto.Field(proto.STRING, number=51)
+
+    imo = proto.Field(proto.INT32, number=1)
+
+    vessel_name = proto.Field(proto.STRING, number=2)
+
+    segment = proto.Field(proto.STRING, number=3)
+
+    sub_segment = proto.Field(proto.STRING, number=49)
+
+    dwt = proto.Field(proto.DOUBLE, number=37)
+
+    commodity = proto.Field(proto.STRING, number=4)
+
+    commodity_value = proto.Field(proto.STRING, number=5)
+
+    commodity_group = proto.Field(proto.STRING, number=6)
+
+    volume = proto.Field(proto.DOUBLE, number=7)
+
+    load_port_id = proto.Field(proto.INT32, number=8)
+
+    load_port_name = proto.Field(proto.STRING, number=9)
+
+    load_port_unlocode = proto.Field(proto.STRING, number=35)
+
+    load_berth_id = proto.Field(proto.INT32, number=10)
+
+    load_berth_name = proto.Field(proto.STRING, number=11)
+
+    load_country_code = proto.Field(proto.STRING, number=12)
+
+    load_country = proto.Field(proto.STRING, number=13)
+
+    load_region = proto.Field(proto.STRING, number=14)
+
+    load_port_arrived_at = proto.Field(proto.STRING, number=15)
+
+    load_port_berthed_at = proto.Field(proto.STRING, number=17)
+
+    load_port_departed_at = proto.Field(proto.STRING, number=18)
+
+    load_port_days_total = proto.Field(proto.DOUBLE, number=46)
+
+    load_port_days_berthed = proto.Field(proto.DOUBLE, number=47)
+
+    load_port_days_waiting = proto.Field(proto.DOUBLE, number=48)
+
+    discharge_port_id = proto.Field(proto.INT32, number=21)
+
+    discharge_port_name = proto.Field(proto.STRING, number=22)
+
+    discharge_port_unlocode = proto.Field(proto.STRING, number=36)
+
+    discharge_berth_id = proto.Field(proto.INT32, number=53)
+
+    discharge_berth_name = proto.Field(proto.STRING, number=23)
+
+    discharge_country_code = proto.Field(proto.STRING, number=24)
+
+    discharge_country = proto.Field(proto.STRING, number=25)
+
+    discharge_region = proto.Field(proto.STRING, number=26)
+
+    discharge_port_arrived_at = proto.Field(proto.STRING, number=27)
+
+    discharge_port_berthed_at = proto.Field(proto.STRING, number=29)
+
+    discharge_port_departed_at = proto.Field(proto.STRING, number=30)
+
+    discharge_port_days_total = proto.Field(proto.DOUBLE, number=40)
+
+    discharge_port_days_berthed = proto.Field(proto.DOUBLE, number=41)
+
+    discharge_port_days_waiting = proto.Field(proto.DOUBLE, number=42)
+
+    days_steaming = proto.Field(proto.DOUBLE, number=43)
+
+    days_total_duration = proto.Field(proto.DOUBLE, number=50)
+
+    distance_calculated = proto.Field(proto.DOUBLE, number=44)
+
+    distance_actual = proto.Field(proto.DOUBLE, number=45)
+
+    eta = proto.Field(proto.STRING, number=33)
+
+    destination = proto.Field(proto.STRING, number=34)
+
+    status = proto.Field(proto.STRING, number=38)
+
+    parceling = proto.Field(proto.BOOL, number=39)
+
+
+class GetTradeFlowHistogramResponse(proto.Message):
+    r"""
+
+    Attributes:
+        grouping_variable (str):
+
+        number_of_groups (int):
+
+        groups (Sequence[oceanbolt.com.tradeflows_v3.types.HistogramGroup]):
+
+    """
+
+    grouping_variable = proto.Field(proto.STRING, number=1)
+
+    number_of_groups = proto.Field(proto.INT32, number=3)
+
+    groups = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='HistogramGroup',
+    )
+
+
+class HistogramGroup(proto.Message):
+    r"""
+
+    Attributes:
+        group (str):
+
+        number_of_values (int):
+
+        values (Sequence[float]):
+
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    number_of_values = proto.Field(proto.INT32, number=3)
+
+    values = proto.RepeatedField(proto.DOUBLE, number=2)
+
+
+__all__ = tuple(sorted(__protobuf__.manifest))

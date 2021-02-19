@@ -1,26 +1,46 @@
-# oceanbolt-python-sdk
-A python wrapper around the Oceanbolt Data Api
+# Oceanbolt Python SDK
+The Oceanbolt Python SDK provides access to Oceanbolt data.
 
-## Endpoints
+It can be easily integrated existing tools such as jupyter notebooks, scripts, and applications.
 
-#### List endpoints:
-| Method | URL   |      Description      |  R Function name |
-|----------|----------|:-------------:|------:|
-| GET | https://beta.api.oceanbolt.com/v2/entities/countries | returns list of countries | listCountries() |
-| GET | https://beta.api.oceanbolt.com/v2/entities/zones | returns list of zones | listZones() |
-| GET | https://beta.api.oceanbolt.com/v2/entities/segments | returns list of segments | listSegments() |
-| GET | https://beta.api.oceanbolt.com/v2/entities/regions | returns list of regions | listRegions() |
-| GET | https://beta.api.oceanbolt.com/v2/entities/commodities | returns list of commodities | listCommodities() |
+Data is returned in the form of pandas.DataFrame, which allows for easy manipulation and further data processing. 
 
-#### Data endpoints:
+It is available to all Oceanbolt API clients (API authentication token required in order to get access)
 
-| Method | Doc URL   |      Description      |  R Function name |
-|----------|----------|:-------------:|------:|
-| POST | https://openapi.oceanbolt.com/#operation/getTonnageZone | returns tonnage zone data | getTonnageZoneCount() |
-| POST | https://openapi.oceanbolt.com/#tag/fleetspeed | returns fleet speed data | getFleetSpeed() |
-| POST | https://openapi.oceanbolt.com/#operation/postTradeflowLadenLegs | returns individual trade flows | getTradeFlows()
-| POST | https://openapi.oceanbolt.com/#operation/postTradeflowDailyTimeseries | returns trade flows timeseries | getTradeFlowsTimeseries()
-| POST | https://openapi.oceanbolt.com/#operation/getCongestionLive | returns live congestion data | getCongestionLive()
-| POST | https://openapi.oceanbolt.com/#operation/getCongestionTimeseries | returns congestion timeseries | getCongestionTimeseries()
-| POST | https://openapi.oceanbolt.com/#operation/vesselsLiveStatus | returns list of vessels | getVesselStatus()
-| POST | https://openapi.oceanbolt.com/#operation/vesselsPortCalls | returns list of port calls | getPortCalls()
+## Setup
+
+The SDK supports the following python versions: 3.6, 3.7, 3.8, and 3.9
+
+In order to install, run the following:
+
+    pip install oceanbolt.sdk
+
+In order to upgrade an existing installation, run the following:
+
+    pip install oceanbolt.sdk --update
+
+## Docs
+Documentation : https://python-sdk.oceanbolt.com
+
+## Quick Example
+
+````python
+from oceanbolt.sdk.client import APIClient
+from oceanbolt.sdk.data.port_calls import PortCalls
+from datetime import date, timedelta
+
+# Create the base API client using your token. Tokens can be created in the Oceanbolt App (app.oceanbolt.com)
+base_client = APIClient("<your API access token>")
+
+# Connect to one of the Oceanbolt's data endpoints using the base client object, ie: PortCalls
+port_calls_client = PortCalls(base_client)
+
+# Get a list of Port Hedland exports over the last week
+hedland_portcalls = port_calls_client.get(
+    start_date=date.today() - timedelta(days=7),
+    segment=["capesize"],
+    unlocode=["AUPHE"],
+)
+
+````
+
