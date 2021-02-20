@@ -50,7 +50,6 @@ def mypy(session):
         'oceanbolt',
     )
 
-
 @nox.session(python='3.6')
 def docs(session):
     """Build the docs for this library."""

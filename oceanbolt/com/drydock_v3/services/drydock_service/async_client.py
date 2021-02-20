@@ -15,8 +15,10 @@
 # limitations under the License.
 #
 
+from collections import OrderedDict
 import functools
-from typing  import Sequence ,Tuple ,Type ,Union
+import re
+from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
 import google.api_core.client_options as ClientOptions # type: ignore

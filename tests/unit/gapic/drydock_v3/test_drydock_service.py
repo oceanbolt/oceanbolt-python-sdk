@@ -20,12 +20,15 @@ import mock
 
 import grpc
 from grpc.experimental import aio
+import math
 import pytest
+from proto.marshal.rules.dates import DurationRule, TimestampRule
 
 from google import auth
 from google.api_core import client_options
 from google.api_core import exceptions
 from google.api_core import gapic_v1
+from google.api_core import grpc_helpers
 from google.api_core import grpc_helpers_async
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
@@ -194,7 +197,6 @@ def test_drydock_service_client_client_options(client_class, transport_class, tr
             client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
-
 @pytest.mark.parametrize("client_class,transport_class,transport_name,use_client_cert_env", [
 
     (DrydockServiceClient, transports.DrydockServiceGrpcTransport, "grpc", "true"),
@@ -298,7 +300,6 @@ def test_drydock_service_client_client_options_scopes(client_class, transport_cl
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
-
 
 @pytest.mark.parametrize("client_class,transport_class,transport_name", [
     (DrydockServiceClient, transports.DrydockServiceGrpcTransport, "grpc"),
