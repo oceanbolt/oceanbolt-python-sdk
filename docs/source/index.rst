@@ -22,6 +22,7 @@ API Reference
    :caption: Home
 
    self
+   getting_started
 
 .. toctree::
     :maxdepth: 2
