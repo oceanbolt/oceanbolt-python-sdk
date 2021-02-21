@@ -1,11 +1,11 @@
 # Oceanbolt Python SDK
-The Oceanbolt Python SDK provides access to Oceanbolt data.
+The Oceanbolt Python SDK provides access to Oceanbolt data. It is a python wrapper around the Oceanbolt Data API (REST).
 
 It can be easily integrated existing tools such as jupyter notebooks, scripts, and applications.
 
 Data is returned in the form of pandas.DataFrame, which allows for easy manipulation and further data processing. 
 
-It is available to all Oceanbolt API clients (API authentication token required in order to get access)
+The python SDK is available to all Oceanbolt API clients (API authentication token required in order to get access). API tokens can be generated in the Oceanbolt App (app.oceanbolt.com)
 
 ## Setup
 
