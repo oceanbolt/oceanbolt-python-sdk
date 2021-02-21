@@ -64,9 +64,9 @@ setuptools.setup(
     ],
     zip_safe=False,
     extras_require={
-        "doc": [
-            "Sphinx==3.2.1",
-            "sphinx_rtd_theme==0.5.0",
+        "docs": [
+            "Sphinx==3.3.1",
+            "sphinx_rtd_theme==0.5.1",
             "sphinx-autodoc-typehints==1.6.0",
         ],
         "test": [
