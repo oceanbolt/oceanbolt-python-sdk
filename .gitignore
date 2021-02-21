@@ -1,5 +1,5 @@
 venv
-docs
+docs/build
 doc/build
 oceanbolt.sdk.egg-info
 runner.py
