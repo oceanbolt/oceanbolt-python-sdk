@@ -11,6 +11,5 @@ test:
 	pytest
 
 builddocs:
-	cd docs
-	make html
+	sphinx-build docs/source docs/build
 
