@@ -43,10 +43,11 @@ class APIClient:
 
         creds = ObCredentials()
 
-        if token is None:
+        if token is not None:
             creds.token = token
         else:
             creds.token = api_key
+
 
         self.tonnageClient = tonnage.TonnageServiceClient(credentials=creds)
         self.portCallsClient = portcalls.PortCallServiceClient(credentials=creds)

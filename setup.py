@@ -31,7 +31,7 @@ setuptools.setup(
     author="Oceanbolt",
     author_email="support@oceanbolt.com",
     license="MIT",
-    version='0.0.6',
+    version='0.0.7',
     packages=setuptools.PEP420PackageFinder.find(),
     namespace_packages=('oceanbolt', 'oceanbolt.com'),
     platforms='Posix; MacOS X; Windows',
@@ -65,9 +65,9 @@ setuptools.setup(
     zip_safe=False,
     extras_require={
         "docs": [
-            "Sphinx==3.5.1",
+            "Sphinx==3.3.1",
             "sphinx_rtd_theme==0.5.1",
-            "sphinx-autodoc-typehints==1.6.0",
+            "sphinx-autodoc-typehints==1.11.1",
         ],
         "test": [
             "black==18.9b0",
@@ -77,8 +77,11 @@ setuptools.setup(
             "pytest==5.0.0",
             "python-dateutil==2.8.1",
             "pytest-rerunfailures==9.1.1",
+            "mock==4.0.3",
+            "flake8==3.8.4",
         ],
         "publish": [
+            "build==0.3.0",
             "twine==3.2.0",
         ],
     },

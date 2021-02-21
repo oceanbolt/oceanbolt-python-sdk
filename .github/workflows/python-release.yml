@@ -28,12 +28,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest twine
-        pip install -e .
-        python -m pip install extras_require
-    - name: Install pypa/build
-      run: |
-        python -m pip install build twine --user
+        pip install -e .[test,publish]
     - name: Build a binary wheel and a source tarball
       run: |
         python -m build --sdist --wheel --outdir dist/
