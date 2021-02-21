@@ -13,3 +13,6 @@ test:
 builddocs:
 	sphinx-build docs/source docs/build
 
+builddocsnetlify:
+	pip install -e .[docs]
+	sphinx-build docs/source docs/build
