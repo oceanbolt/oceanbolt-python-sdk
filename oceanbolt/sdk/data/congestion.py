@@ -15,10 +15,14 @@ class CongestionVessels:
     def get(self, **kwargs):
         kwargs = validate(kwargs)
         df = pb_list_to_pandas(self.client.get_congestion_vessels(kwargs).current_vessels)
-        del df["speed"]
-        del df["course"]
-        del df["lat"]
-        del df["lon"]
+        if "speed" in df.columns:
+            del df["speed"]
+        if "course" in df.columns:
+            del df["course"]
+        if "lat" in df.columns:
+            del df["lat"]
+        if "lng" in df.columns:
+            del df["lng"]
         return df
 
 

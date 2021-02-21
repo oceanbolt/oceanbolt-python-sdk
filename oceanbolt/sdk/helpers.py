@@ -70,9 +70,6 @@ def pb_list_to_pandas(data):
         return pd.DataFrame()
 
     first = data[0]
-    members = [attr for attr in dir(first._pb) if attr.islower() and not attr.startswith("_")]
 
-    # print(first._meta.fields)
-
-    df = pd.DataFrame([[getattr(i, k) for k in members] for i in data], columns=members)
+    df = pd.DataFrame([[getattr(i, attr) for attr in first._meta.fields] for i in data], columns=first._meta.fields)
     return df

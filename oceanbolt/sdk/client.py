@@ -2,6 +2,7 @@
 from oceanbolt.com import tonnage, portcalls, drydock, congestion, tradeflows, entities
 from google.auth import credentials, _helpers  # type: ignore
 import os
+import getpass
 
 
 class ObCredentials(credentials.Credentials):
@@ -31,6 +32,10 @@ class ObCredentials(credentials.Credentials):
         self.apply(headers)
 
 
+def APIClientInteractive():
+    return APIClient(getpass.getpass())
+
+
 class APIClient:
 
     def __init__(self, token=None):
@@ -47,7 +52,6 @@ class APIClient:
             creds.token = token
         else:
             creds.token = api_key
-
 
         self.tonnageClient = tonnage.TonnageServiceClient(credentials=creds)
         self.portCallsClient = portcalls.PortCallServiceClient(credentials=creds)

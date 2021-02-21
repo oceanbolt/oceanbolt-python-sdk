@@ -32,6 +32,8 @@ class FleetSpeedTimeseries:
     def get(self, **kwargs):
         kwargs = validate(kwargs)
         df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_speed(kwargs).timeseries)
-        del df["vessel_count"]
-        del df["vessel_dwt"]
+        if 'vessel_count' in df.columns:
+            del df["vessel_count"]
+        if 'vessel_dwt' in df.columns:
+            del df["vessel_dwt"]
         return df
