@@ -5,13 +5,13 @@ Setup
 _____
 The SDK supports the following python versions: 3.6, 3.7, 3.8, and 3.9
 
-In order to install, run the following:
+In order to install, run the following::
 
     pip install oceanbolt.sdk
 
-In order to upgrade an existing installation, run the following:
+In order to upgrade an existing installation, run the following::
 
-    pip install oceanbolt.sdk --update
+    pip install oceanbolt.sdk --upgrade
 
 Setting the API access token
 ____________________________
@@ -20,9 +20,9 @@ The API token is set when creating a base api client class instance.
 It can be set in two different ways:
 
 1. Setting the API key from ENV:
-    The API can set by specifying the **OCEANBOLT_API_KEY** ENV variable.
+    The API can set by specifying the **OCEANBOLT_API_KEY** ENV variable.::
 
-    `OCEANBOLT_API_KEY=<your access token>`
+        OCEANBOLT_API_KEY=<your access token>
 
     If the API key is set through ENV variable, it will automatically be picked up by the SDK when creating a base API client.
 

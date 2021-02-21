@@ -294,8 +294,8 @@ class ShipyardStay(proto.Message):
 
         departed_at (str):
 
-        duration_days (float):
-            string updated_at = 17;
+        duration_days (google.protobuf.wrappers_pb2.DoubleValue):
+
     """
 
     shipyard_stay_id = proto.Field(proto.STRING, number=1)
@@ -330,7 +330,9 @@ class ShipyardStay(proto.Message):
 
     departed_at = proto.Field(proto.STRING, number=16)
 
-    duration_days = proto.Field(proto.DOUBLE, number=18)
+    duration_days = proto.Field(proto.MESSAGE, number=18,
+        message=wrappers.DoubleValue,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

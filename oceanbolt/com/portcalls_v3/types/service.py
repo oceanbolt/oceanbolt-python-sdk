@@ -200,53 +200,75 @@ class PortCall(proto.Message):
 
     Attributes:
         voyage_id (str):
-
+            Unique ID for the voyage. This can be shared
+            across multiple port calls in the case of
+            parceling voyages.
         port_call_id (str):
-
+            Unique ID for the port call. This will always
+            be unique to the port call.
         imo (int):
-
+            IMO number of the vessel.
         vessel_name (str):
-
+            Name of the vessel
+        port_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the port.
         port_name (str):
-            int32 port_id = 3;
+            Name of the port.
         segment (str):
-
+            Segment of the vessel.
         sub_segment (str):
-
+            Sub segment of the vessel.
         unlocode (str):
-
+            UNLOCODE of the port.
+        berth_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the
+            berth/terminal.
         berth_name (str):
-
+            Name of the berth/terminal.
+        anchorage_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the
+            anchorage.
         anchorage_name (str):
-
+            Name of the anchorage.
         arrived_at (str):
-
+            UTC timestamp for when the vessel arrived at
+            the port.
         berthed_at (str):
-
+            UTC timestamp for when the vessel berthed in
+            the port.
+        unberthed_at (str):
+            UTC timestamp for when the vessel left the
+            berth/terminal.
         departed_at (str):
-
-        days_in_port (float):
-
-        days_waiting (float):
-
-        days_at_berth (float):
-
+            UTC timestamp for when the vessel left the
+            port.
+        days_in_port (google.protobuf.wrappers_pb2.DoubleValue):
+            Total duration of the port call (in days).
+        days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was at berth in
+            during the duration of the port call.
+        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was waiting at
+            anchor before shifting to berth.
         country_code (str):
-
+            ISO 2-letter country code of the load
+            country.
         operation (str):
-
+            Operation type of the port call
         voyage_type (str):
-
+            The type of the voyage.
         commodity (str):
-
+            Name of the commodity.
         commodity_value (str):
-
+            Database friendly name of the commodity.
         commodity_group (str):
-
-        volume (float):
-
+            Name of the commodity group.
+        volume (google.protobuf.wrappers_pb2.DoubleValue):
+            Volume loaded in metric tons.
         port_visited (bool):
-            bool speed_below2_observed = 15;
+            Flag to indicate whether the vessel has
+            visited the port interior. If the flag is false
+            the vessels only visited an anchorage.
     """
 
     voyage_id = proto.Field(proto.STRING, number=16)
@@ -257,6 +279,10 @@ class PortCall(proto.Message):
 
     vessel_name = proto.Field(proto.STRING, number=2)
 
+    port_id = proto.Field(proto.MESSAGE, number=3,
+        message=wrappers.Int32Value,
+    )
+
     port_name = proto.Field(proto.STRING, number=4)
 
     segment = proto.Field(proto.STRING, number=18)
@@ -265,7 +291,15 @@ class PortCall(proto.Message):
 
     unlocode = proto.Field(proto.STRING, number=25)
 
+    berth_id = proto.Field(proto.MESSAGE, number=27,
+        message=wrappers.Int32Value,
+    )
+
     berth_name = proto.Field(proto.STRING, number=5)
+
+    anchorage_id = proto.Field(proto.MESSAGE, number=28,
+        message=wrappers.Int32Value,
+    )
 
     anchorage_name = proto.Field(proto.STRING, number=6)
 
@@ -273,13 +307,21 @@ class PortCall(proto.Message):
 
     berthed_at = proto.Field(proto.STRING, number=8)
 
+    unberthed_at = proto.Field(proto.STRING, number=26)
+
     departed_at = proto.Field(proto.STRING, number=9)
 
-    days_in_port = proto.Field(proto.DOUBLE, number=10)
+    days_in_port = proto.Field(proto.MESSAGE, number=10,
+        message=wrappers.DoubleValue,
+    )
 
-    days_waiting = proto.Field(proto.DOUBLE, number=11)
+    days_waiting = proto.Field(proto.MESSAGE, number=11,
+        message=wrappers.DoubleValue,
+    )
 
-    days_at_berth = proto.Field(proto.DOUBLE, number=12)
+    days_at_berth = proto.Field(proto.MESSAGE, number=12,
+        message=wrappers.DoubleValue,
+    )
 
     country_code = proto.Field(proto.STRING, number=13)
 
@@ -293,7 +335,9 @@ class PortCall(proto.Message):
 
     commodity_group = proto.Field(proto.STRING, number=22)
 
-    volume = proto.Field(proto.DOUBLE, number=23)
+    volume = proto.Field(proto.MESSAGE, number=23,
+        message=wrappers.DoubleValue,
+    )
 
     port_visited = proto.Field(proto.BOOL, number=24)
 

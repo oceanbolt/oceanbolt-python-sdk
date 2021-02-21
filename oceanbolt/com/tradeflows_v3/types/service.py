@@ -79,19 +79,23 @@ class TradeFlowDataRequest(proto.Message):
             filtering to show data only for a subset of vessels.
             Example: [1234567,7654321].
         load_port_id (Sequence[int]):
-
+            Oceanbolt database identifier of the load
+            port.
         load_port_unlocode (Sequence[str]):
             List of five letter UNLOCODEs for load
             (export) ports to filter on.
+        load_berth_id (Sequence[int]):
+            Oceanbolt database identifier of the load
+            berth/terminal.
         discharge_port_id (Sequence[int]):
-
+            Oceanbolt database identifier of the
+            discharge port.
         discharge_port_unlocode (Sequence[str]):
             List of five letter UNLOCODEs for discharge
             (import) ports to filter on.
-        load_berth_id (Sequence[int]):
-
         discharge_berth_id (Sequence[int]):
-
+            Oceanbolt database identifier of the
+            discharge berth/terminal.
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
@@ -185,11 +189,11 @@ class TradeFlowDataRequest(proto.Message):
 
     load_port_unlocode = proto.RepeatedField(proto.STRING, number=28)
 
+    load_berth_id = proto.RepeatedField(proto.INT32, number=5)
+
     discharge_port_id = proto.RepeatedField(proto.INT32, number=20)
 
     discharge_port_unlocode = proto.RepeatedField(proto.STRING, number=29)
-
-    load_berth_id = proto.RepeatedField(proto.INT32, number=5)
 
     discharge_berth_id = proto.RepeatedField(proto.INT32, number=18)
 
@@ -471,15 +475,16 @@ class TradeFlow(proto.Message):
             Name of the commodity group.
         volume (float):
             Volume loaded in metric tons.
-        load_port_id (int):
-            Oceanbolt database ID of the load port.
+        load_port_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the load
+            port.
         load_port_name (str):
             Name of the load port.
         load_port_unlocode (str):
             UNLOCODE of the load port.
-        load_berth_id (int):
-            Oceanbolt database ID of the load berth/load
-            terminal.
+        load_berth_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the load
+            berth/load terminal.
         load_berth_name (str):
             Name of the load berth/load terminal.
         load_country_code (str):
@@ -495,28 +500,31 @@ class TradeFlow(proto.Message):
         load_port_berthed_at (str):
             UTC timestamp for when the vessel berthed in
             the load port.
+        load_port_unberthed_at (str):
+            UTC timestamp for when the vessel left the
+            berth the load port.
         load_port_departed_at (str):
             UTC timestamp for when the vessel departed
             the load port.
-        load_port_days_total (float):
+        load_port_days_total (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the load port call (in
             days).
-        load_port_days_berthed (float):
+        load_port_days_berthed (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was at berth in the
             load port.
-        load_port_days_waiting (float):
+        load_port_days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was waiting at the
             load port before shifting to berth.
-        discharge_port_id (int):
-            Oceanbolt database ID of the load berth/load
-            terminal.
+        discharge_port_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the load
+            berth/load terminal.
         discharge_port_name (str):
             Name of the load port.
         discharge_port_unlocode (str):
             UNLOCODE of the load port.
-        discharge_berth_id (int):
-            Oceanbolt database ID of the load berth/load
-            terminal.
+        discharge_berth_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the load
+            berth/load terminal.
         discharge_berth_name (str):
             Name of the load berth/load terminal.
         discharge_country_code (str):
@@ -528,33 +536,36 @@ class TradeFlow(proto.Message):
             Name of the load region.
         discharge_port_arrived_at (str):
             UTC timestamp for when the vessel arrived at
-            the load port.
+            the discharge port.
         discharge_port_berthed_at (str):
             UTC timestamp for when the vessel berthed in
-            the load port.
+            the discharge port.
+        discharge_port_unberthed_at (str):
+            UTC timestamp for when the vessel left the
+            berth the discharge port.
         discharge_port_departed_at (str):
             UTC timestamp for when the vessel departed
-            the load port.
-        discharge_port_days_total (float):
+            the discharge port.
+        discharge_port_days_total (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the load port call (in
             days).
-        discharge_port_days_berthed (float):
+        discharge_port_days_berthed (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was at berth in the
-            load port.
-        discharge_port_days_waiting (float):
+            discharge port.
+        discharge_port_days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was waiting at the
-            load port before shifting to berth.
-        days_steaming (float):
+            discharge port before shifting to berth.
+        days_steaming (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was steaming (the
-            time from when it left the load port until it
-            arrived at the discharge port).
-        days_total_duration (float):
+            time from when it left the discharge port until
+            it arrived at the discharge port).
+        days_total_duration (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the voyage (in days).
-        distance_calculated (float):
+        distance_calculated (google.protobuf.wrappers_pb2.DoubleValue):
             Calculated distance in nautical miles between
             load port and discharge port. Based on port
             distance tables.
-        distance_actual (float):
+        distance_actual (google.protobuf.wrappers_pb2.DoubleValue):
             Actual distance sailed in nautical miles
             between load port and discharge port. Based on
             AIS tracks.
@@ -591,13 +602,17 @@ class TradeFlow(proto.Message):
 
     volume = proto.Field(proto.DOUBLE, number=7)
 
-    load_port_id = proto.Field(proto.INT32, number=8)
+    load_port_id = proto.Field(proto.MESSAGE, number=8,
+        message=wrappers.Int32Value,
+    )
 
     load_port_name = proto.Field(proto.STRING, number=9)
 
     load_port_unlocode = proto.Field(proto.STRING, number=35)
 
-    load_berth_id = proto.Field(proto.INT32, number=10)
+    load_berth_id = proto.Field(proto.MESSAGE, number=10,
+        message=wrappers.Int32Value,
+    )
 
     load_berth_name = proto.Field(proto.STRING, number=11)
 
@@ -611,21 +626,33 @@ class TradeFlow(proto.Message):
 
     load_port_berthed_at = proto.Field(proto.STRING, number=17)
 
+    load_port_unberthed_at = proto.Field(proto.STRING, number=31)
+
     load_port_departed_at = proto.Field(proto.STRING, number=18)
 
-    load_port_days_total = proto.Field(proto.DOUBLE, number=46)
+    load_port_days_total = proto.Field(proto.MESSAGE, number=46,
+        message=wrappers.DoubleValue,
+    )
 
-    load_port_days_berthed = proto.Field(proto.DOUBLE, number=47)
+    load_port_days_berthed = proto.Field(proto.MESSAGE, number=47,
+        message=wrappers.DoubleValue,
+    )
 
-    load_port_days_waiting = proto.Field(proto.DOUBLE, number=48)
+    load_port_days_waiting = proto.Field(proto.MESSAGE, number=48,
+        message=wrappers.DoubleValue,
+    )
 
-    discharge_port_id = proto.Field(proto.INT32, number=21)
+    discharge_port_id = proto.Field(proto.MESSAGE, number=21,
+        message=wrappers.Int32Value,
+    )
 
     discharge_port_name = proto.Field(proto.STRING, number=22)
 
     discharge_port_unlocode = proto.Field(proto.STRING, number=36)
 
-    discharge_berth_id = proto.Field(proto.INT32, number=53)
+    discharge_berth_id = proto.Field(proto.MESSAGE, number=53,
+        message=wrappers.Int32Value,
+    )
 
     discharge_berth_name = proto.Field(proto.STRING, number=23)
 
@@ -639,21 +666,37 @@ class TradeFlow(proto.Message):
 
     discharge_port_berthed_at = proto.Field(proto.STRING, number=29)
 
+    discharge_port_unberthed_at = proto.Field(proto.STRING, number=32)
+
     discharge_port_departed_at = proto.Field(proto.STRING, number=30)
 
-    discharge_port_days_total = proto.Field(proto.DOUBLE, number=40)
+    discharge_port_days_total = proto.Field(proto.MESSAGE, number=40,
+        message=wrappers.DoubleValue,
+    )
 
-    discharge_port_days_berthed = proto.Field(proto.DOUBLE, number=41)
+    discharge_port_days_berthed = proto.Field(proto.MESSAGE, number=41,
+        message=wrappers.DoubleValue,
+    )
 
-    discharge_port_days_waiting = proto.Field(proto.DOUBLE, number=42)
+    discharge_port_days_waiting = proto.Field(proto.MESSAGE, number=42,
+        message=wrappers.DoubleValue,
+    )
 
-    days_steaming = proto.Field(proto.DOUBLE, number=43)
+    days_steaming = proto.Field(proto.MESSAGE, number=43,
+        message=wrappers.DoubleValue,
+    )
 
-    days_total_duration = proto.Field(proto.DOUBLE, number=50)
+    days_total_duration = proto.Field(proto.MESSAGE, number=50,
+        message=wrappers.DoubleValue,
+    )
 
-    distance_calculated = proto.Field(proto.DOUBLE, number=44)
+    distance_calculated = proto.Field(proto.MESSAGE, number=44,
+        message=wrappers.DoubleValue,
+    )
 
-    distance_actual = proto.Field(proto.DOUBLE, number=45)
+    distance_actual = proto.Field(proto.MESSAGE, number=45,
+        message=wrappers.DoubleValue,
+    )
 
     eta = proto.Field(proto.STRING, number=33)
 
