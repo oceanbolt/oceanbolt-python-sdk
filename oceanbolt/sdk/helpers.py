@@ -37,18 +37,16 @@ def pb_timeseries_to_pandas(data):
         return pd.DataFrame()
 
     first_group = data[0]
-    rows = first_group.rows
     first_row = first_group.rows[0]
 
     dict_list = []
     for g in data:
-        for r in rows:
+        for r in g.rows:
             d = {}
             if g.group != "" and g.group != "default":
                 d["group"] = g.group
             for attr in first_row._meta.fields:
                 d[attr] = getattr(r, attr)
-
             dict_list.append(d)
 
     df = pd.DataFrame(dict_list)
