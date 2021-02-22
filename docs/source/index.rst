@@ -49,6 +49,7 @@ API Reference
 
     tonnage_v3/zone_count
     tonnage_v3/fleet_speed
+    tonnage_v3/chinese_waters
 
 .. toctree::
     :maxdepth: 2

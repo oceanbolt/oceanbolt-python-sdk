@@ -37,3 +37,18 @@ class FleetSpeedTimeseries:
         if 'vessel_dwt' in df.columns:
             del df["vessel_dwt"]
         return df
+
+
+class ChineseWatersTimeseries:
+    """
+    The ``ChineseVesselsChineseWaters`` returns timeseries on fleet speed.
+    """
+
+    RESOURCE_NAME = "tonnage/speed"
+
+    def __init__(self, client: APIClient):
+        self.client = client._tonnage_client()
+
+    def get(self, **kwargs):
+        kwargs = validate(kwargs)
+        return pb_timeseries_to_pandas(self.client.get_tonnage_chinese_waters(kwargs).timeseries)
