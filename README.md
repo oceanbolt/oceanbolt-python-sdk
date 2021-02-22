@@ -1,4 +1,9 @@
 # Oceanbolt Python SDK
+
+[![Github CI](https://github.com/oceanbolt/oceanbolt-python-sdk/actions/workflows/python-ci.yml/badge.svg)](https://github.com/oceanbolt/oceanbolt-python-sdk/actions)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0c776868-ce00-4c64-a4e1-1817953d3169/deploy-status)](https://app.netlify.com/sites/oceanbolt-python-sdk/deploys)
+
+
 The Oceanbolt Python SDK provides access to Oceanbolt data. It is a python wrapper around the Oceanbolt Data API.
 
 It can be easily integrated existing tools such as jupyter notebooks, scripts, and applications.

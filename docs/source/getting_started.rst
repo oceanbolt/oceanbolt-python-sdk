@@ -15,7 +15,7 @@ In order to upgrade an existing installation, run the following::
 
 Setting the API access token
 ____________________________
-The API token is set when creating a base api client class instance.
+The API key is set when creating a base api client class instance.
 
 It can be set in two different ways:
 
@@ -42,6 +42,19 @@ It can be set in two different ways:
 
 
 *If both options are set simultaneously, the manual inputted API key will take precedence.*
+
+
+For users working with the SDK inside a notebook,
+we also provide the ability to enter the API key manully in the prompt.
+
+This can be done by using the `APIClientInteractive` helper function:
+
+.. code-block:: python
+
+    from oceanbolt.sdk.client import API
+    base_client = APIClientInteractive()
+
+This will open a promt where you can enter the token.
 
 Connecting and accessing data
 _____________________________

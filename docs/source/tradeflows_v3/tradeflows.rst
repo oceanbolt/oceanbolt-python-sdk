@@ -18,15 +18,15 @@ Example
 .. code-block:: python
 
     from oceanbolt.sdk.client import APIClient
-    from oceanbolt.sdk.data.trade_flows import TradeFlowTimeseries
+    from oceanbolt.sdk.data.trade_flows import TradeFlows
     from datetime import date, timedelta
 
     base_client = APIClient("<token>")
-    df = TradeFlowTimeseries(base_client).get(
+    df = TradeFlows(base_client).get(
         load_country_code=['AU'],
         discharge_country_code=['CN'],
         commodity_group=['coal'],
-        start_date=date.today() - timedelta(days=7),
+        start_date=date.today() - timedelta(days=30),
         flow_direction="import", #Specified to filter and group on import date
     )
 
