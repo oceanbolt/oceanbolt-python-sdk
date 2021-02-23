@@ -681,7 +681,7 @@ async def test_get_tonnage_fleet_status_async_from_dict():
     await test_get_tonnage_fleet_status_async(request_type=dict)
 
 
-def test_get_tonnage_fleet_development(transport: str = 'grpc', request_type=service.GetTonnageFleetRequest):
+def test_get_tonnage_fleet_growth(transport: str = 'grpc', request_type=service.GetTonnageFleetRequest):
     client = TonnageServiceClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -693,17 +693,17 @@ def test_get_tonnage_fleet_development(transport: str = 'grpc', request_type=ser
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_tonnage_fleet_development),
+            type(client.transport.get_tonnage_fleet_growth),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.GetTonnageFleetDevelopmentResponse(
+        call.return_value = service.GetTonnageFleetGrowthResponse(
             csv='csv_value',
 
             xlsx='xlsx_value',
 
         )
 
-        response = client.get_tonnage_fleet_development(request)
+        response = client.get_tonnage_fleet_growth(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
@@ -713,19 +713,19 @@ def test_get_tonnage_fleet_development(transport: str = 'grpc', request_type=ser
 
     # Establish that the response is the type that we expect.
 
-    assert isinstance(response, service.GetTonnageFleetDevelopmentResponse)
+    assert isinstance(response, service.GetTonnageFleetGrowthResponse)
 
     assert response.csv == 'csv_value'
 
     assert response.xlsx == 'xlsx_value'
 
 
-def test_get_tonnage_fleet_development_from_dict():
-    test_get_tonnage_fleet_development(request_type=dict)
+def test_get_tonnage_fleet_growth_from_dict():
+    test_get_tonnage_fleet_growth(request_type=dict)
 
 
 @pytest.mark.asyncio
-async def test_get_tonnage_fleet_development_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageFleetRequest):
+async def test_get_tonnage_fleet_growth_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageFleetRequest):
     client = TonnageServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -737,15 +737,15 @@ async def test_get_tonnage_fleet_development_async(transport: str = 'grpc_asynci
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_tonnage_fleet_development),
+            type(client.transport.get_tonnage_fleet_growth),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTonnageFleetDevelopmentResponse(
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTonnageFleetGrowthResponse(
             csv='csv_value',
             xlsx='xlsx_value',
         ))
 
-        response = await client.get_tonnage_fleet_development(request)
+        response = await client.get_tonnage_fleet_growth(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -754,7 +754,7 @@ async def test_get_tonnage_fleet_development_async(transport: str = 'grpc_asynci
         assert args[0] == service.GetTonnageFleetRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.GetTonnageFleetDevelopmentResponse)
+    assert isinstance(response, service.GetTonnageFleetGrowthResponse)
 
     assert response.csv == 'csv_value'
 
@@ -762,8 +762,8 @@ async def test_get_tonnage_fleet_development_async(transport: str = 'grpc_asynci
 
 
 @pytest.mark.asyncio
-async def test_get_tonnage_fleet_development_async_from_dict():
-    await test_get_tonnage_fleet_development_async(request_type=dict)
+async def test_get_tonnage_fleet_growth_async_from_dict():
+    await test_get_tonnage_fleet_growth_async(request_type=dict)
 
 
 def test_get_tonnage_chinese_waters(transport: str = 'grpc', request_type=service.TonnageChineseWatersRequest):
@@ -849,6 +849,91 @@ async def test_get_tonnage_chinese_waters_async(transport: str = 'grpc_asyncio',
 @pytest.mark.asyncio
 async def test_get_tonnage_chinese_waters_async_from_dict():
     await test_get_tonnage_chinese_waters_async(request_type=dict)
+
+
+def test_get_tonnage_zone_changes(transport: str = 'grpc', request_type=service.GetTonnageZoneChangesRequest):
+    client = TonnageServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_tonnage_zone_changes),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetTonnageZoneChangesResponse(
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_tonnage_zone_changes(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetTonnageZoneChangesRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.GetTonnageZoneChangesResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_tonnage_zone_changes_from_dict():
+    test_get_tonnage_zone_changes(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_tonnage_zone_changes_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageZoneChangesRequest):
+    client = TonnageServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_tonnage_zone_changes),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTonnageZoneChangesResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_tonnage_zone_changes(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetTonnageZoneChangesRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetTonnageZoneChangesResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_tonnage_zone_changes_async_from_dict():
+    await test_get_tonnage_zone_changes_async(request_type=dict)
 
 
 def test_credentials_transport_error():
@@ -954,8 +1039,9 @@ def test_tonnage_service_base_transport():
         'get_tonnage_fleet_speed',
         'get_global_tonnage_status',
         'get_tonnage_fleet_status',
-        'get_tonnage_fleet_development',
+        'get_tonnage_fleet_growth',
         'get_tonnage_chinese_waters',
+        'get_tonnage_zone_changes',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

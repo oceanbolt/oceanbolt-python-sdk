@@ -293,7 +293,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.GetGlobalTonnageStatusResponse]:
         r"""Return a callable for the get global tonnage status method over gRPC.
 
-        Fetches fleet speed timeseries
+        Fetches global tonnage status timeseries
 
         Returns:
             Callable[[~.GetGlobalTonnageStatusRequest],
@@ -319,8 +319,9 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.GetTonnageFleetStatusResponse]:
         r"""Return a callable for the get tonnage fleet status method over gRPC.
 
-        GetTonnageFleetStatus provides fleet status
-        timeseries of how the fleet have developed over time
+        Provides fleet status timeseries of how the fleet
+        have developed over time. This timeseries shows number
+        of active vessels on the water at any given time.
 
         Returns:
             Callable[[~.GetTonnageFleetRequest],
@@ -341,17 +342,19 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
         return self._stubs['get_tonnage_fleet_status']
 
     @property
-    def get_tonnage_fleet_development(self) -> Callable[
+    def get_tonnage_fleet_growth(self) -> Callable[
             [service.GetTonnageFleetRequest],
-            service.GetTonnageFleetDevelopmentResponse]:
-        r"""Return a callable for the get tonnage fleet development method over gRPC.
+            service.GetTonnageFleetGrowthResponse]:
+        r"""Return a callable for the get tonnage fleet growth method over gRPC.
 
-        GetTonnageFleetDevelopment provides fleet growth
-        timeseries of how the fleet have developed over time
+        Provides fleet growth timeseries of how the fleet
+        have developed over time. This timeseries shows number
+        of vessels added to/removed from the fleet during any
+        given period.
 
         Returns:
             Callable[[~.GetTonnageFleetRequest],
-                    ~.GetTonnageFleetDevelopmentResponse]:
+                    ~.GetTonnageFleetGrowthResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -359,13 +362,13 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_tonnage_fleet_development' not in self._stubs:
-            self._stubs['get_tonnage_fleet_development'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.tonnage.v3.TonnageService/GetTonnageFleetDevelopment',
+        if 'get_tonnage_fleet_growth' not in self._stubs:
+            self._stubs['get_tonnage_fleet_growth'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.tonnage.v3.TonnageService/GetTonnageFleetGrowth',
                 request_serializer=service.GetTonnageFleetRequest.serialize,
-                response_deserializer=service.GetTonnageFleetDevelopmentResponse.deserialize,
+                response_deserializer=service.GetTonnageFleetGrowthResponse.deserialize,
             )
-        return self._stubs['get_tonnage_fleet_development']
+        return self._stubs['get_tonnage_fleet_growth']
 
     @property
     def get_tonnage_chinese_waters(self) -> Callable[
@@ -373,8 +376,10 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.TonnageChineseWatersResponse]:
         r"""Return a callable for the get tonnage chinese waters method over gRPC.
 
-        GetTonnageChineseWaters provides chinese waters
-        tonnage timeseries data
+        Provides chinese waters tonnage timeseries data. This
+        timeseries shows the number of Chinese flagged that are
+        trading inside and outside of Chinese waters
+        respectively.
 
         Returns:
             Callable[[~.TonnageChineseWatersRequest],
@@ -393,6 +398,33 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
                 response_deserializer=service.TonnageChineseWatersResponse.deserialize,
             )
         return self._stubs['get_tonnage_chinese_waters']
+
+    @property
+    def get_tonnage_zone_changes(self) -> Callable[
+            [service.GetTonnageZoneChangesRequest],
+            service.GetTonnageZoneChangesResponse]:
+        r"""Return a callable for the get tonnage zone changes method over gRPC.
+
+        Provides timeseries data on the number of vessels
+        that cross zone boundaries during any given period.
+
+        Returns:
+            Callable[[~.GetTonnageZoneChangesRequest],
+                    ~.GetTonnageZoneChangesResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_tonnage_zone_changes' not in self._stubs:
+            self._stubs['get_tonnage_zone_changes'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.tonnage.v3.TonnageService/GetTonnageZoneChanges',
+                request_serializer=service.GetTonnageZoneChangesRequest.serialize,
+                response_deserializer=service.GetTonnageZoneChangesResponse.deserialize,
+            )
+        return self._stubs['get_tonnage_zone_changes']
 
 
 __all__ = (

@@ -21,15 +21,17 @@ from oceanbolt.com.tonnage_v3.types.service import ChineseWatersTimeseriesGroup
 from oceanbolt.com.tonnage_v3.types.service import ChineseWatersTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import EmptyParams
 from oceanbolt.com.tonnage_v3.types.service import EmptyResponse
-from oceanbolt.com.tonnage_v3.types.service import FleetDevelopmentTimeseriesGroup
-from oceanbolt.com.tonnage_v3.types.service import FleetDevelopmentTimeseriesRow
+from oceanbolt.com.tonnage_v3.types.service import FleetGrowthTimeseriesGroup
+from oceanbolt.com.tonnage_v3.types.service import FleetGrowthTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import GetFleetSpeedResponse
 from oceanbolt.com.tonnage_v3.types.service import GetGlobalTonnageStatusRequest
 from oceanbolt.com.tonnage_v3.types.service import GetGlobalTonnageStatusResponse
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageDataRequest
-from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetDevelopmentResponse
+from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetGrowthResponse
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetRequest
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetStatusResponse
+from oceanbolt.com.tonnage_v3.types.service import GetTonnageZoneChangesRequest
+from oceanbolt.com.tonnage_v3.types.service import GetTonnageZoneChangesResponse
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageZoneCountResponse
 from oceanbolt.com.tonnage_v3.types.service import GlobalTonnageZoneCount
 from oceanbolt.com.tonnage_v3.types.service import TimeseriesGroup
@@ -44,15 +46,17 @@ __all__ = (
     'ChineseWatersTimeseriesRow',
     'EmptyParams',
     'EmptyResponse',
-    'FleetDevelopmentTimeseriesGroup',
-    'FleetDevelopmentTimeseriesRow',
+    'FleetGrowthTimeseriesGroup',
+    'FleetGrowthTimeseriesRow',
     'GetFleetSpeedResponse',
     'GetGlobalTonnageStatusRequest',
     'GetGlobalTonnageStatusResponse',
     'GetTonnageDataRequest',
-    'GetTonnageFleetDevelopmentResponse',
+    'GetTonnageFleetGrowthResponse',
     'GetTonnageFleetRequest',
     'GetTonnageFleetStatusResponse',
+    'GetTonnageZoneChangesRequest',
+    'GetTonnageZoneChangesResponse',
     'GetTonnageZoneCountResponse',
     'GlobalTonnageZoneCount',
     'TimeseriesGroup',

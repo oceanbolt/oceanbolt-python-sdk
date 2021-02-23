@@ -20,15 +20,17 @@ from .types.service import ChineseWatersTimeseriesGroup
 from .types.service import ChineseWatersTimeseriesRow
 from .types.service import EmptyParams
 from .types.service import EmptyResponse
-from .types.service import FleetDevelopmentTimeseriesGroup
-from .types.service import FleetDevelopmentTimeseriesRow
+from .types.service import FleetGrowthTimeseriesGroup
+from .types.service import FleetGrowthTimeseriesRow
 from .types.service import GetFleetSpeedResponse
 from .types.service import GetGlobalTonnageStatusRequest
 from .types.service import GetGlobalTonnageStatusResponse
 from .types.service import GetTonnageDataRequest
-from .types.service import GetTonnageFleetDevelopmentResponse
+from .types.service import GetTonnageFleetGrowthResponse
 from .types.service import GetTonnageFleetRequest
 from .types.service import GetTonnageFleetStatusResponse
+from .types.service import GetTonnageZoneChangesRequest
+from .types.service import GetTonnageZoneChangesResponse
 from .types.service import GetTonnageZoneCountResponse
 from .types.service import GlobalTonnageZoneCount
 from .types.service import TimeseriesGroup
@@ -44,15 +46,17 @@ __all__ = (
     'ChineseWatersTimeseriesRow',
     'EmptyParams',
     'EmptyResponse',
-    'FleetDevelopmentTimeseriesGroup',
-    'FleetDevelopmentTimeseriesRow',
+    'FleetGrowthTimeseriesGroup',
+    'FleetGrowthTimeseriesRow',
     'GetFleetSpeedResponse',
     'GetGlobalTonnageStatusRequest',
     'GetGlobalTonnageStatusResponse',
     'GetTonnageDataRequest',
-    'GetTonnageFleetDevelopmentResponse',
+    'GetTonnageFleetGrowthResponse',
     'GetTonnageFleetRequest',
     'GetTonnageFleetStatusResponse',
+    'GetTonnageZoneChangesRequest',
+    'GetTonnageZoneChangesResponse',
     'GetTonnageZoneCountResponse',
     'GlobalTonnageZoneCount',
     'TimeseriesGroup',

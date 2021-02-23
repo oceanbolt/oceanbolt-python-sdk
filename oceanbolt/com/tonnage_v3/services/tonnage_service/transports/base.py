@@ -123,13 +123,18 @@ class TonnageServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.get_tonnage_fleet_development: gapic_v1.method.wrap_method(
-                self.get_tonnage_fleet_development,
+            self.get_tonnage_fleet_growth: gapic_v1.method.wrap_method(
+                self.get_tonnage_fleet_growth,
                 default_timeout=None,
                 client_info=client_info,
             ),
             self.get_tonnage_chinese_waters: gapic_v1.method.wrap_method(
                 self.get_tonnage_chinese_waters,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.get_tonnage_zone_changes: gapic_v1.method.wrap_method(
+                self.get_tonnage_zone_changes,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -173,11 +178,11 @@ class TonnageServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def get_tonnage_fleet_development(self) -> typing.Callable[
+    def get_tonnage_fleet_growth(self) -> typing.Callable[
             [service.GetTonnageFleetRequest],
             typing.Union[
-                service.GetTonnageFleetDevelopmentResponse,
-                typing.Awaitable[service.GetTonnageFleetDevelopmentResponse]
+                service.GetTonnageFleetGrowthResponse,
+                typing.Awaitable[service.GetTonnageFleetGrowthResponse]
             ]]:
         raise NotImplementedError()
 
@@ -187,6 +192,15 @@ class TonnageServiceTransport(abc.ABC):
             typing.Union[
                 service.TonnageChineseWatersResponse,
                 typing.Awaitable[service.TonnageChineseWatersResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_tonnage_zone_changes(self) -> typing.Callable[
+            [service.GetTonnageZoneChangesRequest],
+            typing.Union[
+                service.GetTonnageZoneChangesResponse,
+                typing.Awaitable[service.GetTonnageZoneChangesResponse]
             ]]:
         raise NotImplementedError()
 

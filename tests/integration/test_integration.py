@@ -2,7 +2,7 @@ from oceanbolt.sdk.client import APIClient
 from oceanbolt.sdk.data import Ports, Countries, Commodities, Segments, Regions, Zones
 from oceanbolt.sdk.data import TradeFlows, TradeFlowTimeseries
 from oceanbolt.sdk.data import PortCalls, PortCallTimeseries
-from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries
+from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
 
 __client__ = APIClient()
@@ -71,13 +71,21 @@ def test_fleet_speed():
     df = FleetSpeedTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")
     assert len(df) > 0
 
+
 def test_fleet_status():
     df = FleetStatusTimeseries(__client__).get(segment=["handysize"])
     assert len(df) > 0
 
+
 def test_fleet_growth():
     df = FleetGrowthTimeseries(__client__).get(segment=["handysize"])
     assert len(df) > 0
+
+
+def test_zone_changes():
+    df = ZoneChangesTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")
+    assert len(df) > 0
+
 
 def test_chinese_waters():
     df = ChineseWatersTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")

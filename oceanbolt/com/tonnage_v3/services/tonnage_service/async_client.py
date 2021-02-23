@@ -191,7 +191,7 @@ class TonnageServiceAsyncClient:
 
         Returns:
             oceanbolt.com.tonnage_v3.types.GetFleetSpeedResponse:
-
+                Response object for FleetSpeed
         """
         # Create or coerce a protobuf request object.
 
@@ -223,7 +223,7 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetGlobalTonnageStatusResponse:
-        r"""Fetches fleet speed timeseries
+        r"""Fetches global tonnage status timeseries
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetGlobalTonnageStatusRequest`):
@@ -269,12 +269,14 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageFleetStatusResponse:
-        r"""GetTonnageFleetStatus provides fleet status
-        timeseries of how the fleet have developed over time
+        r"""Provides fleet status timeseries of how the fleet
+        have developed over time. This timeseries shows number
+        of active vessels on the water at any given time.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest`):
-                The request object. GetTonnageFleet
+                The request object. Request object for
+                GetTonnageFleetStatus and GetTonnageFleetGrowth
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -284,6 +286,8 @@ class TonnageServiceAsyncClient:
 
         Returns:
             oceanbolt.com.tonnage_v3.types.GetTonnageFleetStatusResponse:
+                Response object for
+                GetTonnageFleetStatus
 
         """
         # Create or coerce a protobuf request object.
@@ -309,19 +313,22 @@ class TonnageServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def get_tonnage_fleet_development(self,
+    async def get_tonnage_fleet_growth(self,
             request: service.GetTonnageFleetRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.GetTonnageFleetDevelopmentResponse:
-        r"""GetTonnageFleetDevelopment provides fleet growth
-        timeseries of how the fleet have developed over time
+            ) -> service.GetTonnageFleetGrowthResponse:
+        r"""Provides fleet growth timeseries of how the fleet
+        have developed over time. This timeseries shows number
+        of vessels added to/removed from the fleet during any
+        given period.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest`):
-                The request object. GetTonnageFleet
+                The request object. Request object for
+                GetTonnageFleetStatus and GetTonnageFleetGrowth
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -330,7 +337,9 @@ class TonnageServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.tonnage_v3.types.GetTonnageFleetDevelopmentResponse:
+            oceanbolt.com.tonnage_v3.types.GetTonnageFleetGrowthResponse:
+                Response object for
+                GetTonnageFleetGrowth
 
         """
         # Create or coerce a protobuf request object.
@@ -340,7 +349,7 @@ class TonnageServiceAsyncClient:
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.get_tonnage_fleet_development,
+            self._client._transport.get_tonnage_fleet_growth,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -363,12 +372,15 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.TonnageChineseWatersResponse:
-        r"""GetTonnageChineseWaters provides chinese waters
-        tonnage timeseries data
+        r"""Provides chinese waters tonnage timeseries data. This
+        timeseries shows the number of Chinese flagged that are
+        trading inside and outside of Chinese waters
+        respectively.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.TonnageChineseWatersRequest`):
-                The request object. Tonnage Chinese Waters
+                The request object. Request object for
+                TonnageChineseWaters
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -378,6 +390,8 @@ class TonnageServiceAsyncClient:
 
         Returns:
             oceanbolt.com.tonnage_v3.types.TonnageChineseWatersResponse:
+                Response object for
+                TonnageChineseWaters
 
         """
         # Create or coerce a protobuf request object.
@@ -388,6 +402,53 @@ class TonnageServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_tonnage_chinese_waters,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_tonnage_zone_changes(self,
+            request: service.GetTonnageZoneChangesRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetTonnageZoneChangesResponse:
+        r"""Provides timeseries data on the number of vessels
+        that cross zone boundaries during any given period.
+
+        Args:
+            request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageZoneChangesRequest`):
+                The request object. Request object for TonnageZoneChange
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.tonnage_v3.types.GetTonnageZoneChangesResponse:
+                Response object for TonnageZoneChange
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetTonnageZoneChangesRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_tonnage_zone_changes,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
