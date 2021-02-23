@@ -179,27 +179,38 @@ class GetDryDockStaysRequest(proto.Message):
 
     Attributes:
         imo (Sequence[int]):
-
+            List of unique vessel identifiers (IMO numbers). This allows
+            filtering to show data only for a subset of vessels.
+            Example: [1234567,7654321].
         port_id (Sequence[int]):
 
         shipyard_id (Sequence[int]):
 
         unlocode (Sequence[str]):
-
+            UNLOCODE of the port.
         segment (Sequence[str]):
 
         sub_segment (Sequence[str]):
 
         start_date (str):
-
+            The UTC start date of the date filter
         end_date (str):
-
+            The UTC end date of the date filter
         latest_only (bool):
-
+            Flat to indiciate whether only the latest
+            port call should be included on an IMO basis. If
+            this is enabled, only the latest port call for
+            each imo passing the filter will be returned.
         format_ (str):
-
+            The return format of the data ["csv","json", "xlsx"].
+            Default is "json".
         sort (str):
-
+            Specifies whether results should be sorted in ascending or
+            descing order. Allowed values: ["asc","desc"].
+        group_by (str):
+            Determines the grouping of the timeseries data. This
+            parameter only applies to the **/drydock/timeseries**
+            endpoint.
     """
 
     imo = proto.RepeatedField(proto.INT32, number=1)
@@ -223,6 +234,8 @@ class GetDryDockStaysRequest(proto.Message):
     format_ = proto.Field(proto.STRING, number=4)
 
     sort = proto.Field(proto.STRING, number=7)
+
+    group_by = proto.Field(proto.STRING, number=12)
 
 
 class GetDryDockStaysResponse(proto.Message):

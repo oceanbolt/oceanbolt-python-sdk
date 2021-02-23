@@ -5,20 +5,6 @@ import pandas as pd
 
 
 def filter_nones_from_dict(query_parameters: Dict[str, Optional[Any]]) -> Dict[str, Any]:
-    """
-    This function takes a list of parameters as a dict, and returns a dict containing only non null parameters
-
-    Examples:
-        >>> filter_nones_from_dict({"key1": None, "key2": "some value"})
-        {"key2": "some value"}
-
-    Args:
-        query_parameters (dict): query parameters in the form of a dict with `None` values
-
-    Returns:
-        dict: a dict with None values filtered
-
-    """
     return {k: v for k, v in query_parameters.items() if v}
 
 
@@ -50,7 +36,7 @@ def pb_timeseries_to_pandas(data):
             dict_list.append(d)
 
     df = pd.DataFrame(dict_list)
-    df.convert_dtypes()
+    df = df.convert_dtypes()
 
     return df
 
@@ -70,4 +56,5 @@ def pb_list_to_pandas(data):
     first = data[0]
 
     df = pd.DataFrame([[getattr(i, attr) for attr in first._meta.fields] for i in data], columns=first._meta.fields)
+    df = df.convert_dtypes()
     return df

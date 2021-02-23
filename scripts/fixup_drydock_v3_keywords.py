@@ -41,7 +41,7 @@ def partition(
 class drydockCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_dry_dock_stays': ('imo', 'port_id', 'shipyard_id', 'unlocode', 'segment', 'sub_segment', 'start_date', 'end_date', 'latest_only', 'format_', 'sort', ),
+    'get_dry_dock_stays': ('imo', 'port_id', 'shipyard_id', 'unlocode', 'segment', 'sub_segment', 'start_date', 'end_date', 'latest_only', 'format_', 'sort', 'group_by', ),
     'get_tonnage_dry_dock': ('segment', 'metric', 'absolute', 'format_', 'sort', ),
 
     }

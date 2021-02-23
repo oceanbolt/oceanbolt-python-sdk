@@ -2,6 +2,38 @@ from oceanbolt.sdk.client import APIClient
 from oceanbolt.sdk.helpers import (validate, pb_timeseries_to_pandas)
 
 
+class FleetStatusTimeseries:
+    """
+    The ``FleetStatusTimeseries`` returns timeseries on fleet status (number of vessels active in the fleet).
+    """
+
+    RESOURCE_NAME = "tonnage/fleetstatus"
+
+    def __init__(self, client: APIClient):
+        self.client = client._tonnage_client()
+
+    def get(self, **kwargs):
+        kwargs = validate(kwargs)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_status(kwargs).timeseries)
+        return df
+
+
+class FleetGrowthTimeseries:
+    """
+    The ``FleetGrowthTimeseries`` returns timeseries on fleet growth.
+    """
+
+    RESOURCE_NAME = "tonnage/fleetgrowth"
+
+    def __init__(self, client: APIClient):
+        self.client = client._tonnage_client()
+
+    def get(self, **kwargs):
+        kwargs = validate(kwargs)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_development(kwargs).timeseries)
+        return df
+
+
 class TonnageZoneTimeseries:
     """
     The ``TonnageZoneTimeseries`` returns timeseries on tonnage movements and zone counts.
@@ -44,7 +76,7 @@ class ChineseWatersTimeseries:
     The ``ChineseVesselsChineseWaters`` returns timeseries on fleet speed.
     """
 
-    RESOURCE_NAME = "tonnage/speed"
+    RESOURCE_NAME = "tonnage/chinawaters"
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()

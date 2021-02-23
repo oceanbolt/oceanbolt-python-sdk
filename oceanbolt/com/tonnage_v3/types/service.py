@@ -35,8 +35,9 @@ __protobuf__ = proto.module(
         'GetTonnageFleetRequest',
         'GetTonnageFleetStatusResponse',
         'GetTonnageFleetDevelopmentResponse',
-        'FleetTimeseriesGroup',
+        'FleetDevelopmentTimeseriesGroup',
         'FleetDevelopmentTimeseriesRow',
+        'TimeseriesGroup',
         'TimeseriesRow',
         'TonnageChineseWatersRequest',
         'TonnageChineseWatersResponse',
@@ -321,37 +322,37 @@ class GetTonnageFleetRequest(proto.Message):
     r"""GetTonnageFleet
 
     Attributes:
-        range_ (str):
+        frequency (str):
 
         segment (Sequence[str]):
 
         sub_segment (Sequence[str]):
 
-        group (str):
+        group_by (str):
 
         metric (str):
 
         format_ (str):
 
-        excludeMpv (bool):
+        exclude_mpv (bool):
 
         sort (str):
 
     """
 
-    range_ = proto.Field(proto.STRING, number=1)
+    frequency = proto.Field(proto.STRING, number=1)
 
     segment = proto.RepeatedField(proto.STRING, number=2)
 
     sub_segment = proto.RepeatedField(proto.STRING, number=6)
 
-    group = proto.Field(proto.STRING, number=3)
+    group_by = proto.Field(proto.STRING, number=3)
 
     metric = proto.Field(proto.STRING, number=4)
 
     format_ = proto.Field(proto.STRING, number=5)
 
-    excludeMpv = proto.Field(proto.BOOL, number=7)
+    exclude_mpv = proto.Field(proto.BOOL, number=7)
 
     sort = proto.Field(proto.STRING, number=8)
 
@@ -360,7 +361,7 @@ class GetTonnageFleetStatusResponse(proto.Message):
     r"""
 
     Attributes:
-        data (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesRow]):
+        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
 
         csv (str):
 
@@ -368,8 +369,8 @@ class GetTonnageFleetStatusResponse(proto.Message):
 
     """
 
-    data = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='TimeseriesRow',
+    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='TimeseriesGroup',
     )
 
     csv = proto.Field(proto.STRING, number=2)
@@ -381,7 +382,7 @@ class GetTonnageFleetDevelopmentResponse(proto.Message):
     r"""
 
     Attributes:
-        data (Sequence[oceanbolt.com.tonnage_v3.types.FleetTimeseriesGroup]):
+        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.FleetDevelopmentTimeseriesGroup]):
 
         csv (str):
 
@@ -389,8 +390,8 @@ class GetTonnageFleetDevelopmentResponse(proto.Message):
 
     """
 
-    data = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='FleetTimeseriesGroup',
+    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='FleetDevelopmentTimeseriesGroup',
     )
 
     csv = proto.Field(proto.STRING, number=2)
@@ -398,7 +399,7 @@ class GetTonnageFleetDevelopmentResponse(proto.Message):
     xlsx = proto.Field(proto.STRING, number=3)
 
 
-class FleetTimeseriesGroup(proto.Message):
+class FleetDevelopmentTimeseriesGroup(proto.Message):
     r"""
 
     Attributes:
@@ -444,6 +445,23 @@ class FleetDevelopmentTimeseriesRow(proto.Message):
     )
 
 
+class TimeseriesGroup(proto.Message):
+    r"""
+
+    Attributes:
+        group (str):
+
+        rows (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesRow]):
+
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='TimeseriesRow',
+    )
+
+
 class TimeseriesRow(proto.Message):
     r"""
 
@@ -452,8 +470,6 @@ class TimeseriesRow(proto.Message):
 
         value (google.protobuf.wrappers_pb2.DoubleValue):
 
-        group (str):
-
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -461,8 +477,6 @@ class TimeseriesRow(proto.Message):
     value = proto.Field(proto.MESSAGE, number=2,
         message=wrappers.DoubleValue,
     )
-
-    group = proto.Field(proto.STRING, number=3)
 
 
 class TonnageChineseWatersRequest(proto.Message):
