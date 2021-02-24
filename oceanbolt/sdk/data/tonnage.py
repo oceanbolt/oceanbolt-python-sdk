@@ -89,7 +89,7 @@ class FleetSpeedTimeseries:
 
 class ChineseWatersTimeseries:
     """
-    The ``ChineseVesselsChineseWaters`` returns timeseries on fleet speed.
+    The ``ChineseWatersTimeseries`` returns timeseries on how many Chinese flagged vessels are trading inside/outside China respectively.
     """
 
     RESOURCE_NAME = "tonnage/chinawaters"

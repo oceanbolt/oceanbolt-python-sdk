@@ -59,8 +59,11 @@ API Reference
     :caption: Tonnage Supply
 
     tonnage_v3/zone_count
-    tonnage_v3/fleet_speed
+    tonnage_v3/zone_changes
     tonnage_v3/chinese_waters
+    tonnage_v3/fleet_speed
+    tonnage_v3/fleet_growth
+    tonnage_v3/fleet_status
 
 .. toctree::
     :maxdepth: 2

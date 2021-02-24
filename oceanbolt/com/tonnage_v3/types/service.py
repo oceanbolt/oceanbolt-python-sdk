@@ -355,6 +355,10 @@ class GetTonnageFleetRequest(proto.Message):
         sort (str):
             Specifies whether results should be sorted in ascending or
             descing order. Allowed values: ["asc","desc"].
+        start_date (str):
+            The UTC start date of the date filter
+        end_date (str):
+            The UTC end date of the date filter
     """
 
     frequency = proto.Field(proto.STRING, number=1)
@@ -372,6 +376,10 @@ class GetTonnageFleetRequest(proto.Message):
     exclude_mpv = proto.Field(proto.BOOL, number=7)
 
     sort = proto.Field(proto.STRING, number=8)
+
+    start_date = proto.Field(proto.STRING, number=9)
+
+    end_date = proto.Field(proto.STRING, number=10)
 
 
 class GetTonnageFleetStatusResponse(proto.Message):
