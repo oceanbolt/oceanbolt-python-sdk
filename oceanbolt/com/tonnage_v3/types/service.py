@@ -601,13 +601,17 @@ class ChineseWatersTimeseriesRow(proto.Message):
         date (str):
             UTC date timestamp of the timeseries row
         inside_chinese_waters_count (google.protobuf.wrappers_pb2.Int32Value):
-
+            Number of Chinese flagged vessels inside
+            Chinese waters
         inside_chinese_waters_dwt (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Sum of DWT of Chinese flagged vessels inside
+            Chinese waters
         outside_chinese_waters_count (google.protobuf.wrappers_pb2.Int32Value):
-
+            Number of Chinese flagged vessels outside
+            Chinese waters
         outside_chinese_waters_dwt (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Sum of DWT of Chinese flagged vessels outside
+            Chinese waters
     """
 
     date = proto.Field(proto.STRING, number=1)
