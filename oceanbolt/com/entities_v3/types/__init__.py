@@ -35,6 +35,11 @@ from .service import (
     ListCountriesResponse,
     Commodity,
     ListCommoditiesResponse,
+    SearchRequest,
+    SearchPolygonsResponse,
+    Polygon,
+    SearchVesselsResponse,
+    Vessel,
 )
 
 __all__ = (
@@ -57,4 +62,9 @@ __all__ = (
     'ListCountriesResponse',
     'Commodity',
     'ListCommoditiesResponse',
+    'SearchRequest',
+    'SearchPolygonsResponse',
+    'Polygon',
+    'SearchVesselsResponse',
+    'Vessel',
 )

@@ -84,3 +84,28 @@ class Segments:
 
     def get(self):
         return pb_list_to_pandas(self.client.list_segments().segments)
+
+
+class Search:
+    """
+    The ``Search`` instance allows for searching polygons and vessels.
+    """
+
+    RESOURCE_NAME = "entities/segments"
+
+    def __init__(self, client: APIClient):
+        self.client = client._entities_client()
+
+    def search_polygons(self, q):
+        r"""
+        Args:
+            q (str): The search query
+        """
+        return pb_list_to_pandas(self.client.search_polygons({"q": q}).polygons)
+
+    def search_vessels(self, q):
+        r"""
+        Args:
+            q (str): The search query
+        """
+        return pb_list_to_pandas(self.client.search_vessels({"q": q}).vessels)

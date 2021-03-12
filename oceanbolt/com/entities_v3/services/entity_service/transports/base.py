@@ -143,6 +143,16 @@ class EntityServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.search_polygons: gapic_v1.method.wrap_method(
+                self.search_polygons,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.search_vessels: gapic_v1.method.wrap_method(
+                self.search_vessels,
+                default_timeout=None,
+                client_info=client_info,
+            ),
 
         }
 
@@ -215,6 +225,24 @@ class EntityServiceTransport(abc.ABC):
             typing.Union[
                 service.ListPortsResponse,
                 typing.Awaitable[service.ListPortsResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def search_polygons(self) -> typing.Callable[
+            [service.SearchRequest],
+            typing.Union[
+                service.SearchPolygonsResponse,
+                typing.Awaitable[service.SearchPolygonsResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def search_vessels(self) -> typing.Callable[
+            [service.SearchRequest],
+            typing.Union[
+                service.SearchVesselsResponse,
+                typing.Awaitable[service.SearchVesselsResponse]
             ]]:
         raise NotImplementedError()
 

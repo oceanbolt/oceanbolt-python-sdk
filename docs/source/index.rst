@@ -48,14 +48,14 @@ API Reference
    getting_started
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Trade Flows
 
     tradeflows_v3/tradeflows
     tradeflows_v3/timeseries
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Tonnage Supply
 
     tonnage_v3/zone_count
@@ -66,21 +66,21 @@ API Reference
     tonnage_v3/fleet_status
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Congestion
 
     congestion_v3/congested_vessels
     congestion_v3/timeseries
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Port Calls
 
     portcalls_v3/port_calls
     portcalls_v3/timeseries
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: Entities
 
     entities_v3/ports
@@ -89,12 +89,14 @@ API Reference
     entities_v3/zones
     entities_v3/commodities
     entities_v3/segments
+    entities_v3/search
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
     :caption: User Fleet
 
-    fleet_v3/fleet
+    fleet_v3/fleets
+
 
 Indices and tables
 ------------------

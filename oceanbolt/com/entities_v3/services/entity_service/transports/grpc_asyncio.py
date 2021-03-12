@@ -450,6 +450,54 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
             )
         return self._stubs['list_ports']
 
+    @property
+    def search_polygons(self) -> Callable[
+            [service.SearchRequest],
+            Awaitable[service.SearchPolygonsResponse]]:
+        r"""Return a callable for the search polygons method over gRPC.
+
+        Returns:
+            Callable[[~.SearchRequest],
+                    Awaitable[~.SearchPolygonsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'search_polygons' not in self._stubs:
+            self._stubs['search_polygons'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.entities.v3.EntityService/SearchPolygons',
+                request_serializer=service.SearchRequest.serialize,
+                response_deserializer=service.SearchPolygonsResponse.deserialize,
+            )
+        return self._stubs['search_polygons']
+
+    @property
+    def search_vessels(self) -> Callable[
+            [service.SearchRequest],
+            Awaitable[service.SearchVesselsResponse]]:
+        r"""Return a callable for the search vessels method over gRPC.
+
+        Returns:
+            Callable[[~.SearchRequest],
+                    Awaitable[~.SearchVesselsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'search_vessels' not in self._stubs:
+            self._stubs['search_vessels'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.entities.v3.EntityService/SearchVessels',
+                request_serializer=service.SearchRequest.serialize,
+                response_deserializer=service.SearchVesselsResponse.deserialize,
+            )
+        return self._stubs['search_vessels']
+
 
 __all__ = (
     'EntityServiceGrpcAsyncIOTransport',

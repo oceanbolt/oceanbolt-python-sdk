@@ -909,6 +909,148 @@ async def test_list_ports_async_from_dict():
     await test_list_ports_async(request_type=dict)
 
 
+def test_search_polygons(transport: str = 'grpc', request_type=service.SearchRequest):
+    client = EntityServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.search_polygons),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.SearchPolygonsResponse(
+        )
+
+        response = client.search_polygons(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SearchRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.SearchPolygonsResponse)
+
+
+def test_search_polygons_from_dict():
+    test_search_polygons(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_search_polygons_async(transport: str = 'grpc_asyncio', request_type=service.SearchRequest):
+    client = EntityServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.search_polygons),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.SearchPolygonsResponse(
+        ))
+
+        response = await client.search_polygons(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SearchRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.SearchPolygonsResponse)
+
+
+@pytest.mark.asyncio
+async def test_search_polygons_async_from_dict():
+    await test_search_polygons_async(request_type=dict)
+
+
+def test_search_vessels(transport: str = 'grpc', request_type=service.SearchRequest):
+    client = EntityServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.search_vessels),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.SearchVesselsResponse(
+        )
+
+        response = client.search_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SearchRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.SearchVesselsResponse)
+
+
+def test_search_vessels_from_dict():
+    test_search_vessels(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_search_vessels_async(transport: str = 'grpc_asyncio', request_type=service.SearchRequest):
+    client = EntityServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.search_vessels),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.SearchVesselsResponse(
+        ))
+
+        response = await client.search_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.SearchRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.SearchVesselsResponse)
+
+
+@pytest.mark.asyncio
+async def test_search_vessels_async_from_dict():
+    await test_search_vessels_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.EntityServiceGrpcTransport(
@@ -1016,6 +1158,8 @@ def test_entity_service_base_transport():
         'list_countries',
         'list_regions_with_polygons',
         'list_ports',
+        'search_polygons',
+        'search_vessels',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

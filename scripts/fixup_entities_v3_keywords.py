@@ -49,6 +49,8 @@ class entitiesCallTransformer(cst.CSTTransformer):
     'list_segments': (),
     'list_zones': (),
     'list_zones_with_polygons': (),
+    'search_polygons': ('q', ),
+    'search_vessels': ('q', ),
 
     }
 

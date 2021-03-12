@@ -94,7 +94,7 @@ while also changing the frequency of the data to weekly:
 The "get" Method
 """"""""""""""""
 Data is always accessed through the `"get"` method. The `"get"` method is available on all data endpoint classes.
-The data is returned as a pandas.DataFrame(),allowing for further data processing in an easy and smooth way.
+The data is returned as a pandas.DataFrame(), allowing for further data processing in an easy and smooth way.
 
 
 Full code example

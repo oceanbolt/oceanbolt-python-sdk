@@ -40,6 +40,11 @@ __protobuf__ = proto.module(
         'ListCountriesResponse',
         'Commodity',
         'ListCommoditiesResponse',
+        'SearchRequest',
+        'SearchPolygonsResponse',
+        'Polygon',
+        'SearchVesselsResponse',
+        'Vessel',
     },
 )
 
@@ -149,7 +154,7 @@ class Port(proto.Message):
 
 
 class ZoneWithPolygon(proto.Message):
-    r"""
+    r"""ListTonnageZonesWithPolygons
 
     Attributes:
         zone_id (int):
@@ -368,6 +373,145 @@ class ListCommoditiesResponse(proto.Message):
     commodities = proto.RepeatedField(proto.MESSAGE, number=1,
         message='Commodity',
     )
+
+
+class SearchRequest(proto.Message):
+    r"""Search
+
+    Attributes:
+        q (str):
+
+    """
+
+    q = proto.Field(proto.STRING, number=1)
+
+
+class SearchPolygonsResponse(proto.Message):
+    r"""
+
+    Attributes:
+        polygons (Sequence[oceanbolt.com.entities_v3.types.Polygon]):
+
+    """
+
+    polygons = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Polygon',
+    )
+
+
+class Polygon(proto.Message):
+    r"""
+
+    Attributes:
+        berth_id (int):
+
+        port_id (int):
+
+        port_name (str):
+
+        berth_name (str):
+
+        country_code (str):
+
+        unlocode (str):
+
+        entity_type (str):
+
+        alias (str):
+            string geom_point = 8; double mbc_radius = 9;
+    """
+
+    berth_id = proto.Field(proto.UINT32, number=1)
+
+    port_id = proto.Field(proto.UINT32, number=2)
+
+    port_name = proto.Field(proto.STRING, number=3)
+
+    berth_name = proto.Field(proto.STRING, number=4)
+
+    country_code = proto.Field(proto.STRING, number=5)
+
+    unlocode = proto.Field(proto.STRING, number=6)
+
+    entity_type = proto.Field(proto.STRING, number=7)
+
+    alias = proto.Field(proto.STRING, number=10)
+
+
+class SearchVesselsResponse(proto.Message):
+    r"""
+
+    Attributes:
+        vessels (Sequence[oceanbolt.com.entities_v3.types.Vessel]):
+
+    """
+
+    vessels = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='Vessel',
+    )
+
+
+class Vessel(proto.Message):
+    r"""
+
+    Attributes:
+        imo (int):
+
+        highlevel_type (str):
+
+        segment (str):
+
+        sub_segment (str):
+
+        dwt (float):
+
+        max_draught (float):
+
+        name (str):
+
+        ex_name (str):
+
+        built (int):
+
+        type_ (str):
+
+        mpv (bool):
+
+        loa (float):
+
+        beam (float):
+
+        holds_total (float):
+
+    """
+
+    imo = proto.Field(proto.UINT32, number=1)
+
+    highlevel_type = proto.Field(proto.STRING, number=2)
+
+    segment = proto.Field(proto.STRING, number=3)
+
+    sub_segment = proto.Field(proto.STRING, number=4)
+
+    dwt = proto.Field(proto.DOUBLE, number=5)
+
+    max_draught = proto.Field(proto.DOUBLE, number=6)
+
+    name = proto.Field(proto.STRING, number=7)
+
+    ex_name = proto.Field(proto.STRING, number=8)
+
+    built = proto.Field(proto.UINT32, number=9)
+
+    type_ = proto.Field(proto.STRING, number=10)
+
+    mpv = proto.Field(proto.BOOL, number=11)
+
+    loa = proto.Field(proto.DOUBLE, number=12)
+
+    beam = proto.Field(proto.DOUBLE, number=13)
+
+    holds_total = proto.Field(proto.DOUBLE, number=14)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

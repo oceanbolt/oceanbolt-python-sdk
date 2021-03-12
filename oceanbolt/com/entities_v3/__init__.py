@@ -29,10 +29,15 @@ from .types.service import ListRegionsWithPolygonResponse
 from .types.service import ListSegmentsResponse
 from .types.service import ListTonnageZonesResponse
 from .types.service import ListTonnageZonesWithPolygonsResponse
+from .types.service import Polygon
 from .types.service import Port
 from .types.service import Region
 from .types.service import RegionWithPolygon
+from .types.service import SearchPolygonsResponse
+from .types.service import SearchRequest
+from .types.service import SearchVesselsResponse
 from .types.service import Segment
+from .types.service import Vessel
 from .types.service import Zone
 from .types.service import ZoneWithPolygon
 
@@ -51,10 +56,15 @@ __all__ = (
     'ListSegmentsResponse',
     'ListTonnageZonesResponse',
     'ListTonnageZonesWithPolygonsResponse',
+    'Polygon',
     'Port',
     'Region',
     'RegionWithPolygon',
+    'SearchPolygonsResponse',
+    'SearchRequest',
+    'SearchVesselsResponse',
     'Segment',
+    'Vessel',
     'Zone',
     'ZoneWithPolygon',
 'EntityServiceClient',

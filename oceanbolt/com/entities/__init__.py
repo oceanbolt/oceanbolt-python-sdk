@@ -30,10 +30,15 @@ from oceanbolt.com.entities_v3.types.service import ListRegionsWithPolygonRespon
 from oceanbolt.com.entities_v3.types.service import ListSegmentsResponse
 from oceanbolt.com.entities_v3.types.service import ListTonnageZonesResponse
 from oceanbolt.com.entities_v3.types.service import ListTonnageZonesWithPolygonsResponse
+from oceanbolt.com.entities_v3.types.service import Polygon
 from oceanbolt.com.entities_v3.types.service import Port
 from oceanbolt.com.entities_v3.types.service import Region
 from oceanbolt.com.entities_v3.types.service import RegionWithPolygon
+from oceanbolt.com.entities_v3.types.service import SearchPolygonsResponse
+from oceanbolt.com.entities_v3.types.service import SearchRequest
+from oceanbolt.com.entities_v3.types.service import SearchVesselsResponse
 from oceanbolt.com.entities_v3.types.service import Segment
+from oceanbolt.com.entities_v3.types.service import Vessel
 from oceanbolt.com.entities_v3.types.service import Zone
 from oceanbolt.com.entities_v3.types.service import ZoneWithPolygon
 
@@ -53,10 +58,15 @@ __all__ = (
     'ListSegmentsResponse',
     'ListTonnageZonesResponse',
     'ListTonnageZonesWithPolygonsResponse',
+    'Polygon',
     'Port',
     'Region',
     'RegionWithPolygon',
+    'SearchPolygonsResponse',
+    'SearchRequest',
+    'SearchVesselsResponse',
     'Segment',
+    'Vessel',
     'Zone',
     'ZoneWithPolygon',
 )

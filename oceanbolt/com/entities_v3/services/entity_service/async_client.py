@@ -490,6 +490,98 @@ class EntityServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def search_polygons(self,
+            request: service.SearchRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.SearchPolygonsResponse:
+        r"""
+
+        Args:
+            request (:class:`oceanbolt.com.entities_v3.types.SearchRequest`):
+                The request object. Search
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.entities_v3.types.SearchPolygonsResponse:
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.SearchRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.search_polygons,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def search_vessels(self,
+            request: service.SearchRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.SearchVesselsResponse:
+        r"""
+
+        Args:
+            request (:class:`oceanbolt.com.entities_v3.types.SearchRequest`):
+                The request object. Search
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.entities_v3.types.SearchVesselsResponse:
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.SearchRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.search_vessels,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
 
 
 
