@@ -118,6 +118,10 @@ class GetCongestionRequest(proto.Message):
         sort (str):
             Specifies whether results should be sorted in ascending or
             descing order. Allowed values: ["asc","desc"].
+        display_date (str):
+            Parameter used to display historical vessel
+            lists for congested vessels. It is only
+            applicable to the CongestionVessels method.
     """
 
     port_id = proto.RepeatedField(proto.INT32, number=1)
@@ -159,6 +163,8 @@ class GetCongestionRequest(proto.Message):
     last_n_days = proto.Field(proto.INT32, number=20)
 
     sort = proto.Field(proto.STRING, number=21)
+
+    display_date = proto.Field(proto.STRING, number=22)
 
 
 class CongestionTimeseriesGroup(proto.Message):

@@ -90,6 +90,12 @@ API Reference
     entities_v3/commodities
     entities_v3/segments
 
+.. toctree::
+    :maxdepth: 2
+    :caption: User Fleet
+
+    fleet_v3/fleet
+
 Indices and tables
 ------------------
 

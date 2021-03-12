@@ -51,7 +51,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
 
     @classmethod
     def create_channel(cls,
-                       host: str = 'beta.api.oceanbolt.com',
+                       host: str = 'api.oceanbolt.com',
                        credentials: credentials.Credentials = None,
                        credentials_file: Optional[str] = None,
                        scopes: Optional[Sequence[str]] = None,
@@ -89,7 +89,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
         )
 
     def __init__(self, *,
-            host: str = 'beta.api.oceanbolt.com',
+            host: str = 'api.oceanbolt.com',
             credentials: credentials.Credentials = None,
             credentials_file: Optional[str] = None,
             scopes: Optional[Sequence[str]] = None,

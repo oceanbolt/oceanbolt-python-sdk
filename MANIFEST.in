@@ -10,3 +10,7 @@ recursive-include oceanbolt/com/congestion *.py
 recursive-include oceanbolt/com/congestion_v3 *.py
 recursive-include oceanbolt/com/tradeflows *.py
 recursive-include oceanbolt/com/tradeflows_v3 *.py
+recursive-include oceanbolt/com/polygonmanagement *.py
+recursive-include oceanbolt/com/polygonmanagement_v3 *.py
+recursive-include oceanbolt/com/fleetmanagement *.py
+recursive-include oceanbolt/com/fleetmanagement_v3 *.py

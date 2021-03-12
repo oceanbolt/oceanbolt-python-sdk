@@ -96,7 +96,6 @@ def test_trade_flows():
     df = TradeFlows(__client__).get(load_country_code=["cn"], start_date="2021-01-01")
     assert len(df) > 0
 
-
 def test_trade_flow_timeseries():
     df = TradeFlowTimeseries(__client__).get(frequency="monthly", load_country_code=["cn"], start_date="2021-01-01")
     assert len(df) > 0

@@ -45,7 +45,7 @@ class TradeFlowServiceTransport(abc.ABC):
 
     def __init__(
             self, *,
-            host: str = 'beta.api.oceanbolt.com',
+            host: str = 'api.oceanbolt.com',
             credentials: credentials.Credentials = None,
             credentials_file: typing.Optional[str] = None,
             scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,

@@ -46,7 +46,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
     _stubs: Dict[str, Callable]
 
     def __init__(self, *,
-            host: str = 'beta.api.oceanbolt.com',
+            host: str = 'api.oceanbolt.com',
             credentials: credentials.Credentials = None,
             credentials_file: str = None,
             scopes: Sequence[str] = None,
@@ -188,7 +188,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
 
     @classmethod
     def create_channel(cls,
-                       host: str = 'beta.api.oceanbolt.com',
+                       host: str = 'api.oceanbolt.com',
                        credentials: credentials.Credentials = None,
                        credentials_file: str = None,
                        scopes: Optional[Sequence[str]] = None,
