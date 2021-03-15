@@ -20,8 +20,8 @@ def test_create_fleet():
     fleets = FleetManagement(__client__).list_fleets()
     assert len(fleets.fleets) > 0
 
-    FleetManagement(__client__).batch_add_vessels_from_csv(fleet.fleet_id, "test_fleet_data.csv")
+    FleetManagement(__client__).batch_add_vessels_from_csv(fleet.fleet_id, "tests/integration/test_fleet_data.csv")
 
-    FleetManagement(__client__).replace_vessels_from_csv(fleet.fleet_id, "test_fleet_data.csv")
+    FleetManagement(__client__).replace_vessels_from_csv(fleet.fleet_id, "tests/integration/test_fleet_data.csv")
 
     FleetManagement(__client__).delete_fleet(fleet_id=fleet.fleet_id)

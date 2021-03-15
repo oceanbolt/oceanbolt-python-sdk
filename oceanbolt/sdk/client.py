@@ -4,7 +4,7 @@ from oceanbolt.com import tonnage, portcalls, drydock, congestion, tradeflows, e
 from google.auth import credentials, _helpers  # type: ignore
 import os
 import getpass
-
+from pkg_resources import get_distribution
 
 class ObCredentials(credentials.Credentials):
     @property
@@ -42,7 +42,7 @@ METRICS_METADATA_KEY = "x-goog-api-client"
 
 class OBClientInfo(ClientInfo):
     def to_user_agent(self):
-        return "oceanbolt-python-sdk"
+        return "oceanbolt-python-sdk/"+get_distribution("oceanbolt.sdk").version
 
     def to_grpc_metadata(self):
         """Returns the gRPC metadata for this client info."""
