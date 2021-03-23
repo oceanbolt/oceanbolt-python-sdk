@@ -11,6 +11,9 @@ omit =
     oceanbolt/com/congestion/__init__.py
     oceanbolt/com/portcalls/__init__.py
     oceanbolt/com/entities/__init__.py
+    oceanbolt/com/fleetmanagement/__init__.py
+    oceanbolt/com/polygonmanagement/__init__.py
+    oceanbolt/com/distancecalculator/__init__.py
 
 exclude_lines =
     # Re-enable the standard pragma

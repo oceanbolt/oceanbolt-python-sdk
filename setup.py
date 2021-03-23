@@ -53,6 +53,7 @@ setuptools.setup(
         'scripts/fixup_congestion_v3_keywords.py',
         'scripts/fixup_polygonmanagement_v3_keywords.py',
         'scripts/fixup_fleetmanagement_v3_keywords.py',
+        'scripts/fixup_distancecalculator_v3_keywords.py',
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
