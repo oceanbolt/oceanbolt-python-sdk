@@ -97,6 +97,11 @@ API Reference
 
     fleet_v3/fleets
 
+.. toctree::
+    :maxdepth: 1
+    :caption: Distance  Calculator
+
+    distance_v3/distance
 
 Indices and tables
 ------------------

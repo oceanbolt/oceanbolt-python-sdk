@@ -31,7 +31,7 @@ setuptools.setup(
     author="Oceanbolt",
     author_email="support@oceanbolt.com",
     license="MIT",
-    version='0.1.2',
+    version='0.1.3',
     packages=setuptools.PEP420PackageFinder.find(),
     namespace_packages=('oceanbolt', 'oceanbolt.com'),
     platforms='Posix; MacOS X; Windows',
@@ -82,6 +82,7 @@ setuptools.setup(
             "pytest-rerunfailures==9.1.1",
             "mock==4.0.3",
             "flake8==3.8.4",
+            "hypothesis==6.8.1"
         ],
         "publish": [
             "build==0.3.0",

@@ -8,7 +8,7 @@ check:
 	twine check dist/*
 
 test:
-	pytest
+	pytest --ignore-glob='*site-packages*' --ignore='conda' --ignore='venv'
 
 builddocs:
 	sphinx-build docs/source docs/build

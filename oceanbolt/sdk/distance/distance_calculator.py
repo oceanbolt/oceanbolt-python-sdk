@@ -3,6 +3,17 @@ from oceanbolt.sdk.helpers import (pb_list_to_pandas)
 
 
 class DistanceCalculator:
+    r"""DistanceCalculator provides an interface to calculate shortest route between ports/vessels
+
+    Methods:
+        distance(): Calculates the shortest distance between a list of locations.
+        duration(): Calculates expected duration for a voyage between a list of locations,
+         given a speed provided by the user.
+        shortest_route(): Calculates the shortest route between a list of locations, and returns the route as a pandas
+         dataframe of lat/lons.
+        get_raw(): Provides access to the raw response from the API, which includes breakdown by individual legs,
+         in case of a waypoint route calculation.
+    """
 
     def __init__(self, client: APIClient):
         self.client = client._distance_client()

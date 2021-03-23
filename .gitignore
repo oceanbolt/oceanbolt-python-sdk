@@ -6,6 +6,7 @@ runner.py
 *.pyc
 build
 dist
+conda
 .idea
 .env
 .csv
