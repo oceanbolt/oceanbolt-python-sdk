@@ -77,11 +77,16 @@ class GetCongestionRequest(proto.Message):
             List of commodity groups to get data for (get a list of all
             commodity groups from **/entities/commodities**).
         laden_status (Sequence[str]):
-
+            Laden status to filter on. Allowed values are ['laden',
+            'ballast']
         segment (Sequence[str]):
-
+            List of vessel segments to filter on. Allowed values can be
+            obtained from the **/entities/segments** endpoint. Cannot be
+            supplied alongside subSegment
         sub_segment (Sequence[str]):
-
+            List of vessel sub segments to filter on. Allowed values can
+            be obtained from the **/entities/segments** endpoint. Cannot
+            be supplied alongside segment
         group_by (str):
             Determines the grouping of the timeseries data. This
             parameter only applies to the **/portcalls/timeseries**

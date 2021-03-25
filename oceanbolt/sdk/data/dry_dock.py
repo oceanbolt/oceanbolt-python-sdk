@@ -13,6 +13,7 @@ class DryDockStays:
         self.client = client._drydock_client()
 
     def get(self, **kwargs):
+        """Retrieves dry dock data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_list_to_pandas(self.client.get_tonnage_dry_dock(kwargs).timeseries)
 

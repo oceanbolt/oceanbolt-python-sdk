@@ -432,7 +432,8 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
 
         Args:
             request (oceanbolt.com.portcalls_v3.types.GetPortParticularsRequest):
-                The request object. Particulars
+                The request object. Request object for
+                GetPortParticulars
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -442,6 +443,8 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
 
         Returns:
             oceanbolt.com.portcalls_v3.types.GetPortParticularsResponse:
+                Response object for
+                GetPortParticulars
 
         """
         # Create or coerce a protobuf request object.

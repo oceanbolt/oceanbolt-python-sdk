@@ -498,13 +498,13 @@ class TimeseriesGroup(proto.Message):
 
 
 class TimeseriesRow(proto.Message):
-    r"""Genericg tonnage timeseries row
+    r"""Generic tonnage timeseries row
 
     Attributes:
         date (str):
             UTC date timestamp of the timeseries row
         value (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Value of the timeseries row
     """
 
     date = proto.Field(proto.STRING, number=1)

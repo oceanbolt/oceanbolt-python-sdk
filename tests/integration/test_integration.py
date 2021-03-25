@@ -1,8 +1,8 @@
 from oceanbolt.sdk.client import APIClient
 from oceanbolt.sdk.data import Ports, Countries, Commodities, Segments, Regions, Zones, Search
 from oceanbolt.sdk.data import TradeFlows, TradeFlowTimeseries
-from oceanbolt.sdk.data import PortCalls, PortCallTimeseries
-from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries
+from oceanbolt.sdk.data import PortCalls, PortCallTimeseries, PortParticulars
+from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries, CustomPolygonTimeseries
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
 
 __client__ = APIClient()
@@ -71,6 +71,11 @@ def test_port_call_timeseries():
     assert len(df) > 0
 
 
+def test_port_particulars():
+    df = PortParticulars(__client__).get_raw(unlocode="NONVK")
+    assert df.number_of_port_calls > 0
+
+
 def test_tonnage_count():
     df = TonnageZoneTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")
     assert len(df) > 0
@@ -98,6 +103,17 @@ def test_zone_changes():
 
 def test_chinese_waters():
     df = ChineseWatersTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")
+    assert len(df) > 0
+
+
+def test_custom_polygon():
+    df = CustomPolygonTimeseries(__client__).get(
+        geom_polygon="{\"type\":\"Polygon\",\"coordinates\":[[[45.50537109374999,31.93351676190369],[50.4931640625,16.846605106396304],[61.083984375,20.138470312451155],[66.9287109375,27.819644755099446],[61.94091796875,31.89621446335144],[45.50537109374999,31.93351676190369]]]}",
+        start_date="2015-01-01",
+        end_date="2021-03-01",
+        sub_segment=["ultramax"]
+
+    )
     assert len(df) > 0
 
 

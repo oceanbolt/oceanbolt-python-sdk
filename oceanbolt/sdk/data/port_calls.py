@@ -13,6 +13,7 @@ class PortCalls:
         self.client = client._portcalls_client()
 
     def get(self, **kwargs):
+        """Retrieves port calls data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_list_to_pandas(self.client.get_port_calls(kwargs).data)
 
@@ -32,6 +33,7 @@ class PortCallTimeseries:
         self.client = client._portcalls_client()
 
     def get(self, **kwargs):
+        """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_timeseries_to_pandas(self.client.get_port_call_timeseries(kwargs).timeseries)
 
@@ -50,5 +52,6 @@ class PortParticulars:
     def __init__(self, client: APIClient):
         self.client = client._portcalls_client()
 
-    def get(self, **kwargs):
-        return pb_list_to_pandas(self.client.get_port_particulars(kwargs).data)
+    def get_raw(self, **kwargs):
+        """Retrieves port particular data as a python class"""
+        return self.client.get_port_particulars(kwargs)

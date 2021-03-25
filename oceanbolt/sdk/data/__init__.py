@@ -31,7 +31,7 @@ __all__ = (
     'TradeFlows',
     'TonnageZoneTimeseries',
     'FleetSpeedTimeseries',
-    'TonnageZoneChangesTimeseries',
+    'ZoneChangesTimeseries',
     'ChineseWatersTimeseries',
     'FleetStatusTimeseries',
     'FleetGrowthTimeseries',

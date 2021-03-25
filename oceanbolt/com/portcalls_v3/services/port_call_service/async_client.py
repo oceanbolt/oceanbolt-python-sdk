@@ -238,7 +238,8 @@ class PortCallServiceAsyncClient:
 
         Args:
             request (:class:`oceanbolt.com.portcalls_v3.types.GetPortParticularsRequest`):
-                The request object. Particulars
+                The request object. Request object for
+                GetPortParticulars
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -248,6 +249,8 @@ class PortCallServiceAsyncClient:
 
         Returns:
             oceanbolt.com.portcalls_v3.types.GetPortParticularsResponse:
+                Response object for
+                GetPortParticulars
 
         """
         # Create or coerce a protobuf request object.

@@ -8,9 +8,10 @@ class TradeFlows:
     RESOURCE_NAME = "tradeflows/listflows"
 
     def __init__(self, client: APIClient):
-        self.client = client._tradeflows_client()
+        self.client = client._trade_flows_client()
 
     def get(self, **kwargs):
+        """Retrieves trade flow data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_list_to_pandas(self.client.get_trade_flows(kwargs).data)
 
@@ -21,8 +22,9 @@ class TradeFlowTimeseries:
     RESOURCE_NAME = "tradeflows/timeseries"
 
     def __init__(self, client: APIClient):
-        self.client = client._tradeflows_client()
+        self.client = client._trade_flows_client()
 
     def get(self, **kwargs):
+        """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_timeseries_to_pandas(self.client.get_trade_flow_timeseries(kwargs).timeseries)

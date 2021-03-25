@@ -13,6 +13,7 @@ class Ports:
         self.client = client._entities_client()
 
     def get(self):
+        """Retrieves list of ports as a pandas.DataFrame"""
         return pb_list_to_pandas(self.client.list_ports().ports)
 
 
@@ -27,6 +28,7 @@ class Zones:
         self.client = client._entities_client()
 
     def get(self):
+        """Retrieves list of zones as a pandas.DataFrame"""
         return pb_list_to_pandas(self.client.list_zones().zones)
 
 
@@ -41,6 +43,7 @@ class Regions:
         self.client = client._entities_client()
 
     def get(self):
+        """Retrieves list of regions as a pandas.DataFrame"""
         return pb_list_to_pandas(self.client.list_regions().regions)
 
 
@@ -69,6 +72,7 @@ class Commodities:
         self.client = client._entities_client()
 
     def get(self):
+        """Retrieves list of commodites as a pandas.DataFrame"""
         return pb_list_to_pandas(self.client.list_commodities().commodities)
 
 
@@ -83,6 +87,7 @@ class Segments:
         self.client = client._entities_client()
 
     def get(self):
+        """Retrieves list of segments as a pandas.DataFrame"""
         return pb_list_to_pandas(self.client.list_segments().segments)
 
 
@@ -98,6 +103,8 @@ class Search:
 
     def search_polygons(self, q):
         r"""
+        Searches for polygons (ports/terminals) in the Oceanbolt Database
+
         Args:
             q (str): The search query
         """
@@ -105,6 +112,8 @@ class Search:
 
     def search_vessels(self, q):
         r"""
+        Searches for vessels in the Oceanbolt Database
+
         Args:
             q (str): The search query
         """

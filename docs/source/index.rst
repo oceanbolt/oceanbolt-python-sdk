@@ -64,6 +64,7 @@ API Reference
     tonnage_v3/fleet_speed
     tonnage_v3/fleet_growth
     tonnage_v3/fleet_status
+    tonnage_v3/custom_polygon
 
 .. toctree::
     :maxdepth: 1
@@ -74,10 +75,12 @@ API Reference
 
 .. toctree::
     :maxdepth: 1
-    :caption: Port Calls
+    :caption: Port Calls/Port Data
 
     portcalls_v3/port_calls
     portcalls_v3/timeseries
+    portcalls_v3/port_particulars
+
 
 .. toctree::
     :maxdepth: 1

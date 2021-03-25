@@ -13,6 +13,7 @@ class CongestionVessels:
         self.client = client._congestion_client()
 
     def get(self, **kwargs):
+        """Retrieves current congested vessels as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         df = pb_list_to_pandas(self.client.get_congestion_vessels(kwargs).current_vessels)
         if "speed" in df.columns:
@@ -37,5 +38,6 @@ class CongestionTimeseries:
         self.client = client._congestion_client()
 
     def get(self, **kwargs):
+        """Retrieves congested timeseries as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         return pb_timeseries_to_pandas(self.client.get_congestion_timeseries(kwargs).timeseries)

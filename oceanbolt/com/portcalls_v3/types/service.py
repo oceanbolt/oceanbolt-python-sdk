@@ -351,21 +351,23 @@ class EmptyResponse(proto.Message):
 
 
 class GetPortParticularsRequest(proto.Message):
-    r"""Particulars
+    r"""Request object for GetPortParticulars
 
     Attributes:
         start_date (str):
-
+            The UTC start date of the date filter
         end_date (str):
-
+            The UTC end date of the date filter
         port_id (int):
-
+            Oceanbolt port identifier to filter on.
         berth_id (int):
-
+            Oceanbolt berth identifier to filter on.
         unlocode (str):
-
+            Unlocode port identifier to filter on.
         last_n_days (int):
-
+            Alternative way of specifying date filter. If
+            specified, then data will only be based on port
+            calls in last X days.
     """
 
     start_date = proto.Field(proto.STRING, number=1)
@@ -386,21 +388,22 @@ class Statistic(proto.Message):
 
     Attributes:
         min_ (float):
-
+            Minimum observed value
         max_ (float):
-
+            Maximum observed value
         percentile_10 (float):
-
+            10th percentile of observed values
         percentile_50 (float):
-
+            50th percentile of observed values (same as
+            median)
         percentile_90 (float):
-
+            90th percentile of observed values
         percentile_95 (float):
-
+            95th percentile of observed values
         percentile_99 (float):
-
+            99th percentile of observed values
         mean (float):
-
+            mean of observed values
     """
 
     min_ = proto.Field(proto.DOUBLE, number=1)
@@ -421,23 +424,26 @@ class Statistic(proto.Message):
 
 
 class GetPortParticularsResponse(proto.Message):
-    r"""
+    r"""Response object for GetPortParticulars
 
     Attributes:
         number_of_port_calls (int):
-
+            Number of port calls which forms the basis of
+            the statistical aggregates
         loa (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for LOA
         beam (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for Beam
         max_draught (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for Maximum Design Draught
         reported_draught (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for Vessel Reported
+            Draught
         dwt (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for DWT
         air_draught (oceanbolt.com.portcalls_v3.types.Statistic):
-
+            Summary statistics for Air Draught (if
+            available)
     """
 
     number_of_port_calls = proto.Field(proto.INT32, number=7)
