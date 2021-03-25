@@ -1,13 +1,19 @@
 from oceanbolt.sdk.client import APIClient
 from oceanbolt.sdk.fleet import FleetManagement
+from datetime import datetime
 
 __client__ = APIClient()
 
 
 def test_create_fleet():
-    fleet = FleetManagement(__client__).create_fleet(fleet_name="my_great_test_fleet")
+    now = datetime.now()
+
+    current_time = now.strftime("%H:%M:%S")
+
+
+    fleet = FleetManagement(__client__).create_fleet(fleet_name="my_great_test_fleet"+current_time)
     assert fleet.fleet_id != ""
-    assert fleet.fleet_name == "my_great_test_fleet"
+    assert fleet.fleet_name == "my_great_test_fleet"+current_time
 
     vessel = FleetManagement(__client__).add_vessel(fleet_id=fleet.fleet_id, vessel={"imo": 1234567, "metadata": {"key": "val"}})
     assert vessel.imo == 1234567
