@@ -172,7 +172,11 @@ class TradeFlowDataRequest(proto.Message):
             end_date.
         sort (str):
             Specifies whether results should be sorted in ascending or
-            descing order. Allowed values: ["asc","desc"].
+            descending order. Allowed values: ["asc","desc"].
+        dwt (Sequence[float]):
+            DWT range to filter on. Example: [60000,90000] - this would
+            filter only to only include dwt between 60k and 90k (both
+            values inclusive).
     """
 
     frequency = proto.Field(proto.STRING, number=1)
@@ -244,6 +248,8 @@ class TradeFlowDataRequest(proto.Message):
     last_n_days = proto.Field(proto.INT32, number=33)
 
     sort = proto.Field(proto.STRING, number=36)
+
+    dwt = proto.RepeatedField(proto.DOUBLE, number=37)
 
 
 class GetTradeFlowsResponse(proto.Message):

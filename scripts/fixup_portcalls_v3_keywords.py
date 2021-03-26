@@ -41,8 +41,8 @@ def partition(
 class portcallsCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_port_calls': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', ),
-    'get_port_call_timeseries': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', ),
+    'get_port_calls': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
+    'get_port_call_timeseries': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
     'get_port_particulars': ('start_date', 'end_date', 'port_id', 'berth_id', 'unlocode', 'last_n_days', ),
 
     }

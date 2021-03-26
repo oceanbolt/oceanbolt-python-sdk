@@ -119,6 +119,10 @@ class GetPortCallsRequest(proto.Message):
             parameter is present, the endpoint will only
             return the top N groups, and the remaining
             entries will be grouped into others.
+        dwt (Sequence[float]):
+            DWT range to filter on. Example: [60000,90000] - this would
+            filter only to only include dwt between 60k and 90k (both
+            values inclusive).
     """
 
     imo = proto.RepeatedField(proto.INT32, number=1)
@@ -164,6 +168,8 @@ class GetPortCallsRequest(proto.Message):
     frequency = proto.Field(proto.STRING, number=21)
 
     limit_groups = proto.Field(proto.BOOL, number=31)
+
+    dwt = proto.RepeatedField(proto.DOUBLE, number=37)
 
 
 class GetPortCallsResponse(proto.Message):
