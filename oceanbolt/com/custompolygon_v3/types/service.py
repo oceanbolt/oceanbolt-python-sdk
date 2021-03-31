@@ -36,7 +36,7 @@ class CustomPolygonRequest(proto.Message):
     r"""Request object for GetPolygonCounts
 
     Attributes:
-        geom_polygon (str):
+        geojson (str):
             GeoJSON formatted string with polygon data
         laden_status (Sequence[str]):
             Laden status to filter on. Allowed values are ['laden',
@@ -55,7 +55,7 @@ class CustomPolygonRequest(proto.Message):
             The UTC end date of the date filter
     """
 
-    geom_polygon = proto.Field(proto.STRING, number=1)
+    geojson = proto.Field(proto.STRING, number=1)
 
     laden_status = proto.RepeatedField(proto.STRING, number=2)
 

@@ -41,7 +41,7 @@ def partition(
 class custompolygonCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_polygon_counts': ('geom_polygon', 'laden_status', 'segment', 'sub_segment', 'start_date', 'end_date', ),
+    'get_polygon_counts': ('geojson', 'laden_status', 'segment', 'sub_segment', 'start_date', 'end_date', ),
 
     }
 
