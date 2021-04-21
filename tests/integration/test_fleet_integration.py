@@ -8,7 +8,7 @@ __client__ = APIClient()
 def test_create_fleet():
     now = datetime.now()
 
-    current_time = now.strftime("%H:%M:%S")
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S.%f")
 
 
     fleet = FleetManagement(__client__).create_fleet(fleet_name="my_great_test_fleet"+current_time)
