@@ -85,6 +85,14 @@ class DistanceRequest(proto.Message):
             of the total duration of the voyage, based on
             the supplied speed. Speed parameter should be
             supplied in knots.
+        transform (str):
+            Specifies a transformation to be applied to the returned
+            shortest path. Allowed values are [great_circle].
+        longitude_adjustment (str):
+            Specifies whether the resulting points/lines crossing the
+            antimeridian should be adjusted to form a continuous line
+            for plotting. Allowed values are [antimeridian,none].
+            Default value is 'antimeridian.
     """
 
     locations = proto.RepeatedField(proto.MESSAGE, number=1,
@@ -92,6 +100,10 @@ class DistanceRequest(proto.Message):
     )
 
     speed = proto.Field(proto.DOUBLE, number=2)
+
+    transform = proto.Field(proto.STRING, number=3)
+
+    longitude_adjustment = proto.Field(proto.STRING, number=4)
 
 
 class Leg(proto.Message):
@@ -160,15 +172,19 @@ class Point(proto.Message):
     r"""GeoPoint
 
     Attributes:
-        lon (float):
-            Longitude.
-        lat (float):
-            Latitude.
+        lon (google.protobuf.wrappers_pb2.DoubleValue):
+            Longitude
+        lat (google.protobuf.wrappers_pb2.DoubleValue):
+            Latitude
     """
 
-    lon = proto.Field(proto.DOUBLE, number=1)
+    lon = proto.Field(proto.MESSAGE, number=1,
+        message=wrappers.DoubleValue,
+    )
 
-    lat = proto.Field(proto.DOUBLE, number=2)
+    lat = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.DoubleValue,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

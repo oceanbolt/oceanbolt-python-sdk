@@ -41,7 +41,7 @@ def partition(
 class distancecalculatorCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'calculate_distance': ('locations', 'speed', ),
+    'calculate_distance': ('locations', 'speed', 'transform', 'longitude_adjustment', ),
 
     }
 

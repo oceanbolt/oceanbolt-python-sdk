@@ -33,6 +33,7 @@ from google.api_core import grpc_helpers_async
 from google.auth import credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.oauth2 import service_account
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service import DistanceCalculatorServiceAsyncClient
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service import DistanceCalculatorServiceClient
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service import transports
