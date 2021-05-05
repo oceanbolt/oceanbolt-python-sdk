@@ -36,7 +36,7 @@ from .grpc import TonnageServiceGrpcTransport
 class TonnageServiceGrpcAsyncIOTransport(TonnageServiceTransport):
     """gRPC AsyncIO backend transport for TonnageService.
 
-    TonnageService provides service to get tonnage data
+    TonnageService provides am API service to get tonnage data
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -246,7 +246,7 @@ class TonnageServiceGrpcAsyncIOTransport(TonnageServiceTransport):
             Awaitable[service.GetTonnageZoneCountResponse]]:
         r"""Return a callable for the get tonnage zone count method over gRPC.
 
-        Fetches tonnage counts timeseries
+        Fetches tonnage counts timeseries.
 
         Returns:
             Callable[[~.GetTonnageDataRequest],
@@ -272,7 +272,7 @@ class TonnageServiceGrpcAsyncIOTransport(TonnageServiceTransport):
             Awaitable[service.GetFleetSpeedResponse]]:
         r"""Return a callable for the get tonnage fleet speed method over gRPC.
 
-        Fetches fleet speed timeseries
+        Fetches fleet speed timeseries.
 
         Returns:
             Callable[[~.GetTonnageDataRequest],
@@ -298,7 +298,7 @@ class TonnageServiceGrpcAsyncIOTransport(TonnageServiceTransport):
             Awaitable[service.GetGlobalTonnageStatusResponse]]:
         r"""Return a callable for the get global tonnage status method over gRPC.
 
-        Fetches global tonnage status timeseries
+        Fetches global tonnage status timeseries.
 
         Returns:
             Callable[[~.GetGlobalTonnageStatusRequest],

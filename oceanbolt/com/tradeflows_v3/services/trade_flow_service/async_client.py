@@ -180,7 +180,7 @@ class TradeFlowServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetLocationVolumeResponse:
-        r"""Gets aggregated data for a Location (
+        r"""Retrieves top Locations.
 
         Args:
             request (:class:`oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest`):
@@ -227,7 +227,7 @@ class TradeFlowServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowAggregationResponse:
-        r"""Aggregates tradeflow data across multiple dimensions
+        r"""Aggregates tradeflow data across multiple dimensions.
 
         Args:
             request (:class:`oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest`):
@@ -274,7 +274,7 @@ class TradeFlowServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowTimeseriesResponse:
-        r"""Gets aggregated trade flow timeseries by period
+        r"""Gets aggregated trade flow timeseries by period.
 
         Args:
             request (:class:`oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest`):
@@ -324,7 +324,7 @@ class TradeFlowServiceAsyncClient:
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowHistogramResponse:
         r"""GetTradeFlowHistogramValues gets trade flow histogram
-        values by grouping
+        values by grouping.
 
         Args:
             request (:class:`oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest`):

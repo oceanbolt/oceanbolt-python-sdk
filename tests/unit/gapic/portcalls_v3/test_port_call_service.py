@@ -357,7 +357,7 @@ def test_get_port_calls(transport: str = 'grpc', request_type=service.GetPortCal
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.GetPortCallsResponse(
-            previous_token='previous_token_value',
+            prev_token='prev_token_value',
 
             next_token='next_token_value',
 
@@ -379,7 +379,7 @@ def test_get_port_calls(transport: str = 'grpc', request_type=service.GetPortCal
 
     assert isinstance(response, service.GetPortCallsResponse)
 
-    assert response.previous_token == 'previous_token_value'
+    assert response.prev_token == 'prev_token_value'
 
     assert response.next_token == 'next_token_value'
 
@@ -409,7 +409,7 @@ async def test_get_port_calls_async(transport: str = 'grpc_asyncio', request_typ
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetPortCallsResponse(
-            previous_token='previous_token_value',
+            prev_token='prev_token_value',
             next_token='next_token_value',
             csv='csv_value',
             xlsx='xlsx_value',
@@ -426,7 +426,7 @@ async def test_get_port_calls_async(transport: str = 'grpc_asyncio', request_typ
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetPortCallsResponse)
 
-    assert response.previous_token == 'previous_token_value'
+    assert response.prev_token == 'prev_token_value'
 
     assert response.next_token == 'next_token_value'
 

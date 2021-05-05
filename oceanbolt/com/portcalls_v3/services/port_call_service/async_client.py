@@ -36,7 +36,7 @@ from .client import PortCallServiceClient
 
 
 class PortCallServiceAsyncClient:
-    """PortCallService provides service to get PortCall data"""
+    """PortCallService provides an API service to get PortCall data"""
 
     _client: PortCallServiceClient
 
@@ -180,7 +180,7 @@ class PortCallServiceAsyncClient:
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetPortCallTimeseriesResponse:
         r"""GetPortCallTimeseries retrieves aggregated counts for
-        port calls for a set of request params
+        port calls for a set of request params.
 
         Args:
             request (:class:`oceanbolt.com.portcalls_v3.types.GetPortCallsRequest`):

@@ -78,15 +78,15 @@ class GetCongestionRequest(proto.Message):
             commodity groups from **/entities/commodities**).
         laden_status (Sequence[str]):
             Laden status to filter on. Allowed values are ['laden',
-            'ballast']
+            'ballast'].
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         group_by (str):
             Determines the grouping of the timeseries data. This
             parameter only applies to the **/portcalls/timeseries**
@@ -113,9 +113,9 @@ class GetCongestionRequest(proto.Message):
             The return format of the data ["csv","json", "xlsx"].
             Default is "json".
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         last_n_days (int):
             Short hand parameter for quickly getting data for the last N
             days. Cannot be supplied along either start_date or
@@ -180,7 +180,7 @@ class CongestionTimeseriesGroup(proto.Message):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
         rows (Sequence[oceanbolt.com.congestion_v3.types.CongestionTimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -195,18 +195,18 @@ class CongestionTimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         vessel_count (google.protobuf.wrappers_pb2.Int32Value):
             Number of vessels that were congested on the
-            date
+            date.
         vessel_dwt (google.protobuf.wrappers_pb2.DoubleValue):
-            Sum of DWT that were congested on the date
+            Sum of DWT that were congested on the date.
         avg_waiting_days (google.protobuf.wrappers_pb2.DoubleValue):
             Average waiting days of vessels that were
-            congested on the date
+            congested on the date.
         median_waiting_days (google.protobuf.wrappers_pb2.DoubleValue):
             Median waiting days of vessels that were
-            congested on the date
+            congested on the date.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -233,16 +233,16 @@ class CongestionResponse(proto.Message):
 
     Attributes:
         number_of_current_vessels (int):
-            Number of vessels currently congested
+            Number of vessels currently congested.
         current_top_ports (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
-            List of top ports by amount of congested
+            List of top ports by amount of congested.
         current_top_sub_segments (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
-            List of top segments by amount of congested
+            List of top segments by amount of congested.
         current_top_commodity_groups (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
             List of top commodities by amount of
-            congested
+            congested.
         current_top_load_countries (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
-            List of top countries by amount of congested
+            List of top countries by amount of congested.
         timeseriesDefault (oceanbolt.com.congestion_v3.types.CongestionTimeseriesGroup):
             Ungrouped timeseries response.
         current_vessels (Sequence[oceanbolt.com.congestion_v3.types.CongestionStay]):
@@ -384,7 +384,7 @@ class CongestionStay(proto.Message):
         commodity (str):
             Name of the commodity.
         volume (float):
-            Volume of the cargo onboard the vessel
+            Volume of the cargo onboard the vessel.
         lat (google.protobuf.wrappers_pb2.DoubleValue):
             Not implemented.
         lng (google.protobuf.wrappers_pb2.DoubleValue):

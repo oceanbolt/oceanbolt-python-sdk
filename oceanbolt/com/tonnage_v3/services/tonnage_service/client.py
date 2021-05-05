@@ -72,7 +72,7 @@ class TonnageServiceClientMeta(type):
 
 
 class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
-    """TonnageService provides service to get tonnage data"""
+    """TonnageService provides am API service to get tonnage data"""
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
@@ -319,7 +319,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneCountResponse:
-        r"""Fetches tonnage counts timeseries
+        r"""Fetches tonnage counts timeseries.
 
         Args:
             request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
@@ -369,7 +369,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetFleetSpeedResponse:
-        r"""Fetches fleet speed timeseries
+        r"""Fetches fleet speed timeseries.
 
         Args:
             request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
@@ -417,7 +417,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetGlobalTonnageStatusResponse:
-        r"""Fetches global tonnage status timeseries
+        r"""Fetches global tonnage status timeseries.
 
         Args:
             request (oceanbolt.com.tonnage_v3.types.GetGlobalTonnageStatusRequest):

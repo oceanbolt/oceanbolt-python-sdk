@@ -34,7 +34,7 @@ from .base import TonnageServiceTransport, DEFAULT_CLIENT_INFO
 class TonnageServiceGrpcTransport(TonnageServiceTransport):
     """gRPC backend transport for TonnageService.
 
-    TonnageService provides service to get tonnage data
+    TonnageService provides am API service to get tonnage data
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -241,7 +241,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.GetTonnageZoneCountResponse]:
         r"""Return a callable for the get tonnage zone count method over gRPC.
 
-        Fetches tonnage counts timeseries
+        Fetches tonnage counts timeseries.
 
         Returns:
             Callable[[~.GetTonnageDataRequest],
@@ -267,7 +267,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.GetFleetSpeedResponse]:
         r"""Return a callable for the get tonnage fleet speed method over gRPC.
 
-        Fetches fleet speed timeseries
+        Fetches fleet speed timeseries.
 
         Returns:
             Callable[[~.GetTonnageDataRequest],
@@ -293,7 +293,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             service.GetGlobalTonnageStatusResponse]:
         r"""Return a callable for the get global tonnage status method over gRPC.
 
-        Fetches global tonnage status timeseries
+        Fetches global tonnage status timeseries.
 
         Returns:
             Callable[[~.GetGlobalTonnageStatusRequest],

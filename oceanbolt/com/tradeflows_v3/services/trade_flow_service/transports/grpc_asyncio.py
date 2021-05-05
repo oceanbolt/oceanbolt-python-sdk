@@ -276,7 +276,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
             Awaitable[service.GetLocationVolumeResponse]]:
         r"""Return a callable for the get location data method over gRPC.
 
-        Gets aggregated data for a Location (
+        Retrieves top Locations.
 
         Returns:
             Callable[[~.TradeFlowDataRequest],
@@ -302,7 +302,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
             Awaitable[service.GetTradeFlowAggregationResponse]]:
         r"""Return a callable for the get trade flow aggregation method over gRPC.
 
-        Aggregates tradeflow data across multiple dimensions
+        Aggregates tradeflow data across multiple dimensions.
 
         Returns:
             Callable[[~.TradeFlowDataRequest],
@@ -328,7 +328,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
             Awaitable[service.GetTradeFlowTimeseriesResponse]]:
         r"""Return a callable for the get trade flow timeseries method over gRPC.
 
-        Gets aggregated trade flow timeseries by period
+        Gets aggregated trade flow timeseries by period.
 
         Returns:
             Callable[[~.TradeFlowDataRequest],
@@ -355,7 +355,7 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
         r"""Return a callable for the get trade flow histogram method over gRPC.
 
         GetTradeFlowHistogramValues gets trade flow histogram
-        values by grouping
+        values by grouping.
 
         Returns:
             Callable[[~.TradeFlowDataRequest],

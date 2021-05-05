@@ -67,7 +67,7 @@ class GetTonnageDataRequest(proto.Message):
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         direction (Sequence[str]):
             The list of directions to get tonnage data for. The
             following directions are allowed:
@@ -133,7 +133,7 @@ class GetTonnageZoneCountResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -156,7 +156,7 @@ class GetFleetSpeedResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -182,7 +182,7 @@ class TonnageTimeseriesGroup(proto.Message):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
         rows (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -193,18 +193,18 @@ class TonnageTimeseriesGroup(proto.Message):
 
 
 class TonnageTimeseriesRow(proto.Message):
-    r"""Tonnage zone/fleet speed timeseries row
+    r"""Tonnage zone/fleet speed timeseries row.
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         vessel_count (google.protobuf.wrappers_pb2.Int32Value):
-            The number of vessels for the timeseries row
+            The number of vessels for the timeseries row.
         vessel_dwt (google.protobuf.wrappers_pb2.DoubleValue):
-            The sum of dwt for the timeseries row
+            The sum of dwt for the timeseries row.
         avg_speed (google.protobuf.wrappers_pb2.DoubleValue):
             The average speed in knots for the timeseries
-            row
+            row.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -334,11 +334,11 @@ class GetTonnageFleetRequest(proto.Message):
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         group_by (str):
             Determines the grouping of the timeseries
             data.
@@ -356,9 +356,9 @@ class GetTonnageFleetRequest(proto.Message):
             Specifies whether results should be sorted in ascending or
             descing order. Allowed values: ["asc","desc"].
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
     """
 
     frequency = proto.Field(proto.STRING, number=1)
@@ -387,7 +387,7 @@ class GetTonnageFleetStatusResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -410,7 +410,7 @@ class GetTonnageFleetGrowthResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -436,7 +436,7 @@ class FleetGrowthTimeseriesGroup(proto.Message):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
         rows (Sequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -451,17 +451,17 @@ class FleetGrowthTimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         scrapped (google.protobuf.wrappers_pb2.DoubleValue):
             Number of vessels (or sum of DWT) that was
-            scrapped during this period
+            scrapped during this period.
         delivered (google.protobuf.wrappers_pb2.DoubleValue):
             Number of vessels (or sum of DWT) that was
-            delivered during this period
+            delivered during this period.
         net (google.protobuf.wrappers_pb2.DoubleValue):
             Net number of vessels (or sum of DWT) that
             was added to/removed from the fleet during this
-            period
+            period.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -487,7 +487,7 @@ class TimeseriesGroup(proto.Message):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
         rows (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -502,9 +502,9 @@ class TimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         value (google.protobuf.wrappers_pb2.DoubleValue):
-            Value of the timeseries row
+            Value of the timeseries row.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -519,17 +519,17 @@ class TonnageChineseWatersRequest(proto.Message):
 
     Attributes:
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         group_by (str):
             Determines the grouping of the timeseries
             data.
@@ -561,11 +561,13 @@ class TonnageChineseWatersResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesGroup]):
-
+            Timeseries data groups.
         csv (str):
-
+            Link to download csv file, if format was
+            specified to be "csv".
         xlsx (str):
-
+            Link to download excel file, if format was
+            specified to be "xlsx".
     """
 
     timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
@@ -582,9 +584,10 @@ class ChineseWatersTimeseriesGroup(proto.Message):
 
     Attributes:
         group (str):
-
+            Name of the group. This will be "default", if
+            no grouping was specified in the query.
         rows (Sequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesRow]):
-
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -599,19 +602,19 @@ class ChineseWatersTimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         inside_chinese_waters_count (google.protobuf.wrappers_pb2.Int32Value):
             Number of Chinese flagged vessels inside
-            Chinese waters
+            Chinese waters.
         inside_chinese_waters_dwt (google.protobuf.wrappers_pb2.DoubleValue):
             Sum of DWT of Chinese flagged vessels inside
-            Chinese waters
+            Chinese waters.
         outside_chinese_waters_count (google.protobuf.wrappers_pb2.Int32Value):
             Number of Chinese flagged vessels outside
-            Chinese waters
+            Chinese waters.
         outside_chinese_waters_dwt (google.protobuf.wrappers_pb2.DoubleValue):
             Sum of DWT of Chinese flagged vessels outside
-            Chinese waters
+            Chinese waters.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -644,18 +647,18 @@ class GetTonnageZoneChangesRequest(proto.Message):
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         laden_status (Sequence[str]):
             The laden status to get tonnage data for. The following
             values are allowed: **["laden","ballast"]**.
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         group_by (str):
             Determines the grouping of the timeseries
             data.

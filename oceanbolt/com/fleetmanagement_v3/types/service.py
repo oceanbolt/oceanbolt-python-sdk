@@ -53,9 +53,9 @@ class RenameFleetRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource to be
-            renamed
+            renamed.
         new_fleet_name (str):
-            The new name of the Fleet
+            The new name of the Fleet.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -68,7 +68,7 @@ class CreateFleetRequest(proto.Message):
 
     Attributes:
         fleet_name (str):
-            The new name of the Fleet
+            The new name of the Fleet.
     """
 
     fleet_name = proto.Field(proto.STRING, number=2)
@@ -80,7 +80,7 @@ class DeleteFleetRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource to be
-            deleted
+            deleted.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -92,7 +92,7 @@ class GetFleetRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource to be
-            retrieved
+            retrieved.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -104,7 +104,7 @@ class ListVesselsRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource to be
-            deleted
+            deleted.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -115,7 +115,8 @@ class ShareFleetRequest(proto.Message):
 
     Attributes:
         fleet_id (str):
-            Identifier of the Fleet resource to be shared
+            Identifier of the Fleet resource to be
+            shared.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -127,7 +128,7 @@ class DropVesselsRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource where
-            vessels should be dropped
+            vessels should be dropped.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -139,9 +140,9 @@ class BatchVesselsRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource where
-            vessels should be added
+            vessels should be added.
         vessels (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselParams]):
-            List of Vessels to be added
+            List of Vessels to be added.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -156,13 +157,13 @@ class Fleets(proto.Message):
 
     Attributes:
         fleets (Sequence[oceanbolt.com.fleetmanagement_v3.types.Fleet]):
-            List of user defined Fleet resources
+            List of user defined Fleet resources.
         organization_fleets (Sequence[oceanbolt.com.fleetmanagement_v3.types.Fleet]):
             List of organizational Fleet resources that
-            are shared with the current user
+            are shared with the current user.
         predefined_fleets (Sequence[oceanbolt.com.fleetmanagement_v3.types.Fleet]):
             List of system level predefined Fleet
-            resources
+            resources.
     """
 
     fleets = proto.RepeatedField(proto.MESSAGE, number=1,
@@ -183,18 +184,18 @@ class Fleet(proto.Message):
 
     Attributes:
         fleet_id (str):
-            The Fleet identifier
+            The Fleet identifier.
         fleet_name (str):
-            The name of the Fleet
+            The name of the Fleet.
         owner_user_id (str):
             The user id of the Fleet owner (the user who
-            has created the Fleet)
+            has created the Fleet).
         organization (str):
-            The organization that the user belongs to
+            The organization that the user belongs to.
         vessels_in_fleet (google.protobuf.wrappers_pb2.Int32Value):
-            The number of vessels in the Fleet
+            The number of vessels in the Fleet.
         vessels (Sequence[oceanbolt.com.fleetmanagement_v3.types.Vessel]):
-            List of Vessels in the Fleet
+            List of Vessels in the Fleet.
         shared_with_org (google.protobuf.wrappers_pb2.BoolValue):
             A flag indicating whether this is a shared
             fleet.
@@ -226,7 +227,7 @@ class VesselParams(proto.Message):
 
     Attributes:
         imo (int):
-            Imo of the vessel
+            Imo of the vessel.
         metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselParams.MetadataEntry]):
             A dict/map of arbitratry metadata that should
             be added to the vessel in the context of the
@@ -265,10 +266,10 @@ class AddVesselRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource where
-            vessels should be added
+            vessels should be added.
         vessel (oceanbolt.com.fleetmanagement_v3.types.VesselParams):
             Vessel params for the vessel that should be
-            added
+            added.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -284,17 +285,17 @@ class UpdateVesselRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource where the
-            vessel should be updated
+            vessel should be updated.
         imo (int):
-            IMO number of the vessel to be updated
+            IMO number of the vessel to be updated.
         vessel (oceanbolt.com.fleetmanagement_v3.types.UpdateVesselParams):
-            New metadata object
+            New metadata object.
         upsert (bool):
             Flag indicating whether the vessel should be
             created if it doesnt not already exist. If the
             upsert flag is set to false, and a vessel does
             not already exist, the function will return an
-            error
+            error.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -314,9 +315,9 @@ class DeleteVesselRequest(proto.Message):
     Attributes:
         fleet_id (str):
             Identifier of the Fleet resource where the
-            vessel should be deleted
+            vessel should be deleted.
         imo (int):
-            IMO number of the Vessel to be deleted
+            IMO number of the Vessel to be deleted.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
@@ -329,9 +330,9 @@ class Vessels(proto.Message):
 
     Attributes:
         vessels (Sequence[oceanbolt.com.fleetmanagement_v3.types.Vessel]):
-            List of vessels in Fleet
+            List of vessels in Fleet.
         vessels_in_fleet (int):
-            Number of vessels in a Fleet
+            Number of vessels in a Fleet.
     """
 
     vessels = proto.RepeatedField(proto.MESSAGE, number=1,
@@ -346,29 +347,29 @@ class Vessel(proto.Message):
 
     Attributes:
         imo (int):
-            IMO number of the vessel
+            IMO number of the vessel.
         dwt (float):
-            DWT of the vessel
+            DWT of the vessel.
         built (int):
-            The year the vessel was built
+            The year the vessel was built.
         vessel_name (str):
-            Current name of the Vessel
+            Current name of the Vessel.
         segment (str):
             Name of the segment which the vessel belongs
-            to
+            to.
         sub_segment (str):
             Flag code of the country where the vessel is
-            currently registered
+            currently registered.
         flag_code (str):
             Flag code of the country where the vessel is
-            currently registered
+            currently registered.
         ex_name (str):
-            Ex name of the Vessel
+            Ex name of the Vessel.
         type_ (str):
-            The type of the vessel
+            The type of the vessel.
         metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.Vessel.MetadataEntry]):
-            Metadata object that contains arbitratry data
-            fields defined by the user
+            Metadata object that contains arbitrary data
+            fields defined by the user.
     """
 
     imo = proto.Field(proto.INT32, number=1)

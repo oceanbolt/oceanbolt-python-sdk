@@ -99,15 +99,15 @@ class TradeFlowDataRequest(proto.Message):
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         load_country_code (Sequence[str]):
             List of two letter ISO country codes for
             loading (export) countries to filter on.
@@ -177,6 +177,11 @@ class TradeFlowDataRequest(proto.Message):
             DWT range to filter on. Example: [60000,90000] - this would
             filter only to only include dwt between 60k and 90k (both
             values inclusive).
+        category (str):
+            Specifies the base category for aggregation
+            queries. This parameter only has effect on the
+            GetTradeFlowAggregation method (REST endpoint:
+            /tradeflows/aggregation).
     """
 
     frequency = proto.Field(proto.STRING, number=1)
@@ -251,21 +256,27 @@ class TradeFlowDataRequest(proto.Message):
 
     dwt = proto.RepeatedField(proto.DOUBLE, number=37)
 
+    category = proto.Field(proto.STRING, number=38)
+
 
 class GetTradeFlowsResponse(proto.Message):
     r"""Response object for trade flow queries
 
     Attributes:
         data (Sequence[oceanbolt.com.tradeflows_v3.types.TradeFlow]):
-
+            List of trade flows.
         next_token (str):
-
+            Pagination token indicating the presence of
+            additional further results.
         prev_token (str):
-
+            Pagination token indicating the presence of
+            additional previous results.
         csv (str):
-
+            Link to download csv file, if format was
+            specified to be "csv".
         xlsx (str):
-
+            Link to download excel file, if format was
+            specified to be "xlsx".
     """
 
     data = proto.RepeatedField(proto.MESSAGE, number=7,
@@ -286,7 +297,7 @@ class GetLocationVolumeResponse(proto.Message):
 
     Attributes:
         data (Sequence[oceanbolt.com.tradeflows_v3.types.LocationVolume]):
-
+            List of locations.
     """
 
     data = proto.RepeatedField(proto.MESSAGE, number=1,
@@ -299,24 +310,28 @@ class LocationVolume(proto.Message):
 
     Attributes:
         location_name (str):
-
+            Name of the location.
         location_id (str):
-
+            Oceanbolt identifier of the location.
+        location_type (str):
+            Type of the location.
         value (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Aggregated value for the location.
         coords (oceanbolt.com.tradeflows_v3.types.GeoPoint):
-
+            Coordinates for the location.
     """
 
     location_name = proto.Field(proto.STRING, number=1)
 
     location_id = proto.Field(proto.STRING, number=2)
 
-    value = proto.Field(proto.MESSAGE, number=3,
+    location_type = proto.Field(proto.STRING, number=3)
+
+    value = proto.Field(proto.MESSAGE, number=4,
         message=wrappers.DoubleValue,
     )
 
-    coords = proto.Field(proto.MESSAGE, number=4,
+    coords = proto.Field(proto.MESSAGE, number=5,
         message='GeoPoint',
     )
 
@@ -326,16 +341,22 @@ class GetTradeFlowAggregationResponse(proto.Message):
 
     Attributes:
         data (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationGroup]):
-
-        file_url (str):
-
+            List of aggregation rows.
+        csv (str):
+            Link to download csv file, if format was
+            specified to be "csv".
+        xlsx (str):
+            Link to download excel file, if format was
+            specified to be "xlsx".
     """
 
     data = proto.RepeatedField(proto.MESSAGE, number=1,
         message='AggregationGroup',
     )
 
-    file_url = proto.Field(proto.STRING, number=2)
+    csv = proto.Field(proto.STRING, number=8)
+
+    xlsx = proto.Field(proto.STRING, number=9)
 
 
 class AggregationGroup(proto.Message):
@@ -343,9 +364,9 @@ class AggregationGroup(proto.Message):
 
     Attributes:
         group (str):
-
+            Name of the aggregation group.
         rows (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationRow]):
-
+            List of categories within the group.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -360,9 +381,9 @@ class AggregationRow(proto.Message):
 
     Attributes:
         category (str):
-
+            Category name for the aggregation row.
         value (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Value of the aggregation row.
     """
 
     category = proto.Field(proto.STRING, number=1)
@@ -377,7 +398,7 @@ class GetTradeFlowTimeseriesResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -406,7 +427,7 @@ class TimeseriesGroup(proto.Message):
             Helper variable to calculate top groups. Not
             returned.
         rows (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -425,9 +446,9 @@ class TimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-            UTC date timestamp of the timeseries row
+            UTC date timestamp of the timeseries row.
         value (google.protobuf.wrappers_pb2.DoubleValue):
-            The value of the timeseries row
+            The value of the timeseries row.
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -442,9 +463,9 @@ class GeoPoint(proto.Message):
 
     Attributes:
         lat (float):
-
+            Latitude.
         lon (float):
-
+            Longitude.
     """
 
     lat = proto.Field(proto.DOUBLE, number=1)
@@ -576,9 +597,9 @@ class TradeFlow(proto.Message):
             between load port and discharge port. Based on
             AIS tracks.
         eta (str):
-            Captain's Reported ETA
+            Captain's Reported ETA.
         destination (str):
-            Captain's Reported Destination
+            Captain's Reported Destination.
         status (str):
             Status of the trade flow.
         parceling (bool):
@@ -718,11 +739,12 @@ class GetTradeFlowHistogramResponse(proto.Message):
 
     Attributes:
         grouping_variable (str):
-
+            Name of the varible that results have been
+            grouped by.
         number_of_groups (int):
-
+            The number of groups returned.
         groups (Sequence[oceanbolt.com.tradeflows_v3.types.HistogramGroup]):
-
+            List of histogram groups.
     """
 
     grouping_variable = proto.Field(proto.STRING, number=1)
@@ -739,11 +761,12 @@ class HistogramGroup(proto.Message):
 
     Attributes:
         group (str):
-
+            Name of the group. This will be "default", if
+            no grouping was specified in the query.
         number_of_values (int):
-
+            Number of observations within the group.
         values (Sequence[float]):
-
+            Array of the observed values.
     """
 
     group = proto.Field(proto.STRING, number=1)

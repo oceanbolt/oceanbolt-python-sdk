@@ -36,7 +36,7 @@ from .client import TonnageServiceClient
 
 
 class TonnageServiceAsyncClient:
-    """TonnageService provides service to get tonnage data"""
+    """TonnageService provides am API service to get tonnage data"""
 
     _client: TonnageServiceClient
 
@@ -127,7 +127,7 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneCountResponse:
-        r"""Fetches tonnage counts timeseries
+        r"""Fetches tonnage counts timeseries.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest`):
@@ -176,7 +176,7 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetFleetSpeedResponse:
-        r"""Fetches fleet speed timeseries
+        r"""Fetches fleet speed timeseries.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest`):
@@ -223,7 +223,7 @@ class TonnageServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetGlobalTonnageStatusResponse:
-        r"""Fetches global tonnage status timeseries
+        r"""Fetches global tonnage status timeseries.
 
         Args:
             request (:class:`oceanbolt.com.tonnage_v3.types.GetGlobalTonnageStatusRequest`):

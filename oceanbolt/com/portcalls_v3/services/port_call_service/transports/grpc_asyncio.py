@@ -36,7 +36,7 @@ from .grpc import PortCallServiceGrpcTransport
 class PortCallServiceGrpcAsyncIOTransport(PortCallServiceTransport):
     """gRPC AsyncIO backend transport for PortCallService.
 
-    PortCallService provides service to get PortCall data
+    PortCallService provides an API service to get PortCall data
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -278,7 +278,7 @@ class PortCallServiceGrpcAsyncIOTransport(PortCallServiceTransport):
         r"""Return a callable for the get port call timeseries method over gRPC.
 
         GetPortCallTimeseries retrieves aggregated counts for
-        port calls for a set of request params
+        port calls for a set of request params.
 
         Returns:
             Callable[[~.GetPortCallsRequest],

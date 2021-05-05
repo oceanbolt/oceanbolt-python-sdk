@@ -527,7 +527,9 @@ def test_get_trade_flow_aggregation(transport: str = 'grpc', request_type=servic
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.GetTradeFlowAggregationResponse(
-            file_url='file_url_value',
+            csv='csv_value',
+
+            xlsx='xlsx_value',
 
         )
 
@@ -543,7 +545,9 @@ def test_get_trade_flow_aggregation(transport: str = 'grpc', request_type=servic
 
     assert isinstance(response, service.GetTradeFlowAggregationResponse)
 
-    assert response.file_url == 'file_url_value'
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
 
 
 def test_get_trade_flow_aggregation_from_dict():
@@ -567,7 +571,8 @@ async def test_get_trade_flow_aggregation_async(transport: str = 'grpc_asyncio',
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTradeFlowAggregationResponse(
-            file_url='file_url_value',
+            csv='csv_value',
+            xlsx='xlsx_value',
         ))
 
         response = await client.get_trade_flow_aggregation(request)
@@ -581,7 +586,9 @@ async def test_get_trade_flow_aggregation_async(transport: str = 'grpc_asyncio',
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetTradeFlowAggregationResponse)
 
-    assert response.file_url == 'file_url_value'
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
 
 
 @pytest.mark.asyncio

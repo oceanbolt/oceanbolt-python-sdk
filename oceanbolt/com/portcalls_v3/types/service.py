@@ -63,7 +63,7 @@ class GetPortCallsRequest(proto.Message):
             from the **/entities/regions** endpoint.
         basin (Sequence[str]):
             List of basins to filter on. Allowed values are:
-            ["atlantic","indian_ocean","pacific_americas","pacific_asia"]
+            ["atlantic","indian_ocean","pacific_americas","pacific_asia"].
         latest_only (bool):
             Flat to indiciate whether only the latest
             port call should be included on an IMO basis. If
@@ -82,15 +82,15 @@ class GetPortCallsRequest(proto.Message):
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
-            supplied alongside subSegment
+            supplied alongside subSegment.
         sub_segment (Sequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
-            be supplied alongside segment
+            be supplied alongside segment.
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         commodity (Sequence[str]):
             List of commodities to get data for (get a list of all
             commodities from **/entities/commodities**).
@@ -176,19 +176,23 @@ class GetPortCallsResponse(proto.Message):
     r"""Response object for port call queries
 
     Attributes:
-        previous_token (str):
-
+        prev_token (str):
+            Pagination token indicating the presence of
+            additional previous results.
         next_token (str):
-
+            Pagination token indicating the presence of
+            additional further results.
         data (Sequence[oceanbolt.com.portcalls_v3.types.PortCall]):
-
+            List of port calls.
         csv (str):
-
+            Link to download csv file, if format was
+            specified to be "csv".
         xlsx (str):
-
+            Link to download excel file, if format was
+            specified to be "xlsx".
     """
 
-    previous_token = proto.Field(proto.STRING, number=2)
+    prev_token = proto.Field(proto.STRING, number=2)
 
     next_token = proto.Field(proto.STRING, number=3)
 
@@ -215,7 +219,7 @@ class PortCall(proto.Message):
         imo (int):
             IMO number of the vessel.
         vessel_name (str):
-            Name of the vessel
+            Name of the vessel.
         port_id (google.protobuf.wrappers_pb2.Int32Value):
             Oceanbolt database identifier of the port.
         port_name (str):
@@ -260,7 +264,7 @@ class PortCall(proto.Message):
             ISO 2-letter country code of the load
             country.
         operation (str):
-            Operation type of the port call
+            Operation type of the port call.
         voyage_type (str):
             The type of the voyage.
         commodity (str):
@@ -361,9 +365,9 @@ class GetPortParticularsRequest(proto.Message):
 
     Attributes:
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter.
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter.
         port_id (int):
             Oceanbolt port identifier to filter on.
         berth_id (int):
@@ -394,22 +398,22 @@ class Statistic(proto.Message):
 
     Attributes:
         min_ (float):
-            Minimum observed value
+            Minimum observed value.
         max_ (float):
-            Maximum observed value
+            Maximum observed value.
         percentile_10 (float):
-            10th percentile of observed values
+            10th percentile of observed values.
         percentile_50 (float):
             50th percentile of observed values (same as
-            median)
+            median).
         percentile_90 (float):
-            90th percentile of observed values
+            90th percentile of observed values.
         percentile_95 (float):
-            95th percentile of observed values
+            95th percentile of observed values.
         percentile_99 (float):
-            99th percentile of observed values
+            99th percentile of observed values.
         mean (float):
-            mean of observed values
+            mean of observed values.
     """
 
     min_ = proto.Field(proto.DOUBLE, number=1)
@@ -435,21 +439,22 @@ class GetPortParticularsResponse(proto.Message):
     Attributes:
         number_of_port_calls (int):
             Number of port calls which forms the basis of
-            the statistical aggregates
+            the statistical aggregates.
         loa (oceanbolt.com.portcalls_v3.types.Statistic):
-            Summary statistics for LOA
+            Summary statistics for LOA.
         beam (oceanbolt.com.portcalls_v3.types.Statistic):
-            Summary statistics for Beam
+            Summary statistics for Beam.
         max_draught (oceanbolt.com.portcalls_v3.types.Statistic):
-            Summary statistics for Maximum Design Draught
+            Summary statistics for Maximum Design
+            Draught.
         reported_draught (oceanbolt.com.portcalls_v3.types.Statistic):
             Summary statistics for Vessel Reported
-            Draught
+            Draught.
         dwt (oceanbolt.com.portcalls_v3.types.Statistic):
-            Summary statistics for DWT
+            Summary statistics for DWT.
         air_draught (oceanbolt.com.portcalls_v3.types.Statistic):
             Summary statistics for Air Draught (if
-            available)
+            available).
     """
 
     number_of_port_calls = proto.Field(proto.INT32, number=7)
@@ -484,7 +489,7 @@ class GetPortCallTimeseriesResponse(proto.Message):
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.portcalls_v3.types.TimeseriesGroup]):
-            Timeseries data groups
+            Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
             specified to be "csv".
@@ -513,7 +518,7 @@ class TimeseriesGroup(proto.Message):
             Helper variable to calculate top groups. Not
             returned.
         rows (Sequence[oceanbolt.com.portcalls_v3.types.TimeseriesRow]):
-            Rows of timeseries data
+            Rows of timeseries data.
     """
 
     group = proto.Field(proto.STRING, number=1)
@@ -532,9 +537,9 @@ class TimeseriesRow(proto.Message):
 
     Attributes:
         date (str):
-
+            UTC date timestamp of the timeseries row.
         value (google.protobuf.wrappers_pb2.DoubleValue):
-
+            The value of the timeseries row.
     """
 
     date = proto.Field(proto.STRING, number=1)
