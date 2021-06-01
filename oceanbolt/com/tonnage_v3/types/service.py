@@ -673,6 +673,9 @@ class GetTonnageZoneChangesRequest(proto.Message):
             timeseries. Allowed values are: **["daily", "weekly",
             "monthly","quarterly "yearly"]**. Default value is
             "monthly".
+        metric (str):
+            Specifies which metric to return, allowed values are
+            ["count", "dwt"].
     """
 
     from_zone_id = proto.RepeatedField(proto.INT32, number=1)
@@ -697,17 +700,21 @@ class GetTonnageZoneChangesRequest(proto.Message):
 
     frequency = proto.Field(proto.STRING, number=11)
 
+    metric = proto.Field(proto.STRING, number=12)
+
 
 class GetTonnageZoneChangesResponse(proto.Message):
     r"""Response object for TonnageZoneChange
 
     Attributes:
         timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
-
+            Timeseries data groups.
         csv (str):
-
+            Link to download csv file, if format was
+            specified to be "csv".
         xlsx (str):
-
+            Link to download excel file, if format was
+            specified to be "xlsx".
     """
 
     timeseries = proto.RepeatedField(proto.MESSAGE, number=1,

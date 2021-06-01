@@ -778,6 +778,56 @@ class FleetManagementServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def get_fleet_live_map(self,
+            request: service.GetFleetLiveMapRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetFleetLiveMapResponse:
+        r"""GetFleetLiveMap display static location for vessels
+        in a fleet (as static image).
+
+        Args:
+            request (:class:`oceanbolt.com.fleetmanagement_v3.types.GetFleetLiveMapRequest`):
+                The request object. GetFleetLiveMapRequest request
+                object for getting static fleet map
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.fleetmanagement_v3.types.GetFleetLiveMapResponse:
+                GetFleetLiveMapRequest request object
+                for getting static fleet map
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetFleetLiveMapRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_fleet_live_map,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
 
 
 

@@ -364,6 +364,55 @@ class TradeFlowServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def get_location_volume(self,
+            request: service.TradeFlowDataRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetLocationVolumeResponse:
+        r"""GetLocationVolume gets location
+        (port/berth/country/region) flow stats for the given
+        filter parameters
+
+        Args:
+            request (:class:`oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest`):
+                The request object. Trade flow data requests object.
+                This is shared between all trade flows queries
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.tradeflows_v3.types.GetLocationVolumeResponse:
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.TradeFlowDataRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_location_volume,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
 
 
 

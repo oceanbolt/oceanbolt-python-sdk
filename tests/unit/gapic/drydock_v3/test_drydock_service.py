@@ -341,91 +341,6 @@ def test_drydock_service_client_client_options_from_dict():
         )
 
 
-def test_get_tonnage_dry_dock(transport: str = 'grpc', request_type=service.GetTonnageDryDockRequest):
-    client = DrydockServiceClient(
-        credentials=credentials.AnonymousCredentials(),
-        transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.get_tonnage_dry_dock),
-            '__call__') as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = service.GetTonnageDryDockResponse(
-            csv='csv_value',
-
-            xlsx='xlsx_value',
-
-        )
-
-        response = client.get_tonnage_dry_dock(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == service.GetTonnageDryDockRequest()
-
-    # Establish that the response is the type that we expect.
-
-    assert isinstance(response, service.GetTonnageDryDockResponse)
-
-    assert response.csv == 'csv_value'
-
-    assert response.xlsx == 'xlsx_value'
-
-
-def test_get_tonnage_dry_dock_from_dict():
-    test_get_tonnage_dry_dock(request_type=dict)
-
-
-@pytest.mark.asyncio
-async def test_get_tonnage_dry_dock_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageDryDockRequest):
-    client = DrydockServiceAsyncClient(
-        credentials=credentials.AnonymousCredentials(),
-        transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.get_tonnage_dry_dock),
-            '__call__') as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTonnageDryDockResponse(
-            csv='csv_value',
-            xlsx='xlsx_value',
-        ))
-
-        response = await client.get_tonnage_dry_dock(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-
-        assert args[0] == service.GetTonnageDryDockRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, service.GetTonnageDryDockResponse)
-
-    assert response.csv == 'csv_value'
-
-    assert response.xlsx == 'xlsx_value'
-
-
-@pytest.mark.asyncio
-async def test_get_tonnage_dry_dock_async_from_dict():
-    await test_get_tonnage_dry_dock_async(request_type=dict)
-
-
 def test_get_dry_dock_stays(transport: str = 'grpc', request_type=service.GetDryDockStaysRequest):
     client = DrydockServiceClient(
         credentials=credentials.AnonymousCredentials(),
@@ -532,6 +447,282 @@ async def test_get_dry_dock_stays_async_from_dict():
     await test_get_dry_dock_stays_async(request_type=dict)
 
 
+def test_get_dry_dock_timeseries(transport: str = 'grpc', request_type=service.GetDryDockRequest):
+    client = DrydockServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_timeseries),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.DryDockResponse(
+            number_of_current_vessels=2691,
+
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_dry_dock_timeseries(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_dry_dock_timeseries_from_dict():
+    test_get_dry_dock_timeseries(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_timeseries_async(transport: str = 'grpc_asyncio', request_type=service.GetDryDockRequest):
+    client = DrydockServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_timeseries),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.DryDockResponse(
+            number_of_current_vessels=2691,
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_dry_dock_timeseries(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_timeseries_async_from_dict():
+    await test_get_dry_dock_timeseries_async(request_type=dict)
+
+
+def test_get_dry_dock_web(transport: str = 'grpc', request_type=service.GetDryDockRequest):
+    client = DrydockServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_web),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.DryDockResponse(
+            number_of_current_vessels=2691,
+
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_dry_dock_web(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_dry_dock_web_from_dict():
+    test_get_dry_dock_web(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_web_async(transport: str = 'grpc_asyncio', request_type=service.GetDryDockRequest):
+    client = DrydockServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_web),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.DryDockResponse(
+            number_of_current_vessels=2691,
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_dry_dock_web(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_web_async_from_dict():
+    await test_get_dry_dock_web_async(request_type=dict)
+
+
+def test_get_dry_dock_vessels(transport: str = 'grpc', request_type=service.GetDryDockRequest):
+    client = DrydockServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_vessels),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.DryDockResponse(
+            number_of_current_vessels=2691,
+
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_dry_dock_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_dry_dock_vessels_from_dict():
+    test_get_dry_dock_vessels(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_vessels_async(transport: str = 'grpc_asyncio', request_type=service.GetDryDockRequest):
+    client = DrydockServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_dry_dock_vessels),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.DryDockResponse(
+            number_of_current_vessels=2691,
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_dry_dock_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetDryDockRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.DryDockResponse)
+
+    assert response.number_of_current_vessels == 2691
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_dry_dock_vessels_async_from_dict():
+    await test_get_dry_dock_vessels_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.DrydockServiceGrpcTransport(
@@ -631,8 +822,10 @@ def test_drydock_service_base_transport():
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        'get_tonnage_dry_dock',
         'get_dry_dock_stays',
+        'get_dry_dock_timeseries',
+        'get_dry_dock_web',
+        'get_dry_dock_vessels',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

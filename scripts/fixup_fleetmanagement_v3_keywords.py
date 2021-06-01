@@ -48,6 +48,7 @@ class fleetmanagementCallTransformer(cst.CSTTransformer):
     'delete_vessel': ('fleet_id', 'imo', ),
     'describe_fleet': ('fleet_id', ),
     'drop_vessels': ('fleet_id', ),
+    'get_fleet_live_map': ('fleet_id', 'map_theme', ),
     'list_fleets': (),
     'list_vessels': ('fleet_id', ),
     'rename_fleet': ('fleet_id', 'new_fleet_name', ),

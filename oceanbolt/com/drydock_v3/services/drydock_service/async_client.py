@@ -36,7 +36,7 @@ from .client import DrydockServiceClient
 
 
 class DrydockServiceAsyncClient:
-    """TradeFlowService provides service to get tradeflow data"""
+    """DryDockService provides service to get dry dock data"""
 
     _client: DrydockServiceClient
 
@@ -120,59 +120,6 @@ class DrydockServiceAsyncClient:
 
         )
 
-    async def get_tonnage_dry_dock(self,
-            request: service.GetTonnageDryDockRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.GetTonnageDryDockResponse:
-        r"""GetTonnageDryDock retrives timeseries for number of
-        vessels in dry dock at any given time Accepts a segment
-        to return congestion timeseries for. It is possible to
-        return both number of vessels currently in dry dock and
-        the sum of DWT currently in drydock, In addition the api
-        also return the values either in absolute numbers or as
-        percent of global fleet.
-
-        Args:
-            request (:class:`oceanbolt.com.drydock_v3.types.GetTonnageDryDockRequest`):
-                The request object.  Dry Dock Requests and Responses
-                GetTonnageDryDock
-
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, str]]): Strings which should be
-                sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.drydock_v3.types.GetTonnageDryDockResponse:
-
-        """
-        # Create or coerce a protobuf request object.
-
-        request = service.GetTonnageDryDockRequest(request)
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.get_tonnage_dry_dock,
-            default_timeout=None,
-            client_info=DEFAULT_CLIENT_INFO,
-        )
-
-        # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
-
-        # Done; return the response.
-        return response
-
     async def get_dry_dock_stays(self,
             request: service.GetDryDockStaysRequest = None,
             *,
@@ -180,7 +127,7 @@ class DrydockServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetDryDockStaysResponse:
-        r"""ListDryDockStays retrives individual completed dry
+        r"""GetDryDockStays retrives individual completed dry
         dock stays
 
         Args:
@@ -205,6 +152,147 @@ class DrydockServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_dry_dock_stays,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_dry_dock_timeseries(self,
+            request: service.GetDryDockRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.DryDockResponse:
+        r"""GetDryDockTimeseries retrieves dry dock data for a specified
+        list of port_ids/segments
+
+        Args:
+            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
+                The request object. DryDock request object.
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.drydock_v3.types.DryDockResponse:
+                DryDock responseobject.
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetDryDockRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_dry_dock_timeseries,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_dry_dock_web(self,
+            request: service.GetDryDockRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.DryDockResponse:
+        r"""GetDryDockWeb retrieves dry dock data for a specified list of
+        port_ids/segments
+
+        Args:
+            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
+                The request object. DryDock request object.
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.drydock_v3.types.DryDockResponse:
+                DryDock responseobject.
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetDryDockRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_dry_dock_web,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_dry_dock_vessels(self,
+            request: service.GetDryDockRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.DryDockResponse:
+        r"""GetDryDockVessels retrieves dry dock data for a specified list
+        of port_ids/segments
+
+        Args:
+            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
+                The request object. DryDock request object.
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.drydock_v3.types.DryDockResponse:
+                DryDock responseobject.
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetDryDockRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_dry_dock_vessels,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )

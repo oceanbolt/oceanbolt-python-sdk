@@ -36,7 +36,7 @@ from .grpc import DrydockServiceGrpcTransport
 class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
     """gRPC AsyncIO backend transport for DrydockService.
 
-    TradeFlowService provides service to get tradeflow data
+    DryDockService provides service to get dry dock data
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -241,44 +241,12 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
         return self._grpc_channel
 
     @property
-    def get_tonnage_dry_dock(self) -> Callable[
-            [service.GetTonnageDryDockRequest],
-            Awaitable[service.GetTonnageDryDockResponse]]:
-        r"""Return a callable for the get tonnage dry dock method over gRPC.
-
-        GetTonnageDryDock retrives timeseries for number of
-        vessels in dry dock at any given time Accepts a segment
-        to return congestion timeseries for. It is possible to
-        return both number of vessels currently in dry dock and
-        the sum of DWT currently in drydock, In addition the api
-        also return the values either in absolute numbers or as
-        percent of global fleet.
-
-        Returns:
-            Callable[[~.GetTonnageDryDockRequest],
-                    Awaitable[~.GetTonnageDryDockResponse]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if 'get_tonnage_dry_dock' not in self._stubs:
-            self._stubs['get_tonnage_dry_dock'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.drydock.v3.DrydockService/GetTonnageDryDock',
-                request_serializer=service.GetTonnageDryDockRequest.serialize,
-                response_deserializer=service.GetTonnageDryDockResponse.deserialize,
-            )
-        return self._stubs['get_tonnage_dry_dock']
-
-    @property
     def get_dry_dock_stays(self) -> Callable[
             [service.GetDryDockStaysRequest],
             Awaitable[service.GetDryDockStaysResponse]]:
         r"""Return a callable for the get dry dock stays method over gRPC.
 
-        ListDryDockStays retrives individual completed dry
+        GetDryDockStays retrives individual completed dry
         dock stays
 
         Returns:
@@ -298,6 +266,87 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
                 response_deserializer=service.GetDryDockStaysResponse.deserialize,
             )
         return self._stubs['get_dry_dock_stays']
+
+    @property
+    def get_dry_dock_timeseries(self) -> Callable[
+            [service.GetDryDockRequest],
+            Awaitable[service.DryDockResponse]]:
+        r"""Return a callable for the get dry dock timeseries method over gRPC.
+
+        GetDryDockTimeseries retrieves dry dock data for a specified
+        list of port_ids/segments
+
+        Returns:
+            Callable[[~.GetDryDockRequest],
+                    Awaitable[~.DryDockResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_dry_dock_timeseries' not in self._stubs:
+            self._stubs['get_dry_dock_timeseries'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.drydock.v3.DrydockService/GetDryDockTimeseries',
+                request_serializer=service.GetDryDockRequest.serialize,
+                response_deserializer=service.DryDockResponse.deserialize,
+            )
+        return self._stubs['get_dry_dock_timeseries']
+
+    @property
+    def get_dry_dock_web(self) -> Callable[
+            [service.GetDryDockRequest],
+            Awaitable[service.DryDockResponse]]:
+        r"""Return a callable for the get dry dock web method over gRPC.
+
+        GetDryDockWeb retrieves dry dock data for a specified list of
+        port_ids/segments
+
+        Returns:
+            Callable[[~.GetDryDockRequest],
+                    Awaitable[~.DryDockResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_dry_dock_web' not in self._stubs:
+            self._stubs['get_dry_dock_web'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.drydock.v3.DrydockService/GetDryDockWeb',
+                request_serializer=service.GetDryDockRequest.serialize,
+                response_deserializer=service.DryDockResponse.deserialize,
+            )
+        return self._stubs['get_dry_dock_web']
+
+    @property
+    def get_dry_dock_vessels(self) -> Callable[
+            [service.GetDryDockRequest],
+            Awaitable[service.DryDockResponse]]:
+        r"""Return a callable for the get dry dock vessels method over gRPC.
+
+        GetDryDockVessels retrieves dry dock data for a specified list
+        of port_ids/segments
+
+        Returns:
+            Callable[[~.GetDryDockRequest],
+                    Awaitable[~.DryDockResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_dry_dock_vessels' not in self._stubs:
+            self._stubs['get_dry_dock_vessels'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.drydock.v3.DrydockService/GetDryDockVessels',
+                request_serializer=service.GetDryDockRequest.serialize,
+                response_deserializer=service.DryDockResponse.deserialize,
+            )
+        return self._stubs['get_dry_dock_vessels']
 
 
 __all__ = (

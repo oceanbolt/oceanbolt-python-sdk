@@ -561,6 +561,56 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
         # Done; return the response.
         return response
 
+    def get_location_volume(self,
+            request: service.TradeFlowDataRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetLocationVolumeResponse:
+        r"""GetLocationVolume gets location
+        (port/berth/country/region) flow stats for the given
+        filter parameters
+
+        Args:
+            request (oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest):
+                The request object. Trade flow data requests object.
+                This is shared between all trade flows queries
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.tradeflows_v3.types.GetLocationVolumeResponse:
+
+        """
+        # Create or coerce a protobuf request object.
+
+        # Minor optimization to avoid making a copy if the user passes
+        # in a service.TradeFlowDataRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, service.TradeFlowDataRequest):
+            request = service.TradeFlowDataRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.get_location_volume]
+
+        # Send the request.
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
 
 
 

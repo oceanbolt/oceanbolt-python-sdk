@@ -27,6 +27,8 @@ from oceanbolt.com.fleetmanagement_v3.types.service import EmptyParams
 from oceanbolt.com.fleetmanagement_v3.types.service import EmptyResponse
 from oceanbolt.com.fleetmanagement_v3.types.service import Fleet
 from oceanbolt.com.fleetmanagement_v3.types.service import Fleets
+from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetLiveMapRequest
+from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetLiveMapResponse
 from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import ListVesselsRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import RenameFleetRequest
@@ -50,6 +52,8 @@ __all__ = (
     'FleetManagementServiceAsyncClient',
     'FleetManagementServiceClient',
     'Fleets',
+    'GetFleetLiveMapRequest',
+    'GetFleetLiveMapResponse',
     'GetFleetRequest',
     'ListVesselsRequest',
     'RenameFleetRequest',

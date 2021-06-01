@@ -27,6 +27,12 @@ from .service import (
     GetDryDockStaysRequest,
     GetDryDockStaysResponse,
     ShipyardStay,
+    GetDryDockRequest,
+    DryDockTimeseriesGroup,
+    DryDockTimeseriesRow,
+    DryDockResponse,
+    DryDockSplitRow,
+    DryDockStay,
 )
 
 __all__ = (
@@ -41,4 +47,10 @@ __all__ = (
     'GetDryDockStaysRequest',
     'GetDryDockStaysResponse',
     'ShipyardStay',
+    'GetDryDockRequest',
+    'DryDockTimeseriesGroup',
+    'DryDockTimeseriesRow',
+    'DryDockResponse',
+    'DryDockSplitRow',
+    'DryDockStay',
 )

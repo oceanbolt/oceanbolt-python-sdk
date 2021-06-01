@@ -1609,6 +1609,84 @@ async def test_drop_vessels_async_from_dict():
     await test_drop_vessels_async(request_type=dict)
 
 
+def test_get_fleet_live_map(transport: str = 'grpc', request_type=service.GetFleetLiveMapRequest):
+    client = FleetManagementServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_fleet_live_map),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetFleetLiveMapResponse(
+            map_image='map_image_value',
+
+        )
+
+        response = client.get_fleet_live_map(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetFleetLiveMapRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.GetFleetLiveMapResponse)
+
+    assert response.map_image == 'map_image_value'
+
+
+def test_get_fleet_live_map_from_dict():
+    test_get_fleet_live_map(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_fleet_live_map_async(transport: str = 'grpc_asyncio', request_type=service.GetFleetLiveMapRequest):
+    client = FleetManagementServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_fleet_live_map),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetFleetLiveMapResponse(
+            map_image='map_image_value',
+        ))
+
+        response = await client.get_fleet_live_map(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetFleetLiveMapRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetFleetLiveMapResponse)
+
+    assert response.map_image == 'map_image_value'
+
+
+@pytest.mark.asyncio
+async def test_get_fleet_live_map_async_from_dict():
+    await test_get_fleet_live_map_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.FleetManagementServiceGrpcTransport(
@@ -1722,6 +1800,7 @@ def test_fleet_management_service_base_transport():
         'batch_add_vessels',
         'replace_vessels',
         'drop_vessels',
+        'get_fleet_live_map',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

@@ -41,6 +41,8 @@ __protobuf__ = proto.module(
         'DeleteVesselRequest',
         'Vessels',
         'Vessel',
+        'GetFleetLiveMapRequest',
+        'GetFleetLiveMapResponse',
         'EmptyParams',
         'EmptyResponse',
     },
@@ -391,6 +393,36 @@ class Vessel(proto.Message):
     type_ = proto.Field(proto.STRING, number=8)
 
     metadata = proto.MapField(proto.STRING, proto.STRING, number=9)
+
+
+class GetFleetLiveMapRequest(proto.Message):
+    r"""GetFleetLiveMapRequest request object for getting static
+    fleet map
+
+    Attributes:
+        fleet_id (str):
+            Identifier of the Fleet resource
+        map_theme (str):
+            Specifies the map theme. Allowed values are: [light-v10,
+            dark-v10, navigation-night-v1, navigation-day-v1,
+            outdoors-v11, satellite-v9]
+    """
+
+    fleet_id = proto.Field(proto.STRING, number=1)
+
+    map_theme = proto.Field(proto.STRING, number=2)
+
+
+class GetFleetLiveMapResponse(proto.Message):
+    r"""GetFleetLiveMapRequest request object for getting static
+    fleet map
+
+    Attributes:
+        map_image (str):
+            Static fleet map image URL
+    """
+
+    map_image = proto.Field(proto.STRING, number=1)
 
 
 class EmptyParams(proto.Message):

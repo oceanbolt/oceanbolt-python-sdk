@@ -173,6 +173,11 @@ class FleetManagementServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_fleet_live_map: gapic_v1.method.wrap_method(
+                self.get_fleet_live_map,
+                default_timeout=None,
+                client_info=client_info,
+            ),
 
         }
 
@@ -299,6 +304,15 @@ class FleetManagementServiceTransport(abc.ABC):
             typing.Union[
                 service.EmptyResponse,
                 typing.Awaitable[service.EmptyResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_fleet_live_map(self) -> typing.Callable[
+            [service.GetFleetLiveMapRequest],
+            typing.Union[
+                service.GetFleetLiveMapResponse,
+                typing.Awaitable[service.GetFleetLiveMapResponse]
             ]]:
         raise NotImplementedError()
 

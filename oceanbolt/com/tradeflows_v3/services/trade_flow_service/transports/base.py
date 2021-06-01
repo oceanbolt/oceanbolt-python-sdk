@@ -128,6 +128,11 @@ class TradeFlowServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_location_volume: gapic_v1.method.wrap_method(
+                self.get_location_volume,
+                default_timeout=None,
+                client_info=client_info,
+            ),
 
         }
 
@@ -173,6 +178,15 @@ class TradeFlowServiceTransport(abc.ABC):
             typing.Union[
                 service.GetTradeFlowHistogramResponse,
                 typing.Awaitable[service.GetTradeFlowHistogramResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_location_volume(self) -> typing.Callable[
+            [service.TradeFlowDataRequest],
+            typing.Union[
+                service.GetLocationVolumeResponse,
+                typing.Awaitable[service.GetLocationVolumeResponse]
             ]]:
         raise NotImplementedError()
 

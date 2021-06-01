@@ -103,13 +103,23 @@ class DrydockServiceTransport(abc.ABC):
     def _prep_wrapped_messages(self, client_info):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
-            self.get_tonnage_dry_dock: gapic_v1.method.wrap_method(
-                self.get_tonnage_dry_dock,
+            self.get_dry_dock_stays: gapic_v1.method.wrap_method(
+                self.get_dry_dock_stays,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.get_dry_dock_stays: gapic_v1.method.wrap_method(
-                self.get_dry_dock_stays,
+            self.get_dry_dock_timeseries: gapic_v1.method.wrap_method(
+                self.get_dry_dock_timeseries,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.get_dry_dock_web: gapic_v1.method.wrap_method(
+                self.get_dry_dock_web,
+                default_timeout=None,
+                client_info=client_info,
+            ),
+            self.get_dry_dock_vessels: gapic_v1.method.wrap_method(
+                self.get_dry_dock_vessels,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -117,20 +127,38 @@ class DrydockServiceTransport(abc.ABC):
         }
 
     @property
-    def get_tonnage_dry_dock(self) -> typing.Callable[
-            [service.GetTonnageDryDockRequest],
-            typing.Union[
-                service.GetTonnageDryDockResponse,
-                typing.Awaitable[service.GetTonnageDryDockResponse]
-            ]]:
-        raise NotImplementedError()
-
-    @property
     def get_dry_dock_stays(self) -> typing.Callable[
             [service.GetDryDockStaysRequest],
             typing.Union[
                 service.GetDryDockStaysResponse,
                 typing.Awaitable[service.GetDryDockStaysResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_dry_dock_timeseries(self) -> typing.Callable[
+            [service.GetDryDockRequest],
+            typing.Union[
+                service.DryDockResponse,
+                typing.Awaitable[service.DryDockResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_dry_dock_web(self) -> typing.Callable[
+            [service.GetDryDockRequest],
+            typing.Union[
+                service.DryDockResponse,
+                typing.Awaitable[service.DryDockResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_dry_dock_vessels(self) -> typing.Callable[
+            [service.GetDryDockRequest],
+            typing.Union[
+                service.DryDockResponse,
+                typing.Awaitable[service.DryDockResponse]
             ]]:
         raise NotImplementedError()
 

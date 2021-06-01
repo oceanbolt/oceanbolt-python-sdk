@@ -766,6 +766,77 @@ async def test_get_trade_flow_histogram_async_from_dict():
     await test_get_trade_flow_histogram_async(request_type=dict)
 
 
+def test_get_location_volume(transport: str = 'grpc', request_type=service.TradeFlowDataRequest):
+    client = TradeFlowServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_location_volume),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetLocationVolumeResponse(
+        )
+
+        response = client.get_location_volume(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.TradeFlowDataRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.GetLocationVolumeResponse)
+
+
+def test_get_location_volume_from_dict():
+    test_get_location_volume(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_location_volume_async(transport: str = 'grpc_asyncio', request_type=service.TradeFlowDataRequest):
+    client = TradeFlowServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_location_volume),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetLocationVolumeResponse(
+        ))
+
+        response = await client.get_location_volume(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.TradeFlowDataRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetLocationVolumeResponse)
+
+
+@pytest.mark.asyncio
+async def test_get_location_volume_async_from_dict():
+    await test_get_location_volume_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.TradeFlowServiceGrpcTransport(
@@ -870,6 +941,7 @@ def test_trade_flow_service_base_transport():
         'get_trade_flow_aggregation',
         'get_trade_flow_timeseries',
         'get_trade_flow_histogram',
+        'get_location_volume',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

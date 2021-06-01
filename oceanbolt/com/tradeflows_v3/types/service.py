@@ -315,6 +315,8 @@ class LocationVolume(proto.Message):
             Oceanbolt identifier of the location.
         location_type (str):
             Type of the location.
+        country_code (str):
+            ISO 2-letter country code.
         value (google.protobuf.wrappers_pb2.DoubleValue):
             Aggregated value for the location.
         coords (oceanbolt.com.tradeflows_v3.types.GeoPoint):
@@ -326,6 +328,8 @@ class LocationVolume(proto.Message):
     location_id = proto.Field(proto.STRING, number=2)
 
     location_type = proto.Field(proto.STRING, number=3)
+
+    country_code = proto.Field(proto.STRING, number=6)
 
     value = proto.Field(proto.MESSAGE, number=4,
         message=wrappers.DoubleValue,

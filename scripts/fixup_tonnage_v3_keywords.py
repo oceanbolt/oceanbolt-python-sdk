@@ -46,7 +46,7 @@ class tonnageCallTransformer(cst.CSTTransformer):
     'get_tonnage_fleet_growth': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
     'get_tonnage_fleet_speed': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
     'get_tonnage_fleet_status': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
-    'get_tonnage_zone_changes': ('from_zone_id', 'to_zone_id', 'segment', 'sub_segment', 'laden_status', 'start_date', 'end_date', 'group_by', 'sort', 'format_', 'frequency', ),
+    'get_tonnage_zone_changes': ('from_zone_id', 'to_zone_id', 'segment', 'sub_segment', 'laden_status', 'start_date', 'end_date', 'group_by', 'sort', 'format_', 'frequency', 'metric', ),
     'get_tonnage_zone_count': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
 
     }

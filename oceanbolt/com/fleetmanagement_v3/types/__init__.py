@@ -33,6 +33,8 @@ from .service import (
     DeleteVesselRequest,
     Vessels,
     Vessel,
+    GetFleetLiveMapRequest,
+    GetFleetLiveMapResponse,
     EmptyParams,
     EmptyResponse,
 )
@@ -55,6 +57,8 @@ __all__ = (
     'DeleteVesselRequest',
     'Vessels',
     'Vessel',
+    'GetFleetLiveMapRequest',
+    'GetFleetLiveMapResponse',
     'EmptyParams',
     'EmptyResponse',
 )
