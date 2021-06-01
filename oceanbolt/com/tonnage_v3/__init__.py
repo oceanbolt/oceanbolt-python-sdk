@@ -39,6 +39,8 @@ from .types.service import TonnageChineseWatersRequest
 from .types.service import TonnageChineseWatersResponse
 from .types.service import TonnageTimeseriesGroup
 from .types.service import TonnageTimeseriesRow
+from .types.service import ZoneChangesTimeseriesGroup
+from .types.service import ZoneChangesTimeseriesRow
 
 
 __all__ = (
@@ -65,5 +67,7 @@ __all__ = (
     'TonnageChineseWatersResponse',
     'TonnageTimeseriesGroup',
     'TonnageTimeseriesRow',
+    'ZoneChangesTimeseriesGroup',
+    'ZoneChangesTimeseriesRow',
 'TonnageServiceClient',
 )

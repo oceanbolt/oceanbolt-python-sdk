@@ -40,6 +40,8 @@ from oceanbolt.com.tonnage_v3.types.service import TonnageChineseWatersRequest
 from oceanbolt.com.tonnage_v3.types.service import TonnageChineseWatersResponse
 from oceanbolt.com.tonnage_v3.types.service import TonnageTimeseriesGroup
 from oceanbolt.com.tonnage_v3.types.service import TonnageTimeseriesRow
+from oceanbolt.com.tonnage_v3.types.service import ZoneChangesTimeseriesGroup
+from oceanbolt.com.tonnage_v3.types.service import ZoneChangesTimeseriesRow
 
 __all__ = (
     'ChineseWatersTimeseriesGroup',
@@ -67,4 +69,6 @@ __all__ = (
     'TonnageServiceClient',
     'TonnageTimeseriesGroup',
     'TonnageTimeseriesRow',
+    'ZoneChangesTimeseriesGroup',
+    'ZoneChangesTimeseriesRow',
 )

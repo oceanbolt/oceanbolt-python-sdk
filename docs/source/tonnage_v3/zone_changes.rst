@@ -33,22 +33,22 @@ Example
 Returns:
 
 .. csv-table::
-    :header: date,value
+    :header: date,vessel_count,vessel_dwt
 
-    2020-11-23,25
-    2020-11-30,27
-    2020-12-07,40
-    2020-12-14,20
-    2020-12-21,26
-    2020-12-28,26
-    2021-01-04,31
-    2021-01-11,30
-    2021-01-18,51
-    2021-01-25,45
-    2021-02-01,61
-    2021-02-08,64
-    2021-02-15,50
-    2021-02-22,21
+    2020-11-23,25, 1231235
+    2020-11-30,27, 1350000
+    2020-12-07,40, 1358413
+    2020-12-14,20, 1128648
+    2020-12-21,26, 1121358
+    2020-12-28,26, 9113258
+    2021-01-04,31, 4561430
+    2021-01-11,30, 1231235
+    2021-01-18,51, 1231235
+    2021-01-25,45, 4684686
+    2021-02-01,61, 6486450
+    2021-02-08,64, 4664350
+    2021-02-15,50, 4241450
+    2021-02-22,21, 5231235
 
 
 Arguments
@@ -62,10 +62,10 @@ Response
 .. autoclass:: oceanbolt.com.tonnage_v3.types.GetTonnageZoneChangesResponse
     :members:
 
-.. autoclass:: oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup
+.. autoclass:: oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesGroup
     :members:
     :noindex:
 
-.. autoclass:: oceanbolt.com.tonnage_v3.types.TonnageTimeseriesRow
+.. autoclass:: oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesRow
     :members:
     :noindex:

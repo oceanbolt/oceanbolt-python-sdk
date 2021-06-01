@@ -45,6 +45,8 @@ __protobuf__ = proto.module(
         'ChineseWatersTimeseriesRow',
         'GetTonnageZoneChangesRequest',
         'GetTonnageZoneChangesResponse',
+        'ZoneChangesTimeseriesGroup',
+        'ZoneChangesTimeseriesRow',
         'EmptyParams',
         'EmptyResponse',
     },
@@ -673,9 +675,6 @@ class GetTonnageZoneChangesRequest(proto.Message):
             timeseries. Allowed values are: **["daily", "weekly",
             "monthly","quarterly "yearly"]**. Default value is
             "monthly".
-        metric (str):
-            Specifies which metric to return, allowed values are
-            ["count", "dwt"].
     """
 
     from_zone_id = proto.RepeatedField(proto.INT32, number=1)
@@ -700,14 +699,12 @@ class GetTonnageZoneChangesRequest(proto.Message):
 
     frequency = proto.Field(proto.STRING, number=11)
 
-    metric = proto.Field(proto.STRING, number=12)
-
 
 class GetTonnageZoneChangesResponse(proto.Message):
     r"""Response object for TonnageZoneChange
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
+        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -718,12 +715,53 @@ class GetTonnageZoneChangesResponse(proto.Message):
     """
 
     timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='TimeseriesGroup',
+        message='ZoneChangesTimeseriesGroup',
     )
 
     csv = proto.Field(proto.STRING, number=2)
 
     xlsx = proto.Field(proto.STRING, number=3)
+
+
+class ZoneChangesTimeseriesGroup(proto.Message):
+    r"""Tonnage zone/fleet speed timeseries group
+
+    Attributes:
+        group (str):
+            Name of the group. This will be "default", if
+            no grouping was specified in the query.
+        rows (Sequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesRow]):
+            Rows of timeseries data.
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='ZoneChangesTimeseriesRow',
+    )
+
+
+class ZoneChangesTimeseriesRow(proto.Message):
+    r"""Tonnage zone/fleet speed timeseries row.
+
+    Attributes:
+        date (str):
+            UTC date timestamp of the timeseries row.
+        vessel_count (google.protobuf.wrappers_pb2.Int32Value):
+            The number of vessels for the timeseries row.
+        vessel_dwt (google.protobuf.wrappers_pb2.DoubleValue):
+            The sum of dwt for the timeseries row.
+    """
+
+    date = proto.Field(proto.STRING, number=1)
+
+    vessel_count = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.Int32Value,
+    )
+
+    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
+        message=wrappers.DoubleValue,
+    )
 
 
 class EmptyParams(proto.Message):

@@ -37,6 +37,8 @@ from .service import (
     ChineseWatersTimeseriesRow,
     GetTonnageZoneChangesRequest,
     GetTonnageZoneChangesResponse,
+    ZoneChangesTimeseriesGroup,
+    ZoneChangesTimeseriesRow,
     EmptyParams,
     EmptyResponse,
 )
@@ -63,6 +65,8 @@ __all__ = (
     'ChineseWatersTimeseriesRow',
     'GetTonnageZoneChangesRequest',
     'GetTonnageZoneChangesResponse',
+    'ZoneChangesTimeseriesGroup',
+    'ZoneChangesTimeseriesRow',
     'EmptyParams',
     'EmptyResponse',
 )
