@@ -47,7 +47,7 @@ Response
     :members:
     :noindex:
 
-.. autoclass:: oceanbolt.com.drydock_v3.types.ShipyardStay
+.. autoclass:: oceanbolt.com.drydock_v3.types.HistoricalDryDockStay
     :members:
 
 

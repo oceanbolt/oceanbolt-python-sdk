@@ -19,39 +19,27 @@ from .services.drydock_service import DrydockServiceClient
 from .types.service import DryDockResponse
 from .types.service import DryDockSplitRow
 from .types.service import DryDockStay
-from .types.service import DryDockSummaryRequest
-from .types.service import DryDockSummaryResponse
-from .types.service import DryDockSummaryValue
 from .types.service import DryDockTimeseriesGroup
 from .types.service import DryDockTimeseriesRow
-from .types.service import DryDockValue
 from .types.service import EmptyParams
 from .types.service import EmptyResponse
 from .types.service import GetDryDockRequest
 from .types.service import GetDryDockStaysRequest
 from .types.service import GetDryDockStaysResponse
-from .types.service import GetTonnageDryDockRequest
-from .types.service import GetTonnageDryDockResponse
-from .types.service import ShipyardStay
+from .types.service import HistoricalDryDockStay
 
 
 __all__ = (
     'DryDockResponse',
     'DryDockSplitRow',
     'DryDockStay',
-    'DryDockSummaryRequest',
-    'DryDockSummaryResponse',
-    'DryDockSummaryValue',
     'DryDockTimeseriesGroup',
     'DryDockTimeseriesRow',
-    'DryDockValue',
     'EmptyParams',
     'EmptyResponse',
     'GetDryDockRequest',
     'GetDryDockStaysRequest',
     'GetDryDockStaysResponse',
-    'GetTonnageDryDockRequest',
-    'GetTonnageDryDockResponse',
-    'ShipyardStay',
+    'HistoricalDryDockStay',
 'DrydockServiceClient',
 )

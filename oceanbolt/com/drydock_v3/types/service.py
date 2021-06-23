@@ -26,15 +26,9 @@ __protobuf__ = proto.module(
     manifest={
         'EmptyParams',
         'EmptyResponse',
-        'GetTonnageDryDockRequest',
-        'GetTonnageDryDockResponse',
-        'DryDockValue',
-        'DryDockSummaryRequest',
-        'DryDockSummaryResponse',
-        'DryDockSummaryValue',
         'GetDryDockStaysRequest',
         'GetDryDockStaysResponse',
-        'ShipyardStay',
+        'HistoricalDryDockStay',
         'GetDryDockRequest',
         'DryDockTimeseriesGroup',
         'DryDockTimeseriesRow',
@@ -53,133 +47,6 @@ class EmptyResponse(proto.Message):
     r""""""
 
 
-class GetTonnageDryDockRequest(proto.Message):
-    r""" Dry Dock Requests and Responses
-    GetTonnageDryDock
-
-    Attributes:
-        segment (Sequence[str]):
-
-        metric (str):
-
-        absolute (bool):
-
-        format_ (str):
-
-        sort (str):
-
-    """
-
-    segment = proto.RepeatedField(proto.STRING, number=1)
-
-    metric = proto.Field(proto.STRING, number=2)
-
-    absolute = proto.Field(proto.BOOL, number=3)
-
-    format_ = proto.Field(proto.STRING, number=4)
-
-    sort = proto.Field(proto.STRING, number=5)
-
-
-class GetTonnageDryDockResponse(proto.Message):
-    r"""
-
-    Attributes:
-        drydock_values (Sequence[oceanbolt.com.drydock_v3.types.DryDockValue]):
-
-        csv (str):
-
-        xlsx (str):
-
-    """
-
-    drydock_values = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='DryDockValue',
-    )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
-
-
-class DryDockValue(proto.Message):
-    r"""
-
-    Attributes:
-        date (str):
-
-        value (google.protobuf.wrappers_pb2.DoubleValue):
-
-        year (google.protobuf.wrappers_pb2.Int32Value):
-
-        unified_date (str):
-
-    """
-
-    date = proto.Field(proto.STRING, number=1)
-
-    value = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
-    )
-
-    year = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.Int32Value,
-    )
-
-    unified_date = proto.Field(proto.STRING, number=4)
-
-
-class DryDockSummaryRequest(proto.Message):
-    r"""DryDockSummary
-
-    Attributes:
-        segment (Sequence[str]):
-
-    """
-
-    segment = proto.RepeatedField(proto.STRING, number=1)
-
-
-class DryDockSummaryResponse(proto.Message):
-    r"""
-
-    Attributes:
-        drydock_summary_values (Sequence[oceanbolt.com.drydock_v3.types.DryDockSummaryValue]):
-
-    """
-
-    drydock_summary_values = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='DryDockSummaryValue',
-    )
-
-
-class DryDockSummaryValue(proto.Message):
-    r"""
-
-    Attributes:
-        month (str):
-
-        segment (str):
-
-        average_days_in_dock (google.protobuf.wrappers_pb2.Int32Value):
-
-        completed_dock_stays (google.protobuf.wrappers_pb2.Int32Value):
-
-    """
-
-    month = proto.Field(proto.STRING, number=1)
-
-    segment = proto.Field(proto.STRING, number=2)
-
-    average_days_in_dock = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.Int32Value,
-    )
-
-    completed_dock_stays = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
-    )
-
-
 class GetDryDockStaysRequest(proto.Message):
     r"""DryDockstays
 
@@ -189,15 +56,16 @@ class GetDryDockStaysRequest(proto.Message):
             filtering to show data only for a subset of vessels.
             Example: [1234567,7654321].
         port_id (Sequence[int]):
-
+            This filters on the port where the vessel is
+            currently in dry dock.
         shipyard_id (Sequence[int]):
-
+            List of Oceanbolt shipyard ids to filter on.
         unlocode (Sequence[str]):
             UNLOCODE of the port.
         segment (Sequence[str]):
-
+            List of vessel segments to filter on.
         sub_segment (Sequence[str]):
-
+            List of vessel sub segments to filter on.
         start_date (str):
             The UTC start date of the date filter
         end_date (str):
@@ -248,7 +116,7 @@ class GetDryDockStaysResponse(proto.Message):
     r"""
 
     Attributes:
-        data (Sequence[oceanbolt.com.drydock_v3.types.ShipyardStay]):
+        data (Sequence[oceanbolt.com.drydock_v3.types.HistoricalDryDockStay]):
 
         csv (str):
 
@@ -263,7 +131,7 @@ class GetDryDockStaysResponse(proto.Message):
     """
 
     data = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='ShipyardStay',
+        message='HistoricalDryDockStay',
     )
 
     csv = proto.Field(proto.STRING, number=2)
@@ -277,44 +145,48 @@ class GetDryDockStaysResponse(proto.Message):
     max_results = proto.Field(proto.INT32, number=6)
 
 
-class ShipyardStay(proto.Message):
+class HistoricalDryDockStay(proto.Message):
     r"""
 
     Attributes:
         shipyard_stay_id (str):
-
+            Unique ID for the dry dock stay. This will
+            always be unique to the port call.
         imo (int):
-
+            IMO number of the vessel.
         mmsi (int):
-
+            MMSI number of the vessel.
         vessel_name (str):
-
+            Name of the vessel.
         segment (str):
-
+            Segment of the vessel.
         subsegment (str):
-
+            Sub segment of the vessel.
         dwt (float):
-
+            DWT of the vessel
         port_id (int):
-
+            Oceanbolt database identifier of the port.
         port_name (str):
-
-        port_unlocode (str):
-
+            Name of the port.
+        unlocode (str):
+            UNLOCODE of the port.
         country_code (str):
-
+            Country code of the port.
         region (str):
-
+            Region of the port.
         shipyard_name (str):
-
+            Name of the shipyard
         shipyard_id (int):
-
+            Oceanbolt database identifier of the
+            shipyard.
         arrived_at (str):
-
+            UTC timestamp for when the vessel arrived at
+            the port.
         departed_at (str):
-
+            UTC timestamp for when the vessel left the
+            port.
         duration_days (google.protobuf.wrappers_pb2.DoubleValue):
-
+            Duration of the dry dock stay (in days).
     """
 
     shipyard_stay_id = proto.Field(proto.STRING, number=1)
@@ -335,7 +207,7 @@ class ShipyardStay(proto.Message):
 
     port_name = proto.Field(proto.STRING, number=9)
 
-    port_unlocode = proto.Field(proto.STRING, number=10)
+    unlocode = proto.Field(proto.STRING, number=10)
 
     country_code = proto.Field(proto.STRING, number=11)
 
@@ -639,8 +511,8 @@ class DryDockStay(proto.Message):
             The UTC timestamp of when the vessel arrived
             at the current port.
         waiting_time_days (float):
-            The waiting time in days that the vessel has
-            waiting up until today.
+            The duration in days that the vessel has been
+            dry docked up until today.
         lat (google.protobuf.wrappers_pb2.DoubleValue):
             Not implemented.
         lng (google.protobuf.wrappers_pb2.DoubleValue):

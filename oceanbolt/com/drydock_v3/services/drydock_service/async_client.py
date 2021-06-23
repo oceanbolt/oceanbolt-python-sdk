@@ -127,7 +127,7 @@ class DrydockServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetDryDockStaysResponse:
-        r"""GetDryDockStays retrives individual completed dry
+        r"""GetDryDockStays retrives individual historical dry
         dock stays
 
         Args:
@@ -174,8 +174,8 @@ class DrydockServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
-        r"""GetDryDockTimeseries retrieves dry dock data for a specified
-        list of port_ids/segments
+        r"""GetDryDockTimeseries retrieves dry dock timeseries data for a
+        specified list of port_ids/segments
 
         Args:
             request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
@@ -221,8 +221,8 @@ class DrydockServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
-        r"""GetDryDockWeb retrieves dry dock data for a specified list of
-        port_ids/segments
+        r"""GetDryDockWeb retrieves current and live dry dock data for a
+        specified list of port_ids/segments
 
         Args:
             request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
@@ -268,8 +268,8 @@ class DrydockServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
-        r"""GetDryDockVessels retrieves dry dock data for a specified list
-        of port_ids/segments
+        r"""GetDryDockVessels retrieves list of currently active dry dock
+        stays for a specified list of port_ids/segments
 
         Args:
             request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):

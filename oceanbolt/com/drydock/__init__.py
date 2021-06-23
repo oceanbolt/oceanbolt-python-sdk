@@ -20,31 +20,21 @@ from oceanbolt.com.drydock_v3.services.drydock_service.client import DrydockServ
 from oceanbolt.com.drydock_v3.types.service import DryDockResponse
 from oceanbolt.com.drydock_v3.types.service import DryDockSplitRow
 from oceanbolt.com.drydock_v3.types.service import DryDockStay
-from oceanbolt.com.drydock_v3.types.service import DryDockSummaryRequest
-from oceanbolt.com.drydock_v3.types.service import DryDockSummaryResponse
-from oceanbolt.com.drydock_v3.types.service import DryDockSummaryValue
 from oceanbolt.com.drydock_v3.types.service import DryDockTimeseriesGroup
 from oceanbolt.com.drydock_v3.types.service import DryDockTimeseriesRow
-from oceanbolt.com.drydock_v3.types.service import DryDockValue
 from oceanbolt.com.drydock_v3.types.service import EmptyParams
 from oceanbolt.com.drydock_v3.types.service import EmptyResponse
 from oceanbolt.com.drydock_v3.types.service import GetDryDockRequest
 from oceanbolt.com.drydock_v3.types.service import GetDryDockStaysRequest
 from oceanbolt.com.drydock_v3.types.service import GetDryDockStaysResponse
-from oceanbolt.com.drydock_v3.types.service import GetTonnageDryDockRequest
-from oceanbolt.com.drydock_v3.types.service import GetTonnageDryDockResponse
-from oceanbolt.com.drydock_v3.types.service import ShipyardStay
+from oceanbolt.com.drydock_v3.types.service import HistoricalDryDockStay
 
 __all__ = (
     'DryDockResponse',
     'DryDockSplitRow',
     'DryDockStay',
-    'DryDockSummaryRequest',
-    'DryDockSummaryResponse',
-    'DryDockSummaryValue',
     'DryDockTimeseriesGroup',
     'DryDockTimeseriesRow',
-    'DryDockValue',
     'DrydockServiceAsyncClient',
     'DrydockServiceClient',
     'EmptyParams',
@@ -52,7 +42,5 @@ __all__ = (
     'GetDryDockRequest',
     'GetDryDockStaysRequest',
     'GetDryDockStaysResponse',
-    'GetTonnageDryDockRequest',
-    'GetTonnageDryDockResponse',
-    'ShipyardStay',
+    'HistoricalDryDockStay',
 )

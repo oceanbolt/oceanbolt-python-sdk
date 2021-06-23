@@ -246,7 +246,7 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
             Awaitable[service.GetDryDockStaysResponse]]:
         r"""Return a callable for the get dry dock stays method over gRPC.
 
-        GetDryDockStays retrives individual completed dry
+        GetDryDockStays retrives individual historical dry
         dock stays
 
         Returns:
@@ -273,8 +273,8 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
             Awaitable[service.DryDockResponse]]:
         r"""Return a callable for the get dry dock timeseries method over gRPC.
 
-        GetDryDockTimeseries retrieves dry dock data for a specified
-        list of port_ids/segments
+        GetDryDockTimeseries retrieves dry dock timeseries data for a
+        specified list of port_ids/segments
 
         Returns:
             Callable[[~.GetDryDockRequest],
@@ -300,8 +300,8 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
             Awaitable[service.DryDockResponse]]:
         r"""Return a callable for the get dry dock web method over gRPC.
 
-        GetDryDockWeb retrieves dry dock data for a specified list of
-        port_ids/segments
+        GetDryDockWeb retrieves current and live dry dock data for a
+        specified list of port_ids/segments
 
         Returns:
             Callable[[~.GetDryDockRequest],
@@ -327,8 +327,8 @@ class DrydockServiceGrpcAsyncIOTransport(DrydockServiceTransport):
             Awaitable[service.DryDockResponse]]:
         r"""Return a callable for the get dry dock vessels method over gRPC.
 
-        GetDryDockVessels retrieves dry dock data for a specified list
-        of port_ids/segments
+        GetDryDockVessels retrieves list of currently active dry dock
+        stays for a specified list of port_ids/segments
 
         Returns:
             Callable[[~.GetDryDockRequest],
