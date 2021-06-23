@@ -16,7 +16,7 @@ Example
 .. code-block:: python
 
     from oceanbolt.sdk.client import APIClient
-    from oceanbolt.sdk.data.drydock import DryDockTimeseries
+    from oceanbolt.sdk.data.dry_dock import DryDockTimeseries
     from datetime import date
 
     base_client = APIClient("<token>")
