@@ -30,12 +30,15 @@ from .types.service import GetFleetLiveMapRequest
 from .types.service import GetFleetLiveMapResponse
 from .types.service import GetFleetRequest
 from .types.service import ListVesselsRequest
+from .types.service import ListVesselsWithStatusRequest
 from .types.service import RenameFleetRequest
 from .types.service import ShareFleetRequest
 from .types.service import UpdateVesselParams
 from .types.service import UpdateVesselRequest
 from .types.service import Vessel
 from .types.service import VesselParams
+from .types.service import VesselSpeedEvent
+from .types.service import VesselStatus
 from .types.service import Vessels
 
 
@@ -54,12 +57,15 @@ __all__ = (
     'GetFleetLiveMapResponse',
     'GetFleetRequest',
     'ListVesselsRequest',
+    'ListVesselsWithStatusRequest',
     'RenameFleetRequest',
     'ShareFleetRequest',
     'UpdateVesselParams',
     'UpdateVesselRequest',
     'Vessel',
     'VesselParams',
+    'VesselSpeedEvent',
+    'VesselStatus',
     'Vessels',
 'FleetManagementServiceClient',
 )

@@ -238,7 +238,13 @@ class GetGlobalTonnageStatusRequest(proto.Message):
 
         segment (Sequence[str]):
 
+        sub_segment (Sequence[str]):
+
         sort (str):
+
+        start_date (str):
+
+        end_date (str):
 
     """
 
@@ -252,7 +258,13 @@ class GetGlobalTonnageStatusRequest(proto.Message):
 
     segment = proto.RepeatedField(proto.STRING, number=5)
 
+    sub_segment = proto.RepeatedField(proto.STRING, number=7)
+
     sort = proto.Field(proto.STRING, number=6)
+
+    start_date = proto.Field(proto.STRING, number=8)
+
+    end_date = proto.Field(proto.STRING, number=9)
 
 
 class GetGlobalTonnageStatusResponse(proto.Message):
@@ -292,10 +304,6 @@ class GlobalTonnageZoneCount(proto.Message):
 
         avg_speed (google.protobuf.wrappers_pb2.DoubleValue):
 
-        year (google.protobuf.wrappers_pb2.Int32Value):
-
-        unified_date (str):
-
     """
 
     date = proto.Field(proto.STRING, number=1)
@@ -315,12 +323,6 @@ class GlobalTonnageZoneCount(proto.Message):
     avg_speed = proto.Field(proto.MESSAGE, number=6,
         message=wrappers.DoubleValue,
     )
-
-    year = proto.Field(proto.MESSAGE, number=7,
-        message=wrappers.Int32Value,
-    )
-
-    unified_date = proto.Field(proto.STRING, number=8)
 
 
 class GetTonnageFleetRequest(proto.Message):

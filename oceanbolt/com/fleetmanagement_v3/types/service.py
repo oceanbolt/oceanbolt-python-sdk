@@ -29,6 +29,7 @@ __protobuf__ = proto.module(
         'DeleteFleetRequest',
         'GetFleetRequest',
         'ListVesselsRequest',
+        'ListVesselsWithStatusRequest',
         'ShareFleetRequest',
         'DropVesselsRequest',
         'BatchVesselsRequest',
@@ -41,6 +42,8 @@ __protobuf__ = proto.module(
         'DeleteVesselRequest',
         'Vessels',
         'Vessel',
+        'VesselStatus',
+        'VesselSpeedEvent',
         'GetFleetLiveMapRequest',
         'GetFleetLiveMapResponse',
         'EmptyParams',
@@ -105,11 +108,29 @@ class ListVesselsRequest(proto.Message):
 
     Attributes:
         fleet_id (str):
-            Identifier of the Fleet resource to be
-            deleted.
+            Identifier of the Fleet resource which
+            vessels to be retrieved.
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
+
+
+class ListVesselsWithStatusRequest(proto.Message):
+    r"""Request object for listing Fleet Vessels with status (live
+    state) data and speed events
+
+    Attributes:
+        fleet_id (str):
+            Identifier of the Fleet resource which
+            vessels to be retrieved.
+        last_days (int):
+            Number of last days from now for vessel speed
+            events to be retrieved.
+    """
+
+    fleet_id = proto.Field(proto.STRING, number=1)
+
+    last_days = proto.Field(proto.INT32, number=2)
 
 
 class ShareFleetRequest(proto.Message):
@@ -372,6 +393,10 @@ class Vessel(proto.Message):
         metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.Vessel.MetadataEntry]):
             Metadata object that contains arbitrary data
             fields defined by the user.
+        status (oceanbolt.com.fleetmanagement_v3.types.VesselStatus):
+            Vessel status (livestate data).
+        speed_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselSpeedEvent]):
+            Vessel speed events (stopage data).
     """
 
     imo = proto.Field(proto.INT32, number=1)
@@ -393,6 +418,130 @@ class Vessel(proto.Message):
     type_ = proto.Field(proto.STRING, number=8)
 
     metadata = proto.MapField(proto.STRING, proto.STRING, number=9)
+
+    status = proto.Field(proto.MESSAGE, number=11,
+        message='VesselStatus',
+    )
+
+    speed_events = proto.RepeatedField(proto.MESSAGE, number=12,
+        message='VesselSpeedEvent',
+    )
+
+
+class VesselStatus(proto.Message):
+    r"""
+
+    Attributes:
+        laden_status (str):
+
+        cargo_status (str):
+
+        port_call_status (str):
+
+        related_port_name (str):
+
+        draught_percentage (google.protobuf.wrappers_pb2.DoubleValue):
+
+        destination (str):
+
+        destination_port_name (str):
+
+        last_position_received_at (str):
+
+        last_static_received_at (str):
+
+        current_speed (google.protobuf.wrappers_pb2.DoubleValue):
+
+        current_navigational_status (google.protobuf.wrappers_pb2.Int32Value):
+
+        current_commodity_group (str):
+
+    """
+
+    laden_status = proto.Field(proto.STRING, number=1)
+
+    cargo_status = proto.Field(proto.STRING, number=2)
+
+    port_call_status = proto.Field(proto.STRING, number=3)
+
+    related_port_name = proto.Field(proto.STRING, number=4)
+
+    draught_percentage = proto.Field(proto.MESSAGE, number=5,
+        message=wrappers.DoubleValue,
+    )
+
+    destination = proto.Field(proto.STRING, number=6)
+
+    destination_port_name = proto.Field(proto.STRING, number=7)
+
+    last_position_received_at = proto.Field(proto.STRING, number=8)
+
+    last_static_received_at = proto.Field(proto.STRING, number=9)
+
+    current_speed = proto.Field(proto.MESSAGE, number=10,
+        message=wrappers.DoubleValue,
+    )
+
+    current_navigational_status = proto.Field(proto.MESSAGE, number=11,
+        message=wrappers.Int32Value,
+    )
+
+    current_commodity_group = proto.Field(proto.STRING, number=12)
+
+
+class VesselSpeedEvent(proto.Message):
+    r"""
+
+    Attributes:
+        started_at (str):
+
+        ended_at (str):
+
+        port_id (int):
+
+        port_name (str):
+
+        zone_id (int):
+
+        zone_name (str):
+
+        min_speed_observed (google.protobuf.wrappers_pb2.DoubleValue):
+
+        duration_hours (google.protobuf.wrappers_pb2.DoubleValue):
+
+        lat (float):
+
+        lon (float):
+
+        classification (str):
+
+    """
+
+    started_at = proto.Field(proto.STRING, number=1)
+
+    ended_at = proto.Field(proto.STRING, number=2)
+
+    port_id = proto.Field(proto.INT32, number=3)
+
+    port_name = proto.Field(proto.STRING, number=4)
+
+    zone_id = proto.Field(proto.INT32, number=5)
+
+    zone_name = proto.Field(proto.STRING, number=6)
+
+    min_speed_observed = proto.Field(proto.MESSAGE, number=7,
+        message=wrappers.DoubleValue,
+    )
+
+    duration_hours = proto.Field(proto.MESSAGE, number=8,
+        message=wrappers.DoubleValue,
+    )
+
+    lat = proto.Field(proto.DOUBLE, number=9)
+
+    lon = proto.Field(proto.DOUBLE, number=10)
+
+    classification = proto.Field(proto.STRING, number=11)
 
 
 class GetFleetLiveMapRequest(proto.Message):

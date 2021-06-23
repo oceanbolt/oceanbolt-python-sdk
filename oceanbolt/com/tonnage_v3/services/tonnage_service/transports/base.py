@@ -161,7 +161,7 @@ class TonnageServiceTransport(abc.ABC):
 
     @property
     def get_global_tonnage_status(self) -> typing.Callable[
-            [service.GetGlobalTonnageStatusRequest],
+            [service.GetTonnageDataRequest],
             typing.Union[
                 service.GetGlobalTonnageStatusResponse,
                 typing.Awaitable[service.GetGlobalTonnageStatusResponse]

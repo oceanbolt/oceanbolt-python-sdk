@@ -41,7 +41,7 @@ def partition(
 class tonnageCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_global_tonnage_status': ('direction', 'format_', 'laden_status', 'period', 'segment', 'sort', ),
+    'get_global_tonnage_status': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
     'get_tonnage_chinese_waters': ('start_date', 'end_date', 'segment', 'sub_segment', 'group_by', 'sort', 'format_', ),
     'get_tonnage_fleet_growth': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
     'get_tonnage_fleet_speed': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),

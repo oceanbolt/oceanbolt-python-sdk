@@ -31,12 +31,15 @@ from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetLiveMapReques
 from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetLiveMapResponse
 from oceanbolt.com.fleetmanagement_v3.types.service import GetFleetRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import ListVesselsRequest
+from oceanbolt.com.fleetmanagement_v3.types.service import ListVesselsWithStatusRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import RenameFleetRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import ShareFleetRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselParams
 from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import Vessel
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselParams
+from oceanbolt.com.fleetmanagement_v3.types.service import VesselSpeedEvent
+from oceanbolt.com.fleetmanagement_v3.types.service import VesselStatus
 from oceanbolt.com.fleetmanagement_v3.types.service import Vessels
 
 __all__ = (
@@ -56,11 +59,14 @@ __all__ = (
     'GetFleetLiveMapResponse',
     'GetFleetRequest',
     'ListVesselsRequest',
+    'ListVesselsWithStatusRequest',
     'RenameFleetRequest',
     'ShareFleetRequest',
     'UpdateVesselParams',
     'UpdateVesselRequest',
     'Vessel',
     'VesselParams',
+    'VesselSpeedEvent',
+    'VesselStatus',
     'Vessels',
 )

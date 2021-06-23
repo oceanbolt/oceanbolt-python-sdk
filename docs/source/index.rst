@@ -75,6 +75,14 @@ API Reference
 
 .. toctree::
     :maxdepth: 1
+    :caption: Drydock
+
+    drydock_v3/current_stays
+    drydock_v3/historical_stays
+    drydock_v3/timeseries
+
+.. toctree::
+    :maxdepth: 1
     :caption: Port Calls/Port Data
 
     portcalls_v3/port_calls

@@ -4,6 +4,7 @@ from oceanbolt.sdk.data import TradeFlows, TradeFlowTimeseries
 from oceanbolt.sdk.data import PortCalls, PortCallTimeseries, PortParticulars
 from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries, CustomPolygonTimeseries
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
+from oceanbolt.sdk.data import DryDockTimeseries, DryDockCurrentVessels, DryDockHistoricalStays
 
 __client__ = APIClient()
 
@@ -58,6 +59,21 @@ def test_congestion_vessels():
 
 def test_congestion_timeseries():
     df = CongestionTimeseries(__client__).get(country_code=["cn"], start_date="2021-01-01")
+    assert len(df) > 0
+
+
+def test_drydock_historical_stays():
+    df = DryDockHistoricalStays(__client__).get(port_id=[403], start_date="2021-01-01")
+    assert len(df) > 0
+
+
+def test_drydock_live_vessels():
+    df = DryDockCurrentVessels(__client__).get(country_code=["cn"], start_date="2021-01-01")
+    assert len(df) > 0
+
+
+def test_drydock_timeseries():
+    df = DryDockTimeseries(__client__).get(country_code=["cn"], start_date="2021-01-01")
     assert len(df) > 0
 
 

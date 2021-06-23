@@ -1,5 +1,5 @@
 from oceanbolt.sdk.client import APIClient
-from oceanbolt.sdk.helpers import (pb_list_to_pandas,wrapPoints)
+from oceanbolt.sdk.helpers import (pb_list_to_pandas, wrapPoints)
 
 
 class DistanceCalculator:

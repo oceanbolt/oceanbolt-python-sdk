@@ -411,7 +411,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_global_tonnage_status(self,
-            request: service.GetGlobalTonnageStatusRequest = None,
+            request: service.GetTonnageDataRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -420,8 +420,9 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         r"""Fetches global tonnage status timeseries.
 
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetGlobalTonnageStatusRequest):
-                The request object. GetGlobalTonnageStatus
+            request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
+                The request object. Request object for getting tonnage
+                zone data and fleet speed data.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -436,11 +437,11 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         # Create or coerce a protobuf request object.
 
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.GetGlobalTonnageStatusRequest.
+        # in a service.GetTonnageDataRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.GetGlobalTonnageStatusRequest):
-            request = service.GetGlobalTonnageStatusRequest(request)
+        if not isinstance(request, service.GetTonnageDataRequest):
+            request = service.GetTonnageDataRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

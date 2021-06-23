@@ -511,7 +511,7 @@ async def test_get_tonnage_fleet_speed_async_from_dict():
     await test_get_tonnage_fleet_speed_async(request_type=dict)
 
 
-def test_get_global_tonnage_status(transport: str = 'grpc', request_type=service.GetGlobalTonnageStatusRequest):
+def test_get_global_tonnage_status(transport: str = 'grpc', request_type=service.GetTonnageDataRequest):
     client = TonnageServiceClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -539,7 +539,7 @@ def test_get_global_tonnage_status(transport: str = 'grpc', request_type=service
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.GetGlobalTonnageStatusRequest()
+        assert args[0] == service.GetTonnageDataRequest()
 
     # Establish that the response is the type that we expect.
 
@@ -555,7 +555,7 @@ def test_get_global_tonnage_status_from_dict():
 
 
 @pytest.mark.asyncio
-async def test_get_global_tonnage_status_async(transport: str = 'grpc_asyncio', request_type=service.GetGlobalTonnageStatusRequest):
+async def test_get_global_tonnage_status_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageDataRequest):
     client = TonnageServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -581,7 +581,7 @@ async def test_get_global_tonnage_status_async(transport: str = 'grpc_asyncio', 
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.GetGlobalTonnageStatusRequest()
+        assert args[0] == service.GetTonnageDataRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetGlobalTonnageStatusResponse)

@@ -143,6 +143,11 @@ class FleetManagementServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.list_vessels_with_status: gapic_v1.method.wrap_method(
+                self.list_vessels_with_status,
+                default_timeout=None,
+                client_info=client_info,
+            ),
             self.add_vessel: gapic_v1.method.wrap_method(
                 self.add_vessel,
                 default_timeout=None,
@@ -247,6 +252,15 @@ class FleetManagementServiceTransport(abc.ABC):
     @property
     def list_vessels(self) -> typing.Callable[
             [service.ListVesselsRequest],
+            typing.Union[
+                service.Vessels,
+                typing.Awaitable[service.Vessels]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def list_vessels_with_status(self) -> typing.Callable[
+            [service.ListVesselsWithStatusRequest],
             typing.Union[
                 service.Vessels,
                 typing.Awaitable[service.Vessels]

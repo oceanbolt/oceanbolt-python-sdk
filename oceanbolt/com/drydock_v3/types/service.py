@@ -509,7 +509,9 @@ class DryDockResponse(proto.Message):
             List of top ports by amount of congested
         current_top_sub_segments (Sequence[oceanbolt.com.drydock_v3.types.DryDockSplitRow]):
             List of top segments by amount of congested
-        current_top_load_countries (Sequence[oceanbolt.com.drydock_v3.types.DryDockSplitRow]):
+        current_top_countries (Sequence[oceanbolt.com.drydock_v3.types.DryDockSplitRow]):
+            List of top countries by amount of congested
+        current_top_shipyards (Sequence[oceanbolt.com.drydock_v3.types.DryDockSplitRow]):
             List of top countries by amount of congested
         timeseriesDefault (oceanbolt.com.drydock_v3.types.DryDockTimeseriesGroup):
             Ungrouped timeseries response.
@@ -535,7 +537,11 @@ class DryDockResponse(proto.Message):
         message='DryDockSplitRow',
     )
 
-    current_top_load_countries = proto.RepeatedField(proto.MESSAGE, number=4,
+    current_top_countries = proto.RepeatedField(proto.MESSAGE, number=4,
+        message='DryDockSplitRow',
+    )
+
+    current_top_shipyards = proto.RepeatedField(proto.MESSAGE, number=10,
         message='DryDockSplitRow',
     )
 
@@ -619,9 +625,16 @@ class DryDockStay(proto.Message):
         shipyard_name (str):
             The name of the shipyard where the vessel is
             currently docked.
-        current_country_code (str):
+        country_name (str):
+            The name of the country where the vessel is
+            currently docked.
+        country_code (str):
             The 2-letter ISO code of the country where
             the vessel is currently docked.
+        current_country_code (str):
+            OLD FIELD - WILL BE DEPRECATED!!! (The
+            2-letter ISO code of the country where the
+            vessel is currently docked.)
         arrived_at (str):
             The UTC timestamp of when the vessel arrived
             at the current port.
@@ -655,6 +668,10 @@ class DryDockStay(proto.Message):
     shipyard_id = proto.Field(proto.INT32, number=11)
 
     shipyard_name = proto.Field(proto.STRING, number=12)
+
+    country_name = proto.Field(proto.STRING, number=26)
+
+    country_code = proto.Field(proto.STRING, number=27)
 
     current_country_code = proto.Field(proto.STRING, number=8)
 

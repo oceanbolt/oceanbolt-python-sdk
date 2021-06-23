@@ -217,7 +217,7 @@ class TonnageServiceAsyncClient:
         return response
 
     async def get_global_tonnage_status(self,
-            request: service.GetGlobalTonnageStatusRequest = None,
+            request: service.GetTonnageDataRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -226,8 +226,9 @@ class TonnageServiceAsyncClient:
         r"""Fetches global tonnage status timeseries.
 
         Args:
-            request (:class:`oceanbolt.com.tonnage_v3.types.GetGlobalTonnageStatusRequest`):
-                The request object. GetGlobalTonnageStatus
+            request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest`):
+                The request object. Request object for getting tonnage
+                zone data and fleet speed data.
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -241,7 +242,7 @@ class TonnageServiceAsyncClient:
         """
         # Create or coerce a protobuf request object.
 
-        request = service.GetGlobalTonnageStatusRequest(request)
+        request = service.GetTonnageDataRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

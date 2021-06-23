@@ -4,6 +4,7 @@ from typing import Any, Dict, Optional
 import pandas as pd
 from google.protobuf.wrappers_pb2 import DoubleValue
 
+
 def filter_nones_from_dict(query_parameters: Dict[str, Optional[Any]]) -> Dict[str, Any]:
     return {k: v for k, v in query_parameters.items() if v}
 
@@ -47,6 +48,7 @@ def validate(kwargs):
             kwargs[key] = value.isoformat()
     return filter_nones_from_dict(kwargs)
 
+
 def wrapPoints(kwargs):
     for key, value in kwargs.items():
         if key == "locations":
@@ -56,9 +58,7 @@ def wrapPoints(kwargs):
                         kwargs["locations"][index]["point"]["lon"] = DoubleValue(value=value["lon"])
                         kwargs["locations"][index]["point"]["lat"] = DoubleValue(value=value["lat"])
 
-
     return filter_nones_from_dict(kwargs)
-
 
 
 def pb_list_to_pandas(data):

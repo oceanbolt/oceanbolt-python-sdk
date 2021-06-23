@@ -289,14 +289,14 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
 
     @property
     def get_global_tonnage_status(self) -> Callable[
-            [service.GetGlobalTonnageStatusRequest],
+            [service.GetTonnageDataRequest],
             service.GetGlobalTonnageStatusResponse]:
         r"""Return a callable for the get global tonnage status method over gRPC.
 
         Fetches global tonnage status timeseries.
 
         Returns:
-            Callable[[~.GetGlobalTonnageStatusRequest],
+            Callable[[~.GetTonnageDataRequest],
                     ~.GetGlobalTonnageStatusResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -308,7 +308,7 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
         if 'get_global_tonnage_status' not in self._stubs:
             self._stubs['get_global_tonnage_status'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.tonnage.v3.TonnageService/GetGlobalTonnageStatus',
-                request_serializer=service.GetGlobalTonnageStatusRequest.serialize,
+                request_serializer=service.GetTonnageDataRequest.serialize,
                 response_deserializer=service.GetGlobalTonnageStatusResponse.deserialize,
             )
         return self._stubs['get_global_tonnage_status']

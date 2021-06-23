@@ -1057,6 +1057,84 @@ async def test_list_vessels_async_from_dict():
     await test_list_vessels_async(request_type=dict)
 
 
+def test_list_vessels_with_status(transport: str = 'grpc', request_type=service.ListVesselsWithStatusRequest):
+    client = FleetManagementServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels_with_status),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.Vessels(
+            vessels_in_fleet=1706,
+
+        )
+
+        response = client.list_vessels_with_status(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ListVesselsWithStatusRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.Vessels)
+
+    assert response.vessels_in_fleet == 1706
+
+
+def test_list_vessels_with_status_from_dict():
+    test_list_vessels_with_status(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_list_vessels_with_status_async(transport: str = 'grpc_asyncio', request_type=service.ListVesselsWithStatusRequest):
+    client = FleetManagementServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels_with_status),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessels(
+            vessels_in_fleet=1706,
+        ))
+
+        response = await client.list_vessels_with_status(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.ListVesselsWithStatusRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.Vessels)
+
+    assert response.vessels_in_fleet == 1706
+
+
+@pytest.mark.asyncio
+async def test_list_vessels_with_status_async_from_dict():
+    await test_list_vessels_with_status_async(request_type=dict)
+
+
 def test_add_vessel(transport: str = 'grpc', request_type=service.AddVesselRequest):
     client = FleetManagementServiceClient(
         credentials=credentials.AnonymousCredentials(),
@@ -1794,6 +1872,7 @@ def test_fleet_management_service_base_transport():
         'share_fleet',
         'unshare_fleet',
         'list_vessels',
+        'list_vessels_with_status',
         'add_vessel',
         'update_vessel',
         'delete_vessel',

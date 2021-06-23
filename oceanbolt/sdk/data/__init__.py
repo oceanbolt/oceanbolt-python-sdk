@@ -41,4 +41,7 @@ __all__ = (
     'Regions',
     'Commodities',
     'Countries',
+    'DryDockCurrentVessels',
+    'DryDockHistoricalStays',
+    'DryDockTimeseries'
 )
