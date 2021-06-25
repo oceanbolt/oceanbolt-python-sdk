@@ -10,10 +10,9 @@ def test_create_fleet():
 
     current_time = now.strftime("%Y-%m-%d %H:%M:%S.%f")
 
-
-    fleet = FleetManagement(__client__).create_fleet(fleet_name="my_great_test_fleet"+current_time)
+    fleet = FleetManagement(__client__).create_fleet(fleet_name="my_great_test_fleet" + current_time)
     assert fleet.fleet_id != ""
-    assert fleet.fleet_name == "my_great_test_fleet"+current_time
+    assert fleet.fleet_name == "my_great_test_fleet" + current_time
 
     vessel = FleetManagement(__client__).add_vessel(fleet_id=fleet.fleet_id, vessel={"imo": 1234567, "metadata": {"key": "val"}})
     assert vessel.imo == 1234567
