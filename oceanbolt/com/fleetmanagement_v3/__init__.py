@@ -37,8 +37,8 @@ from .types.service import UpdateVesselParams
 from .types.service import UpdateVesselRequest
 from .types.service import Vessel
 from .types.service import VesselParams
-from .types.service import VesselSpeedEvent
 from .types.service import VesselStatus
+from .types.service import VesselStoppageEvent
 from .types.service import Vessels
 
 
@@ -64,8 +64,8 @@ __all__ = (
     'UpdateVesselRequest',
     'Vessel',
     'VesselParams',
-    'VesselSpeedEvent',
     'VesselStatus',
+    'VesselStoppageEvent',
     'Vessels',
 'FleetManagementServiceClient',
 )

@@ -43,7 +43,7 @@ __protobuf__ = proto.module(
         'Vessels',
         'Vessel',
         'VesselStatus',
-        'VesselSpeedEvent',
+        'VesselStoppageEvent',
         'GetFleetLiveMapRequest',
         'GetFleetLiveMapResponse',
         'EmptyParams',
@@ -395,7 +395,7 @@ class Vessel(proto.Message):
             fields defined by the user.
         status (oceanbolt.com.fleetmanagement_v3.types.VesselStatus):
             Vessel status (livestate data).
-        speed_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselSpeedEvent]):
+        speed_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselStoppageEvent]):
             Vessel speed events (stopage data).
     """
 
@@ -424,7 +424,7 @@ class Vessel(proto.Message):
     )
 
     speed_events = proto.RepeatedField(proto.MESSAGE, number=12,
-        message='VesselSpeedEvent',
+        message='VesselStoppageEvent',
     )
 
 
@@ -489,7 +489,7 @@ class VesselStatus(proto.Message):
     current_commodity_group = proto.Field(proto.STRING, number=12)
 
 
-class VesselSpeedEvent(proto.Message):
+class VesselStoppageEvent(proto.Message):
     r"""
 
     Attributes:

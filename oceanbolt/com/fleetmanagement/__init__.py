@@ -38,8 +38,8 @@ from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselParams
 from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import Vessel
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselParams
-from oceanbolt.com.fleetmanagement_v3.types.service import VesselSpeedEvent
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselStatus
+from oceanbolt.com.fleetmanagement_v3.types.service import VesselStoppageEvent
 from oceanbolt.com.fleetmanagement_v3.types.service import Vessels
 
 __all__ = (
@@ -66,7 +66,7 @@ __all__ = (
     'UpdateVesselRequest',
     'Vessel',
     'VesselParams',
-    'VesselSpeedEvent',
     'VesselStatus',
+    'VesselStoppageEvent',
     'Vessels',
 )
