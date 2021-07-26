@@ -51,7 +51,7 @@ class VesselServiceGrpcAsyncIOTransport(VesselServiceTransport):
 
     @classmethod
     def create_channel(cls,
-                       host: str,
+                       host: str = 'api.oceanbolt.com',
                        credentials: credentials.Credentials = None,
                        credentials_file: Optional[str] = None,
                        scopes: Optional[Sequence[str]] = None,
@@ -89,7 +89,7 @@ class VesselServiceGrpcAsyncIOTransport(VesselServiceTransport):
         )
 
     def __init__(self, *,
-            host: str,
+            host: str = 'api.oceanbolt.com',
             credentials: credentials.Credentials = None,
             credentials_file: Optional[str] = None,
             scopes: Optional[Sequence[str]] = None,
@@ -104,7 +104,7 @@ class VesselServiceGrpcAsyncIOTransport(VesselServiceTransport):
         """Instantiate the transport.
 
         Args:
-            host (str): The hostname to connect to.
+            host (Optional[str]): The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none

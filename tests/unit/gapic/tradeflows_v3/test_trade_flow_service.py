@@ -681,6 +681,91 @@ async def test_get_trade_flow_timeseries_async_from_dict():
     await test_get_trade_flow_timeseries_async(request_type=dict)
 
 
+def test_get_trade_flow_on_the_water(transport: str = 'grpc', request_type=service.TradeFlowDataRequest):
+    client = TradeFlowServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_trade_flow_on_the_water),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetTradeFlowTimeseriesResponse(
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_trade_flow_on_the_water(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.TradeFlowDataRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.GetTradeFlowTimeseriesResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_trade_flow_on_the_water_from_dict():
+    test_get_trade_flow_on_the_water(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_trade_flow_on_the_water_async(transport: str = 'grpc_asyncio', request_type=service.TradeFlowDataRequest):
+    client = TradeFlowServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_trade_flow_on_the_water),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTradeFlowTimeseriesResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_trade_flow_on_the_water(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.TradeFlowDataRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetTradeFlowTimeseriesResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_trade_flow_on_the_water_async_from_dict():
+    await test_get_trade_flow_on_the_water_async(request_type=dict)
+
+
 def test_get_trade_flow_histogram(transport: str = 'grpc', request_type=service.TradeFlowDataRequest):
     client = TradeFlowServiceClient(
         credentials=credentials.AnonymousCredentials(),
@@ -940,6 +1025,7 @@ def test_trade_flow_service_base_transport():
         'get_location_data',
         'get_trade_flow_aggregation',
         'get_trade_flow_timeseries',
+        'get_trade_flow_on_the_water',
         'get_trade_flow_histogram',
         'get_location_volume',
         )

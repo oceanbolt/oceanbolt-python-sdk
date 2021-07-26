@@ -73,6 +73,8 @@ def test_vessel_service_client_from_service_account_info():
         client = VesselServiceClient.from_service_account_info(info)
         assert client.transport._credentials == creds
 
+        assert client.transport._host == 'api.oceanbolt.com:443'
+
 
 @pytest.mark.parametrize("client_class", [
     VesselServiceClient,
@@ -87,6 +89,8 @@ def test_vessel_service_client_from_service_account_file(client_class):
 
         client = client_class.from_service_account_json("dummy/file/path.json")
         assert client.transport._credentials == creds
+
+        assert client.transport._host == 'api.oceanbolt.com:443'
 
 
 def test_vessel_service_client_get_transport_class():
@@ -705,17 +709,17 @@ def test_vessel_service_grpc_transport_client_cert_source_for_mtls(
 def test_vessel_service_host_no_port():
     client = VesselServiceClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='localhost'),
+        client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com'),
     )
-    assert client.transport._host == 'localhost:443'
+    assert client.transport._host == 'api.oceanbolt.com:443'
 
 
 def test_vessel_service_host_with_port():
     client = VesselServiceClient(
         credentials=credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='localhost:8000'),
+        client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com:8000'),
     )
-    assert client.transport._host == 'localhost:8000'
+    assert client.transport._host == 'api.oceanbolt.com:8000'
 
 
 def test_vessel_service_grpc_transport_channel():

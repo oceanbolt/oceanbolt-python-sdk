@@ -126,11 +126,19 @@ class ListVesselsWithStatusRequest(proto.Message):
         last_days (int):
             Number of last days from now for vessel speed
             events to be retrieved.
+        start_date (str):
+            The UTC start date of the date filter
+        end_date (str):
+            The UTC end date of the date filter
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)
 
     last_days = proto.Field(proto.INT32, number=2)
+
+    start_date = proto.Field(proto.STRING, number=3)
+
+    end_date = proto.Field(proto.STRING, number=4)
 
 
 class ShareFleetRequest(proto.Message):
@@ -395,7 +403,7 @@ class Vessel(proto.Message):
             fields defined by the user.
         status (oceanbolt.com.fleetmanagement_v3.types.VesselStatus):
             Vessel status (livestate data).
-        speed_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselStoppageEvent]):
+        stoppage_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselStoppageEvent]):
             Vessel speed events (stopage data).
     """
 
@@ -423,7 +431,7 @@ class Vessel(proto.Message):
         message='VesselStatus',
     )
 
-    speed_events = proto.RepeatedField(proto.MESSAGE, number=12,
+    stoppage_events = proto.RepeatedField(proto.MESSAGE, number=12,
         message='VesselStoppageEvent',
     )
 

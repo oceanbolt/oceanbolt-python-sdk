@@ -51,7 +51,7 @@ class fleetmanagementCallTransformer(cst.CSTTransformer):
     'get_fleet_live_map': ('fleet_id', 'map_theme', ),
     'list_fleets': (),
     'list_vessels': ('fleet_id', ),
-    'list_vessels_with_status': ('fleet_id', 'last_days', ),
+    'list_vessels_with_status': ('fleet_id', 'last_days', 'start_date', 'end_date', ),
     'rename_fleet': ('fleet_id', 'new_fleet_name', ),
     'replace_vessels': ('fleet_id', 'vessels', ),
     'share_fleet': ('fleet_id', ),

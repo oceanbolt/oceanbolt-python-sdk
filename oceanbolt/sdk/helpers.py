@@ -24,6 +24,10 @@ def pb_timeseries_to_pandas(data):
         return pd.DataFrame()
 
     first_group = data[0]
+
+    if len(first_group.rows) == 0:
+        return pd.DataFrame()
+
     first_row = first_group.rows[0]
 
     dict_list = []

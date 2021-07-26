@@ -50,7 +50,8 @@ class TonnageZoneTimeseries:
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
         df = pb_timeseries_to_pandas(self.client.get_tonnage_zone_count(kwargs).timeseries)
-        del df["avg_speed"]
+        if "avg_speed""" in df.index:
+            del df["avg_speed"]
         return df
 
 

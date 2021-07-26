@@ -46,7 +46,7 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
     _stubs: Dict[str, Callable]
 
     def __init__(self, *,
-            host: str,
+            host: str = 'api.oceanbolt.com',
             credentials: credentials.Credentials = None,
             credentials_file: str = None,
             scopes: Sequence[str] = None,
@@ -61,7 +61,7 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         """Instantiate the transport.
 
         Args:
-            host (str): The hostname to connect to.
+            host (Optional[str]): The hostname to connect to.
             credentials (Optional[google.auth.credentials.Credentials]): The
                 authorization credentials to attach to requests. These
                 credentials identify the application to the service; if none
@@ -188,7 +188,7 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
 
     @classmethod
     def create_channel(cls,
-                       host: str,
+                       host: str = 'api.oceanbolt.com',
                        credentials: credentials.Credentials = None,
                        credentials_file: str = None,
                        scopes: Optional[Sequence[str]] = None,

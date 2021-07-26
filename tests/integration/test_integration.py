@@ -97,6 +97,11 @@ def test_tonnage_count():
     assert len(df) > 0
 
 
+def test_tonnage_count_empty():
+    df = TonnageZoneTimeseries(__client__).get(sub_segment=["babycape"], zone_id=[22], port_status=["in_port"], laden_status=["laden"], start_date="2021-07-25", end_date="2021-07-26")
+    assert len(df) == 0
+
+
 def test_fleet_speed():
     df = FleetSpeedTimeseries(__client__).get(segment=["handysize"], start_date="2021-01-01")
     assert len(df) > 0

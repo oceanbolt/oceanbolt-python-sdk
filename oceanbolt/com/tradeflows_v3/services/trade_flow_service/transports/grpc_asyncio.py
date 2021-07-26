@@ -349,6 +349,33 @@ class TradeFlowServiceGrpcAsyncIOTransport(TradeFlowServiceTransport):
         return self._stubs['get_trade_flow_timeseries']
 
     @property
+    def get_trade_flow_on_the_water(self) -> Callable[
+            [service.TradeFlowDataRequest],
+            Awaitable[service.GetTradeFlowTimeseriesResponse]]:
+        r"""Return a callable for the get trade flow on the water method over gRPC.
+
+        Gets aggregated trade flow timeseries (on the water)
+        by period.
+
+        Returns:
+            Callable[[~.TradeFlowDataRequest],
+                    Awaitable[~.GetTradeFlowTimeseriesResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_trade_flow_on_the_water' not in self._stubs:
+            self._stubs['get_trade_flow_on_the_water'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.tradeflows.v3.TradeFlowService/GetTradeFlowOnTheWater',
+                request_serializer=service.TradeFlowDataRequest.serialize,
+                response_deserializer=service.GetTradeFlowTimeseriesResponse.deserialize,
+            )
+        return self._stubs['get_trade_flow_on_the_water']
+
+    @property
     def get_trade_flow_histogram(self) -> Callable[
             [service.TradeFlowDataRequest],
             Awaitable[service.GetTradeFlowHistogramResponse]]:

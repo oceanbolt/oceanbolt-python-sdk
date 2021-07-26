@@ -123,6 +123,11 @@ class TradeFlowServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_trade_flow_on_the_water: gapic_v1.method.wrap_method(
+                self.get_trade_flow_on_the_water,
+                default_timeout=None,
+                client_info=client_info,
+            ),
             self.get_trade_flow_histogram: gapic_v1.method.wrap_method(
                 self.get_trade_flow_histogram,
                 default_timeout=None,
@@ -165,6 +170,15 @@ class TradeFlowServiceTransport(abc.ABC):
 
     @property
     def get_trade_flow_timeseries(self) -> typing.Callable[
+            [service.TradeFlowDataRequest],
+            typing.Union[
+                service.GetTradeFlowTimeseriesResponse,
+                typing.Awaitable[service.GetTradeFlowTimeseriesResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_trade_flow_on_the_water(self) -> typing.Callable[
             [service.TradeFlowDataRequest],
             typing.Union[
                 service.GetTradeFlowTimeseriesResponse,

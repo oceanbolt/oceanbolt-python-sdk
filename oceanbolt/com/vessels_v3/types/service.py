@@ -221,7 +221,7 @@ class StoppageEventResponse(proto.Message):
     r"""
 
     Attributes:
-        speed_events (Sequence[oceanbolt.com.vessels_v3.types.VesselStoppageEvent]):
+        stoppage_events (Sequence[oceanbolt.com.vessels_v3.types.VesselStoppageEvent]):
 
         csv (str):
 
@@ -229,7 +229,7 @@ class StoppageEventResponse(proto.Message):
 
     """
 
-    speed_events = proto.RepeatedField(proto.MESSAGE, number=1,
+    stoppage_events = proto.RepeatedField(proto.MESSAGE, number=1,
         message='VesselStoppageEvent',
     )
 
