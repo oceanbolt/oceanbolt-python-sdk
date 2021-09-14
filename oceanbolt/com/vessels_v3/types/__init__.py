@@ -16,19 +16,19 @@
 #
 
 from .service import (
-    VesselRequest,
-    VesselResponse,
-    StoppageEventRequest,
-    StoppageEventResponse,
+    ListVesselsRequest,
+    ListVesselsResponse,
+    ListStoppageEventsRequest,
+    ListStoppageEventsResponse,
     Vessel,
-    VesselStoppageEvent,
+    StoppageEvent,
 )
 
 __all__ = (
-    'VesselRequest',
-    'VesselResponse',
-    'StoppageEventRequest',
-    'StoppageEventResponse',
+    'ListVesselsRequest',
+    'ListVesselsResponse',
+    'ListStoppageEventsRequest',
+    'ListStoppageEventsResponse',
     'Vessel',
-    'VesselStoppageEvent',
+    'StoppageEvent',
 )

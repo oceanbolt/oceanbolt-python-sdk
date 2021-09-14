@@ -138,6 +138,11 @@ class TonnageServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_tonnage_basin_count: gapic_v1.method.wrap_method(
+                self.get_tonnage_basin_count,
+                default_timeout=None,
+                client_info=client_info,
+            ),
 
         }
 
@@ -201,6 +206,15 @@ class TonnageServiceTransport(abc.ABC):
             typing.Union[
                 service.GetTonnageZoneChangesResponse,
                 typing.Awaitable[service.GetTonnageZoneChangesResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_tonnage_basin_count(self) -> typing.Callable[
+            [service.GetTonnageBasinRequest],
+            typing.Union[
+                service.GetTonnageBasinResponse,
+                typing.Awaitable[service.GetTonnageBasinResponse]
             ]]:
         raise NotImplementedError()
 

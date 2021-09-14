@@ -27,12 +27,14 @@ from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowAggregationRes
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowHistogramResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowTimeseriesResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowsResponse
+from oceanbolt.com.tradeflows_v3.types.service import GetTradeLaneMetricsResponse
 from oceanbolt.com.tradeflows_v3.types.service import HistogramGroup
 from oceanbolt.com.tradeflows_v3.types.service import LocationVolume
 from oceanbolt.com.tradeflows_v3.types.service import TimeseriesGroup
 from oceanbolt.com.tradeflows_v3.types.service import TimeseriesRow
 from oceanbolt.com.tradeflows_v3.types.service import TradeFlow
 from oceanbolt.com.tradeflows_v3.types.service import TradeFlowDataRequest
+from oceanbolt.com.tradeflows_v3.types.service import TradeLaneMetric
 
 __all__ = (
     'AggregationGroup',
@@ -45,6 +47,7 @@ __all__ = (
     'GetTradeFlowHistogramResponse',
     'GetTradeFlowTimeseriesResponse',
     'GetTradeFlowsResponse',
+    'GetTradeLaneMetricsResponse',
     'HistogramGroup',
     'LocationVolume',
     'TimeseriesGroup',
@@ -53,4 +56,5 @@ __all__ = (
     'TradeFlowDataRequest',
     'TradeFlowServiceAsyncClient',
     'TradeFlowServiceClient',
+    'TradeLaneMetric',
 )

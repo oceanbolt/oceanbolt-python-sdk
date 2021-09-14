@@ -103,13 +103,13 @@ class VesselServiceTransport(abc.ABC):
     def _prep_wrapped_messages(self, client_info):
         # Precompute the wrapped methods.
         self._wrapped_methods = {
-            self.vessels: gapic_v1.method.wrap_method(
-                self.vessels,
+            self.list_vessels: gapic_v1.method.wrap_method(
+                self.list_vessels,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.vessel_stoppage_events: gapic_v1.method.wrap_method(
-                self.vessel_stoppage_events,
+            self.list_stoppage_events: gapic_v1.method.wrap_method(
+                self.list_stoppage_events,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -117,20 +117,20 @@ class VesselServiceTransport(abc.ABC):
         }
 
     @property
-    def vessels(self) -> typing.Callable[
-            [service.VesselRequest],
+    def list_vessels(self) -> typing.Callable[
+            [service.ListVesselsRequest],
             typing.Union[
-                service.VesselResponse,
-                typing.Awaitable[service.VesselResponse]
+                service.ListVesselsResponse,
+                typing.Awaitable[service.ListVesselsResponse]
             ]]:
         raise NotImplementedError()
 
     @property
-    def vessel_stoppage_events(self) -> typing.Callable[
-            [service.StoppageEventRequest],
+    def list_stoppage_events(self) -> typing.Callable[
+            [service.ListStoppageEventsRequest],
             typing.Union[
-                service.StoppageEventResponse,
-                typing.Awaitable[service.StoppageEventResponse]
+                service.ListStoppageEventsResponse,
+                typing.Awaitable[service.ListStoppageEventsResponse]
             ]]:
         raise NotImplementedError()
 

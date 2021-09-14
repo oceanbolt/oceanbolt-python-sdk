@@ -465,6 +465,53 @@ class TonnageServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def get_tonnage_basin_count(self,
+            request: service.GetTonnageBasinRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetTonnageBasinResponse:
+        r"""Provides timeseries data on the number of vessels
+        that are within the four major basins.
+
+        Args:
+            request (:class:`oceanbolt.com.tonnage_v3.types.GetTonnageBasinRequest`):
+                The request object. GetTonnageBasin
+
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.tonnage_v3.types.GetTonnageBasinResponse:
+
+        """
+        # Create or coerce a protobuf request object.
+
+        request = service.GetTonnageBasinRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_tonnage_basin_count,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
 
 
 

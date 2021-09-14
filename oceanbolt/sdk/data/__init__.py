@@ -21,6 +21,7 @@ from .port_calls import *
 from .tonnage import *
 from .dry_dock import *
 from .entities import *
+from .vessels import *
 
 __all__ = (
     'CongestionTimeseries',
@@ -43,5 +44,7 @@ __all__ = (
     'Countries',
     'DryDockCurrentVessels',
     'DryDockHistoricalStays',
-    'DryDockTimeseries'
+    'DryDockTimeseries',
+    'StoppageEvents',
+    'Vessels'
 )

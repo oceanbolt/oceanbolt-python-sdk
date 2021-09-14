@@ -120,18 +120,18 @@ class VesselServiceAsyncClient:
 
         )
 
-    async def vessels(self,
-            request: service.VesselRequest = None,
+    async def list_vessels(self,
+            request: service.ListVesselsRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.VesselResponse:
+            ) -> service.ListVesselsResponse:
         r"""Vessels gets a list of vessels for the given filter
         parameters
 
         Args:
-            request (:class:`oceanbolt.com.vessels_v3.types.VesselRequest`):
+            request (:class:`oceanbolt.com.vessels_v3.types.ListVesselsRequest`):
                 The request object. Vessels
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -141,17 +141,17 @@ class VesselServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.VesselResponse:
+            oceanbolt.com.vessels_v3.types.ListVesselsResponse:
 
         """
         # Create or coerce a protobuf request object.
 
-        request = service.VesselRequest(request)
+        request = service.ListVesselsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.vessels,
+            self._client._transport.list_vessels,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -167,17 +167,17 @@ class VesselServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def vessel_stoppage_events(self,
-            request: service.StoppageEventRequest = None,
+    async def list_stoppage_events(self,
+            request: service.ListStoppageEventsRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.StoppageEventResponse:
+            ) -> service.ListStoppageEventsResponse:
         r"""
 
         Args:
-            request (:class:`oceanbolt.com.vessels_v3.types.StoppageEventRequest`):
+            request (:class:`oceanbolt.com.vessels_v3.types.ListStoppageEventsRequest`):
                 The request object. VesselStoppageEvents
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -187,17 +187,17 @@ class VesselServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.StoppageEventResponse:
+            oceanbolt.com.vessels_v3.types.ListStoppageEventsResponse:
 
         """
         # Create or coerce a protobuf request object.
 
-        request = service.StoppageEventRequest(request)
+        request = service.ListStoppageEventsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.vessel_stoppage_events,
+            self._client._transport.list_stoppage_events,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )

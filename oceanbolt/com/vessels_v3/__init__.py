@@ -16,20 +16,20 @@
 #
 
 from .services.vessel_service import VesselServiceClient
-from .types.service import StoppageEventRequest
-from .types.service import StoppageEventResponse
+from .types.service import ListStoppageEventsRequest
+from .types.service import ListStoppageEventsResponse
+from .types.service import ListVesselsRequest
+from .types.service import ListVesselsResponse
+from .types.service import StoppageEvent
 from .types.service import Vessel
-from .types.service import VesselRequest
-from .types.service import VesselResponse
-from .types.service import VesselStoppageEvent
 
 
 __all__ = (
-    'StoppageEventRequest',
-    'StoppageEventResponse',
+    'ListStoppageEventsRequest',
+    'ListStoppageEventsResponse',
+    'ListVesselsRequest',
+    'ListVesselsResponse',
+    'StoppageEvent',
     'Vessel',
-    'VesselRequest',
-    'VesselResponse',
-    'VesselStoppageEvent',
 'VesselServiceClient',
 )

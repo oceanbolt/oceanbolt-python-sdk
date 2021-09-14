@@ -236,17 +236,17 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         return self._grpc_channel
 
     @property
-    def vessels(self) -> Callable[
-            [service.VesselRequest],
-            service.VesselResponse]:
-        r"""Return a callable for the vessels method over gRPC.
+    def list_vessels(self) -> Callable[
+            [service.ListVesselsRequest],
+            service.ListVesselsResponse]:
+        r"""Return a callable for the list vessels method over gRPC.
 
         Vessels gets a list of vessels for the given filter
         parameters
 
         Returns:
-            Callable[[~.VesselRequest],
-                    ~.VesselResponse]:
+            Callable[[~.ListVesselsRequest],
+                    ~.ListVesselsResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -254,23 +254,23 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'vessels' not in self._stubs:
-            self._stubs['vessels'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.vessels.v3.VesselService/Vessels',
-                request_serializer=service.VesselRequest.serialize,
-                response_deserializer=service.VesselResponse.deserialize,
+        if 'list_vessels' not in self._stubs:
+            self._stubs['list_vessels'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.vessels.v3.VesselService/ListVessels',
+                request_serializer=service.ListVesselsRequest.serialize,
+                response_deserializer=service.ListVesselsResponse.deserialize,
             )
-        return self._stubs['vessels']
+        return self._stubs['list_vessels']
 
     @property
-    def vessel_stoppage_events(self) -> Callable[
-            [service.StoppageEventRequest],
-            service.StoppageEventResponse]:
-        r"""Return a callable for the vessel stoppage events method over gRPC.
+    def list_stoppage_events(self) -> Callable[
+            [service.ListStoppageEventsRequest],
+            service.ListStoppageEventsResponse]:
+        r"""Return a callable for the list stoppage events method over gRPC.
 
         Returns:
-            Callable[[~.StoppageEventRequest],
-                    ~.StoppageEventResponse]:
+            Callable[[~.ListStoppageEventsRequest],
+                    ~.ListStoppageEventsResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -278,13 +278,13 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'vessel_stoppage_events' not in self._stubs:
-            self._stubs['vessel_stoppage_events'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.vessels.v3.VesselService/VesselStoppageEvents',
-                request_serializer=service.StoppageEventRequest.serialize,
-                response_deserializer=service.StoppageEventResponse.deserialize,
+        if 'list_stoppage_events' not in self._stubs:
+            self._stubs['list_stoppage_events'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.vessels.v3.VesselService/ListStoppageEvents',
+                request_serializer=service.ListStoppageEventsRequest.serialize,
+                response_deserializer=service.ListStoppageEventsResponse.deserialize,
             )
-        return self._stubs['vessel_stoppage_events']
+        return self._stubs['list_stoppage_events']
 
 
 __all__ = (

@@ -26,12 +26,14 @@ from .types.service import GetTradeFlowAggregationResponse
 from .types.service import GetTradeFlowHistogramResponse
 from .types.service import GetTradeFlowTimeseriesResponse
 from .types.service import GetTradeFlowsResponse
+from .types.service import GetTradeLaneMetricsResponse
 from .types.service import HistogramGroup
 from .types.service import LocationVolume
 from .types.service import TimeseriesGroup
 from .types.service import TimeseriesRow
 from .types.service import TradeFlow
 from .types.service import TradeFlowDataRequest
+from .types.service import TradeLaneMetric
 
 
 __all__ = (
@@ -45,11 +47,13 @@ __all__ = (
     'GetTradeFlowHistogramResponse',
     'GetTradeFlowTimeseriesResponse',
     'GetTradeFlowsResponse',
+    'GetTradeLaneMetricsResponse',
     'HistogramGroup',
     'LocationVolume',
     'TimeseriesGroup',
     'TimeseriesRow',
     'TradeFlow',
     'TradeFlowDataRequest',
+    'TradeLaneMetric',
 'TradeFlowServiceClient',
 )

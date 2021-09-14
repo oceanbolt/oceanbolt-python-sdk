@@ -936,6 +936,91 @@ async def test_get_tonnage_zone_changes_async_from_dict():
     await test_get_tonnage_zone_changes_async(request_type=dict)
 
 
+def test_get_tonnage_basin_count(transport: str = 'grpc', request_type=service.GetTonnageBasinRequest):
+    client = TonnageServiceClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_tonnage_basin_count),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetTonnageBasinResponse(
+            csv='csv_value',
+
+            xlsx='xlsx_value',
+
+        )
+
+        response = client.get_tonnage_basin_count(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetTonnageBasinRequest()
+
+    # Establish that the response is the type that we expect.
+
+    assert isinstance(response, service.GetTonnageBasinResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_tonnage_basin_count_from_dict():
+    test_get_tonnage_basin_count(request_type=dict)
+
+
+@pytest.mark.asyncio
+async def test_get_tonnage_basin_count_async(transport: str = 'grpc_asyncio', request_type=service.GetTonnageBasinRequest):
+    client = TonnageServiceAsyncClient(
+        credentials=credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_tonnage_basin_count),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.GetTonnageBasinResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+
+        response = await client.get_tonnage_basin_count(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+
+        assert args[0] == service.GetTonnageBasinRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetTonnageBasinResponse)
+
+    assert response.csv == 'csv_value'
+
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_tonnage_basin_count_async_from_dict():
+    await test_get_tonnage_basin_count_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.TonnageServiceGrpcTransport(
@@ -1042,6 +1127,7 @@ def test_tonnage_service_base_transport():
         'get_tonnage_fleet_growth',
         'get_tonnage_chinese_waters',
         'get_tonnage_zone_changes',
+        'get_tonnage_basin_count',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

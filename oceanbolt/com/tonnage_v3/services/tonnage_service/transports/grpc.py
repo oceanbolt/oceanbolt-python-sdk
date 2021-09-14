@@ -426,6 +426,33 @@ class TonnageServiceGrpcTransport(TonnageServiceTransport):
             )
         return self._stubs['get_tonnage_zone_changes']
 
+    @property
+    def get_tonnage_basin_count(self) -> Callable[
+            [service.GetTonnageBasinRequest],
+            service.GetTonnageBasinResponse]:
+        r"""Return a callable for the get tonnage basin count method over gRPC.
+
+        Provides timeseries data on the number of vessels
+        that are within the four major basins.
+
+        Returns:
+            Callable[[~.GetTonnageBasinRequest],
+                    ~.GetTonnageBasinResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_tonnage_basin_count' not in self._stubs:
+            self._stubs['get_tonnage_basin_count'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.tonnage.v3.TonnageService/GetTonnageBasinCount',
+                request_serializer=service.GetTonnageBasinRequest.serialize,
+                response_deserializer=service.GetTonnageBasinResponse.deserialize,
+            )
+        return self._stubs['get_tonnage_basin_count']
+
 
 __all__ = (
     'TonnageServiceGrpcTransport',

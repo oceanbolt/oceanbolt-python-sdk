@@ -312,18 +312,18 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 client_info=client_info,
             )
 
-    def vessels(self,
-            request: service.VesselRequest = None,
+    def list_vessels(self,
+            request: service.ListVesselsRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.VesselResponse:
+            ) -> service.ListVesselsResponse:
         r"""Vessels gets a list of vessels for the given filter
         parameters
 
         Args:
-            request (oceanbolt.com.vessels_v3.types.VesselRequest):
+            request (oceanbolt.com.vessels_v3.types.ListVesselsRequest):
                 The request object. Vessels
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -333,21 +333,21 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.VesselResponse:
+            oceanbolt.com.vessels_v3.types.ListVesselsResponse:
 
         """
         # Create or coerce a protobuf request object.
 
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.VesselRequest.
+        # in a service.ListVesselsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.VesselRequest):
-            request = service.VesselRequest(request)
+        if not isinstance(request, service.ListVesselsRequest):
+            request = service.ListVesselsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.vessels]
+        rpc = self._transport._wrapped_methods[self._transport.list_vessels]
 
         # Send the request.
         response = rpc(
@@ -360,17 +360,17 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         # Done; return the response.
         return response
 
-    def vessel_stoppage_events(self,
-            request: service.StoppageEventRequest = None,
+    def list_stoppage_events(self,
+            request: service.ListStoppageEventsRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.StoppageEventResponse:
+            ) -> service.ListStoppageEventsResponse:
         r"""
 
         Args:
-            request (oceanbolt.com.vessels_v3.types.StoppageEventRequest):
+            request (oceanbolt.com.vessels_v3.types.ListStoppageEventsRequest):
                 The request object. VesselStoppageEvents
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -380,21 +380,21 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.StoppageEventResponse:
+            oceanbolt.com.vessels_v3.types.ListStoppageEventsResponse:
 
         """
         # Create or coerce a protobuf request object.
 
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.StoppageEventRequest.
+        # in a service.ListStoppageEventsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.StoppageEventRequest):
-            request = service.StoppageEventRequest(request)
+        if not isinstance(request, service.ListStoppageEventsRequest):
+            request = service.ListStoppageEventsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.vessel_stoppage_events]
+        rpc = self._transport._wrapped_methods[self._transport.list_stoppage_events]
 
         # Send the request.
         response = rpc(

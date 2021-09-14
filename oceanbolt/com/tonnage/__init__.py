@@ -26,6 +26,8 @@ from oceanbolt.com.tonnage_v3.types.service import FleetGrowthTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import GetFleetSpeedResponse
 from oceanbolt.com.tonnage_v3.types.service import GetGlobalTonnageStatusRequest
 from oceanbolt.com.tonnage_v3.types.service import GetGlobalTonnageStatusResponse
+from oceanbolt.com.tonnage_v3.types.service import GetTonnageBasinRequest
+from oceanbolt.com.tonnage_v3.types.service import GetTonnageBasinResponse
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageDataRequest
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetGrowthResponse
 from oceanbolt.com.tonnage_v3.types.service import GetTonnageFleetRequest
@@ -36,6 +38,8 @@ from oceanbolt.com.tonnage_v3.types.service import GetTonnageZoneCountResponse
 from oceanbolt.com.tonnage_v3.types.service import GlobalTonnageZoneCount
 from oceanbolt.com.tonnage_v3.types.service import TimeseriesGroup
 from oceanbolt.com.tonnage_v3.types.service import TimeseriesRow
+from oceanbolt.com.tonnage_v3.types.service import TonnageBasinTimeseriesGroup
+from oceanbolt.com.tonnage_v3.types.service import TonnageBasinTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import TonnageChineseWatersRequest
 from oceanbolt.com.tonnage_v3.types.service import TonnageChineseWatersResponse
 from oceanbolt.com.tonnage_v3.types.service import TonnageTimeseriesGroup
@@ -53,6 +57,8 @@ __all__ = (
     'GetFleetSpeedResponse',
     'GetGlobalTonnageStatusRequest',
     'GetGlobalTonnageStatusResponse',
+    'GetTonnageBasinRequest',
+    'GetTonnageBasinResponse',
     'GetTonnageDataRequest',
     'GetTonnageFleetGrowthResponse',
     'GetTonnageFleetRequest',
@@ -63,6 +69,8 @@ __all__ = (
     'GlobalTonnageZoneCount',
     'TimeseriesGroup',
     'TimeseriesRow',
+    'TonnageBasinTimeseriesGroup',
+    'TonnageBasinTimeseriesRow',
     'TonnageChineseWatersRequest',
     'TonnageChineseWatersResponse',
     'TonnageServiceAsyncClient',

@@ -341,7 +341,7 @@ def test_vessel_service_client_client_options_from_dict():
         )
 
 
-def test_vessels(transport: str = 'grpc', request_type=service.VesselRequest):
+def test_list_vessels(transport: str = 'grpc', request_type=service.ListVesselsRequest):
     client = VesselServiceClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -353,39 +353,39 @@ def test_vessels(transport: str = 'grpc', request_type=service.VesselRequest):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.vessels),
+            type(client.transport.list_vessels),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.VesselResponse(
+        call.return_value = service.ListVesselsResponse(
             csv='csv_value',
 
             xlsx='xlsx_value',
 
         )
 
-        response = client.vessels(request)
+        response = client.list_vessels(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.VesselRequest()
+        assert args[0] == service.ListVesselsRequest()
 
     # Establish that the response is the type that we expect.
 
-    assert isinstance(response, service.VesselResponse)
+    assert isinstance(response, service.ListVesselsResponse)
 
     assert response.csv == 'csv_value'
 
     assert response.xlsx == 'xlsx_value'
 
 
-def test_vessels_from_dict():
-    test_vessels(request_type=dict)
+def test_list_vessels_from_dict():
+    test_list_vessels(request_type=dict)
 
 
 @pytest.mark.asyncio
-async def test_vessels_async(transport: str = 'grpc_asyncio', request_type=service.VesselRequest):
+async def test_list_vessels_async(transport: str = 'grpc_asyncio', request_type=service.ListVesselsRequest):
     client = VesselServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -397,24 +397,24 @@ async def test_vessels_async(transport: str = 'grpc_asyncio', request_type=servi
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.vessels),
+            type(client.transport.list_vessels),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.VesselResponse(
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.ListVesselsResponse(
             csv='csv_value',
             xlsx='xlsx_value',
         ))
 
-        response = await client.vessels(request)
+        response = await client.list_vessels(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.VesselRequest()
+        assert args[0] == service.ListVesselsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.VesselResponse)
+    assert isinstance(response, service.ListVesselsResponse)
 
     assert response.csv == 'csv_value'
 
@@ -422,11 +422,11 @@ async def test_vessels_async(transport: str = 'grpc_asyncio', request_type=servi
 
 
 @pytest.mark.asyncio
-async def test_vessels_async_from_dict():
-    await test_vessels_async(request_type=dict)
+async def test_list_vessels_async_from_dict():
+    await test_list_vessels_async(request_type=dict)
 
 
-def test_vessel_stoppage_events(transport: str = 'grpc', request_type=service.StoppageEventRequest):
+def test_list_stoppage_events(transport: str = 'grpc', request_type=service.ListStoppageEventsRequest):
     client = VesselServiceClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -438,39 +438,39 @@ def test_vessel_stoppage_events(transport: str = 'grpc', request_type=service.St
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.vessel_stoppage_events),
+            type(client.transport.list_stoppage_events),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.StoppageEventResponse(
+        call.return_value = service.ListStoppageEventsResponse(
             csv='csv_value',
 
             xlsx='xlsx_value',
 
         )
 
-        response = client.vessel_stoppage_events(request)
+        response = client.list_stoppage_events(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.StoppageEventRequest()
+        assert args[0] == service.ListStoppageEventsRequest()
 
     # Establish that the response is the type that we expect.
 
-    assert isinstance(response, service.StoppageEventResponse)
+    assert isinstance(response, service.ListStoppageEventsResponse)
 
     assert response.csv == 'csv_value'
 
     assert response.xlsx == 'xlsx_value'
 
 
-def test_vessel_stoppage_events_from_dict():
-    test_vessel_stoppage_events(request_type=dict)
+def test_list_stoppage_events_from_dict():
+    test_list_stoppage_events(request_type=dict)
 
 
 @pytest.mark.asyncio
-async def test_vessel_stoppage_events_async(transport: str = 'grpc_asyncio', request_type=service.StoppageEventRequest):
+async def test_list_stoppage_events_async(transport: str = 'grpc_asyncio', request_type=service.ListStoppageEventsRequest):
     client = VesselServiceAsyncClient(
         credentials=credentials.AnonymousCredentials(),
         transport=transport,
@@ -482,24 +482,24 @@ async def test_vessel_stoppage_events_async(transport: str = 'grpc_asyncio', req
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.vessel_stoppage_events),
+            type(client.transport.list_stoppage_events),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.StoppageEventResponse(
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.ListStoppageEventsResponse(
             csv='csv_value',
             xlsx='xlsx_value',
         ))
 
-        response = await client.vessel_stoppage_events(request)
+        response = await client.list_stoppage_events(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == service.StoppageEventRequest()
+        assert args[0] == service.ListStoppageEventsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.StoppageEventResponse)
+    assert isinstance(response, service.ListStoppageEventsResponse)
 
     assert response.csv == 'csv_value'
 
@@ -507,8 +507,8 @@ async def test_vessel_stoppage_events_async(transport: str = 'grpc_asyncio', req
 
 
 @pytest.mark.asyncio
-async def test_vessel_stoppage_events_async_from_dict():
-    await test_vessel_stoppage_events_async(request_type=dict)
+async def test_list_stoppage_events_async_from_dict():
+    await test_list_stoppage_events_async(request_type=dict)
 
 
 def test_credentials_transport_error():
@@ -610,8 +610,8 @@ def test_vessel_service_base_transport():
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        'vessels',
-        'vessel_stoppage_events',
+        'list_vessels',
+        'list_stoppage_events',
         )
     for method in methods:
         with pytest.raises(NotImplementedError):

@@ -17,20 +17,20 @@
 
 from oceanbolt.com.vessels_v3.services.vessel_service.async_client import VesselServiceAsyncClient
 from oceanbolt.com.vessels_v3.services.vessel_service.client import VesselServiceClient
-from oceanbolt.com.vessels_v3.types.service import StoppageEventRequest
-from oceanbolt.com.vessels_v3.types.service import StoppageEventResponse
+from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsRequest
+from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsResponse
+from oceanbolt.com.vessels_v3.types.service import ListVesselsRequest
+from oceanbolt.com.vessels_v3.types.service import ListVesselsResponse
+from oceanbolt.com.vessels_v3.types.service import StoppageEvent
 from oceanbolt.com.vessels_v3.types.service import Vessel
-from oceanbolt.com.vessels_v3.types.service import VesselRequest
-from oceanbolt.com.vessels_v3.types.service import VesselResponse
-from oceanbolt.com.vessels_v3.types.service import VesselStoppageEvent
 
 __all__ = (
-    'StoppageEventRequest',
-    'StoppageEventResponse',
+    'ListStoppageEventsRequest',
+    'ListStoppageEventsResponse',
+    'ListVesselsRequest',
+    'ListVesselsResponse',
+    'StoppageEvent',
     'Vessel',
-    'VesselRequest',
-    'VesselResponse',
     'VesselServiceAsyncClient',
     'VesselServiceClient',
-    'VesselStoppageEvent',
 )

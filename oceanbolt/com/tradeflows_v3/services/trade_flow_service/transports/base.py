@@ -108,11 +108,6 @@ class TradeFlowServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.get_location_data: gapic_v1.method.wrap_method(
-                self.get_location_data,
-                default_timeout=None,
-                client_info=client_info,
-            ),
             self.get_trade_flow_aggregation: gapic_v1.method.wrap_method(
                 self.get_trade_flow_aggregation,
                 default_timeout=None,
@@ -138,6 +133,11 @@ class TradeFlowServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_trade_lane_metrics: gapic_v1.method.wrap_method(
+                self.get_trade_lane_metrics,
+                default_timeout=None,
+                client_info=client_info,
+            ),
 
         }
 
@@ -147,15 +147,6 @@ class TradeFlowServiceTransport(abc.ABC):
             typing.Union[
                 service.GetTradeFlowsResponse,
                 typing.Awaitable[service.GetTradeFlowsResponse]
-            ]]:
-        raise NotImplementedError()
-
-    @property
-    def get_location_data(self) -> typing.Callable[
-            [service.TradeFlowDataRequest],
-            typing.Union[
-                service.GetLocationVolumeResponse,
-                typing.Awaitable[service.GetLocationVolumeResponse]
             ]]:
         raise NotImplementedError()
 
@@ -201,6 +192,15 @@ class TradeFlowServiceTransport(abc.ABC):
             typing.Union[
                 service.GetLocationVolumeResponse,
                 typing.Awaitable[service.GetLocationVolumeResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_trade_lane_metrics(self) -> typing.Callable[
+            [service.TradeFlowDataRequest],
+            typing.Union[
+                service.GetTradeLaneMetricsResponse,
+                typing.Awaitable[service.GetTradeLaneMetricsResponse]
             ]]:
         raise NotImplementedError()
 

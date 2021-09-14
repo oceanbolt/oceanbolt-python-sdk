@@ -124,12 +124,14 @@ class ListVesselsWithStatusRequest(proto.Message):
             Identifier of the Fleet resource which
             vessels to be retrieved.
         last_days (int):
-            Number of last days from now for vessel speed
-            events to be retrieved.
+            Number of last days from now for vessel StoppageEvents to be
+            retrieved. Cannot be used alongside start_date and end_date.
         start_date (str):
-            The UTC start date of the date filter
+            The UTC start date of the date filter for
+            related events (StoppageEvents etc.)
         end_date (str):
-            The UTC end date of the date filter
+            The UTC end date of the date filter for
+            related events (StoppageEvents etc.)
     """
 
     fleet_id = proto.Field(proto.STRING, number=1)

@@ -90,6 +90,14 @@ API Reference
     portcalls_v3/port_particulars
 
 
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Vessels data
+
+    vessels_v3/list_vessels
+    vessels_v3/stoppage_events
+
 .. toctree::
     :maxdepth: 1
     :caption: Entities

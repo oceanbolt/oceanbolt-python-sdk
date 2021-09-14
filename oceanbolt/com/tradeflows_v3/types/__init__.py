@@ -16,6 +16,8 @@
 #
 
 from .service import (
+    GetTradeLaneMetricsResponse,
+    TradeLaneMetric,
     EmptyParams,
     EmptyResponse,
     TradeFlowDataRequest,
@@ -35,6 +37,8 @@ from .service import (
 )
 
 __all__ = (
+    'GetTradeLaneMetricsResponse',
+    'TradeLaneMetric',
     'EmptyParams',
     'EmptyResponse',
     'TradeFlowDataRequest',

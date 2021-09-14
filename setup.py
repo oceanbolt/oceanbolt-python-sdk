@@ -55,6 +55,8 @@ setuptools.setup(
         'scripts/fixup_fleetmanagement_v3_keywords.py',
         'scripts/fixup_distancecalculator_v3_keywords.py',
         'scripts/fixup_custompolygon_v3_keywords.py',
+        'scripts/fixup_vessels_v3_keywords.py',
+
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

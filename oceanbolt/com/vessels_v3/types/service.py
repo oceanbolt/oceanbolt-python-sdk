@@ -24,17 +24,17 @@ from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 __protobuf__ = proto.module(
     package='oceanbolt.com.vessels.v3',
     manifest={
-        'VesselRequest',
-        'VesselResponse',
-        'StoppageEventRequest',
-        'StoppageEventResponse',
+        'ListVesselsRequest',
+        'ListVesselsResponse',
+        'ListStoppageEventsRequest',
+        'ListStoppageEventsResponse',
         'Vessel',
-        'VesselStoppageEvent',
+        'StoppageEvent',
     },
 )
 
 
-class VesselRequest(proto.Message):
+class ListVesselsRequest(proto.Message):
     r"""Vessels
 
     Attributes:
@@ -180,7 +180,7 @@ class VesselRequest(proto.Message):
     format_ = proto.Field(proto.STRING, number=27)
 
 
-class VesselResponse(proto.Message):
+class ListVesselsResponse(proto.Message):
     r"""
 
     Attributes:
@@ -201,12 +201,16 @@ class VesselResponse(proto.Message):
     xlsx = proto.Field(proto.STRING, number=3)
 
 
-class StoppageEventRequest(proto.Message):
+class ListStoppageEventsRequest(proto.Message):
     r"""VesselStoppageEvents
 
     Attributes:
         imo (Sequence[int]):
             included vessel imos
+        startDate (str):
+
+        endDate (str):
+
         format_ (str):
             response format (default is json, supported:
             csv, xlsx)
@@ -214,14 +218,18 @@ class StoppageEventRequest(proto.Message):
 
     imo = proto.RepeatedField(proto.INT32, number=1)
 
-    format_ = proto.Field(proto.STRING, number=2)
+    startDate = proto.Field(proto.STRING, number=2)
+
+    endDate = proto.Field(proto.STRING, number=3)
+
+    format_ = proto.Field(proto.STRING, number=4)
 
 
-class StoppageEventResponse(proto.Message):
+class ListStoppageEventsResponse(proto.Message):
     r"""
 
     Attributes:
-        stoppage_events (Sequence[oceanbolt.com.vessels_v3.types.VesselStoppageEvent]):
+        stoppage_events (Sequence[oceanbolt.com.vessels_v3.types.StoppageEvent]):
 
         csv (str):
 
@@ -230,7 +238,7 @@ class StoppageEventResponse(proto.Message):
     """
 
     stoppage_events = proto.RepeatedField(proto.MESSAGE, number=1,
-        message='VesselStoppageEvent',
+        message='StoppageEvent',
     )
 
     csv = proto.Field(proto.STRING, number=2)
@@ -393,7 +401,7 @@ class Vessel(proto.Message):
     speed = proto.Field(proto.DOUBLE, number=26)
 
 
-class VesselStoppageEvent(proto.Message):
+class StoppageEvent(proto.Message):
     r"""
 
     Attributes:

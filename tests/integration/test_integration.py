@@ -5,6 +5,7 @@ from oceanbolt.sdk.data import PortCalls, PortCallTimeseries, PortParticulars
 from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries, CustomPolygonTimeseries
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
 from oceanbolt.sdk.data import DryDockTimeseries, DryDockCurrentVessels, DryDockHistoricalStays
+from oceanbolt.sdk.data import Vessels, StoppageEvents
 
 __client__ = APIClient()
 
@@ -145,4 +146,14 @@ def test_trade_flows():
 
 def test_trade_flow_timeseries():
     df = TradeFlowTimeseries(__client__).get(frequency="monthly", load_country_code=["cn"], start_date="2021-01-01")
+    assert len(df) > 0
+
+# Vessels Service
+def test_vessels():
+    df = Vessels(__client__).get(segment=["supramax"])
+    assert len(df) > 0
+
+
+def test_stoppage_events():
+    df = Vessels(__client__).get(imo=[9583706])
     assert len(df) > 0

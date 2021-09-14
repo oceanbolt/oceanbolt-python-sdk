@@ -47,6 +47,10 @@ __protobuf__ = proto.module(
         'GetTonnageZoneChangesResponse',
         'ZoneChangesTimeseriesGroup',
         'ZoneChangesTimeseriesRow',
+        'GetTonnageBasinRequest',
+        'GetTonnageBasinResponse',
+        'TonnageBasinTimeseriesGroup',
+        'TonnageBasinTimeseriesRow',
         'EmptyParams',
         'EmptyResponse',
     },
@@ -745,6 +749,107 @@ class ZoneChangesTimeseriesGroup(proto.Message):
 
 class ZoneChangesTimeseriesRow(proto.Message):
     r"""Tonnage zone/fleet speed timeseries row.
+
+    Attributes:
+        date (str):
+            UTC date timestamp of the timeseries row.
+        vessel_count (google.protobuf.wrappers_pb2.Int32Value):
+            The number of vessels for the timeseries row.
+        vessel_dwt (google.protobuf.wrappers_pb2.DoubleValue):
+            The sum of dwt for the timeseries row.
+    """
+
+    date = proto.Field(proto.STRING, number=1)
+
+    vessel_count = proto.Field(proto.MESSAGE, number=2,
+        message=wrappers.Int32Value,
+    )
+
+    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
+        message=wrappers.DoubleValue,
+    )
+
+
+class GetTonnageBasinRequest(proto.Message):
+    r"""GetTonnageBasin
+
+    Attributes:
+        basin (Sequence[str]):
+
+        segment (Sequence[str]):
+
+        sub_segment (Sequence[str]):
+
+        start_date (str):
+
+        end_date (str):
+
+        exclude_mpv (bool):
+
+        last_n_days (int):
+
+        format_ (str):
+
+    """
+
+    basin = proto.RepeatedField(proto.STRING, number=1)
+
+    segment = proto.RepeatedField(proto.STRING, number=2)
+
+    sub_segment = proto.RepeatedField(proto.STRING, number=3)
+
+    start_date = proto.Field(proto.STRING, number=4)
+
+    end_date = proto.Field(proto.STRING, number=5)
+
+    exclude_mpv = proto.Field(proto.BOOL, number=6)
+
+    last_n_days = proto.Field(proto.INT32, number=7)
+
+    format_ = proto.Field(proto.STRING, number=8)
+
+
+class GetTonnageBasinResponse(proto.Message):
+    r"""
+
+    Attributes:
+        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
+
+        csv (str):
+
+        xlsx (str):
+
+    """
+
+    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='TonnageTimeseriesGroup',
+    )
+
+    csv = proto.Field(proto.STRING, number=2)
+
+    xlsx = proto.Field(proto.STRING, number=3)
+
+
+class TonnageBasinTimeseriesGroup(proto.Message):
+    r"""Tonnage zone/fleet speed timeseries group
+
+    Attributes:
+        group (str):
+            Name of the group. This will be "default", if
+            no grouping was specified in the query.
+        rows (Sequence[oceanbolt.com.tonnage_v3.types.TonnageBasinTimeseriesRow]):
+            Rows of timeseries data.
+    """
+
+    group = proto.Field(proto.STRING, number=1)
+
+    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='TonnageBasinTimeseriesRow',
+    )
+
+
+class TonnageBasinTimeseriesRow(proto.Message):
+    r"""
 
     Attributes:
         date (str):

@@ -24,6 +24,8 @@ from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 __protobuf__ = proto.module(
     package='oceanbolt.com.tradeflows.v3',
     manifest={
+        'GetTradeLaneMetricsResponse',
+        'TradeLaneMetric',
         'EmptyParams',
         'EmptyResponse',
         'TradeFlowDataRequest',
@@ -42,6 +44,126 @@ __protobuf__ = proto.module(
         'HistogramGroup',
     },
 )
+
+
+class GetTradeLaneMetricsResponse(proto.Message):
+    r"""
+
+    Attributes:
+        grouping_variable (str):
+
+        number_of_groups (int):
+
+        trade_lane_metrics (Sequence[oceanbolt.com.tradeflows_v3.types.TradeLaneMetric]):
+
+    """
+
+    grouping_variable = proto.Field(proto.STRING, number=1)
+
+    number_of_groups = proto.Field(proto.INT32, number=2)
+
+    trade_lane_metrics = proto.RepeatedField(proto.MESSAGE, number=3,
+        message='TradeLaneMetric',
+    )
+
+
+class TradeLaneMetric(proto.Message):
+    r"""
+
+    Attributes:
+        group (str):
+
+        avg_days_at_sea (float):
+
+        avg_load_port_days_waiting (float):
+
+        avg_load_port_days_berthed (float):
+
+        avg_discharge_port_days_waiting (float):
+
+        avg_discharge_port_days_berthed (float):
+
+        avg_voyage_durations_days (float):
+
+        avg_speed (float):
+
+        avg_volume (float):
+
+        avg_distance_nm (float):
+
+        avg_distance_calculated_nm (float):
+
+        median_days_at_sea (float):
+
+        median_load_port_days_waiting (float):
+
+        median_load_port_days_berthed (float):
+
+        median_discharge_port_days_waiting (float):
+
+        median_discharge_port_days_berthed (float):
+
+        median_volume (float):
+
+        median_distance_nm (float):
+
+        number_of_voyages (int):
+
+        sum_of_volume (float):
+
+        unique_vessels (int):
+
+        unique_load_ports (int):
+
+        unique_discharge_ports (int):
+
+    """
+
+    group = proto.Field(proto.STRING, number=9)
+
+    avg_days_at_sea = proto.Field(proto.DOUBLE, number=1)
+
+    avg_load_port_days_waiting = proto.Field(proto.DOUBLE, number=3)
+
+    avg_load_port_days_berthed = proto.Field(proto.DOUBLE, number=4)
+
+    avg_discharge_port_days_waiting = proto.Field(proto.DOUBLE, number=5)
+
+    avg_discharge_port_days_berthed = proto.Field(proto.DOUBLE, number=6)
+
+    avg_voyage_durations_days = proto.Field(proto.DOUBLE, number=17)
+
+    avg_speed = proto.Field(proto.DOUBLE, number=18)
+
+    avg_volume = proto.Field(proto.DOUBLE, number=7)
+
+    avg_distance_nm = proto.Field(proto.DOUBLE, number=8)
+
+    avg_distance_calculated_nm = proto.Field(proto.DOUBLE, number=19)
+
+    median_days_at_sea = proto.Field(proto.DOUBLE, number=16)
+
+    median_load_port_days_waiting = proto.Field(proto.DOUBLE, number=10)
+
+    median_load_port_days_berthed = proto.Field(proto.DOUBLE, number=11)
+
+    median_discharge_port_days_waiting = proto.Field(proto.DOUBLE, number=12)
+
+    median_discharge_port_days_berthed = proto.Field(proto.DOUBLE, number=13)
+
+    median_volume = proto.Field(proto.DOUBLE, number=14)
+
+    median_distance_nm = proto.Field(proto.DOUBLE, number=15)
+
+    number_of_voyages = proto.Field(proto.INT32, number=20)
+
+    sum_of_volume = proto.Field(proto.DOUBLE, number=21)
+
+    unique_vessels = proto.Field(proto.INT32, number=22)
+
+    unique_load_ports = proto.Field(proto.INT32, number=23)
+
+    unique_discharge_ports = proto.Field(proto.INT32, number=24)
 
 
 class EmptyParams(proto.Message):

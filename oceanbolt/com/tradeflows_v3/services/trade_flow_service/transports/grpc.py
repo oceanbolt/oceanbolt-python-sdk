@@ -266,32 +266,6 @@ class TradeFlowServiceGrpcTransport(TradeFlowServiceTransport):
         return self._stubs['get_trade_flows']
 
     @property
-    def get_location_data(self) -> Callable[
-            [service.TradeFlowDataRequest],
-            service.GetLocationVolumeResponse]:
-        r"""Return a callable for the get location data method over gRPC.
-
-        Retrieves top Locations.
-
-        Returns:
-            Callable[[~.TradeFlowDataRequest],
-                    ~.GetLocationVolumeResponse]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if 'get_location_data' not in self._stubs:
-            self._stubs['get_location_data'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.tradeflows.v3.TradeFlowService/GetLocationData',
-                request_serializer=service.TradeFlowDataRequest.serialize,
-                response_deserializer=service.GetLocationVolumeResponse.deserialize,
-            )
-        return self._stubs['get_location_data']
-
-    @property
     def get_trade_flow_aggregation(self) -> Callable[
             [service.TradeFlowDataRequest],
             service.GetTradeFlowAggregationResponse]:
@@ -424,6 +398,33 @@ class TradeFlowServiceGrpcTransport(TradeFlowServiceTransport):
                 response_deserializer=service.GetLocationVolumeResponse.deserialize,
             )
         return self._stubs['get_location_volume']
+
+    @property
+    def get_trade_lane_metrics(self) -> Callable[
+            [service.TradeFlowDataRequest],
+            service.GetTradeLaneMetricsResponse]:
+        r"""Return a callable for the get trade lane metrics method over gRPC.
+
+        GetTradeflowModelVoyage gets trade flow model voyage
+        values by grouping
+
+        Returns:
+            Callable[[~.TradeFlowDataRequest],
+                    ~.GetTradeLaneMetricsResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_trade_lane_metrics' not in self._stubs:
+            self._stubs['get_trade_lane_metrics'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.tradeflows.v3.TradeFlowService/GetTradeLaneMetrics',
+                request_serializer=service.TradeFlowDataRequest.serialize,
+                response_deserializer=service.GetTradeLaneMetricsResponse.deserialize,
+            )
+        return self._stubs['get_trade_lane_metrics']
 
 
 __all__ = (

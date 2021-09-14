@@ -11,3 +11,5 @@ conda
 .env
 .csv
 local
+/data/
+samples/
