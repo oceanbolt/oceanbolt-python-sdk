@@ -731,6 +731,24 @@ class TradeFlow(proto.Message):
         parceling (bool):
             Flag indicating whether the trade flow was
             part of a parceling voyage or a single voyage.
+        ballast_started_at (str):
+            UTC timestamp for when the vessel started
+            ballasting from the last discharge port.
+        ballast_port_name (str):
+            Name of the port where the vessel ballasted
+            from.
+        ballast_port_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier for the port
+            where the vessel ballasted from.
+        ballast_port_unlocode (str):
+
+        ballast_country (str):
+            Name of the ballast country.
+        ballast_country_code (str):
+            ISO 2-letter country code of the ballast
+            country.
+        ballast_region (str):
+            Name of the ballast region.
     """
 
     voyage_id = proto.Field(proto.STRING, number=52)
@@ -858,6 +876,22 @@ class TradeFlow(proto.Message):
     status = proto.Field(proto.STRING, number=38)
 
     parceling = proto.Field(proto.BOOL, number=39)
+
+    ballast_started_at = proto.Field(proto.STRING, number=54)
+
+    ballast_port_name = proto.Field(proto.STRING, number=55)
+
+    ballast_port_id = proto.Field(proto.MESSAGE, number=56,
+        message=wrappers.Int32Value,
+    )
+
+    ballast_port_unlocode = proto.Field(proto.STRING, number=57)
+
+    ballast_country = proto.Field(proto.STRING, number=58)
+
+    ballast_country_code = proto.Field(proto.STRING, number=59)
+
+    ballast_region = proto.Field(proto.STRING, number=61)
 
 
 class GetTradeFlowHistogramResponse(proto.Message):

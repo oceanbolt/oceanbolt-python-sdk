@@ -69,7 +69,7 @@ class GetCongestionRequest(proto.Message):
             endpoint.
         operation (Sequence[str]):
             List of port call operation types to filter on. Allowed
-            values are: \**["D","Dx";"L","Lx","B","Y","U"].
+            values are: \**["load","discharge";"yard","unknown"].
         commodity (Sequence[str]):
             List of commodities to get data for (get a list of all
             commodities from **/entities/commodities**).
