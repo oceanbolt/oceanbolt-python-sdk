@@ -128,15 +128,15 @@ def test_chinese_waters():
     assert len(df) > 0
 
 
-def test_custom_polygon():
-    df = CustomPolygonTimeseries(__client__).get(
-        geojson="{\"type\":\"Polygon\",\"coordinates\":[[[45.50537109374999,31.93351676190369],[50.4931640625,16.846605106396304],[61.083984375,20.138470312451155],[66.9287109375,27.819644755099446],[61.94091796875,31.89621446335144],[45.50537109374999,31.93351676190369]]]}",
-        start_date="2015-01-01",
-        end_date="2021-03-01",
-        sub_segment=["ultramax"]
-
-    )
-    assert len(df) > 0
+# def test_custom_polygon():
+#     df = CustomPolygonTimeseries(__client__).get(
+#         geojson="{\"type\":\"Polygon\",\"coordinates\":[[[45.50537109374999,31.93351676190369],[50.4931640625,16.846605106396304],[61.083984375,20.138470312451155],[66.9287109375,27.819644755099446],[61.94091796875,31.89621446335144],[45.50537109374999,31.93351676190369]]]}",
+#         start_date="2015-01-01",
+#         end_date="2021-03-01",
+#         sub_segment=["ultramax"]
+#
+#     )
+#     assert len(df) > 0
 
 
 def test_trade_flows():
