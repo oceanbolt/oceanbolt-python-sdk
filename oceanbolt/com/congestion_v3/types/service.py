@@ -127,6 +127,10 @@ class GetCongestionRequest(proto.Message):
             Parameter used to display historical vessel
             lists for congested vessels. It is only
             applicable to the CongestionVessels method.
+        dwt (Sequence[float]):
+            DWT range to filter on. Example: [60000,90000] - this would
+            filter only to only include dwt between 60k and 90k (both
+            values inclusive).
     """
 
     port_id = proto.RepeatedField(proto.INT32, number=1)
@@ -170,6 +174,8 @@ class GetCongestionRequest(proto.Message):
     sort = proto.Field(proto.STRING, number=21)
 
     display_date = proto.Field(proto.STRING, number=22)
+
+    dwt = proto.RepeatedField(proto.DOUBLE, number=33)
 
 
 class CongestionTimeseriesGroup(proto.Message):

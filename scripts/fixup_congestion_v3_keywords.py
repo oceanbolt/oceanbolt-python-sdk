@@ -41,9 +41,9 @@ def partition(
 class congestionCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_congestion_timeseries': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
-    'get_congestion_vessels': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
-    'get_congestion_web': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
+    'get_congestion_timeseries': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
+    'get_congestion_vessels': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
+    'get_congestion_web': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
 
     }
 
