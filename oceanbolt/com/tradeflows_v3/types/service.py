@@ -182,7 +182,7 @@ class TradeFlowDataRequest(proto.Message):
         frequency (str):
             Frequency determines the granularity/period grouping of the
             timeseries. Allowed values are: **["daily", "weekly",
-            "monthly","quarterly "yearly"]**. Default value is
+            "monthly","quarterly", "yearly"]**. Default value is
             "monthly". This parameter only applies to the
             **/tradeflows/timeseries** endpoint.
         commodity (Sequence[str]):
@@ -264,7 +264,7 @@ class TradeFlowDataRequest(proto.Message):
             An optional limit for the number of resources
             returned in a single call.
         format_ (str):
-            The return format of the data ["csv","json", "xlsx"].
+            The return format of the data ["csv", "json", "xlsx"].
             Default is "json".
         group_by (str):
             Determines the grouping of the timeseries data. This
@@ -277,8 +277,8 @@ class TradeFlowDataRequest(proto.Message):
         metric (str):
             The metric to retrieve for timeseries aggregations. Allowed
             values:
-            ["volume","count","ton_mile_calculated","ton_mile_actual","average_haul","average_speed"].
-            Default is "volume.
+            ["volume","count","ton_mile_calculated","ton_mile_actual","average_haul","average_speed",
+            "volume_times_duration"]. Default is "volume".
         parceling (Sequence[str]):
             List of parceling statuses to retrieve. Allowed values are:
             ["include","exclude","only"].
