@@ -76,21 +76,21 @@ setuptools.setup(
             "sphinx-autodoc-typehints==1.12.0",
         ],
         "test": [
-            "black==18.9b0",
+            "black==21.10b0",
             "mypy-extensions==0.4.3",
-            "mypy==0.782",
-            "pre-commit==2.6.0",
-            "pytest==5.0.0",
+            "mypy==0.910",
+            "pre-commit==2.15.0",
+            "pytest==6.2.5",
             "pytest-dotenv==0.5.2",
-            "python-dateutil==2.8.1",
-            "pytest-rerunfailures==9.1.1",
+            "python-dateutil==2.8.2",
+            "pytest-rerunfailures==10.2",
             "mock==4.0.3",
-            "flake8==3.8.4",
-            "hypothesis==6.8.1"
+            "flake8==4.0.1",
+            "hypothesis==6.24.2"
         ],
         "publish": [
-            "build==0.3.0",
-            "twine==3.2.0",
+            "build==0.7.0",
+            "twine==3.6.0",
         ],
     },
 )
