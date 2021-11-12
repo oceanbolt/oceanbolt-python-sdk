@@ -23,3 +23,8 @@ publish:
 	twine check dist/*
 	sphinx-build docs/source docs/build
 
+install:
+	python setup.py install
+	pip install -e ".[docs]"
+	pip install -e ".[test]"
+	pip install -e ".[publish]"
