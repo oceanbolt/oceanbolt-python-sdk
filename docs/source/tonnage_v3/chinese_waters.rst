@@ -26,7 +26,7 @@ Example
     base_client = APIClient("<token>")
     df = ChineseWatersTimeseries(base_client).get(
         sub_segment=['ultramax','supramax'],
-        groupBy="segment",
+        group_by="segment",
     )
 
 Returns:
