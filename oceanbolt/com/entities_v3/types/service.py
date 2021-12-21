@@ -86,6 +86,10 @@ class Segment(proto.Message):
 
         cutoff_high (float):
 
+        platform (str):
+
+        highlevel_type (str):
+
     """
 
     segment = proto.Field(proto.STRING, number=1)
@@ -103,6 +107,10 @@ class Segment(proto.Message):
     cutoff_low = proto.Field(proto.DOUBLE, number=7)
 
     cutoff_high = proto.Field(proto.DOUBLE, number=8)
+
+    platform = proto.Field(proto.STRING, number=9)
+
+    highlevel_type = proto.Field(proto.STRING, number=10)
 
 
 class ListPortsResponse(proto.Message):
@@ -351,6 +359,8 @@ class Commodity(proto.Message):
 
         commodity_group (str):
 
+        platform (str):
+
     """
 
     commodity = proto.Field(proto.STRING, number=1)
@@ -360,6 +370,8 @@ class Commodity(proto.Message):
     commodity_value = proto.Field(proto.STRING, number=2)
 
     commodity_group = proto.Field(proto.STRING, number=3)
+
+    platform = proto.Field(proto.STRING, number=5)
 
 
 class ListCommoditiesResponse(proto.Message):

@@ -220,6 +220,8 @@ class Fleet(proto.Message):
             The Fleet identifier.
         fleet_name (str):
             The name of the Fleet.
+        platform (str):
+            The platform identifier of the fleet
         owner_user_id (str):
             The user id of the Fleet owner (the user who
             has created the Fleet).
@@ -237,6 +239,8 @@ class Fleet(proto.Message):
     fleet_id = proto.Field(proto.STRING, number=1)
 
     fleet_name = proto.Field(proto.STRING, number=2)
+
+    platform = proto.Field(proto.STRING, number=8)
 
     owner_user_id = proto.Field(proto.STRING, number=3)
 

@@ -79,6 +79,9 @@ class GetCongestionRequest(proto.Message):
         laden_status (Sequence[str]):
             Laden status to filter on. Allowed values are ['laden',
             'ballast'].
+        imo (Sequence[int]):
+            List of IMO numbers to include in the
+            congestion data results.
         segment (Sequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
@@ -109,6 +112,21 @@ class GetCongestionRequest(proto.Message):
             ``exlude=60``'\` is specified then all congestion stays that
             lasted longer than 60 days will be excluded from the
             returned data.
+        max_stay_length (int):
+            Specifies whether to exclude congestion stays that have a
+            longer duration than N (in days). For example if a value of
+            ``max_stay_length=60``'\` is specified then all congestion
+            stays that lasted longer than 60 days will be excluded from
+            the returned data.
+        include_vessels_currently_at_berth (bool):
+            Flag to indicate whether vessels that are
+            currently at berth should be included in
+            congestion statistics.
+        include_vessels_previously_berthed (bool):
+            Flag to indicate whether vessels that have
+            already visited a berth (but are not currently
+            in a berth) as part of the current Port Call
+            should be included in congestion statistics.
         format_ (str):
             The return format of the data ["csv","json", "xlsx"].
             Default is "json".
@@ -149,6 +167,8 @@ class GetCongestionRequest(proto.Message):
 
     laden_status = proto.RepeatedField(proto.STRING, number=19)
 
+    imo = proto.RepeatedField(proto.INT32, number=26)
+
     segment = proto.RepeatedField(proto.STRING, number=7)
 
     sub_segment = proto.RepeatedField(proto.STRING, number=8)
@@ -162,6 +182,12 @@ class GetCongestionRequest(proto.Message):
     last_load_port_id = proto.RepeatedField(proto.INT32, number=13)
 
     exclude = proto.Field(proto.INT32, number=14)
+
+    max_stay_length = proto.Field(proto.INT32, number=23)
+
+    include_vessels_currently_at_berth = proto.Field(proto.BOOL, number=24)
+
+    include_vessels_previously_berthed = proto.Field(proto.BOOL, number=25)
 
     format_ = proto.Field(proto.STRING, number=15)
 

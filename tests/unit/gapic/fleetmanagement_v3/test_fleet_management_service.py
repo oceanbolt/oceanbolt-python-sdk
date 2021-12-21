@@ -433,6 +433,8 @@ def test_create_fleet(transport: str = 'grpc', request_type=service.CreateFleetR
 
             fleet_name='fleet_name_value',
 
+            platform='platform_value',
+
             owner_user_id='owner_user_id_value',
 
             organization='organization_value',
@@ -454,6 +456,8 @@ def test_create_fleet(transport: str = 'grpc', request_type=service.CreateFleetR
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -483,6 +487,7 @@ async def test_create_fleet_async(transport: str = 'grpc_asyncio', request_type=
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet(
             fleet_id='fleet_id_value',
             fleet_name='fleet_name_value',
+            platform='platform_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
         ))
@@ -501,6 +506,8 @@ async def test_create_fleet_async(transport: str = 'grpc_asyncio', request_type=
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -603,6 +610,8 @@ def test_describe_fleet(transport: str = 'grpc', request_type=service.GetFleetRe
 
             fleet_name='fleet_name_value',
 
+            platform='platform_value',
+
             owner_user_id='owner_user_id_value',
 
             organization='organization_value',
@@ -624,6 +633,8 @@ def test_describe_fleet(transport: str = 'grpc', request_type=service.GetFleetRe
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -653,6 +664,7 @@ async def test_describe_fleet_async(transport: str = 'grpc_asyncio', request_typ
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet(
             fleet_id='fleet_id_value',
             fleet_name='fleet_name_value',
+            platform='platform_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
         ))
@@ -671,6 +683,8 @@ async def test_describe_fleet_async(transport: str = 'grpc_asyncio', request_typ
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -702,6 +716,8 @@ def test_rename_fleet(transport: str = 'grpc', request_type=service.RenameFleetR
 
             fleet_name='fleet_name_value',
 
+            platform='platform_value',
+
             owner_user_id='owner_user_id_value',
 
             organization='organization_value',
@@ -723,6 +739,8 @@ def test_rename_fleet(transport: str = 'grpc', request_type=service.RenameFleetR
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -752,6 +770,7 @@ async def test_rename_fleet_async(transport: str = 'grpc_asyncio', request_type=
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet(
             fleet_id='fleet_id_value',
             fleet_name='fleet_name_value',
+            platform='platform_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
         ))
@@ -770,6 +789,8 @@ async def test_rename_fleet_async(transport: str = 'grpc_asyncio', request_type=
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -801,6 +822,8 @@ def test_share_fleet(transport: str = 'grpc', request_type=service.ShareFleetReq
 
             fleet_name='fleet_name_value',
 
+            platform='platform_value',
+
             owner_user_id='owner_user_id_value',
 
             organization='organization_value',
@@ -822,6 +845,8 @@ def test_share_fleet(transport: str = 'grpc', request_type=service.ShareFleetReq
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -851,6 +876,7 @@ async def test_share_fleet_async(transport: str = 'grpc_asyncio', request_type=s
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet(
             fleet_id='fleet_id_value',
             fleet_name='fleet_name_value',
+            platform='platform_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
         ))
@@ -869,6 +895,8 @@ async def test_share_fleet_async(transport: str = 'grpc_asyncio', request_type=s
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -900,6 +928,8 @@ def test_unshare_fleet(transport: str = 'grpc', request_type=service.ShareFleetR
 
             fleet_name='fleet_name_value',
 
+            platform='platform_value',
+
             owner_user_id='owner_user_id_value',
 
             organization='organization_value',
@@ -921,6 +951,8 @@ def test_unshare_fleet(transport: str = 'grpc', request_type=service.ShareFleetR
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
@@ -950,6 +982,7 @@ async def test_unshare_fleet_async(transport: str = 'grpc_asyncio', request_type
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet(
             fleet_id='fleet_id_value',
             fleet_name='fleet_name_value',
+            platform='platform_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
         ))
@@ -968,6 +1001,8 @@ async def test_unshare_fleet_async(transport: str = 'grpc_asyncio', request_type
     assert response.fleet_id == 'fleet_id_value'
 
     assert response.fleet_name == 'fleet_name_value'
+
+    assert response.platform == 'platform_value'
 
     assert response.owner_user_id == 'owner_user_id_value'
 
