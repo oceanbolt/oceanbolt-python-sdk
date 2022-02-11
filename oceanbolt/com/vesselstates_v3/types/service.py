@@ -54,8 +54,7 @@ class GetVesselStatesRequest(proto.Message):
 
 
 class GetVesselStatesForDateRequest(proto.Message):
-    r"""Request message for
-    VesselStateService.GetAllVesselStatesForDate
+    r"""Request message for VesselStateService.GetVesselStatesForDate
 
     Attributes:
         date (str):
@@ -72,7 +71,7 @@ class GetVesselStatesForDateRequest(proto.Message):
 
 class VesselStatesResponse(proto.Message):
     r"""Request message for VesselStateService.GetVesselStates and
-    VesselStateService.GetAllVesselStatesForDate.
+    VesselStateService.GetVesselStatesForDate.
 
     Attributes:
         vessel_states (Sequence[oceanbolt.com.vesselstates_v3.types.VesselState]):

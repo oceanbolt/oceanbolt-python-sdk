@@ -147,7 +147,7 @@ class VesselStateServiceAsyncClient:
             oceanbolt.com.vesselstates_v3.types.VesselStatesResponse:
                 Request message for
                 VesselStateService.GetVesselStates and
-                VesselStateService.GetAllVesselStatesForDate.
+                VesselStateService.GetVesselStatesForDate.
 
         """
         # Create or coerce a protobuf request object.
@@ -186,7 +186,7 @@ class VesselStateServiceAsyncClient:
         Args:
             request (:class:`oceanbolt.com.vesselstates_v3.types.GetVesselStatesForDateRequest`):
                 The request object. Request message for
-                VesselStateService.GetAllVesselStatesForDate
+                VesselStateService.GetVesselStatesForDate
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -198,7 +198,7 @@ class VesselStateServiceAsyncClient:
             oceanbolt.com.vesselstates_v3.types.VesselStatesResponse:
                 Request message for
                 VesselStateService.GetVesselStates and
-                VesselStateService.GetAllVesselStatesForDate.
+                VesselStateService.GetVesselStatesForDate.
 
         """
         # Create or coerce a protobuf request object.
