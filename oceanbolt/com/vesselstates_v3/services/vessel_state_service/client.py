@@ -32,27 +32,27 @@ from google.auth.transport.grpc import SslCredentials             # type: ignore
 from google.auth.exceptions import MutualTLSChannelError          # type: ignore
 from google.oauth2 import service_account                         # type: ignore
 
-from oceanbolt.com.vessels_v3.types import service
+from oceanbolt.com.vesselstates_v3.types import service
 
-from .transports.base import VesselServiceTransport, DEFAULT_CLIENT_INFO
-from .transports.grpc import VesselServiceGrpcTransport
-from .transports.grpc_asyncio import VesselServiceGrpcAsyncIOTransport
+from .transports.base import VesselStateServiceTransport, DEFAULT_CLIENT_INFO
+from .transports.grpc import VesselStateServiceGrpcTransport
+from .transports.grpc_asyncio import VesselStateServiceGrpcAsyncIOTransport
 
 
-class VesselServiceClientMeta(type):
-    """Metaclass for the VesselService client.
+class VesselStateServiceClientMeta(type):
+    """Metaclass for the VesselStateService client.
 
     This provides class-level methods for building and retrieving
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[VesselServiceTransport]]
-    _transport_registry['grpc'] = VesselServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = VesselServiceGrpcAsyncIOTransport
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[VesselStateServiceTransport]]
+    _transport_registry['grpc'] = VesselStateServiceGrpcTransport
+    _transport_registry['grpc_asyncio'] = VesselStateServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
             label: str = None,
-        ) -> Type[VesselServiceTransport]:
+        ) -> Type[VesselStateServiceTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -71,8 +71,10 @@ class VesselServiceClientMeta(type):
         return next(iter(cls._transport_registry.values()))
 
 
-class VesselServiceClient(metaclass=VesselServiceClientMeta):
-    """VesselService provides service to get vessel data"""
+class VesselStateServiceClient(metaclass=VesselStateServiceClientMeta):
+    """VesselStateService provides access to retrieve historical
+    vessel states data
+    """
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
@@ -118,7 +120,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            VesselServiceClient: The constructed client.
+            VesselStateServiceClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_info(info)
         kwargs["credentials"] = credentials
@@ -136,7 +138,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            VesselServiceClient: The constructed client.
+            VesselStateServiceClient: The constructed client.
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)
@@ -146,11 +148,11 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
     from_service_account_json = from_service_account_file
 
     @property
-    def transport(self) -> VesselServiceTransport:
+    def transport(self) -> VesselStateServiceTransport:
         """Return the transport used by the client instance.
 
         Returns:
-            VesselServiceTransport: The transport used by the client instance.
+            VesselStateServiceTransport: The transport used by the client instance.
         """
         return self._transport
 
@@ -211,11 +213,11 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[credentials.Credentials] = None,
-            transport: Union[str, VesselServiceTransport, None] = None,
+            transport: Union[str, VesselStateServiceTransport, None] = None,
             client_options: Optional[client_options_lib.ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the vessel service client.
+        """Instantiate the vessel state service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -223,7 +225,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, VesselServiceTransport]): The
+            transport (Union[str, VesselStateServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
             client_options (google.api_core.client_options.ClientOptions): Custom options for the
@@ -289,8 +291,8 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         # Save or instantiate the transport.
         # Ordinarily, we provide the transport, but allowing a custom transport
         # instance provides an extensibility point for unusual situations.
-        if isinstance(transport, VesselServiceTransport):
-            # transport is a VesselServiceTransport instance.
+        if isinstance(transport, VesselStateServiceTransport):
+            # transport is a VesselStateServiceTransport instance.
             if credentials or client_options.credentials_file:
                 raise ValueError('When providing a transport instance, '
                                  'provide its credentials directly.')
@@ -312,19 +314,20 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 client_info=client_info,
             )
 
-    def list_vessels(self,
-            request: service.ListVesselsRequest = None,
+    def get_vessel_states(self,
+            request: service.GetVesselStatesRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.ListVesselsResponse:
-        r"""Vessels gets a list of vessels for the given filter
-        parameters
+            ) -> service.VesselStatesResponse:
+        r"""Returns historical vessel states for the given dates
+        and imo numbers supplied.
 
         Args:
-            request (oceanbolt.com.vessels_v3.types.ListVesselsRequest):
-                The request object. Vessels
+            request (oceanbolt.com.vesselstates_v3.types.GetVesselStatesRequest):
+                The request object. Request message for
+                VesselStateService.GetVesselStates
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -333,21 +336,24 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.ListVesselsResponse:
+            oceanbolt.com.vesselstates_v3.types.VesselStatesResponse:
+                Request message for
+                VesselStateService.GetVesselStates and
+                VesselStateService.GetAllVesselStatesForDate.
 
         """
         # Create or coerce a protobuf request object.
 
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.ListVesselsRequest.
+        # in a service.GetVesselStatesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.ListVesselsRequest):
-            request = service.ListVesselsRequest(request)
+        if not isinstance(request, service.GetVesselStatesRequest):
+            request = service.GetVesselStatesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.list_vessels]
+        rpc = self._transport._wrapped_methods[self._transport.get_vessel_states]
 
         # Send the request.
         response = rpc(
@@ -360,18 +366,20 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         # Done; return the response.
         return response
 
-    def list_stoppage_events(self,
-            request: service.ListStoppageEventsRequest = None,
+    def get_vessel_states_for_date(self,
+            request: service.GetVesselStatesForDateRequest = None,
             *,
             retry: retries.Retry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.ListStoppageEventsResponse:
-        r"""
+            ) -> service.VesselStatesResponse:
+        r"""Returns all historical states for the entire fleet
+        for a single date.
 
         Args:
-            request (oceanbolt.com.vessels_v3.types.ListStoppageEventsRequest):
-                The request object.
+            request (oceanbolt.com.vesselstates_v3.types.GetVesselStatesForDateRequest):
+                The request object. Request message for
+                VesselStateService.GetAllVesselStatesForDate
 
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -380,21 +388,24 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.ListStoppageEventsResponse:
+            oceanbolt.com.vesselstates_v3.types.VesselStatesResponse:
+                Request message for
+                VesselStateService.GetVesselStates and
+                VesselStateService.GetAllVesselStatesForDate.
 
         """
         # Create or coerce a protobuf request object.
 
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.ListStoppageEventsRequest.
+        # in a service.GetVesselStatesForDateRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.ListStoppageEventsRequest):
-            request = service.ListStoppageEventsRequest(request)
+        if not isinstance(request, service.GetVesselStatesForDateRequest):
+            request = service.GetVesselStatesForDateRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.list_stoppage_events]
+        rpc = self._transport._wrapped_methods[self._transport.get_vessel_states_for_date]
 
         # Send the request.
         response = rpc(
@@ -416,7 +427,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-vessels',
+            'oceanbolt-com-vesselstates',
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -424,5 +435,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'VesselServiceClient',
+    'VesselStateServiceClient',
 )

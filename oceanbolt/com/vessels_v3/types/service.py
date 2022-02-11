@@ -202,14 +202,14 @@ class ListVesselsResponse(proto.Message):
 
 
 class ListStoppageEventsRequest(proto.Message):
-    r"""VesselStoppageEvents
+    r"""
 
     Attributes:
         imo (Sequence[int]):
             included vessel imos
-        startDate (str):
+        start_date (str):
 
-        endDate (str):
+        end_date (str):
 
         format_ (str):
             response format (default is json, supported:
@@ -218,9 +218,9 @@ class ListStoppageEventsRequest(proto.Message):
 
     imo = proto.RepeatedField(proto.INT32, number=1)
 
-    startDate = proto.Field(proto.STRING, number=2)
+    start_date = proto.Field(proto.STRING, number=2)
 
-    endDate = proto.Field(proto.STRING, number=3)
+    end_date = proto.Field(proto.STRING, number=3)
 
     format_ = proto.Field(proto.STRING, number=4)
 

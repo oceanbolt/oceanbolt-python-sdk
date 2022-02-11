@@ -22,6 +22,7 @@ from .tonnage import *
 from .dry_dock import *
 from .entities import *
 from .vessels import *
+from .vessel_states import *
 
 __all__ = (
     'CongestionTimeseries',
@@ -46,5 +47,7 @@ __all__ = (
     'DryDockHistoricalStays',
     'DryDockTimeseries',
     'StoppageEvents',
-    'Vessels'
+    'Vessels',
+    'VesselStates',
+    'VesselStatesForDate'
 )

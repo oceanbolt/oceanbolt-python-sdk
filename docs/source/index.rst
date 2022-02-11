@@ -122,6 +122,14 @@ API Reference
 
     distance_v3/distance
 
+.. toctree::
+    :maxdepth: 1
+    :caption: Vessel States
+
+    vesselstates_v3/vessel_states
+    vesselstates_v3/vessel_states_for_date
+
+
 Indices and tables
 ------------------
 

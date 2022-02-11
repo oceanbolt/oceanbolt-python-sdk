@@ -31,7 +31,7 @@ setuptools.setup(
     author="Oceanbolt",
     author_email="support@oceanbolt.com",
     license="MIT",
-    version='0.2.6',
+    version='0.2.7',
     packages=setuptools.PEP420PackageFinder.find(),
     namespace_packages=('oceanbolt', 'oceanbolt.com'),
     platforms='Posix; MacOS X; Windows',
@@ -56,6 +56,7 @@ setuptools.setup(
         'scripts/fixup_distancecalculator_v3_keywords.py',
         'scripts/fixup_custompolygon_v3_keywords.py',
         'scripts/fixup_vessels_v3_keywords.py',
+        'scripts/fixup_vesselstates_v3_keywords.py',
 
     ],
     classifiers=[

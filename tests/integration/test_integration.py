@@ -6,6 +6,8 @@ from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, Chin
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
 from oceanbolt.sdk.data import DryDockTimeseries, DryDockCurrentVessels, DryDockHistoricalStays
 from oceanbolt.sdk.data import Vessels
+from oceanbolt.sdk.data import VesselStates, VesselStatesForDate
+
 from oceanbolt.sdk.data import CustomPolygonTimeseries
 
 
@@ -55,6 +57,16 @@ def test_search_vessels():
 
 
 # Data endpoints
+def test_vessel_states():
+    df = VesselStates(__client__).get(imo=[9583706, 9659828], start_date="2020-01-01", end_date="2021-01-01")
+    assert len(df) > 0
+
+
+def test_vessel_states_for_date():
+    df = VesselStatesForDate(__client__).get(date="2020-01-01")
+    assert len(df) > 0
+
+
 def test_congestion_vessels():
     df = CongestionVessels(__client__).get(country_code=["cn"], start_date="2021-01-01")
     assert len(df) > 0
