@@ -19,7 +19,7 @@ from google.protobuf import timestamp_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='oceanbolt.com.ptypes.vesselstates.v1',
+    package='oceanbolt.com.ptypes.vesselstatespb.v1',
     manifest={
         'Platform',
         'LadenStatus',
@@ -80,15 +80,15 @@ class VesselState(proto.Message):
     r"""
 
     Attributes:
-        base_state (oceanbolt.com.ptypes.vesselstates_v1.types.BaseState):
+        base_state (oceanbolt.com.ptypes.vesselstatespb_v1.types.BaseState):
             Base state containing ground truth data for
             the vessel on a specific date
-        cargo_state (oceanbolt.com.ptypes.vesselstates_v1.types.CargoState):
+        cargo_state (oceanbolt.com.ptypes.vesselstatespb_v1.types.CargoState):
             Predicted and enriched fields relating to
             cargo state
-        parsed_destinations (Sequence[oceanbolt.com.ptypes.vesselstates_v1.types.ParsedDestination]):
+        parsed_destinations (Sequence[oceanbolt.com.ptypes.vesselstatespb_v1.types.ParsedDestination]):
 
-        predicted_destinations (Sequence[oceanbolt.com.ptypes.vesselstates_v1.types.PredictedDestination]):
+        predicted_destinations (Sequence[oceanbolt.com.ptypes.vesselstatespb_v1.types.PredictedDestination]):
 
     """
 
@@ -118,7 +118,7 @@ class BaseState(proto.Message):
     r"""
 
     Attributes:
-        platform (oceanbolt.com.ptypes.vesselstates_v1.types.Platform):
+        platform (oceanbolt.com.ptypes.vesselstatespb_v1.types.Platform):
 
         imo (int):
 
@@ -166,7 +166,7 @@ class BaseState(proto.Message):
 
         draught (float):
 
-        laden_status_draught (oceanbolt.com.ptypes.vesselstates_v1.types.LadenStatus):
+        laden_status_draught (oceanbolt.com.ptypes.vesselstatespb_v1.types.LadenStatus):
 
         hours_carried_forward (int):
 
@@ -290,11 +290,11 @@ class CargoState(proto.Message):
     Attributes:
         commodity_id (int):
 
-        laden_status_model (oceanbolt.com.ptypes.vesselstates_v1.types.LadenStatus):
+        laden_status_model (oceanbolt.com.ptypes.vesselstatespb_v1.types.LadenStatus):
 
         trade_flow_id (str):
 
-        vessel_status (oceanbolt.com.ptypes.vesselstates_v1.types.VesselStatus):
+        vessel_status (oceanbolt.com.ptypes.vesselstatespb_v1.types.VesselStatus):
 
         last_visited_port_id (int):
 
@@ -340,7 +340,7 @@ class PredictedDestinations(proto.Message):
     r"""
 
     Attributes:
-        predicted_destinations (Sequence[oceanbolt.com.ptypes.vesselstates_v1.types.PredictedDestination]):
+        predicted_destinations (Sequence[oceanbolt.com.ptypes.vesselstatespb_v1.types.PredictedDestination]):
 
     """
 
@@ -387,7 +387,7 @@ class ParsedDestinations(proto.Message):
     r"""
 
     Attributes:
-        parsed_destinations (Sequence[oceanbolt.com.ptypes.vesselstates_v1.types.ParsedDestination]):
+        parsed_destinations (Sequence[oceanbolt.com.ptypes.vesselstatespb_v1.types.ParsedDestination]):
 
     """
 
@@ -408,7 +408,7 @@ class ParsedDestination(proto.Message):
 
         country_code (str):
 
-        match_type (oceanbolt.com.ptypes.vesselstates_v1.types.ParsedDestination.DestinationMatchType):
+        match_type (oceanbolt.com.ptypes.vesselstatespb_v1.types.ParsedDestination.DestinationMatchType):
 
     """
     class DestinationMatchType(proto.Enum):

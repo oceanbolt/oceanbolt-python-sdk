@@ -20,7 +20,7 @@ from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package='oceanbolt.com.ptypes.ais.v1',
+    package='oceanbolt.com.ptypes.aispb.v1',
     manifest={
         'AisPositionExtended',
     },

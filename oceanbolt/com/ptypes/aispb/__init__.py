@@ -15,7 +15,7 @@
 #
 
 
-from oceanbolt.com.ptypes.ais_v1.types.ais import AisPositionExtended
+from oceanbolt.com.ptypes.aispb_v1.types.ais import AisPositionExtended
 
 __all__ = ('AisPositionExtended',
 )
