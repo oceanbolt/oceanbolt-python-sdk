@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,17 +39,16 @@ def partition(
 class entitiesCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'list_commodities': (),
-    'list_countries': (),
-    'list_ports': (),
-    'list_regions': (),
-    'list_regions_with_polygons': (),
-    'list_segments': (),
-    'list_zones': (),
-    'list_zones_with_polygons': (),
-    'search_polygons': ('q', ),
-    'search_vessels': ('q', ),
-
+        'list_commodities': (),
+        'list_countries': (),
+        'list_ports': (),
+        'list_regions': (),
+        'list_regions_with_polygons': (),
+        'list_segments': (),
+        'list_zones': (),
+        'list_zones_with_polygons': (),
+        'search_polygons': ('q', ),
+        'search_vessels': ('q', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -70,7 +67,7 @@ class entitiesCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -82,7 +79,7 @@ class entitiesCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

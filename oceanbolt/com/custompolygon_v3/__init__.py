@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +15,18 @@
 #
 
 from .services.custom_polygon_service import CustomPolygonServiceClient
+from .services.custom_polygon_service import CustomPolygonServiceAsyncClient
+
 from .types.service import CustomPolygonRequest
 from .types.service import CustomPolygonResponse
 from .types.service import TimeseriesGroup
 from .types.service import TimeseriesRow
 
-
 __all__ = (
-    'CustomPolygonRequest',
-    'CustomPolygonResponse',
-    'TimeseriesGroup',
-    'TimeseriesRow',
+    'CustomPolygonServiceAsyncClient',
+'CustomPolygonRequest',
+'CustomPolygonResponse',
 'CustomPolygonServiceClient',
+'TimeseriesGroup',
+'TimeseriesRow',
 )

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -125,51 +122,98 @@ class GetPortCallsRequest(proto.Message):
             values inclusive).
     """
 
-    imo = proto.RepeatedField(proto.INT32, number=1)
-
-    port_id = proto.RepeatedField(proto.INT32, number=2)
-
-    berth_id = proto.RepeatedField(proto.INT32, number=3)
-
-    unlocode = proto.RepeatedField(proto.STRING, number=7)
-
-    country_code = proto.RepeatedField(proto.STRING, number=8)
-
-    region = proto.RepeatedField(proto.STRING, number=9)
-
-    basin = proto.RepeatedField(proto.STRING, number=10)
-
-    latest_only = proto.Field(proto.BOOL, number=6)
-
-    next_token = proto.Field(proto.STRING, number=15)
-
-    max_results = proto.Field(proto.INT32, number=16)
-
-    format_ = proto.Field(proto.STRING, number=5)
-
-    segment = proto.RepeatedField(proto.STRING, number=11)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=27)
-
-    start_date = proto.Field(proto.STRING, number=12)
-
-    end_date = proto.Field(proto.STRING, number=13)
-
-    commodity = proto.RepeatedField(proto.STRING, number=17)
-
-    commodity_group = proto.RepeatedField(proto.STRING, number=30)
-
-    operation = proto.RepeatedField(proto.STRING, number=20)
-
-    sort = proto.Field(proto.STRING, number=18)
-
-    group_by = proto.Field(proto.STRING, number=19)
-
-    frequency = proto.Field(proto.STRING, number=21)
-
-    limit_groups = proto.Field(proto.BOOL, number=31)
-
-    dwt = proto.RepeatedField(proto.DOUBLE, number=37)
+    imo = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    port_id = proto.RepeatedField(
+        proto.INT32,
+        number=2,
+    )
+    berth_id = proto.RepeatedField(
+        proto.INT32,
+        number=3,
+    )
+    unlocode = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
+    country_code = proto.RepeatedField(
+        proto.STRING,
+        number=8,
+    )
+    region = proto.RepeatedField(
+        proto.STRING,
+        number=9,
+    )
+    basin = proto.RepeatedField(
+        proto.STRING,
+        number=10,
+    )
+    latest_only = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    next_token = proto.Field(
+        proto.STRING,
+        number=15,
+    )
+    max_results = proto.Field(
+        proto.INT32,
+        number=16,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=11,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=27,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=12,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    commodity = proto.RepeatedField(
+        proto.STRING,
+        number=17,
+    )
+    commodity_group = proto.RepeatedField(
+        proto.STRING,
+        number=30,
+    )
+    operation = proto.RepeatedField(
+        proto.STRING,
+        number=20,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=18,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=19,
+    )
+    frequency = proto.Field(
+        proto.STRING,
+        number=21,
+    )
+    limit_groups = proto.Field(
+        proto.BOOL,
+        number=31,
+    )
+    dwt = proto.RepeatedField(
+        proto.DOUBLE,
+        number=37,
+    )
 
 
 class GetPortCallsResponse(proto.Message):
@@ -192,17 +236,27 @@ class GetPortCallsResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    prev_token = proto.Field(proto.STRING, number=2)
-
-    next_token = proto.Field(proto.STRING, number=3)
-
-    data = proto.RepeatedField(proto.MESSAGE, number=7,
+    prev_token = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    next_token = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    data = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
         message='PortCall',
     )
-
-    csv = proto.Field(proto.STRING, number=8)
-
-    xlsx = proto.Field(proto.STRING, number=9)
+    csv = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=9,
+    )
 
 
 class PortCall(proto.Message):
@@ -281,83 +335,135 @@ class PortCall(proto.Message):
             the vessels only visited an anchorage.
     """
 
-    voyage_id = proto.Field(proto.STRING, number=16)
-
-    port_call_id = proto.Field(proto.STRING, number=15)
-
-    imo = proto.Field(proto.INT32, number=1)
-
-    vessel_name = proto.Field(proto.STRING, number=2)
-
-    port_id = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.Int32Value,
+    voyage_id = proto.Field(
+        proto.STRING,
+        number=16,
     )
-
-    port_name = proto.Field(proto.STRING, number=4)
-
-    segment = proto.Field(proto.STRING, number=18)
-
-    sub_segment = proto.Field(proto.STRING, number=19)
-
-    unlocode = proto.Field(proto.STRING, number=25)
-
-    berth_id = proto.Field(proto.MESSAGE, number=27,
-        message=wrappers.Int32Value,
+    port_call_id = proto.Field(
+        proto.STRING,
+        number=15,
     )
-
-    berth_name = proto.Field(proto.STRING, number=5)
-
-    anchorage_id = proto.Field(proto.MESSAGE, number=28,
-        message=wrappers.Int32Value,
+    imo = proto.Field(
+        proto.INT32,
+        number=1,
     )
-
-    anchorage_name = proto.Field(proto.STRING, number=6)
-
-    arrived_at = proto.Field(proto.STRING, number=7)
-
-    berthed_at = proto.Field(proto.STRING, number=8)
-
-    unberthed_at = proto.Field(proto.STRING, number=26)
-
-    departed_at = proto.Field(proto.STRING, number=9)
-
-    days_in_port = proto.Field(proto.MESSAGE, number=10,
-        message=wrappers.DoubleValue,
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=2,
     )
-
-    days_waiting = proto.Field(proto.MESSAGE, number=11,
-        message=wrappers.DoubleValue,
+    port_id = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.Int32Value,
     )
-
-    days_at_berth = proto.Field(proto.MESSAGE, number=12,
-        message=wrappers.DoubleValue,
+    port_name = proto.Field(
+        proto.STRING,
+        number=4,
     )
-
-    country_code = proto.Field(proto.STRING, number=13)
-
-    operation = proto.Field(proto.STRING, number=14)
-
-    voyage_type = proto.Field(proto.STRING, number=17)
-
-    commodity = proto.Field(proto.STRING, number=20)
-
-    commodity_value = proto.Field(proto.STRING, number=21)
-
-    commodity_group = proto.Field(proto.STRING, number=22)
-
-    volume = proto.Field(proto.MESSAGE, number=23,
-        message=wrappers.DoubleValue,
+    segment = proto.Field(
+        proto.STRING,
+        number=18,
     )
-
-    port_visited = proto.Field(proto.BOOL, number=24)
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=19,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=25,
+    )
+    berth_id = proto.Field(
+        proto.MESSAGE,
+        number=27,
+        message=wrappers_pb2.Int32Value,
+    )
+    berth_name = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    anchorage_id = proto.Field(
+        proto.MESSAGE,
+        number=28,
+        message=wrappers_pb2.Int32Value,
+    )
+    anchorage_name = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    berthed_at = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    unberthed_at = proto.Field(
+        proto.STRING,
+        number=26,
+    )
+    departed_at = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    days_in_port = proto.Field(
+        proto.MESSAGE,
+        number=10,
+        message=wrappers_pb2.DoubleValue,
+    )
+    days_waiting = proto.Field(
+        proto.MESSAGE,
+        number=11,
+        message=wrappers_pb2.DoubleValue,
+    )
+    days_at_berth = proto.Field(
+        proto.MESSAGE,
+        number=12,
+        message=wrappers_pb2.DoubleValue,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    operation = proto.Field(
+        proto.STRING,
+        number=14,
+    )
+    voyage_type = proto.Field(
+        proto.STRING,
+        number=17,
+    )
+    commodity = proto.Field(
+        proto.STRING,
+        number=20,
+    )
+    commodity_value = proto.Field(
+        proto.STRING,
+        number=21,
+    )
+    commodity_group = proto.Field(
+        proto.STRING,
+        number=22,
+    )
+    volume = proto.Field(
+        proto.MESSAGE,
+        number=23,
+        message=wrappers_pb2.DoubleValue,
+    )
+    port_visited = proto.Field(
+        proto.BOOL,
+        number=24,
+    )
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class EmptyResponse(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class GetPortParticularsRequest(proto.Message):
@@ -380,17 +486,30 @@ class GetPortParticularsRequest(proto.Message):
             calls in last X days.
     """
 
-    start_date = proto.Field(proto.STRING, number=1)
-
-    end_date = proto.Field(proto.STRING, number=2)
-
-    port_id = proto.Field(proto.INT32, number=3)
-
-    berth_id = proto.Field(proto.INT32, number=4)
-
-    unlocode = proto.Field(proto.STRING, number=5)
-
-    last_n_days = proto.Field(proto.INT32, number=6)
+    start_date = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    port_id = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    berth_id = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    last_n_days = proto.Field(
+        proto.INT32,
+        number=6,
+    )
 
 
 class Statistic(proto.Message):
@@ -416,21 +535,38 @@ class Statistic(proto.Message):
             mean of observed values.
     """
 
-    min_ = proto.Field(proto.DOUBLE, number=1)
-
-    max_ = proto.Field(proto.DOUBLE, number=2)
-
-    percentile_10 = proto.Field(proto.DOUBLE, number=3)
-
-    percentile_50 = proto.Field(proto.DOUBLE, number=8)
-
-    percentile_90 = proto.Field(proto.DOUBLE, number=10)
-
-    percentile_95 = proto.Field(proto.DOUBLE, number=11)
-
-    percentile_99 = proto.Field(proto.DOUBLE, number=13)
-
-    mean = proto.Field(proto.DOUBLE, number=12)
+    min_ = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    max_ = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    percentile_10 = proto.Field(
+        proto.DOUBLE,
+        number=3,
+    )
+    percentile_50 = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
+    percentile_90 = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    percentile_95 = proto.Field(
+        proto.DOUBLE,
+        number=11,
+    )
+    percentile_99 = proto.Field(
+        proto.DOUBLE,
+        number=13,
+    )
+    mean = proto.Field(
+        proto.DOUBLE,
+        number=12,
+    )
 
 
 class GetPortParticularsResponse(proto.Message):
@@ -457,29 +593,38 @@ class GetPortParticularsResponse(proto.Message):
             available).
     """
 
-    number_of_port_calls = proto.Field(proto.INT32, number=7)
-
-    loa = proto.Field(proto.MESSAGE, number=1,
+    number_of_port_calls = proto.Field(
+        proto.INT32,
+        number=7,
+    )
+    loa = proto.Field(
+        proto.MESSAGE,
+        number=1,
         message='Statistic',
     )
-
-    beam = proto.Field(proto.MESSAGE, number=2,
+    beam = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='Statistic',
     )
-
-    max_draught = proto.Field(proto.MESSAGE, number=3,
+    max_draught = proto.Field(
+        proto.MESSAGE,
+        number=3,
         message='Statistic',
     )
-
-    reported_draught = proto.Field(proto.MESSAGE, number=4,
+    reported_draught = proto.Field(
+        proto.MESSAGE,
+        number=4,
         message='Statistic',
     )
-
-    dwt = proto.Field(proto.MESSAGE, number=5,
+    dwt = proto.Field(
+        proto.MESSAGE,
+        number=5,
         message='Statistic',
     )
-
-    air_draught = proto.Field(proto.MESSAGE, number=6,
+    air_draught = proto.Field(
+        proto.MESSAGE,
+        number=6,
         message='Statistic',
     )
 
@@ -498,13 +643,19 @@ class GetPortCallTimeseriesResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=4)
-
-    xlsx = proto.Field(proto.STRING, number=5)
+    csv = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=5,
+    )
 
 
 class TimeseriesGroup(proto.Message):
@@ -521,13 +672,18 @@ class TimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    group_value = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=3,
+    group_value = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='TimeseriesRow',
     )
 
@@ -542,10 +698,14 @@ class TimeseriesRow(proto.Message):
             The value of the timeseries row.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    value = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    value = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
 
 

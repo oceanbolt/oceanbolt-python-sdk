@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.congestion_service import CongestionServiceClient
+from .services.congestion_service import CongestionServiceAsyncClient
+
 from .types.service import CongestionResponse
 from .types.service import CongestionSplitRow
 from .types.service import CongestionStay
@@ -25,15 +26,15 @@ from .types.service import EmptyParams
 from .types.service import EmptyResponse
 from .types.service import GetCongestionRequest
 
-
 __all__ = (
-    'CongestionResponse',
-    'CongestionSplitRow',
-    'CongestionStay',
-    'CongestionTimeseriesGroup',
-    'CongestionTimeseriesRow',
-    'EmptyParams',
-    'EmptyResponse',
-    'GetCongestionRequest',
+    'CongestionServiceAsyncClient',
+'CongestionResponse',
 'CongestionServiceClient',
+'CongestionSplitRow',
+'CongestionStay',
+'CongestionTimeseriesGroup',
+'CongestionTimeseriesRow',
+'EmptyParams',
+'EmptyResponse',
+'GetCongestionRequest',
 )

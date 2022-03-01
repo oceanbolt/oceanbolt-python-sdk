@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.congestion_v3.services.congestion_service.async_client import CongestionServiceAsyncClient
 from oceanbolt.com.congestion_v3.services.congestion_service.client import CongestionServiceClient
+from oceanbolt.com.congestion_v3.services.congestion_service.async_client import CongestionServiceAsyncClient
+
 from oceanbolt.com.congestion_v3.types.service import CongestionResponse
 from oceanbolt.com.congestion_v3.types.service import CongestionSplitRow
 from oceanbolt.com.congestion_v3.types.service import CongestionStay
@@ -26,10 +26,9 @@ from oceanbolt.com.congestion_v3.types.service import EmptyParams
 from oceanbolt.com.congestion_v3.types.service import EmptyResponse
 from oceanbolt.com.congestion_v3.types.service import GetCongestionRequest
 
-__all__ = (
-    'CongestionResponse',
+__all__ = ('CongestionServiceClient',
     'CongestionServiceAsyncClient',
-    'CongestionServiceClient',
+    'CongestionResponse',
     'CongestionSplitRow',
     'CongestionStay',
     'CongestionTimeseriesGroup',

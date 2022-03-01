@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service.async_client import PolygonManagementServiceAsyncClient
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service.client import PolygonManagementServiceClient
+from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service.async_client import PolygonManagementServiceAsyncClient
+
 from oceanbolt.com.polygonmanagement_v3.types.service import AddPolygonRequest
 from oceanbolt.com.polygonmanagement_v3.types.service import BatchPolygonsRequest
 from oceanbolt.com.polygonmanagement_v3.types.service import CopyLayerRequest
@@ -37,7 +37,8 @@ from oceanbolt.com.polygonmanagement_v3.types.service import RenameLayerRequest
 from oceanbolt.com.polygonmanagement_v3.types.service import ShareLayerRequest
 from oceanbolt.com.polygonmanagement_v3.types.service import UpdatePolygonRequest
 
-__all__ = (
+__all__ = ('PolygonManagementServiceClient',
+    'PolygonManagementServiceAsyncClient',
     'AddPolygonRequest',
     'BatchPolygonsRequest',
     'CopyLayerRequest',
@@ -52,8 +53,6 @@ __all__ = (
     'Layers',
     'ListPolygonsRequest',
     'Polygon',
-    'PolygonManagementServiceAsyncClient',
-    'PolygonManagementServiceClient',
     'PolygonParams',
     'Polygons',
     'RenameLayerRequest',

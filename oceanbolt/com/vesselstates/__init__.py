@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +14,18 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.vesselstates_v3.services.vessel_state_service.async_client import VesselStateServiceAsyncClient
 from oceanbolt.com.vesselstates_v3.services.vessel_state_service.client import VesselStateServiceClient
+from oceanbolt.com.vesselstates_v3.services.vessel_state_service.async_client import VesselStateServiceAsyncClient
+
 from oceanbolt.com.vesselstates_v3.types.service import GetVesselStatesForDateRequest
 from oceanbolt.com.vesselstates_v3.types.service import GetVesselStatesRequest
 from oceanbolt.com.vesselstates_v3.types.service import VesselState
 from oceanbolt.com.vesselstates_v3.types.service import VesselStatesResponse
 
-__all__ = (
+__all__ = ('VesselStateServiceClient',
+    'VesselStateServiceAsyncClient',
     'GetVesselStatesForDateRequest',
     'GetVesselStatesRequest',
     'VesselState',
-    'VesselStateServiceAsyncClient',
-    'VesselStateServiceClient',
     'VesselStatesResponse',
 )

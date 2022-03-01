@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.tradeflows_v3.services.trade_flow_service.async_client import TradeFlowServiceAsyncClient
 from oceanbolt.com.tradeflows_v3.services.trade_flow_service.client import TradeFlowServiceClient
+from oceanbolt.com.tradeflows_v3.services.trade_flow_service.async_client import TradeFlowServiceAsyncClient
+
 from oceanbolt.com.tradeflows_v3.types.service import AggregationGroup
 from oceanbolt.com.tradeflows_v3.types.service import AggregationRow
 from oceanbolt.com.tradeflows_v3.types.service import EmptyParams
@@ -25,8 +25,8 @@ from oceanbolt.com.tradeflows_v3.types.service import GeoPoint
 from oceanbolt.com.tradeflows_v3.types.service import GetLocationVolumeResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowAggregationResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowHistogramResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowTimeseriesResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowsResponse
+from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowTimeseriesResponse
 from oceanbolt.com.tradeflows_v3.types.service import GetTradeLaneMetricsResponse
 from oceanbolt.com.tradeflows_v3.types.service import HistogramGroup
 from oceanbolt.com.tradeflows_v3.types.service import LocationVolume
@@ -36,7 +36,8 @@ from oceanbolt.com.tradeflows_v3.types.service import TradeFlow
 from oceanbolt.com.tradeflows_v3.types.service import TradeFlowDataRequest
 from oceanbolt.com.tradeflows_v3.types.service import TradeLaneMetric
 
-__all__ = (
+__all__ = ('TradeFlowServiceClient',
+    'TradeFlowServiceAsyncClient',
     'AggregationGroup',
     'AggregationRow',
     'EmptyParams',
@@ -45,8 +46,8 @@ __all__ = (
     'GetLocationVolumeResponse',
     'GetTradeFlowAggregationResponse',
     'GetTradeFlowHistogramResponse',
-    'GetTradeFlowTimeseriesResponse',
     'GetTradeFlowsResponse',
+    'GetTradeFlowTimeseriesResponse',
     'GetTradeLaneMetricsResponse',
     'HistogramGroup',
     'LocationVolume',
@@ -54,7 +55,5 @@ __all__ = (
     'TimeseriesRow',
     'TradeFlow',
     'TradeFlowDataRequest',
-    'TradeFlowServiceAsyncClient',
-    'TradeFlowServiceClient',
     'TradeLaneMetric',
 )

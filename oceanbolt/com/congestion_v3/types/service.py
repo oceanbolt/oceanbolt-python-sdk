@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -37,11 +34,13 @@ __protobuf__ = proto.module(
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class EmptyResponse(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class GetCongestionRequest(proto.Message):
@@ -151,57 +150,110 @@ class GetCongestionRequest(proto.Message):
             values inclusive).
     """
 
-    port_id = proto.RepeatedField(proto.INT32, number=1)
-
-    port_unlocode = proto.RepeatedField(proto.STRING, number=18)
-
-    country_code = proto.RepeatedField(proto.STRING, number=2)
-
-    region_id = proto.RepeatedField(proto.STRING, number=3)
-
-    operation = proto.RepeatedField(proto.STRING, number=4)
-
-    commodity = proto.RepeatedField(proto.STRING, number=5)
-
-    commodity_group = proto.RepeatedField(proto.STRING, number=6)
-
-    laden_status = proto.RepeatedField(proto.STRING, number=19)
-
-    imo = proto.RepeatedField(proto.INT32, number=26)
-
-    segment = proto.RepeatedField(proto.STRING, number=7)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=8)
-
-    group_by = proto.Field(proto.STRING, number=10)
-
-    frequency = proto.Field(proto.STRING, number=11)
-
-    last_load_country_code = proto.RepeatedField(proto.STRING, number=12)
-
-    last_load_port_id = proto.RepeatedField(proto.INT32, number=13)
-
-    exclude = proto.Field(proto.INT32, number=14)
-
-    max_stay_length = proto.Field(proto.INT32, number=23)
-
-    include_vessels_currently_at_berth = proto.Field(proto.BOOL, number=24)
-
-    include_vessels_previously_berthed = proto.Field(proto.BOOL, number=25)
-
-    format_ = proto.Field(proto.STRING, number=15)
-
-    start_date = proto.Field(proto.STRING, number=16)
-
-    end_date = proto.Field(proto.STRING, number=17)
-
-    last_n_days = proto.Field(proto.INT32, number=20)
-
-    sort = proto.Field(proto.STRING, number=21)
-
-    display_date = proto.Field(proto.STRING, number=22)
-
-    dwt = proto.RepeatedField(proto.DOUBLE, number=33)
+    port_id = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    port_unlocode = proto.RepeatedField(
+        proto.STRING,
+        number=18,
+    )
+    country_code = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    region_id = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    operation = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    commodity = proto.RepeatedField(
+        proto.STRING,
+        number=5,
+    )
+    commodity_group = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    laden_status = proto.RepeatedField(
+        proto.STRING,
+        number=19,
+    )
+    imo = proto.RepeatedField(
+        proto.INT32,
+        number=26,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=8,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    frequency = proto.Field(
+        proto.STRING,
+        number=11,
+    )
+    last_load_country_code = proto.RepeatedField(
+        proto.STRING,
+        number=12,
+    )
+    last_load_port_id = proto.RepeatedField(
+        proto.INT32,
+        number=13,
+    )
+    exclude = proto.Field(
+        proto.INT32,
+        number=14,
+    )
+    max_stay_length = proto.Field(
+        proto.INT32,
+        number=23,
+    )
+    include_vessels_currently_at_berth = proto.Field(
+        proto.BOOL,
+        number=24,
+    )
+    include_vessels_previously_berthed = proto.Field(
+        proto.BOOL,
+        number=25,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=15,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=16,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=17,
+    )
+    last_n_days = proto.Field(
+        proto.INT32,
+        number=20,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=21,
+    )
+    display_date = proto.Field(
+        proto.STRING,
+        number=22,
+    )
+    dwt = proto.RepeatedField(
+        proto.DOUBLE,
+        number=33,
+    )
 
 
 class CongestionTimeseriesGroup(proto.Message):
@@ -215,9 +267,13 @@ class CongestionTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='CongestionTimeseriesRow',
     )
 
@@ -241,22 +297,29 @@ class CongestionTimeseriesRow(proto.Message):
             congested on the date.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
     )
-
-    avg_waiting_days = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.DoubleValue,
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    median_waiting_days = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    avg_waiting_days = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.DoubleValue,
+    )
+    median_waiting_days = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -289,39 +352,53 @@ class CongestionResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    number_of_current_vessels = proto.Field(proto.INT32, number=3)
-
-    current_top_ports = proto.RepeatedField(proto.MESSAGE, number=4,
+    number_of_current_vessels = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    current_top_ports = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
         message='CongestionSplitRow',
     )
-
-    current_top_sub_segments = proto.RepeatedField(proto.MESSAGE, number=5,
+    current_top_sub_segments = proto.RepeatedField(
+        proto.MESSAGE,
+        number=5,
         message='CongestionSplitRow',
     )
-
-    current_top_commodity_groups = proto.RepeatedField(proto.MESSAGE, number=6,
+    current_top_commodity_groups = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
         message='CongestionSplitRow',
     )
-
-    current_top_load_countries = proto.RepeatedField(proto.MESSAGE, number=7,
+    current_top_load_countries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
         message='CongestionSplitRow',
     )
-
-    timeseriesDefault = proto.Field(proto.MESSAGE, number=9,
+    timeseriesDefault = proto.Field(
+        proto.MESSAGE,
+        number=9,
         message='CongestionTimeseriesGroup',
     )
-
-    current_vessels = proto.RepeatedField(proto.MESSAGE, number=1,
+    current_vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='CongestionStay',
     )
-
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=2,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='CongestionTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=8)
-
-    xlsx = proto.Field(proto.STRING, number=10)
+    csv = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=10,
+    )
 
 
 class CongestionSplitRow(proto.Message):
@@ -340,22 +417,29 @@ class CongestionSplitRow(proto.Message):
 
     """
 
-    item = proto.Field(proto.STRING, number=1)
-
-    count = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
+    item = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    dwt = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    count = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.Int32Value,
     )
-
-    count_percent = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    dwt = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    dwt_percent = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    count_percent = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
+    )
+    dwt_percent = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -430,63 +514,110 @@ class CongestionStay(proto.Message):
             ballast).
     """
 
-    imo = proto.Field(proto.INT32, number=1)
-
-    vessel_name = proto.Field(proto.STRING, number=2)
-
-    segment = proto.Field(proto.STRING, number=6)
-
-    sub_segment = proto.Field(proto.STRING, number=7)
-
-    dwt = proto.Field(proto.DOUBLE, number=21)
-
-    current_port_id = proto.Field(proto.STRING, number=11)
-
-    current_port_name = proto.Field(proto.STRING, number=18)
-
-    current_country = proto.Field(proto.STRING, number=17)
-
-    current_country_code = proto.Field(proto.STRING, number=20)
-
-    arrived_at = proto.Field(proto.STRING, number=3)
-
-    waiting_time_days = proto.Field(proto.DOUBLE, number=10)
-
-    last_load_country = proto.Field(proto.STRING, number=8)
-
-    last_load_country_code = proto.Field(proto.STRING, number=15)
-
-    last_load_port_name = proto.Field(proto.STRING, number=13)
-
-    last_load_berth_name = proto.Field(proto.STRING, number=16)
-
-    last_port_departed_at = proto.Field(proto.STRING, number=14)
-
-    last_load_port_id = proto.Field(proto.INT32, number=9)
-
-    commodity_group = proto.Field(proto.STRING, number=4)
-
-    commodity = proto.Field(proto.STRING, number=5)
-
-    volume = proto.Field(proto.DOUBLE, number=19)
-
-    lat = proto.Field(proto.MESSAGE, number=22,
-        message=wrappers.DoubleValue,
+    imo = proto.Field(
+        proto.INT32,
+        number=1,
     )
-
-    lng = proto.Field(proto.MESSAGE, number=23,
-        message=wrappers.DoubleValue,
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=2,
     )
-
-    course = proto.Field(proto.MESSAGE, number=25,
-        message=wrappers.DoubleValue,
+    segment = proto.Field(
+        proto.STRING,
+        number=6,
     )
-
-    speed = proto.Field(proto.MESSAGE, number=24,
-        message=wrappers.DoubleValue,
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=7,
     )
-
-    laden_status = proto.Field(proto.STRING, number=26)
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=21,
+    )
+    current_port_id = proto.Field(
+        proto.STRING,
+        number=11,
+    )
+    current_port_name = proto.Field(
+        proto.STRING,
+        number=18,
+    )
+    current_country = proto.Field(
+        proto.STRING,
+        number=17,
+    )
+    current_country_code = proto.Field(
+        proto.STRING,
+        number=20,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    waiting_time_days = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    last_load_country = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    last_load_country_code = proto.Field(
+        proto.STRING,
+        number=15,
+    )
+    last_load_port_name = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    last_load_berth_name = proto.Field(
+        proto.STRING,
+        number=16,
+    )
+    last_port_departed_at = proto.Field(
+        proto.STRING,
+        number=14,
+    )
+    last_load_port_id = proto.Field(
+        proto.INT32,
+        number=9,
+    )
+    commodity_group = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    commodity = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    volume = proto.Field(
+        proto.DOUBLE,
+        number=19,
+    )
+    lat = proto.Field(
+        proto.MESSAGE,
+        number=22,
+        message=wrappers_pb2.DoubleValue,
+    )
+    lng = proto.Field(
+        proto.MESSAGE,
+        number=23,
+        message=wrappers_pb2.DoubleValue,
+    )
+    course = proto.Field(
+        proto.MESSAGE,
+        number=25,
+        message=wrappers_pb2.DoubleValue,
+    )
+    speed = proto.Field(
+        proto.MESSAGE,
+        number=24,
+        message=wrappers_pb2.DoubleValue,
+    )
+    laden_status = proto.Field(
+        proto.STRING,
+        number=26,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

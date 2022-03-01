@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,10 +39,9 @@ def partition(
 class congestionCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_congestion_timeseries': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
-    'get_congestion_vessels': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
-    'get_congestion_web': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
-
+        'get_congestion_timeseries': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
+        'get_congestion_vessels': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
+        'get_congestion_web': ('port_id', 'port_unlocode', 'country_code', 'region_id', 'operation', 'commodity', 'commodity_group', 'laden_status', 'imo', 'segment', 'sub_segment', 'group_by', 'frequency', 'last_load_country_code', 'last_load_port_id', 'exclude', 'max_stay_length', 'include_vessels_currently_at_berth', 'include_vessels_previously_berthed', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', 'dwt', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -63,7 +60,7 @@ class congestionCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -75,7 +72,7 @@ class congestionCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

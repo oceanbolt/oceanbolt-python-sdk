@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,11 +39,10 @@ def partition(
 class drydockCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_dry_dock_stays': ('imo', 'port_id', 'shipyard_id', 'unlocode', 'segment', 'sub_segment', 'start_date', 'end_date', 'latest_only', 'format_', 'sort', 'group_by', ),
-    'get_dry_dock_timeseries': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
-    'get_dry_dock_vessels': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
-    'get_dry_dock_web': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
-
+        'get_dry_dock_stays': ('imo', 'port_id', 'shipyard_id', 'unlocode', 'segment', 'sub_segment', 'start_date', 'end_date', 'latest_only', 'format_', 'sort', 'group_by', ),
+        'get_dry_dock_timeseries': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
+        'get_dry_dock_vessels': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
+        'get_dry_dock_web': ('port_id', 'port_unlocode', 'shipyard_id', 'country_code', 'region_id', 'segment', 'sub_segment', 'group_by', 'exclude', 'format_', 'start_date', 'end_date', 'last_n_days', 'sort', 'display_date', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -64,7 +61,7 @@ class drydockCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -76,7 +73,7 @@ class drydockCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

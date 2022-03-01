@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,26 +13,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
-from distutils import util
 import os
 import re
-from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions                            # type: ignore
-from google.api_core import gapic_v1                              # type: ignore
-from google.api_core import retry as retries                      # type: ignore
-from google.auth import credentials                               # type: ignore
+from google.api_core import client_options as client_options_lib
+from google.api_core import exceptions as core_exceptions
+from google.api_core import gapic_v1
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials             # type: ignore
 from google.auth.transport import mtls                            # type: ignore
 from google.auth.transport.grpc import SslCredentials             # type: ignore
 from google.auth.exceptions import MutualTLSChannelError          # type: ignore
 from google.oauth2 import service_account                         # type: ignore
 
-from oceanbolt.com.tonnage_v3.types import service
+try:
+    OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
+except AttributeError:  # pragma: NO COVER
+    OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from oceanbolt.com.tonnage_v3.types import service
 from .transports.base import TonnageServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import TonnageServiceGrpcTransport
 from .transports.grpc_asyncio import TonnageServiceGrpcAsyncIOTransport
@@ -47,13 +48,13 @@ class TonnageServiceClientMeta(type):
     objects.
     """
     _transport_registry = OrderedDict()  # type: Dict[str, Type[TonnageServiceTransport]]
-    _transport_registry['grpc'] = TonnageServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = TonnageServiceGrpcAsyncIOTransport
+    _transport_registry["grpc"] = TonnageServiceGrpcTransport
+    _transport_registry["grpc_asyncio"] = TonnageServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
             label: str = None,
         ) -> Type[TonnageServiceTransport]:
-        """Return an appropriate transport class.
+        """Returns an appropriate transport class.
 
         Args:
             label: The name of the desired transport. If none is
@@ -72,11 +73,12 @@ class TonnageServiceClientMeta(type):
 
 
 class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
-    """TonnageService provides am API service to get tonnage data"""
+    """TonnageService provides an API service to get tonnage data"""
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
-        """Convert api endpoint to mTLS endpoint.
+        """Converts api endpoint to mTLS endpoint.
+
         Convert "*.sandbox.googleapis.com" and "*.googleapis.com" to
         "*.mtls.sandbox.googleapis.com" and "*.mtls.googleapis.com" respectively.
         Args:
@@ -103,14 +105,15 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'api.oceanbolt.com'
+    DEFAULT_ENDPOINT = "api.oceanbolt.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
+        """Creates an instance of this client using the provided credentials
+            info.
 
         Args:
             info (dict): The service account private key info.
@@ -127,7 +130,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
     @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
-        file.
+            file.
 
         Args:
             filename (str): The path to the service account private key json
@@ -140,23 +143,24 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)
-        kwargs['credentials'] = credentials
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
     @property
     def transport(self) -> TonnageServiceTransport:
-        """Return the transport used by the client instance.
+        """Returns the transport used by the client instance.
 
         Returns:
-            TonnageServiceTransport: The transport used by the client instance.
+            TonnageServiceTransport: The transport used by the client
+                instance.
         """
         return self._transport
 
     @staticmethod
     def common_billing_account_path(billing_account: str, ) -> str:
-        """Return a fully-qualified billing_account string."""
+        """Returns a fully-qualified billing_account string."""
         return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
@@ -167,7 +171,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
     @staticmethod
     def common_folder_path(folder: str, ) -> str:
-        """Return a fully-qualified folder string."""
+        """Returns a fully-qualified folder string."""
         return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
@@ -178,7 +182,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
     @staticmethod
     def common_organization_path(organization: str, ) -> str:
-        """Return a fully-qualified organization string."""
+        """Returns a fully-qualified organization string."""
         return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
@@ -189,7 +193,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
     @staticmethod
     def common_project_path(project: str, ) -> str:
-        """Return a fully-qualified project string."""
+        """Returns a fully-qualified project string."""
         return "projects/{project}".format(project=project, )
 
     @staticmethod
@@ -200,7 +204,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
     @staticmethod
     def common_location_path(project: str, location: str, ) -> str:
-        """Return a fully-qualified location string."""
+        """Returns a fully-qualified location string."""
         return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
@@ -209,13 +213,72 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[client_options_lib.ClientOptions] = None):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        if client_options is None:
+            client_options = client_options_lib.ClientOptions()
+        use_client_cert = os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")
+        use_mtls_endpoint = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
+        if use_client_cert not in ("true", "false"):
+            raise ValueError("Environment variable `GOOGLE_API_USE_CLIENT_CERTIFICATE` must be either `true` or `false`")
+        if use_mtls_endpoint not in ("auto", "never", "always"):
+            raise MutualTLSChannelError("Environment variable `GOOGLE_API_USE_MTLS_ENDPOINT` must be `never`, `auto` or `always`")
+
+        # Figure out the client cert source to use.
+        client_cert_source = None
+        if use_client_cert == "true":
+            if client_options.client_cert_source:
+                client_cert_source = client_options.client_cert_source
+            elif mtls.has_default_client_cert_source():
+                client_cert_source = mtls.default_client_cert_source()
+
+        # Figure out which api endpoint to use.
+        if client_options.api_endpoint is not None:
+            api_endpoint = client_options.api_endpoint
+        elif use_mtls_endpoint == "always" or (use_mtls_endpoint == "auto" and client_cert_source):
+            api_endpoint = cls.DEFAULT_MTLS_ENDPOINT
+        else:
+            api_endpoint = cls.DEFAULT_ENDPOINT
+
+        return api_endpoint, client_cert_source
+
     def __init__(self, *,
-            credentials: Optional[credentials.Credentials] = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, TonnageServiceTransport, None] = None,
             client_options: Optional[client_options_lib.ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the tonnage service client.
+        """Instantiates the tonnage service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -257,50 +320,32 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
 
-        # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
+        api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
-        client_cert_source_func = None
-        is_mtls = False
-        if use_client_cert:
-            if client_options.client_cert_source:
-                is_mtls = True
-                client_cert_source_func = client_options.client_cert_source
-            else:
-                is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
-
-        # Figure out which api endpoint to use.
-        if client_options.api_endpoint is not None:
-            api_endpoint = client_options.api_endpoint
-        else:
-            use_mtls_env = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
-            if use_mtls_env == "never":
-                api_endpoint = self.DEFAULT_ENDPOINT
-            elif use_mtls_env == "always":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT
-            elif use_mtls_env == "auto":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-            else:
-                raise MutualTLSChannelError(
-                    "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
-                )
+        api_key_value = getattr(client_options, "api_key", None)
+        if api_key_value and credentials:
+            raise ValueError("client_options.api_key and credentials are mutually exclusive")
 
         # Save or instantiate the transport.
         # Ordinarily, we provide the transport, but allowing a custom transport
         # instance provides an extensibility point for unusual situations.
         if isinstance(transport, TonnageServiceTransport):
             # transport is a TonnageServiceTransport instance.
-            if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+            if credentials or client_options.credentials_file or api_key_value:
+                raise ValueError("When providing a transport instance, "
+                                 "provide its credentials directly.")
             if client_options.scopes:
                 raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its scopes directly."
+                    "When providing a transport instance, provide its scopes "
+                    "directly."
                 )
             self._transport = transport
         else:
+            import google.auth._default  # type: ignore
+
+            if api_key_value and hasattr(google.auth._default, "get_api_key_credentials"):
+                credentials = google.auth._default.get_api_key_credentials(api_key_value)
+
             Transport = type(self).get_transport_class(transport)
             self._transport = Transport(
                 credentials=credentials,
@@ -310,22 +355,40 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
                 client_cert_source_for_mtls=client_cert_source_func,
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
+                always_use_jwt_access=True,
             )
 
     def get_tonnage_zone_count(self,
-            request: service.GetTonnageDataRequest = None,
+            request: Union[service.GetTonnageDataRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneCountResponse:
         r"""Fetches tonnage counts timeseries.
 
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_zone_count():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageDataRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_zone_count(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest, dict]):
                 The request object. Request object for getting tonnage
                 zone data and fleet speed data.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -339,7 +402,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageDataRequest.
         # There's no risk of modifying the input as we've already verified
@@ -363,19 +425,36 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_speed(self,
-            request: service.GetTonnageDataRequest = None,
+            request: Union[service.GetTonnageDataRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetFleetSpeedResponse:
         r"""Fetches fleet speed timeseries.
 
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_fleet_speed():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageDataRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_fleet_speed(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest, dict]):
                 The request object. Request object for getting tonnage
                 zone data and fleet speed data.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -387,7 +466,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
                 Response object for FleetSpeed
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageDataRequest.
         # There's no risk of modifying the input as we've already verified
@@ -411,19 +489,36 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_global_tonnage_status(self,
-            request: service.GetTonnageDataRequest = None,
+            request: Union[service.GetTonnageDataRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetGlobalTonnageStatusResponse:
         r"""Fetches global tonnage status timeseries.
 
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_global_tonnage_status():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageDataRequest(
+                )
+
+                # Make the request
+                response = client.get_global_tonnage_status(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageDataRequest, dict]):
                 The request object. Request object for getting tonnage
                 zone data and fleet speed data.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -435,7 +530,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageDataRequest.
         # There's no risk of modifying the input as we've already verified
@@ -459,9 +553,9 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_status(self,
-            request: service.GetTonnageFleetRequest = None,
+            request: Union[service.GetTonnageFleetRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageFleetStatusResponse:
@@ -469,11 +563,29 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         have developed over time. This timeseries shows number
         of active vessels on the water at any given time.
 
+
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_fleet_status():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageFleetRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_fleet_status(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest, dict]):
                 The request object. Request object for
                 GetTonnageFleetStatus and GetTonnageFleetGrowth
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -487,7 +599,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageFleetRequest.
         # There's no risk of modifying the input as we've already verified
@@ -511,9 +622,9 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_growth(self,
-            request: service.GetTonnageFleetRequest = None,
+            request: Union[service.GetTonnageFleetRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageFleetGrowthResponse:
@@ -522,11 +633,29 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         of vessels added to/removed from the fleet during any
         given period.
 
+
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_fleet_growth():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageFleetRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_fleet_growth(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageFleetRequest, dict]):
                 The request object. Request object for
                 GetTonnageFleetStatus and GetTonnageFleetGrowth
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -540,7 +669,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageFleetRequest.
         # There's no risk of modifying the input as we've already verified
@@ -564,9 +692,9 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_chinese_waters(self,
-            request: service.TonnageChineseWatersRequest = None,
+            request: Union[service.TonnageChineseWatersRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.TonnageChineseWatersResponse:
@@ -575,11 +703,29 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         trading inside and outside of Chinese waters
         respectively.
 
+
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_chinese_waters():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.TonnageChineseWatersRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_chinese_waters(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.tonnage_v3.types.TonnageChineseWatersRequest):
+            request (Union[oceanbolt.com.tonnage_v3.types.TonnageChineseWatersRequest, dict]):
                 The request object. Request object for
                 TonnageChineseWaters
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -593,7 +739,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.TonnageChineseWatersRequest.
         # There's no risk of modifying the input as we've already verified
@@ -617,19 +762,37 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_zone_changes(self,
-            request: service.GetTonnageZoneChangesRequest = None,
+            request: Union[service.GetTonnageZoneChangesRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneChangesResponse:
         r"""Provides timeseries data on the number of vessels
         that cross zone boundaries during any given period.
 
-        Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageZoneChangesRequest):
-                The request object. Request object for TonnageZoneChange
 
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_zone_changes():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageZoneChangesRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_zone_changes(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageZoneChangesRequest, dict]):
+                The request object. Request object for TonnageZoneChange
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -641,7 +804,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
                 Response object for TonnageZoneChange
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageZoneChangesRequest.
         # There's no risk of modifying the input as we've already verified
@@ -665,19 +827,37 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_basin_count(self,
-            request: service.GetTonnageBasinRequest = None,
+            request: Union[service.GetTonnageBasinRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageBasinResponse:
         r"""Provides timeseries data on the number of vessels
         that are within the four major basins.
 
-        Args:
-            request (oceanbolt.com.tonnage_v3.types.GetTonnageBasinRequest):
-                The request object. GetTonnageBasin
 
+        .. code-block:: python
+
+            from oceanbolt.com import tonnage_v3
+
+            def sample_get_tonnage_basin_count():
+                # Create a client
+                client = tonnage_v3.TonnageServiceClient()
+
+                # Initialize request argument(s)
+                request = tonnage_v3.GetTonnageBasinRequest(
+                )
+
+                # Make the request
+                response = client.get_tonnage_basin_count(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.tonnage_v3.types.GetTonnageBasinRequest, dict]):
+                The request object. GetTonnageBasin
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -689,7 +869,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetTonnageBasinRequest.
         # There's no risk of modifying the input as we've already verified
@@ -712,16 +891,25 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         # Done; return the response.
         return response
 
+    def __enter__(self):
+        return self
 
+    def __exit__(self, type, value, traceback):
+        """Releases underlying transport's resources.
 
-
+        .. warning::
+            ONLY use as a context manager if the transport is NOT shared
+            with other clients! Exiting the with block will CLOSE the transport
+            and may cause errors in other clients!
+        """
+        self.transport.close()
 
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-tonnage',
+            "oceanbolt-com-tonnage",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -729,5 +917,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'TonnageServiceClient',
+    "TonnageServiceClient",
 )

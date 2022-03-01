@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.entity_service import EntityServiceClient
+from .services.entity_service import EntityServiceAsyncClient
+
 from .types.service import Commodity
 from .types.service import Country
 from .types.service import EmptyParams
@@ -41,31 +42,31 @@ from .types.service import Vessel
 from .types.service import Zone
 from .types.service import ZoneWithPolygon
 
-
 __all__ = (
-    'Commodity',
-    'Country',
-    'EmptyParams',
-    'ListCommoditiesResponse',
-    'ListCountriesRequest',
-    'ListCountriesResponse',
-    'ListPortsResponse',
-    'ListRegionsRequest',
-    'ListRegionsResponse',
-    'ListRegionsWithPolygonResponse',
-    'ListSegmentsResponse',
-    'ListTonnageZonesResponse',
-    'ListTonnageZonesWithPolygonsResponse',
-    'Polygon',
-    'Port',
-    'Region',
-    'RegionWithPolygon',
-    'SearchPolygonsResponse',
-    'SearchRequest',
-    'SearchVesselsResponse',
-    'Segment',
-    'Vessel',
-    'Zone',
-    'ZoneWithPolygon',
+    'EntityServiceAsyncClient',
+'Commodity',
+'Country',
+'EmptyParams',
 'EntityServiceClient',
+'ListCommoditiesResponse',
+'ListCountriesRequest',
+'ListCountriesResponse',
+'ListPortsResponse',
+'ListRegionsRequest',
+'ListRegionsResponse',
+'ListRegionsWithPolygonResponse',
+'ListSegmentsResponse',
+'ListTonnageZonesResponse',
+'ListTonnageZonesWithPolygonsResponse',
+'Polygon',
+'Port',
+'Region',
+'RegionWithPolygon',
+'SearchPolygonsResponse',
+'SearchRequest',
+'SearchVesselsResponse',
+'Segment',
+'Vessel',
+'Zone',
+'ZoneWithPolygon',
 )

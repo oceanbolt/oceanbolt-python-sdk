@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -107,31 +104,58 @@ class GetTonnageDataRequest(proto.Message):
             descing order. Allowed values: ["asc","desc"].
     """
 
-    zone_id = proto.RepeatedField(proto.INT32, number=1)
-
-    segment = proto.RepeatedField(proto.STRING, number=2)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=7)
-
-    direction = proto.RepeatedField(proto.STRING, number=3)
-
-    laden_status = proto.RepeatedField(proto.STRING, number=4)
-
-    port_status = proto.RepeatedField(proto.STRING, number=6)
-
-    group_by = proto.Field(proto.STRING, number=13)
-
-    exclude_mpv = proto.Field(proto.BOOL, number=8)
-
-    start_date = proto.Field(proto.STRING, number=9)
-
-    end_date = proto.Field(proto.STRING, number=10)
-
-    last_n_days = proto.Field(proto.INT32, number=11)
-
-    format_ = proto.Field(proto.STRING, number=5)
-
-    sort = proto.Field(proto.STRING, number=12)
+    zone_id = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
+    direction = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    laden_status = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    port_status = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    exclude_mpv = proto.Field(
+        proto.BOOL,
+        number=8,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    last_n_days = proto.Field(
+        proto.INT32,
+        number=11,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=12,
+    )
 
 
 class GetTonnageZoneCountResponse(proto.Message):
@@ -148,13 +172,19 @@ class GetTonnageZoneCountResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TonnageTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class GetFleetSpeedResponse(proto.Message):
@@ -171,13 +201,19 @@ class GetFleetSpeedResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TonnageTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class TonnageTimeseriesGroup(proto.Message):
@@ -191,9 +227,13 @@ class TonnageTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='TonnageTimeseriesRow',
     )
 
@@ -213,18 +253,24 @@ class TonnageTimeseriesRow(proto.Message):
             row.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
     )
-
-    avg_speed = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.DoubleValue,
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
+    )
+    avg_speed = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -252,23 +298,42 @@ class GetGlobalTonnageStatusRequest(proto.Message):
 
     """
 
-    direction = proto.RepeatedField(proto.STRING, number=1)
-
-    format_ = proto.Field(proto.STRING, number=2)
-
-    laden_status = proto.RepeatedField(proto.STRING, number=3)
-
-    period = proto.Field(proto.INT32, number=4)
-
-    segment = proto.RepeatedField(proto.STRING, number=5)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=7)
-
-    sort = proto.Field(proto.STRING, number=6)
-
-    start_date = proto.Field(proto.STRING, number=8)
-
-    end_date = proto.Field(proto.STRING, number=9)
+    direction = proto.RepeatedField(
+        proto.STRING,
+        number=1,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    laden_status = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    period = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=5,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=9,
+    )
 
 
 class GetGlobalTonnageStatusResponse(proto.Message):
@@ -283,13 +348,19 @@ class GetGlobalTonnageStatusResponse(proto.Message):
 
     """
 
-    global_tonnage_zone_counts = proto.RepeatedField(proto.MESSAGE, number=1,
+    global_tonnage_zone_counts = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='GlobalTonnageZoneCount',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class GlobalTonnageZoneCount(proto.Message):
@@ -310,22 +381,32 @@ class GlobalTonnageZoneCount(proto.Message):
 
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    zone_id = proto.Field(proto.INT32, number=2)
-
-    zone_name = proto.Field(proto.STRING, number=3)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    zone_id = proto.Field(
+        proto.INT32,
+        number=2,
     )
-
-    avg_speed = proto.Field(proto.MESSAGE, number=6,
-        message=wrappers.DoubleValue,
+    zone_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.Int32Value,
+    )
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
+    )
+    avg_speed = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -369,25 +450,46 @@ class GetTonnageFleetRequest(proto.Message):
             The UTC end date of the date filter.
     """
 
-    frequency = proto.Field(proto.STRING, number=1)
-
-    segment = proto.RepeatedField(proto.STRING, number=2)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=6)
-
-    group_by = proto.Field(proto.STRING, number=3)
-
-    metric = proto.Field(proto.STRING, number=4)
-
-    format_ = proto.Field(proto.STRING, number=5)
-
-    exclude_mpv = proto.Field(proto.BOOL, number=7)
-
-    sort = proto.Field(proto.STRING, number=8)
-
-    start_date = proto.Field(proto.STRING, number=9)
-
-    end_date = proto.Field(proto.STRING, number=10)
+    frequency = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    metric = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    exclude_mpv = proto.Field(
+        proto.BOOL,
+        number=7,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=10,
+    )
 
 
 class GetTonnageFleetStatusResponse(proto.Message):
@@ -404,13 +506,19 @@ class GetTonnageFleetStatusResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class GetTonnageFleetGrowthResponse(proto.Message):
@@ -427,13 +535,19 @@ class GetTonnageFleetGrowthResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='FleetGrowthTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class FleetGrowthTimeseriesGroup(proto.Message):
@@ -447,9 +561,13 @@ class FleetGrowthTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='FleetGrowthTimeseriesRow',
     )
 
@@ -472,18 +590,24 @@ class FleetGrowthTimeseriesRow(proto.Message):
             period.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    scrapped = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    delivered = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    scrapped = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    net = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.DoubleValue,
+    delivered = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
+    )
+    net = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -498,9 +622,13 @@ class TimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='TimeseriesRow',
     )
 
@@ -515,10 +643,14 @@ class TimeseriesRow(proto.Message):
             Value of the timeseries row.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    value = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    value = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -549,19 +681,34 @@ class TonnageChineseWatersRequest(proto.Message):
             Default is "json".
     """
 
-    start_date = proto.Field(proto.STRING, number=1)
-
-    end_date = proto.Field(proto.STRING, number=2)
-
-    segment = proto.RepeatedField(proto.STRING, number=3)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=4)
-
-    group_by = proto.Field(proto.STRING, number=5)
-
-    sort = proto.Field(proto.STRING, number=6)
-
-    format_ = proto.Field(proto.STRING, number=7)
+    start_date = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=7,
+    )
 
 
 class TonnageChineseWatersResponse(proto.Message):
@@ -578,13 +725,19 @@ class TonnageChineseWatersResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='ChineseWatersTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ChineseWatersTimeseriesGroup(proto.Message):
@@ -598,9 +751,13 @@ class ChineseWatersTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='ChineseWatersTimeseriesRow',
     )
 
@@ -625,22 +782,29 @@ class ChineseWatersTimeseriesRow(proto.Message):
             Chinese waters.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    inside_chinese_waters_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    inside_chinese_waters_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    inside_chinese_waters_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
     )
-
-    outside_chinese_waters_count = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
+    inside_chinese_waters_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    outside_chinese_waters_dwt = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    outside_chinese_waters_count = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.Int32Value,
+    )
+    outside_chinese_waters_dwt = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -683,27 +847,50 @@ class GetTonnageZoneChangesRequest(proto.Message):
             "monthly".
     """
 
-    from_zone_id = proto.RepeatedField(proto.INT32, number=1)
-
-    to_zone_id = proto.RepeatedField(proto.INT32, number=2)
-
-    segment = proto.RepeatedField(proto.STRING, number=3)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=4)
-
-    laden_status = proto.RepeatedField(proto.STRING, number=5)
-
-    start_date = proto.Field(proto.STRING, number=6)
-
-    end_date = proto.Field(proto.STRING, number=7)
-
-    group_by = proto.Field(proto.STRING, number=8)
-
-    sort = proto.Field(proto.STRING, number=9)
-
-    format_ = proto.Field(proto.STRING, number=10)
-
-    frequency = proto.Field(proto.STRING, number=11)
+    from_zone_id = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    to_zone_id = proto.RepeatedField(
+        proto.INT32,
+        number=2,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    laden_status = proto.RepeatedField(
+        proto.STRING,
+        number=5,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    frequency = proto.Field(
+        proto.STRING,
+        number=11,
+    )
 
 
 class GetTonnageZoneChangesResponse(proto.Message):
@@ -720,13 +907,19 @@ class GetTonnageZoneChangesResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='ZoneChangesTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ZoneChangesTimeseriesGroup(proto.Message):
@@ -740,9 +933,13 @@ class ZoneChangesTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='ZoneChangesTimeseriesRow',
     )
 
@@ -759,14 +956,19 @@ class ZoneChangesTimeseriesRow(proto.Message):
             The sum of dwt for the timeseries row.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
+    )
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -792,21 +994,38 @@ class GetTonnageBasinRequest(proto.Message):
 
     """
 
-    basin = proto.RepeatedField(proto.STRING, number=1)
-
-    segment = proto.RepeatedField(proto.STRING, number=2)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=3)
-
-    start_date = proto.Field(proto.STRING, number=4)
-
-    end_date = proto.Field(proto.STRING, number=5)
-
-    exclude_mpv = proto.Field(proto.BOOL, number=6)
-
-    last_n_days = proto.Field(proto.INT32, number=7)
-
-    format_ = proto.Field(proto.STRING, number=8)
+    basin = proto.RepeatedField(
+        proto.STRING,
+        number=1,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    exclude_mpv = proto.Field(
+        proto.BOOL,
+        number=6,
+    )
+    last_n_days = proto.Field(
+        proto.INT32,
+        number=7,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=8,
+    )
 
 
 class GetTonnageBasinResponse(proto.Message):
@@ -821,13 +1040,19 @@ class GetTonnageBasinResponse(proto.Message):
 
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TonnageTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class TonnageBasinTimeseriesGroup(proto.Message):
@@ -841,9 +1066,13 @@ class TonnageBasinTimeseriesGroup(proto.Message):
             Rows of timeseries data.
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='TonnageBasinTimeseriesRow',
     )
 
@@ -860,23 +1089,30 @@ class TonnageBasinTimeseriesRow(proto.Message):
             The sum of dwt for the timeseries row.
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
+    )
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""Empty params
+    """
 
 
 class EmptyResponse(proto.Message):
-    r""""""
+    r"""Empty response
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

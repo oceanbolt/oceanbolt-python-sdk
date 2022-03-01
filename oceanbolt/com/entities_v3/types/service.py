@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
 
@@ -50,7 +48,8 @@ __protobuf__ = proto.module(
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class ListSegmentsResponse(proto.Message):
@@ -61,7 +60,9 @@ class ListSegmentsResponse(proto.Message):
 
     """
 
-    segments = proto.RepeatedField(proto.MESSAGE, number=1,
+    segments = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Segment',
     )
 
@@ -92,25 +93,46 @@ class Segment(proto.Message):
 
     """
 
-    segment = proto.Field(proto.STRING, number=1)
-
-    segment_key = proto.Field(proto.STRING, number=6)
-
-    sub_segment = proto.Field(proto.STRING, number=2)
-
-    segment_int = proto.Field(proto.INT32, number=3)
-
-    sub_segment_int = proto.Field(proto.INT32, number=4)
-
-    sub_segment_key = proto.Field(proto.STRING, number=5)
-
-    cutoff_low = proto.Field(proto.DOUBLE, number=7)
-
-    cutoff_high = proto.Field(proto.DOUBLE, number=8)
-
-    platform = proto.Field(proto.STRING, number=9)
-
-    highlevel_type = proto.Field(proto.STRING, number=10)
+    segment = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    segment_key = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    segment_int = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    sub_segment_int = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    sub_segment_key = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    cutoff_low = proto.Field(
+        proto.DOUBLE,
+        number=7,
+    )
+    cutoff_high = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
+    platform = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    highlevel_type = proto.Field(
+        proto.STRING,
+        number=10,
+    )
 
 
 class ListPortsResponse(proto.Message):
@@ -121,7 +143,9 @@ class ListPortsResponse(proto.Message):
 
     """
 
-    ports = proto.RepeatedField(proto.MESSAGE, number=1,
+    ports = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Port',
     )
 
@@ -146,19 +170,34 @@ class Port(proto.Message):
 
     """
 
-    port_id = proto.Field(proto.INT32, number=1)
-
-    port_name = proto.Field(proto.STRING, number=2)
-
-    country_code = proto.Field(proto.STRING, number=3)
-
-    region = proto.Field(proto.STRING, number=4)
-
-    unlocode = proto.Field(proto.STRING, number=5)
-
-    unlocode_alias = proto.RepeatedField(proto.STRING, number=6)
-
-    port_name_alias = proto.RepeatedField(proto.STRING, number=7)
+    port_id = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    region = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    unlocode_alias = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    port_name_alias = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
 
 
 class ZoneWithPolygon(proto.Message):
@@ -181,19 +220,34 @@ class ZoneWithPolygon(proto.Message):
 
     """
 
-    zone_id = proto.Field(proto.INT32, number=1)
-
-    zone_name = proto.Field(proto.STRING, number=2)
-
-    zone_basin = proto.Field(proto.STRING, number=3)
-
-    geom_polygon_wkt = proto.Field(proto.STRING, number=4)
-
-    geom_polygon_geojson = proto.Field(proto.STRING, number=5)
-
-    geom_coordinate_wkt = proto.Field(proto.STRING, number=6)
-
-    geom_coordinate_geojson = proto.Field(proto.STRING, number=7)
+    zone_id = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    zone_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    zone_basin = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    geom_polygon_wkt = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    geom_polygon_geojson = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    geom_coordinate_wkt = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    geom_coordinate_geojson = proto.Field(
+        proto.STRING,
+        number=7,
+    )
 
 
 class ListTonnageZonesWithPolygonsResponse(proto.Message):
@@ -204,7 +258,9 @@ class ListTonnageZonesWithPolygonsResponse(proto.Message):
 
     """
 
-    zones = proto.RepeatedField(proto.MESSAGE, number=1,
+    zones = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='ZoneWithPolygon',
     )
 
@@ -219,9 +275,14 @@ class Zone(proto.Message):
 
     """
 
-    zone_id = proto.Field(proto.INT32, number=1)
-
-    zone_name = proto.Field(proto.STRING, number=2)
+    zone_id = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    zone_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ListTonnageZonesResponse(proto.Message):
@@ -232,7 +293,9 @@ class ListTonnageZonesResponse(proto.Message):
 
     """
 
-    zones = proto.RepeatedField(proto.MESSAGE, number=1,
+    zones = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Zone',
     )
 
@@ -245,7 +308,10 @@ class ListRegionsRequest(proto.Message):
 
     """
 
-    direction = proto.Field(proto.STRING, number=1)
+    direction = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class Region(proto.Message):
@@ -258,9 +324,14 @@ class Region(proto.Message):
 
     """
 
-    region_id = proto.Field(proto.STRING, number=1)
-
-    region_name = proto.Field(proto.STRING, number=2)
+    region_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    region_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ListRegionsResponse(proto.Message):
@@ -271,7 +342,9 @@ class ListRegionsResponse(proto.Message):
 
     """
 
-    regions = proto.RepeatedField(proto.MESSAGE, number=1,
+    regions = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Region',
     )
 
@@ -288,11 +361,18 @@ class RegionWithPolygon(proto.Message):
 
     """
 
-    region_id = proto.Field(proto.STRING, number=1)
-
-    region_name = proto.Field(proto.STRING, number=2)
-
-    geojson = proto.Field(proto.STRING, number=3)
+    region_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    region_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    geojson = proto.Field(
+        proto.STRING,
+        number=3,
+    )
 
 
 class ListRegionsWithPolygonResponse(proto.Message):
@@ -303,7 +383,9 @@ class ListRegionsWithPolygonResponse(proto.Message):
 
     """
 
-    regions = proto.RepeatedField(proto.MESSAGE, number=1,
+    regions = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='RegionWithPolygon',
     )
 
@@ -316,7 +398,10 @@ class ListCountriesRequest(proto.Message):
 
     """
 
-    direction = proto.Field(proto.STRING, number=1)
+    direction = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class Country(proto.Message):
@@ -329,9 +414,14 @@ class Country(proto.Message):
 
     """
 
-    country = proto.Field(proto.STRING, number=1)
-
-    country_code = proto.Field(proto.STRING, number=2)
+    country = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class ListCountriesResponse(proto.Message):
@@ -342,7 +432,9 @@ class ListCountriesResponse(proto.Message):
 
     """
 
-    countries = proto.RepeatedField(proto.MESSAGE, number=1,
+    countries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Country',
     )
 
@@ -363,15 +455,26 @@ class Commodity(proto.Message):
 
     """
 
-    commodity = proto.Field(proto.STRING, number=1)
-
-    commodity_id = proto.Field(proto.INT32, number=4)
-
-    commodity_value = proto.Field(proto.STRING, number=2)
-
-    commodity_group = proto.Field(proto.STRING, number=3)
-
-    platform = proto.Field(proto.STRING, number=5)
+    commodity = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    commodity_id = proto.Field(
+        proto.INT32,
+        number=4,
+    )
+    commodity_value = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    commodity_group = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    platform = proto.Field(
+        proto.STRING,
+        number=5,
+    )
 
 
 class ListCommoditiesResponse(proto.Message):
@@ -382,7 +485,9 @@ class ListCommoditiesResponse(proto.Message):
 
     """
 
-    commodities = proto.RepeatedField(proto.MESSAGE, number=1,
+    commodities = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Commodity',
     )
 
@@ -395,7 +500,10 @@ class SearchRequest(proto.Message):
 
     """
 
-    q = proto.Field(proto.STRING, number=1)
+    q = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class SearchPolygonsResponse(proto.Message):
@@ -406,7 +514,9 @@ class SearchPolygonsResponse(proto.Message):
 
     """
 
-    polygons = proto.RepeatedField(proto.MESSAGE, number=1,
+    polygons = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Polygon',
     )
 
@@ -433,21 +543,38 @@ class Polygon(proto.Message):
             string geom_point = 8; double mbc_radius = 9;
     """
 
-    berth_id = proto.Field(proto.UINT32, number=1)
-
-    port_id = proto.Field(proto.UINT32, number=2)
-
-    port_name = proto.Field(proto.STRING, number=3)
-
-    berth_name = proto.Field(proto.STRING, number=4)
-
-    country_code = proto.Field(proto.STRING, number=5)
-
-    unlocode = proto.Field(proto.STRING, number=6)
-
-    entity_type = proto.Field(proto.STRING, number=7)
-
-    alias = proto.Field(proto.STRING, number=10)
+    berth_id = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    port_id = proto.Field(
+        proto.UINT32,
+        number=2,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    berth_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    entity_type = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    alias = proto.Field(
+        proto.STRING,
+        number=10,
+    )
 
 
 class SearchVesselsResponse(proto.Message):
@@ -458,7 +585,9 @@ class SearchVesselsResponse(proto.Message):
 
     """
 
-    vessels = proto.RepeatedField(proto.MESSAGE, number=1,
+    vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Vessel',
     )
 
@@ -497,33 +626,62 @@ class Vessel(proto.Message):
 
     """
 
-    imo = proto.Field(proto.UINT32, number=1)
-
-    highlevel_type = proto.Field(proto.STRING, number=2)
-
-    segment = proto.Field(proto.STRING, number=3)
-
-    sub_segment = proto.Field(proto.STRING, number=4)
-
-    dwt = proto.Field(proto.DOUBLE, number=5)
-
-    max_draught = proto.Field(proto.DOUBLE, number=6)
-
-    name = proto.Field(proto.STRING, number=7)
-
-    ex_name = proto.Field(proto.STRING, number=8)
-
-    built = proto.Field(proto.UINT32, number=9)
-
-    type_ = proto.Field(proto.STRING, number=10)
-
-    mpv = proto.Field(proto.BOOL, number=11)
-
-    loa = proto.Field(proto.DOUBLE, number=12)
-
-    beam = proto.Field(proto.DOUBLE, number=13)
-
-    holds_total = proto.Field(proto.DOUBLE, number=14)
+    imo = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    highlevel_type = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    segment = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=5,
+    )
+    max_draught = proto.Field(
+        proto.DOUBLE,
+        number=6,
+    )
+    name = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    ex_name = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    built = proto.Field(
+        proto.UINT32,
+        number=9,
+    )
+    type_ = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    mpv = proto.Field(
+        proto.BOOL,
+        number=11,
+    )
+    loa = proto.Field(
+        proto.DOUBLE,
+        number=12,
+    )
+    beam = proto.Field(
+        proto.DOUBLE,
+        number=13,
+    )
+    holds_total = proto.Field(
+        proto.DOUBLE,
+        number=14,
+    )
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

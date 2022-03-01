@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +15,18 @@
 #
 
 from .services.vessel_state_service import VesselStateServiceClient
+from .services.vessel_state_service import VesselStateServiceAsyncClient
+
 from .types.service import GetVesselStatesForDateRequest
 from .types.service import GetVesselStatesRequest
 from .types.service import VesselState
 from .types.service import VesselStatesResponse
 
-
 __all__ = (
-    'GetVesselStatesForDateRequest',
-    'GetVesselStatesRequest',
-    'VesselState',
-    'VesselStatesResponse',
+    'VesselStateServiceAsyncClient',
+'GetVesselStatesForDateRequest',
+'GetVesselStatesRequest',
+'VesselState',
 'VesselStateServiceClient',
+'VesselStatesResponse',
 )

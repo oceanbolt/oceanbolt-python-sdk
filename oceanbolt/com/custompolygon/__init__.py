@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,18 +14,18 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.custompolygon_v3.services.custom_polygon_service.async_client import CustomPolygonServiceAsyncClient
 from oceanbolt.com.custompolygon_v3.services.custom_polygon_service.client import CustomPolygonServiceClient
+from oceanbolt.com.custompolygon_v3.services.custom_polygon_service.async_client import CustomPolygonServiceAsyncClient
+
 from oceanbolt.com.custompolygon_v3.types.service import CustomPolygonRequest
 from oceanbolt.com.custompolygon_v3.types.service import CustomPolygonResponse
 from oceanbolt.com.custompolygon_v3.types.service import TimeseriesGroup
 from oceanbolt.com.custompolygon_v3.types.service import TimeseriesRow
 
-__all__ = (
+__all__ = ('CustomPolygonServiceClient',
+    'CustomPolygonServiceAsyncClient',
     'CustomPolygonRequest',
     'CustomPolygonResponse',
-    'CustomPolygonServiceAsyncClient',
-    'CustomPolygonServiceClient',
     'TimeseriesGroup',
     'TimeseriesRow',
 )

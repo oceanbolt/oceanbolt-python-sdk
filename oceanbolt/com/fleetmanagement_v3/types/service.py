@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -63,9 +60,14 @@ class RenameFleetRequest(proto.Message):
             The new name of the Fleet.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    new_fleet_name = proto.Field(proto.STRING, number=2)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    new_fleet_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class CreateFleetRequest(proto.Message):
@@ -76,7 +78,10 @@ class CreateFleetRequest(proto.Message):
             The new name of the Fleet.
     """
 
-    fleet_name = proto.Field(proto.STRING, number=2)
+    fleet_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class DeleteFleetRequest(proto.Message):
@@ -88,7 +93,10 @@ class DeleteFleetRequest(proto.Message):
             deleted.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetFleetRequest(proto.Message):
@@ -100,7 +108,10 @@ class GetFleetRequest(proto.Message):
             retrieved.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListVesselsRequest(proto.Message):
@@ -112,7 +123,10 @@ class ListVesselsRequest(proto.Message):
             vessels to be retrieved.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListVesselsWithStatusRequest(proto.Message):
@@ -134,13 +148,22 @@ class ListVesselsWithStatusRequest(proto.Message):
             related events (StoppageEvents etc.)
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    last_days = proto.Field(proto.INT32, number=2)
-
-    start_date = proto.Field(proto.STRING, number=3)
-
-    end_date = proto.Field(proto.STRING, number=4)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    last_days = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=4,
+    )
 
 
 class ShareFleetRequest(proto.Message):
@@ -152,7 +175,10 @@ class ShareFleetRequest(proto.Message):
             shared.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class DropVesselsRequest(proto.Message):
@@ -164,7 +190,10 @@ class DropVesselsRequest(proto.Message):
             vessels should be dropped.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class BatchVesselsRequest(proto.Message):
@@ -178,9 +207,13 @@ class BatchVesselsRequest(proto.Message):
             List of Vessels to be added.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    vessels = proto.RepeatedField(proto.MESSAGE, number=2,
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='VesselParams',
     )
 
@@ -199,15 +232,19 @@ class Fleets(proto.Message):
             resources.
     """
 
-    fleets = proto.RepeatedField(proto.MESSAGE, number=1,
+    fleets = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Fleet',
     )
-
-    organization_fleets = proto.RepeatedField(proto.MESSAGE, number=2,
+    organization_fleets = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='Fleet',
     )
-
-    predefined_fleets = proto.RepeatedField(proto.MESSAGE, number=3,
+    predefined_fleets = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='Fleet',
     )
 
@@ -236,26 +273,40 @@ class Fleet(proto.Message):
             fleet.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    fleet_name = proto.Field(proto.STRING, number=2)
-
-    platform = proto.Field(proto.STRING, number=8)
-
-    owner_user_id = proto.Field(proto.STRING, number=3)
-
-    organization = proto.Field(proto.STRING, number=6)
-
-    vessels_in_fleet = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessels = proto.RepeatedField(proto.MESSAGE, number=5,
+    fleet_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    platform = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    owner_user_id = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    organization = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    vessels_in_fleet = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.Int32Value,
+    )
+    vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=5,
         message='Vessel',
     )
-
-    shared_with_org = proto.Field(proto.MESSAGE, number=7,
-        message=wrappers.BoolValue,
+    shared_with_org = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=wrappers_pb2.BoolValue,
     )
 
 
@@ -278,9 +329,15 @@ class VesselParams(proto.Message):
             owner.
     """
 
-    imo = proto.Field(proto.INT32, number=2)
-
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
+    imo = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=3,
+    )
 
 
 class UpdateVesselParams(proto.Message):
@@ -294,7 +351,11 @@ class UpdateVesselParams(proto.Message):
             Vessel.
     """
 
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
+    metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=3,
+    )
 
 
 class AddVesselRequest(proto.Message):
@@ -309,9 +370,13 @@ class AddVesselRequest(proto.Message):
             added.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    vessel = proto.Field(proto.MESSAGE, number=2,
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    vessel = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='VesselParams',
     )
 
@@ -335,15 +400,23 @@ class UpdateVesselRequest(proto.Message):
             error.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    imo = proto.Field(proto.INT32, number=3)
-
-    vessel = proto.Field(proto.MESSAGE, number=2,
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    vessel = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='UpdateVesselParams',
     )
-
-    upsert = proto.Field(proto.BOOL, number=4)
+    upsert = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
 
 
 class DeleteVesselRequest(proto.Message):
@@ -357,9 +430,14 @@ class DeleteVesselRequest(proto.Message):
             IMO number of the Vessel to be deleted.
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    imo = proto.Field(proto.INT32, number=2)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=2,
+    )
 
 
 class Vessels(proto.Message):
@@ -372,11 +450,15 @@ class Vessels(proto.Message):
             Number of vessels in a Fleet.
     """
 
-    vessels = proto.RepeatedField(proto.MESSAGE, number=1,
+    vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Vessel',
     )
-
-    vessels_in_fleet = proto.Field(proto.INT32, number=2)
+    vessels_in_fleet = proto.Field(
+        proto.INT32,
+        number=2,
+    )
 
 
 class Vessel(proto.Message):
@@ -413,31 +495,55 @@ class Vessel(proto.Message):
             Vessel speed events (stopage data).
     """
 
-    imo = proto.Field(proto.INT32, number=1)
-
-    dwt = proto.Field(proto.DOUBLE, number=2)
-
-    built = proto.Field(proto.INT32, number=3)
-
-    vessel_name = proto.Field(proto.STRING, number=4)
-
-    segment = proto.Field(proto.STRING, number=5)
-
-    sub_segment = proto.Field(proto.STRING, number=10)
-
-    flag_code = proto.Field(proto.STRING, number=6)
-
-    ex_name = proto.Field(proto.STRING, number=7)
-
-    type_ = proto.Field(proto.STRING, number=8)
-
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=9)
-
-    status = proto.Field(proto.MESSAGE, number=11,
+    imo = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    built = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    segment = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    flag_code = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    ex_name = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    type_ = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=9,
+    )
+    status = proto.Field(
+        proto.MESSAGE,
+        number=11,
         message='VesselStatus',
     )
-
-    stoppage_events = proto.RepeatedField(proto.MESSAGE, number=12,
+    stoppage_events = proto.RepeatedField(
+        proto.MESSAGE,
+        number=12,
         message='VesselStoppageEvent',
     )
 
@@ -472,35 +578,57 @@ class VesselStatus(proto.Message):
 
     """
 
-    laden_status = proto.Field(proto.STRING, number=1)
-
-    cargo_status = proto.Field(proto.STRING, number=2)
-
-    port_call_status = proto.Field(proto.STRING, number=3)
-
-    related_port_name = proto.Field(proto.STRING, number=4)
-
-    draught_percentage = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    laden_status = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    destination = proto.Field(proto.STRING, number=6)
-
-    destination_port_name = proto.Field(proto.STRING, number=7)
-
-    last_position_received_at = proto.Field(proto.STRING, number=8)
-
-    last_static_received_at = proto.Field(proto.STRING, number=9)
-
-    current_speed = proto.Field(proto.MESSAGE, number=10,
-        message=wrappers.DoubleValue,
+    cargo_status = proto.Field(
+        proto.STRING,
+        number=2,
     )
-
-    current_navigational_status = proto.Field(proto.MESSAGE, number=11,
-        message=wrappers.Int32Value,
+    port_call_status = proto.Field(
+        proto.STRING,
+        number=3,
     )
-
-    current_commodity_group = proto.Field(proto.STRING, number=12)
+    related_port_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    draught_percentage = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
+    )
+    destination = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    destination_port_name = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    last_position_received_at = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    last_static_received_at = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    current_speed = proto.Field(
+        proto.MESSAGE,
+        number=10,
+        message=wrappers_pb2.DoubleValue,
+    )
+    current_navigational_status = proto.Field(
+        proto.MESSAGE,
+        number=11,
+        message=wrappers_pb2.Int32Value,
+    )
+    current_commodity_group = proto.Field(
+        proto.STRING,
+        number=12,
+    )
 
 
 class VesselStoppageEvent(proto.Message):
@@ -531,31 +659,52 @@ class VesselStoppageEvent(proto.Message):
 
     """
 
-    started_at = proto.Field(proto.STRING, number=1)
-
-    ended_at = proto.Field(proto.STRING, number=2)
-
-    port_id = proto.Field(proto.INT32, number=3)
-
-    port_name = proto.Field(proto.STRING, number=4)
-
-    zone_id = proto.Field(proto.INT32, number=5)
-
-    zone_name = proto.Field(proto.STRING, number=6)
-
-    min_speed_observed = proto.Field(proto.MESSAGE, number=7,
-        message=wrappers.DoubleValue,
+    started_at = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    duration_hours = proto.Field(proto.MESSAGE, number=8,
-        message=wrappers.DoubleValue,
+    ended_at = proto.Field(
+        proto.STRING,
+        number=2,
     )
-
-    lat = proto.Field(proto.DOUBLE, number=9)
-
-    lon = proto.Field(proto.DOUBLE, number=10)
-
-    classification = proto.Field(proto.STRING, number=11)
+    port_id = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    zone_id = proto.Field(
+        proto.INT32,
+        number=5,
+    )
+    zone_name = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    min_speed_observed = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=wrappers_pb2.DoubleValue,
+    )
+    duration_hours = proto.Field(
+        proto.MESSAGE,
+        number=8,
+        message=wrappers_pb2.DoubleValue,
+    )
+    lat = proto.Field(
+        proto.DOUBLE,
+        number=9,
+    )
+    lon = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    classification = proto.Field(
+        proto.STRING,
+        number=11,
+    )
 
 
 class GetFleetLiveMapRequest(proto.Message):
@@ -571,9 +720,14 @@ class GetFleetLiveMapRequest(proto.Message):
             outdoors-v11, satellite-v9]
     """
 
-    fleet_id = proto.Field(proto.STRING, number=1)
-
-    map_theme = proto.Field(proto.STRING, number=2)
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    map_theme = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class GetFleetLiveMapResponse(proto.Message):
@@ -585,15 +739,20 @@ class GetFleetLiveMapResponse(proto.Message):
             Static fleet map image URL
     """
 
-    map_image = proto.Field(proto.STRING, number=1)
+    map_image = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class EmptyParams(proto.Message):
-    r"""Empty request object"""
+    r"""Empty request object
+    """
 
 
 class EmptyResponse(proto.Message):
-    r"""Empty response object"""
+    r"""Empty response object
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

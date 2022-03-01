@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.drydock_service import DrydockServiceClient
+from .services.drydock_service import DrydockServiceAsyncClient
+
 from .types.service import DryDockResponse
 from .types.service import DryDockSplitRow
 from .types.service import DryDockStay
@@ -28,18 +29,18 @@ from .types.service import GetDryDockStaysRequest
 from .types.service import GetDryDockStaysResponse
 from .types.service import HistoricalDryDockStay
 
-
 __all__ = (
-    'DryDockResponse',
-    'DryDockSplitRow',
-    'DryDockStay',
-    'DryDockTimeseriesGroup',
-    'DryDockTimeseriesRow',
-    'EmptyParams',
-    'EmptyResponse',
-    'GetDryDockRequest',
-    'GetDryDockStaysRequest',
-    'GetDryDockStaysResponse',
-    'HistoricalDryDockStay',
+    'DrydockServiceAsyncClient',
+'DryDockResponse',
+'DryDockSplitRow',
+'DryDockStay',
+'DryDockTimeseriesGroup',
+'DryDockTimeseriesRow',
 'DrydockServiceClient',
+'EmptyParams',
+'EmptyResponse',
+'GetDryDockRequest',
+'GetDryDockStaysRequest',
+'GetDryDockStaysResponse',
+'HistoricalDryDockStay',
 )

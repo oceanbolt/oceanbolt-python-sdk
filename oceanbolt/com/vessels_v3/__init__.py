@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.vessel_service import VesselServiceClient
+from .services.vessel_service import VesselServiceAsyncClient
+
 from .types.service import ListStoppageEventsRequest
 from .types.service import ListStoppageEventsResponse
 from .types.service import ListVesselsRequest
@@ -23,13 +24,13 @@ from .types.service import ListVesselsResponse
 from .types.service import StoppageEvent
 from .types.service import Vessel
 
-
 __all__ = (
-    'ListStoppageEventsRequest',
-    'ListStoppageEventsResponse',
-    'ListVesselsRequest',
-    'ListVesselsResponse',
-    'StoppageEvent',
-    'Vessel',
+    'VesselServiceAsyncClient',
+'ListStoppageEventsRequest',
+'ListStoppageEventsResponse',
+'ListVesselsRequest',
+'ListVesselsResponse',
+'StoppageEvent',
+'Vessel',
 'VesselServiceClient',
 )

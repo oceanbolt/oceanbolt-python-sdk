@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core.client_options import ClientOptions
+from google.api_core import exceptions as core_exceptions
+from google.api_core import gapic_v1
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials   # type: ignore
 from google.oauth2 import service_account              # type: ignore
 
-from oceanbolt.com.vessels_v3.types import service
+try:
+    OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
+except AttributeError:  # pragma: NO COVER
+    OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from oceanbolt.com.vessels_v3.types import service
 from .transports.base import VesselServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import VesselServiceGrpcAsyncIOTransport
 from .client import VesselServiceClient
@@ -45,26 +47,85 @@ class VesselServiceAsyncClient:
 
     common_billing_account_path = staticmethod(VesselServiceClient.common_billing_account_path)
     parse_common_billing_account_path = staticmethod(VesselServiceClient.parse_common_billing_account_path)
-
     common_folder_path = staticmethod(VesselServiceClient.common_folder_path)
     parse_common_folder_path = staticmethod(VesselServiceClient.parse_common_folder_path)
-
     common_organization_path = staticmethod(VesselServiceClient.common_organization_path)
     parse_common_organization_path = staticmethod(VesselServiceClient.parse_common_organization_path)
-
     common_project_path = staticmethod(VesselServiceClient.common_project_path)
     parse_common_project_path = staticmethod(VesselServiceClient.parse_common_project_path)
-
     common_location_path = staticmethod(VesselServiceClient.common_location_path)
     parse_common_location_path = staticmethod(VesselServiceClient.parse_common_location_path)
 
-    from_service_account_info = VesselServiceClient.from_service_account_info
-    from_service_account_file = VesselServiceClient.from_service_account_file
+    @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            VesselServiceAsyncClient: The constructed client.
+        """
+        return VesselServiceClient.from_service_account_info.__func__(VesselServiceAsyncClient, info, *args, **kwargs)  # type: ignore
+
+    @classmethod
+    def from_service_account_file(cls, filename: str, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            file.
+
+        Args:
+            filename (str): The path to the service account private key json
+                file.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            VesselServiceAsyncClient: The constructed client.
+        """
+        return VesselServiceClient.from_service_account_file.__func__(VesselServiceAsyncClient, filename, *args, **kwargs)  # type: ignore
+
     from_service_account_json = from_service_account_file
+
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[ClientOptions] = None):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        return VesselServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
 
     @property
     def transport(self) -> VesselServiceTransport:
-        """Return the transport used by the client instance.
+        """Returns the transport used by the client instance.
 
         Returns:
             VesselServiceTransport: The transport used by the client instance.
@@ -74,12 +135,12 @@ class VesselServiceAsyncClient:
     get_transport_class = functools.partial(type(VesselServiceClient).get_transport_class, type(VesselServiceClient))
 
     def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, VesselServiceTransport] = 'grpc_asyncio',
+            credentials: ga_credentials.Credentials = None,
+            transport: Union[str, VesselServiceTransport] = "grpc_asyncio",
             client_options: ClientOptions = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the vessel service client.
+        """Instantiates the vessel service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -111,7 +172,6 @@ class VesselServiceAsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-
         self._client = VesselServiceClient(
             credentials=credentials,
             transport=transport,
@@ -121,19 +181,37 @@ class VesselServiceAsyncClient:
         )
 
     async def list_vessels(self,
-            request: service.ListVesselsRequest = None,
+            request: Union[service.ListVesselsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListVesselsResponse:
         r"""Vessels gets a list of vessels for the given filter
         parameters
 
-        Args:
-            request (:class:`oceanbolt.com.vessels_v3.types.ListVesselsRequest`):
-                The request object. Vessels
 
+        .. code-block:: python
+
+            from oceanbolt.com import vessels_v3
+
+            def sample_list_vessels():
+                # Create a client
+                client = vessels_v3.VesselServiceClient()
+
+                # Initialize request argument(s)
+                request = vessels_v3.ListVesselsRequest(
+                )
+
+                # Make the request
+                response = client.list_vessels(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.vessels_v3.types.ListVesselsRequest, dict]):
+                The request object. Vessels
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -145,7 +223,6 @@ class VesselServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-
         request = service.ListVesselsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -168,18 +245,35 @@ class VesselServiceAsyncClient:
         return response
 
     async def list_stoppage_events(self,
-            request: service.ListStoppageEventsRequest = None,
+            request: Union[service.ListStoppageEventsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListStoppageEventsResponse:
         r"""
 
-        Args:
-            request (:class:`oceanbolt.com.vessels_v3.types.ListStoppageEventsRequest`):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import vessels_v3
+
+            def sample_list_stoppage_events():
+                # Create a client
+                client = vessels_v3.VesselServiceClient()
+
+                # Initialize request argument(s)
+                request = vessels_v3.ListStoppageEventsRequest(
+                )
+
+                # Make the request
+                response = client.list_stoppage_events(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.vessels_v3.types.ListStoppageEventsRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -191,7 +285,6 @@ class VesselServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-
         request = service.ListStoppageEventsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -213,16 +306,16 @@ class VesselServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def __aenter__(self):
+        return self
 
-
-
-
-
+    async def __aexit__(self, exc_type, exc, tb):
+        await self.transport.close()
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-vessels',
+            "oceanbolt-com-vessels",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -230,5 +323,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'VesselServiceAsyncClient',
+    "VesselServiceAsyncClient",
 )

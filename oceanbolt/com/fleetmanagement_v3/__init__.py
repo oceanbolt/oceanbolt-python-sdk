@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.fleet_management_service import FleetManagementServiceClient
+from .services.fleet_management_service import FleetManagementServiceAsyncClient
+
 from .types.service import AddVesselRequest
 from .types.service import BatchVesselsRequest
 from .types.service import CreateFleetRequest
@@ -37,35 +38,35 @@ from .types.service import UpdateVesselParams
 from .types.service import UpdateVesselRequest
 from .types.service import Vessel
 from .types.service import VesselParams
+from .types.service import Vessels
 from .types.service import VesselStatus
 from .types.service import VesselStoppageEvent
-from .types.service import Vessels
-
 
 __all__ = (
-    'AddVesselRequest',
-    'BatchVesselsRequest',
-    'CreateFleetRequest',
-    'DeleteFleetRequest',
-    'DeleteVesselRequest',
-    'DropVesselsRequest',
-    'EmptyParams',
-    'EmptyResponse',
-    'Fleet',
-    'Fleets',
-    'GetFleetLiveMapRequest',
-    'GetFleetLiveMapResponse',
-    'GetFleetRequest',
-    'ListVesselsRequest',
-    'ListVesselsWithStatusRequest',
-    'RenameFleetRequest',
-    'ShareFleetRequest',
-    'UpdateVesselParams',
-    'UpdateVesselRequest',
-    'Vessel',
-    'VesselParams',
-    'VesselStatus',
-    'VesselStoppageEvent',
-    'Vessels',
+    'FleetManagementServiceAsyncClient',
+'AddVesselRequest',
+'BatchVesselsRequest',
+'CreateFleetRequest',
+'DeleteFleetRequest',
+'DeleteVesselRequest',
+'DropVesselsRequest',
+'EmptyParams',
+'EmptyResponse',
+'Fleet',
 'FleetManagementServiceClient',
+'Fleets',
+'GetFleetLiveMapRequest',
+'GetFleetLiveMapResponse',
+'GetFleetRequest',
+'ListVesselsRequest',
+'ListVesselsWithStatusRequest',
+'RenameFleetRequest',
+'ShareFleetRequest',
+'UpdateVesselParams',
+'UpdateVesselRequest',
+'Vessel',
+'VesselParams',
+'VesselStatus',
+'VesselStoppageEvent',
+'Vessels',
 )

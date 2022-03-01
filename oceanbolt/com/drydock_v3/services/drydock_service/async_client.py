@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core.client_options import ClientOptions
+from google.api_core import exceptions as core_exceptions
+from google.api_core import gapic_v1
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials   # type: ignore
 from google.oauth2 import service_account              # type: ignore
 
-from oceanbolt.com.drydock_v3.types import service
+try:
+    OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
+except AttributeError:  # pragma: NO COVER
+    OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from oceanbolt.com.drydock_v3.types import service
 from .transports.base import DrydockServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import DrydockServiceGrpcAsyncIOTransport
 from .client import DrydockServiceClient
@@ -45,26 +47,85 @@ class DrydockServiceAsyncClient:
 
     common_billing_account_path = staticmethod(DrydockServiceClient.common_billing_account_path)
     parse_common_billing_account_path = staticmethod(DrydockServiceClient.parse_common_billing_account_path)
-
     common_folder_path = staticmethod(DrydockServiceClient.common_folder_path)
     parse_common_folder_path = staticmethod(DrydockServiceClient.parse_common_folder_path)
-
     common_organization_path = staticmethod(DrydockServiceClient.common_organization_path)
     parse_common_organization_path = staticmethod(DrydockServiceClient.parse_common_organization_path)
-
     common_project_path = staticmethod(DrydockServiceClient.common_project_path)
     parse_common_project_path = staticmethod(DrydockServiceClient.parse_common_project_path)
-
     common_location_path = staticmethod(DrydockServiceClient.common_location_path)
     parse_common_location_path = staticmethod(DrydockServiceClient.parse_common_location_path)
 
-    from_service_account_info = DrydockServiceClient.from_service_account_info
-    from_service_account_file = DrydockServiceClient.from_service_account_file
+    @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            DrydockServiceAsyncClient: The constructed client.
+        """
+        return DrydockServiceClient.from_service_account_info.__func__(DrydockServiceAsyncClient, info, *args, **kwargs)  # type: ignore
+
+    @classmethod
+    def from_service_account_file(cls, filename: str, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            file.
+
+        Args:
+            filename (str): The path to the service account private key json
+                file.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            DrydockServiceAsyncClient: The constructed client.
+        """
+        return DrydockServiceClient.from_service_account_file.__func__(DrydockServiceAsyncClient, filename, *args, **kwargs)  # type: ignore
+
     from_service_account_json = from_service_account_file
+
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[ClientOptions] = None):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        return DrydockServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
 
     @property
     def transport(self) -> DrydockServiceTransport:
-        """Return the transport used by the client instance.
+        """Returns the transport used by the client instance.
 
         Returns:
             DrydockServiceTransport: The transport used by the client instance.
@@ -74,12 +135,12 @@ class DrydockServiceAsyncClient:
     get_transport_class = functools.partial(type(DrydockServiceClient).get_transport_class, type(DrydockServiceClient))
 
     def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, DrydockServiceTransport] = 'grpc_asyncio',
+            credentials: ga_credentials.Credentials = None,
+            transport: Union[str, DrydockServiceTransport] = "grpc_asyncio",
             client_options: ClientOptions = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the drydock service client.
+        """Instantiates the drydock service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -111,7 +172,6 @@ class DrydockServiceAsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-
         self._client = DrydockServiceClient(
             credentials=credentials,
             transport=transport,
@@ -121,19 +181,37 @@ class DrydockServiceAsyncClient:
         )
 
     async def get_dry_dock_stays(self,
-            request: service.GetDryDockStaysRequest = None,
+            request: Union[service.GetDryDockStaysRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetDryDockStaysResponse:
         r"""GetDryDockStays retrives individual historical dry
         dock stays
 
-        Args:
-            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockStaysRequest`):
-                The request object. DryDockstays
 
+        .. code-block:: python
+
+            from oceanbolt.com import drydock_v3
+
+            def sample_get_dry_dock_stays():
+                # Create a client
+                client = drydock_v3.DrydockServiceClient()
+
+                # Initialize request argument(s)
+                request = drydock_v3.GetDryDockStaysRequest(
+                )
+
+                # Make the request
+                response = client.get_dry_dock_stays(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockStaysRequest, dict]):
+                The request object. DryDockstays
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -145,7 +223,6 @@ class DrydockServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-
         request = service.GetDryDockStaysRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -168,19 +245,37 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_timeseries(self,
-            request: service.GetDryDockRequest = None,
+            request: Union[service.GetDryDockRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockTimeseries retrieves dry dock timeseries data for a
         specified list of port_ids/segments
 
-        Args:
-            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
-                The request object. DryDock request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import drydock_v3
+
+            def sample_get_dry_dock_timeseries():
+                # Create a client
+                client = drydock_v3.DrydockServiceClient()
+
+                # Initialize request argument(s)
+                request = drydock_v3.GetDryDockRequest(
+                )
+
+                # Make the request
+                response = client.get_dry_dock_timeseries(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+                The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -192,7 +287,6 @@ class DrydockServiceAsyncClient:
                 DryDock responseobject.
         """
         # Create or coerce a protobuf request object.
-
         request = service.GetDryDockRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -215,19 +309,37 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_web(self,
-            request: service.GetDryDockRequest = None,
+            request: Union[service.GetDryDockRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockWeb retrieves current and live dry dock data for a
         specified list of port_ids/segments
 
-        Args:
-            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
-                The request object. DryDock request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import drydock_v3
+
+            def sample_get_dry_dock_web():
+                # Create a client
+                client = drydock_v3.DrydockServiceClient()
+
+                # Initialize request argument(s)
+                request = drydock_v3.GetDryDockRequest(
+                )
+
+                # Make the request
+                response = client.get_dry_dock_web(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+                The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -239,7 +351,6 @@ class DrydockServiceAsyncClient:
                 DryDock responseobject.
         """
         # Create or coerce a protobuf request object.
-
         request = service.GetDryDockRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -262,19 +373,37 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_vessels(self,
-            request: service.GetDryDockRequest = None,
+            request: Union[service.GetDryDockRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockVessels retrieves list of currently active dry dock
         stays for a specified list of port_ids/segments
 
-        Args:
-            request (:class:`oceanbolt.com.drydock_v3.types.GetDryDockRequest`):
-                The request object. DryDock request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import drydock_v3
+
+            def sample_get_dry_dock_vessels():
+                # Create a client
+                client = drydock_v3.DrydockServiceClient()
+
+                # Initialize request argument(s)
+                request = drydock_v3.GetDryDockRequest(
+                )
+
+                # Make the request
+                response = client.get_dry_dock_vessels(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+                The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -286,7 +415,6 @@ class DrydockServiceAsyncClient:
                 DryDock responseobject.
         """
         # Create or coerce a protobuf request object.
-
         request = service.GetDryDockRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -308,16 +436,16 @@ class DrydockServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def __aenter__(self):
+        return self
 
-
-
-
-
+    async def __aexit__(self, exc_type, exc, tb):
+        await self.transport.close()
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-drydock',
+            "oceanbolt-com-drydock",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -325,5 +453,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'DrydockServiceAsyncClient',
+    "DrydockServiceAsyncClient",
 )

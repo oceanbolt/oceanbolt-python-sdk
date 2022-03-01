@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.tonnage_service import TonnageServiceClient
+from .services.tonnage_service import TonnageServiceAsyncClient
+
 from .types.service import ChineseWatersTimeseriesGroup
 from .types.service import ChineseWatersTimeseriesRow
 from .types.service import EmptyParams
@@ -46,36 +47,36 @@ from .types.service import TonnageTimeseriesRow
 from .types.service import ZoneChangesTimeseriesGroup
 from .types.service import ZoneChangesTimeseriesRow
 
-
 __all__ = (
-    'ChineseWatersTimeseriesGroup',
-    'ChineseWatersTimeseriesRow',
-    'EmptyParams',
-    'EmptyResponse',
-    'FleetGrowthTimeseriesGroup',
-    'FleetGrowthTimeseriesRow',
-    'GetFleetSpeedResponse',
-    'GetGlobalTonnageStatusRequest',
-    'GetGlobalTonnageStatusResponse',
-    'GetTonnageBasinRequest',
-    'GetTonnageBasinResponse',
-    'GetTonnageDataRequest',
-    'GetTonnageFleetGrowthResponse',
-    'GetTonnageFleetRequest',
-    'GetTonnageFleetStatusResponse',
-    'GetTonnageZoneChangesRequest',
-    'GetTonnageZoneChangesResponse',
-    'GetTonnageZoneCountResponse',
-    'GlobalTonnageZoneCount',
-    'TimeseriesGroup',
-    'TimeseriesRow',
-    'TonnageBasinTimeseriesGroup',
-    'TonnageBasinTimeseriesRow',
-    'TonnageChineseWatersRequest',
-    'TonnageChineseWatersResponse',
-    'TonnageTimeseriesGroup',
-    'TonnageTimeseriesRow',
-    'ZoneChangesTimeseriesGroup',
-    'ZoneChangesTimeseriesRow',
+    'TonnageServiceAsyncClient',
+'ChineseWatersTimeseriesGroup',
+'ChineseWatersTimeseriesRow',
+'EmptyParams',
+'EmptyResponse',
+'FleetGrowthTimeseriesGroup',
+'FleetGrowthTimeseriesRow',
+'GetFleetSpeedResponse',
+'GetGlobalTonnageStatusRequest',
+'GetGlobalTonnageStatusResponse',
+'GetTonnageBasinRequest',
+'GetTonnageBasinResponse',
+'GetTonnageDataRequest',
+'GetTonnageFleetGrowthResponse',
+'GetTonnageFleetRequest',
+'GetTonnageFleetStatusResponse',
+'GetTonnageZoneChangesRequest',
+'GetTonnageZoneChangesResponse',
+'GetTonnageZoneCountResponse',
+'GlobalTonnageZoneCount',
+'TimeseriesGroup',
+'TimeseriesRow',
+'TonnageBasinTimeseriesGroup',
+'TonnageBasinTimeseriesRow',
+'TonnageChineseWatersRequest',
+'TonnageChineseWatersResponse',
 'TonnageServiceClient',
+'TonnageTimeseriesGroup',
+'TonnageTimeseriesRow',
+'ZoneChangesTimeseriesGroup',
+'ZoneChangesTimeseriesRow',
 )

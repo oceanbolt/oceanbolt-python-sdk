@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,14 +39,13 @@ def partition(
 class tradeflowsCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_location_volume': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_flow_aggregation': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_flow_histogram': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_flow_on_the_water': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_flows': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_flow_timeseries': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-    'get_trade_lane_metrics': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
-
+        'get_location_volume': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_flow_aggregation': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_flow_histogram': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_flow_on_the_water': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_flows': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_flow_timeseries': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
+        'get_trade_lane_metrics': ('frequency', 'commodity', 'commodity_group', 'flow_direction', 'imo', 'load_port_id', 'load_port_unlocode', 'load_berth_id', 'discharge_port_id', 'discharge_port_unlocode', 'discharge_berth_id', 'segment', 'sub_segment', 'start_date', 'end_date', 'load_country_code', 'discharge_country_code', 'load_region', 'discharge_region', 'status', 'exclude_intra_country', 'exclude_unknown_destinations', 'exclude_missing_load_berth', 'exclude_missing_discharge_berth', 'next_token', 'max_results', 'format_', 'group_by', 'pivot_by', 'tall_format', 'metric', 'parceling', 'limit_groups', 'last_n_days', 'sort', 'dwt', 'category', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -67,7 +64,7 @@ class tradeflowsCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -79,7 +76,7 @@ class tradeflowsCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

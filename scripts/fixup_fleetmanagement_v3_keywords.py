@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,23 +39,22 @@ def partition(
 class fleetmanagementCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'add_vessel': ('fleet_id', 'vessel', ),
-    'batch_add_vessels': ('fleet_id', 'vessels', ),
-    'create_fleet': ('fleet_name', ),
-    'delete_fleet': ('fleet_id', ),
-    'delete_vessel': ('fleet_id', 'imo', ),
-    'describe_fleet': ('fleet_id', ),
-    'drop_vessels': ('fleet_id', ),
-    'get_fleet_live_map': ('fleet_id', 'map_theme', ),
-    'list_fleets': (),
-    'list_vessels': ('fleet_id', ),
-    'list_vessels_with_status': ('fleet_id', 'last_days', 'start_date', 'end_date', ),
-    'rename_fleet': ('fleet_id', 'new_fleet_name', ),
-    'replace_vessels': ('fleet_id', 'vessels', ),
-    'share_fleet': ('fleet_id', ),
-    'unshare_fleet': ('fleet_id', ),
-    'update_vessel': ('fleet_id', 'imo', 'vessel', 'upsert', ),
-
+        'add_vessel': ('fleet_id', 'vessel', ),
+        'batch_add_vessels': ('fleet_id', 'vessels', ),
+        'create_fleet': ('fleet_name', ),
+        'delete_fleet': ('fleet_id', ),
+        'delete_vessel': ('fleet_id', 'imo', ),
+        'describe_fleet': ('fleet_id', ),
+        'drop_vessels': ('fleet_id', ),
+        'get_fleet_live_map': ('fleet_id', 'map_theme', ),
+        'list_fleets': (),
+        'list_vessels': ('fleet_id', ),
+        'list_vessels_with_status': ('fleet_id', 'last_days', 'start_date', 'end_date', ),
+        'rename_fleet': ('fleet_id', 'new_fleet_name', ),
+        'replace_vessels': ('fleet_id', 'vessels', ),
+        'share_fleet': ('fleet_id', ),
+        'unshare_fleet': ('fleet_id', ),
+        'update_vessel': ('fleet_id', 'imo', 'vessel', 'upsert', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -76,7 +73,7 @@ class fleetmanagementCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -88,7 +85,7 @@ class fleetmanagementCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

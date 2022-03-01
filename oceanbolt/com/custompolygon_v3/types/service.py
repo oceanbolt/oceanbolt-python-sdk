@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -55,17 +52,30 @@ class CustomPolygonRequest(proto.Message):
             The UTC end date of the date filter
     """
 
-    geojson = proto.Field(proto.STRING, number=1)
-
-    laden_status = proto.RepeatedField(proto.STRING, number=2)
-
-    segment = proto.RepeatedField(proto.STRING, number=3)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=6)
-
-    start_date = proto.Field(proto.STRING, number=4)
-
-    end_date = proto.Field(proto.STRING, number=5)
+    geojson = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    laden_status = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=3,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=5,
+    )
 
 
 class CustomPolygonResponse(proto.Message):
@@ -76,7 +86,9 @@ class CustomPolygonResponse(proto.Message):
             Timeseries rows
     """
 
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=1,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='TimeseriesGroup',
     )
 
@@ -92,9 +104,13 @@ class TimeseriesGroup(proto.Message):
             Rows of timeseries data
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='TimeseriesRow',
     )
 
@@ -109,10 +125,14 @@ class TimeseriesRow(proto.Message):
             Value of the timeseries row
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    value = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    value = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
 
 

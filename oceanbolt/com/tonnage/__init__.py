@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.tonnage_v3.services.tonnage_service.async_client import TonnageServiceAsyncClient
 from oceanbolt.com.tonnage_v3.services.tonnage_service.client import TonnageServiceClient
+from oceanbolt.com.tonnage_v3.services.tonnage_service.async_client import TonnageServiceAsyncClient
+
 from oceanbolt.com.tonnage_v3.types.service import ChineseWatersTimeseriesGroup
 from oceanbolt.com.tonnage_v3.types.service import ChineseWatersTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import EmptyParams
@@ -47,7 +47,8 @@ from oceanbolt.com.tonnage_v3.types.service import TonnageTimeseriesRow
 from oceanbolt.com.tonnage_v3.types.service import ZoneChangesTimeseriesGroup
 from oceanbolt.com.tonnage_v3.types.service import ZoneChangesTimeseriesRow
 
-__all__ = (
+__all__ = ('TonnageServiceClient',
+    'TonnageServiceAsyncClient',
     'ChineseWatersTimeseriesGroup',
     'ChineseWatersTimeseriesRow',
     'EmptyParams',
@@ -73,8 +74,6 @@ __all__ = (
     'TonnageBasinTimeseriesRow',
     'TonnageChineseWatersRequest',
     'TonnageChineseWatersResponse',
-    'TonnageServiceAsyncClient',
-    'TonnageServiceClient',
     'TonnageTimeseriesGroup',
     'TonnageTimeseriesRow',
     'ZoneChangesTimeseriesGroup',

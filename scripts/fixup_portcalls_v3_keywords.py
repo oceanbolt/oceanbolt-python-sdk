@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,10 +39,9 @@ def partition(
 class portcallsCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_port_calls': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
-    'get_port_call_timeseries': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
-    'get_port_particulars': ('start_date', 'end_date', 'port_id', 'berth_id', 'unlocode', 'last_n_days', ),
-
+        'get_port_calls': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
+        'get_port_call_timeseries': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', ),
+        'get_port_particulars': ('start_date', 'end_date', 'port_id', 'berth_id', 'unlocode', 'last_n_days', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -63,7 +60,7 @@ class portcallsCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -75,7 +72,7 @@ class portcallsCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,45 +13,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from .service import (
-    GetTradeLaneMetricsResponse,
-    TradeLaneMetric,
-    EmptyParams,
-    EmptyResponse,
-    TradeFlowDataRequest,
-    GetTradeFlowsResponse,
-    GetLocationVolumeResponse,
-    LocationVolume,
-    GetTradeFlowAggregationResponse,
     AggregationGroup,
     AggregationRow,
+    EmptyParams,
+    EmptyResponse,
+    GeoPoint,
+    GetLocationVolumeResponse,
+    GetTradeFlowAggregationResponse,
+    GetTradeFlowHistogramResponse,
+    GetTradeFlowsResponse,
     GetTradeFlowTimeseriesResponse,
+    GetTradeLaneMetricsResponse,
+    HistogramGroup,
+    LocationVolume,
     TimeseriesGroup,
     TimeseriesRow,
-    GeoPoint,
     TradeFlow,
-    GetTradeFlowHistogramResponse,
-    HistogramGroup,
+    TradeFlowDataRequest,
+    TradeLaneMetric,
 )
 
 __all__ = (
-    'GetTradeLaneMetricsResponse',
-    'TradeLaneMetric',
-    'EmptyParams',
-    'EmptyResponse',
-    'TradeFlowDataRequest',
-    'GetTradeFlowsResponse',
-    'GetLocationVolumeResponse',
-    'LocationVolume',
-    'GetTradeFlowAggregationResponse',
     'AggregationGroup',
     'AggregationRow',
+    'EmptyParams',
+    'EmptyResponse',
+    'GeoPoint',
+    'GetLocationVolumeResponse',
+    'GetTradeFlowAggregationResponse',
+    'GetTradeFlowHistogramResponse',
+    'GetTradeFlowsResponse',
     'GetTradeFlowTimeseriesResponse',
+    'GetTradeLaneMetricsResponse',
+    'HistogramGroup',
+    'LocationVolume',
     'TimeseriesGroup',
     'TimeseriesRow',
-    'GeoPoint',
     'TradeFlow',
-    'GetTradeFlowHistogramResponse',
-    'HistogramGroup',
+    'TradeFlowDataRequest',
+    'TradeLaneMetric',
 )

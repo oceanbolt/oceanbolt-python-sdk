@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,22 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core.client_options import ClientOptions
+from google.api_core import exceptions as core_exceptions
+from google.api_core import gapic_v1
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials   # type: ignore
 from google.oauth2 import service_account              # type: ignore
 
-from oceanbolt.com.distancecalculator_v3.types import service
+try:
+    OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
+except AttributeError:  # pragma: NO COVER
+    OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from oceanbolt.com.distancecalculator_v3.types import service
 from .transports.base import DistanceCalculatorServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import DistanceCalculatorServiceGrpcAsyncIOTransport
 from .client import DistanceCalculatorServiceClient
@@ -47,26 +49,85 @@ class DistanceCalculatorServiceAsyncClient:
 
     common_billing_account_path = staticmethod(DistanceCalculatorServiceClient.common_billing_account_path)
     parse_common_billing_account_path = staticmethod(DistanceCalculatorServiceClient.parse_common_billing_account_path)
-
     common_folder_path = staticmethod(DistanceCalculatorServiceClient.common_folder_path)
     parse_common_folder_path = staticmethod(DistanceCalculatorServiceClient.parse_common_folder_path)
-
     common_organization_path = staticmethod(DistanceCalculatorServiceClient.common_organization_path)
     parse_common_organization_path = staticmethod(DistanceCalculatorServiceClient.parse_common_organization_path)
-
     common_project_path = staticmethod(DistanceCalculatorServiceClient.common_project_path)
     parse_common_project_path = staticmethod(DistanceCalculatorServiceClient.parse_common_project_path)
-
     common_location_path = staticmethod(DistanceCalculatorServiceClient.common_location_path)
     parse_common_location_path = staticmethod(DistanceCalculatorServiceClient.parse_common_location_path)
 
-    from_service_account_info = DistanceCalculatorServiceClient.from_service_account_info
-    from_service_account_file = DistanceCalculatorServiceClient.from_service_account_file
+    @classmethod
+    def from_service_account_info(cls, info: dict, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            info.
+
+        Args:
+            info (dict): The service account private key info.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            DistanceCalculatorServiceAsyncClient: The constructed client.
+        """
+        return DistanceCalculatorServiceClient.from_service_account_info.__func__(DistanceCalculatorServiceAsyncClient, info, *args, **kwargs)  # type: ignore
+
+    @classmethod
+    def from_service_account_file(cls, filename: str, *args, **kwargs):
+        """Creates an instance of this client using the provided credentials
+            file.
+
+        Args:
+            filename (str): The path to the service account private key json
+                file.
+            args: Additional arguments to pass to the constructor.
+            kwargs: Additional arguments to pass to the constructor.
+
+        Returns:
+            DistanceCalculatorServiceAsyncClient: The constructed client.
+        """
+        return DistanceCalculatorServiceClient.from_service_account_file.__func__(DistanceCalculatorServiceAsyncClient, filename, *args, **kwargs)  # type: ignore
+
     from_service_account_json = from_service_account_file
+
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[ClientOptions] = None):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        return DistanceCalculatorServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
 
     @property
     def transport(self) -> DistanceCalculatorServiceTransport:
-        """Return the transport used by the client instance.
+        """Returns the transport used by the client instance.
 
         Returns:
             DistanceCalculatorServiceTransport: The transport used by the client instance.
@@ -76,12 +137,12 @@ class DistanceCalculatorServiceAsyncClient:
     get_transport_class = functools.partial(type(DistanceCalculatorServiceClient).get_transport_class, type(DistanceCalculatorServiceClient))
 
     def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, DistanceCalculatorServiceTransport] = 'grpc_asyncio',
+            credentials: ga_credentials.Credentials = None,
+            transport: Union[str, DistanceCalculatorServiceTransport] = "grpc_asyncio",
             client_options: ClientOptions = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the distance calculator service client.
+        """Instantiates the distance calculator service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -113,7 +174,6 @@ class DistanceCalculatorServiceAsyncClient:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-
         self._client = DistanceCalculatorServiceClient(
             credentials=credentials,
             transport=transport,
@@ -123,9 +183,9 @@ class DistanceCalculatorServiceAsyncClient:
         )
 
     async def calculate_distance(self,
-            request: service.DistanceRequest = None,
+            request: Union[service.DistanceRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DistanceResponse:
@@ -136,11 +196,29 @@ class DistanceCalculatorServiceAsyncClient:
         a series of points. If speed is specified, expected
         duration of the voyage will also be returned.
 
+
+        .. code-block:: python
+
+            from oceanbolt.com import distancecalculator_v3
+
+            def sample_calculate_distance():
+                # Create a client
+                client = distancecalculator_v3.DistanceCalculatorServiceClient()
+
+                # Initialize request argument(s)
+                request = distancecalculator_v3.DistanceRequest(
+                )
+
+                # Make the request
+                response = client.calculate_distance(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (:class:`oceanbolt.com.distancecalculator_v3.types.DistanceRequest`):
+            request (Union[oceanbolt.com.distancecalculator_v3.types.DistanceRequest, dict]):
                 The request object. Request object for CalculateDistance
                 method
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -154,7 +232,6 @@ class DistanceCalculatorServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-
         request = service.DistanceRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
@@ -176,16 +253,16 @@ class DistanceCalculatorServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def __aenter__(self):
+        return self
 
-
-
-
-
+    async def __aexit__(self, exc_type, exc, tb):
+        await self.transport.close()
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-distancecalculator',
+            "oceanbolt-com-distancecalculator",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -193,5 +270,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'DistanceCalculatorServiceAsyncClient',
+    "DistanceCalculatorServiceAsyncClient",
 )

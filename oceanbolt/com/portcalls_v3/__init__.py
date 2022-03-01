@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,11 +15,13 @@
 #
 
 from .services.port_call_service import PortCallServiceClient
+from .services.port_call_service import PortCallServiceAsyncClient
+
 from .types.service import EmptyParams
 from .types.service import EmptyResponse
-from .types.service import GetPortCallTimeseriesResponse
 from .types.service import GetPortCallsRequest
 from .types.service import GetPortCallsResponse
+from .types.service import GetPortCallTimeseriesResponse
 from .types.service import GetPortParticularsRequest
 from .types.service import GetPortParticularsResponse
 from .types.service import PortCall
@@ -28,18 +29,18 @@ from .types.service import Statistic
 from .types.service import TimeseriesGroup
 from .types.service import TimeseriesRow
 
-
 __all__ = (
-    'EmptyParams',
-    'EmptyResponse',
-    'GetPortCallTimeseriesResponse',
-    'GetPortCallsRequest',
-    'GetPortCallsResponse',
-    'GetPortParticularsRequest',
-    'GetPortParticularsResponse',
-    'PortCall',
-    'Statistic',
-    'TimeseriesGroup',
-    'TimeseriesRow',
+    'PortCallServiceAsyncClient',
+'EmptyParams',
+'EmptyResponse',
+'GetPortCallTimeseriesResponse',
+'GetPortCallsRequest',
+'GetPortCallsResponse',
+'GetPortParticularsRequest',
+'GetPortParticularsResponse',
+'PortCall',
 'PortCallServiceClient',
+'Statistic',
+'TimeseriesGroup',
+'TimeseriesRow',
 )

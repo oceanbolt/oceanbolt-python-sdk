@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,18 +15,20 @@
 #
 
 from .services.distance_calculator_service import DistanceCalculatorServiceClient
+from .services.distance_calculator_service import DistanceCalculatorServiceAsyncClient
+
 from .types.service import DistanceRequest
 from .types.service import DistanceResponse
 from .types.service import Leg
 from .types.service import Location
 from .types.service import Point
 
-
 __all__ = (
-    'DistanceRequest',
-    'DistanceResponse',
-    'Leg',
-    'Location',
-    'Point',
+    'DistanceCalculatorServiceAsyncClient',
 'DistanceCalculatorServiceClient',
+'DistanceRequest',
+'DistanceResponse',
+'Leg',
+'Location',
+'Point',
 )

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,17 +14,17 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service.async_client import DistanceCalculatorServiceAsyncClient
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service.client import DistanceCalculatorServiceClient
+from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service.async_client import DistanceCalculatorServiceAsyncClient
+
 from oceanbolt.com.distancecalculator_v3.types.service import DistanceRequest
 from oceanbolt.com.distancecalculator_v3.types.service import DistanceResponse
 from oceanbolt.com.distancecalculator_v3.types.service import Leg
 from oceanbolt.com.distancecalculator_v3.types.service import Location
 from oceanbolt.com.distancecalculator_v3.types.service import Point
 
-__all__ = (
+__all__ = ('DistanceCalculatorServiceClient',
     'DistanceCalculatorServiceAsyncClient',
-    'DistanceCalculatorServiceClient',
     'DistanceRequest',
     'DistanceResponse',
     'Leg',

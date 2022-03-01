@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -40,31 +37,58 @@ class Location(proto.Message):
     vessel. If an IMO is specified, routing will be calculated from
     the vessels current location.
 
+    This message has `oneof`_ fields (mutually exclusive fields).
+    For each oneof, at most one member field can be set at the same time.
+    Setting any member of the oneof automatically clears all other
+    members.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         imo (int):
             IMO number to include in the routing
             calculation. The current location of the vessel
             will be used in routing calculations.
+
+            This field is a member of `oneof`_ ``Data``.
         unlocode (str):
             UNLOCODE of a port to be included in routing
             calculation.
+
+            This field is a member of `oneof`_ ``Data``.
         point (oceanbolt.com.distancecalculator_v3.types.Point):
             Raw lon/lat point to be included in routing
             calculation.
+
+            This field is a member of `oneof`_ ``Data``.
         port_id (int):
             Oceanbolt port identifier to be included in
             routing calculation.
+
+            This field is a member of `oneof`_ ``Data``.
     """
 
-    imo = proto.Field(proto.UINT32, number=1, oneof='Data')
-
-    unlocode = proto.Field(proto.STRING, number=2, oneof='Data')
-
-    point = proto.Field(proto.MESSAGE, number=3, oneof='Data',
+    imo = proto.Field(
+        proto.UINT32,
+        number=1,
+        oneof='Data',
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=2,
+        oneof='Data',
+    )
+    point = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        oneof='Data',
         message='Point',
     )
-
-    port_id = proto.Field(proto.UINT32, number=4, oneof='Data')
+    port_id = proto.Field(
+        proto.UINT32,
+        number=4,
+        oneof='Data',
+    )
 
 
 class DistanceRequest(proto.Message):
@@ -95,15 +119,23 @@ class DistanceRequest(proto.Message):
             Default value is 'antimeridian.
     """
 
-    locations = proto.RepeatedField(proto.MESSAGE, number=1,
+    locations = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Location',
     )
-
-    speed = proto.Field(proto.DOUBLE, number=2)
-
-    transform = proto.Field(proto.STRING, number=3)
-
-    longitude_adjustment = proto.Field(proto.STRING, number=4)
+    speed = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    transform = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    longitude_adjustment = proto.Field(
+        proto.STRING,
+        number=4,
+    )
 
 
 class Leg(proto.Message):
@@ -124,16 +156,23 @@ class Leg(proto.Message):
             original point supplied was over land.
     """
 
-    distance = proto.Field(proto.DOUBLE, number=1)
-
-    duration_hours = proto.Field(proto.DOUBLE, number=2)
-
-    shortest_path = proto.RepeatedField(proto.MESSAGE, number=3,
+    distance = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    duration_hours = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    shortest_path = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='Point',
     )
-
-    starting_point_modified = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.BoolValue,
+    starting_point_modified = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.BoolValue,
     )
 
 
@@ -155,15 +194,22 @@ class DistanceResponse(proto.Message):
             voyage
     """
 
-    total_distance = proto.Field(proto.DOUBLE, number=1)
-
-    total_duration_hours = proto.Field(proto.DOUBLE, number=2)
-
-    total_shortest_path = proto.RepeatedField(proto.MESSAGE, number=3,
+    total_distance = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    total_duration_hours = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    total_shortest_path = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='Point',
     )
-
-    individual_legs = proto.RepeatedField(proto.MESSAGE, number=4,
+    individual_legs = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
         message='Leg',
     )
 
@@ -178,12 +224,15 @@ class Point(proto.Message):
             Latitude
     """
 
-    lon = proto.Field(proto.MESSAGE, number=1,
-        message=wrappers.DoubleValue,
+    lon = proto.Field(
+        proto.MESSAGE,
+        number=1,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    lat = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.DoubleValue,
+    lat = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.DoubleValue,
     )
 
 

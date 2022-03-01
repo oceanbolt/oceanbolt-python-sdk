@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.entities_v3.services.entity_service.async_client import EntityServiceAsyncClient
 from oceanbolt.com.entities_v3.services.entity_service.client import EntityServiceClient
+from oceanbolt.com.entities_v3.services.entity_service.async_client import EntityServiceAsyncClient
+
 from oceanbolt.com.entities_v3.types.service import Commodity
 from oceanbolt.com.entities_v3.types.service import Country
 from oceanbolt.com.entities_v3.types.service import EmptyParams
@@ -42,12 +42,11 @@ from oceanbolt.com.entities_v3.types.service import Vessel
 from oceanbolt.com.entities_v3.types.service import Zone
 from oceanbolt.com.entities_v3.types.service import ZoneWithPolygon
 
-__all__ = (
+__all__ = ('EntityServiceClient',
+    'EntityServiceAsyncClient',
     'Commodity',
     'Country',
     'EmptyParams',
-    'EntityServiceAsyncClient',
-    'EntityServiceClient',
     'ListCommoditiesResponse',
     'ListCountriesRequest',
     'ListCountriesResponse',

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -40,11 +37,13 @@ __protobuf__ = proto.module(
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class EmptyResponse(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class GetDryDockStaysRequest(proto.Message):
@@ -87,29 +86,54 @@ class GetDryDockStaysRequest(proto.Message):
             endpoint.
     """
 
-    imo = proto.RepeatedField(proto.INT32, number=1)
-
-    port_id = proto.RepeatedField(proto.INT32, number=2)
-
-    shipyard_id = proto.RepeatedField(proto.INT32, number=3)
-
-    unlocode = proto.RepeatedField(proto.STRING, number=6)
-
-    segment = proto.RepeatedField(proto.STRING, number=10)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=11)
-
-    start_date = proto.Field(proto.STRING, number=8)
-
-    end_date = proto.Field(proto.STRING, number=9)
-
-    latest_only = proto.Field(proto.BOOL, number=5)
-
-    format_ = proto.Field(proto.STRING, number=4)
-
-    sort = proto.Field(proto.STRING, number=7)
-
-    group_by = proto.Field(proto.STRING, number=12)
+    imo = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    port_id = proto.RepeatedField(
+        proto.INT32,
+        number=2,
+    )
+    shipyard_id = proto.RepeatedField(
+        proto.INT32,
+        number=3,
+    )
+    unlocode = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=10,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=11,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    latest_only = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=12,
+    )
 
 
 class GetDryDockStaysResponse(proto.Message):
@@ -130,19 +154,31 @@ class GetDryDockStaysResponse(proto.Message):
 
     """
 
-    data = proto.RepeatedField(proto.MESSAGE, number=1,
+    data = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='HistoricalDryDockStay',
     )
-
-    csv = proto.Field(proto.STRING, number=2)
-
-    xlsx = proto.Field(proto.STRING, number=3)
-
-    previous_token = proto.Field(proto.STRING, number=4)
-
-    next_token = proto.Field(proto.STRING, number=5)
-
-    max_results = proto.Field(proto.INT32, number=6)
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    previous_token = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    next_token = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    max_results = proto.Field(
+        proto.INT32,
+        number=6,
+    )
 
 
 class HistoricalDryDockStay(proto.Message):
@@ -189,40 +225,74 @@ class HistoricalDryDockStay(proto.Message):
             Duration of the dry dock stay (in days).
     """
 
-    shipyard_stay_id = proto.Field(proto.STRING, number=1)
-
-    imo = proto.Field(proto.INT32, number=2)
-
-    mmsi = proto.Field(proto.INT32, number=3)
-
-    vessel_name = proto.Field(proto.STRING, number=4)
-
-    segment = proto.Field(proto.STRING, number=5)
-
-    subsegment = proto.Field(proto.STRING, number=6)
-
-    dwt = proto.Field(proto.DOUBLE, number=7)
-
-    port_id = proto.Field(proto.INT32, number=8)
-
-    port_name = proto.Field(proto.STRING, number=9)
-
-    unlocode = proto.Field(proto.STRING, number=10)
-
-    country_code = proto.Field(proto.STRING, number=11)
-
-    region = proto.Field(proto.STRING, number=12)
-
-    shipyard_name = proto.Field(proto.STRING, number=13)
-
-    shipyard_id = proto.Field(proto.INT32, number=14)
-
-    arrived_at = proto.Field(proto.STRING, number=15)
-
-    departed_at = proto.Field(proto.STRING, number=16)
-
-    duration_days = proto.Field(proto.MESSAGE, number=18,
-        message=wrappers.DoubleValue,
+    shipyard_stay_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    mmsi = proto.Field(
+        proto.INT32,
+        number=3,
+    )
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    segment = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    subsegment = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=7,
+    )
+    port_id = proto.Field(
+        proto.INT32,
+        number=8,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=11,
+    )
+    region = proto.Field(
+        proto.STRING,
+        number=12,
+    )
+    shipyard_name = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    shipyard_id = proto.Field(
+        proto.INT32,
+        number=14,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=15,
+    )
+    departed_at = proto.Field(
+        proto.STRING,
+        number=16,
+    )
+    duration_days = proto.Field(
+        proto.MESSAGE,
+        number=18,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -284,35 +354,66 @@ class GetDryDockRequest(proto.Message):
             applicable to the DryDockVessels method.
     """
 
-    port_id = proto.RepeatedField(proto.INT32, number=1)
-
-    port_unlocode = proto.RepeatedField(proto.STRING, number=2)
-
-    shipyard_id = proto.RepeatedField(proto.INT32, number=3)
-
-    country_code = proto.RepeatedField(proto.STRING, number=4)
-
-    region_id = proto.RepeatedField(proto.STRING, number=5)
-
-    segment = proto.RepeatedField(proto.STRING, number=6)
-
-    sub_segment = proto.RepeatedField(proto.STRING, number=7)
-
-    group_by = proto.Field(proto.STRING, number=8)
-
-    exclude = proto.Field(proto.INT32, number=9)
-
-    format_ = proto.Field(proto.STRING, number=10)
-
-    start_date = proto.Field(proto.STRING, number=11)
-
-    end_date = proto.Field(proto.STRING, number=12)
-
-    last_n_days = proto.Field(proto.INT32, number=13)
-
-    sort = proto.Field(proto.STRING, number=14)
-
-    display_date = proto.Field(proto.STRING, number=15)
+    port_id = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    port_unlocode = proto.RepeatedField(
+        proto.STRING,
+        number=2,
+    )
+    shipyard_id = proto.RepeatedField(
+        proto.INT32,
+        number=3,
+    )
+    country_code = proto.RepeatedField(
+        proto.STRING,
+        number=4,
+    )
+    region_id = proto.RepeatedField(
+        proto.STRING,
+        number=5,
+    )
+    segment = proto.RepeatedField(
+        proto.STRING,
+        number=6,
+    )
+    sub_segment = proto.RepeatedField(
+        proto.STRING,
+        number=7,
+    )
+    group_by = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    exclude = proto.Field(
+        proto.INT32,
+        number=9,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=10,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=11,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=12,
+    )
+    last_n_days = proto.Field(
+        proto.INT32,
+        number=13,
+    )
+    sort = proto.Field(
+        proto.STRING,
+        number=14,
+    )
+    display_date = proto.Field(
+        proto.STRING,
+        number=15,
+    )
 
 
 class DryDockTimeseriesGroup(proto.Message):
@@ -326,9 +427,13 @@ class DryDockTimeseriesGroup(proto.Message):
             Rows of timeseries data
     """
 
-    group = proto.Field(proto.STRING, number=1)
-
-    rows = proto.RepeatedField(proto.MESSAGE, number=2,
+    group = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    rows = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='DryDockTimeseriesRow',
     )
 
@@ -352,22 +457,29 @@ class DryDockTimeseriesRow(proto.Message):
             congested on the date
     """
 
-    date = proto.Field(proto.STRING, number=1)
-
-    vessel_count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    date = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    vessel_dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    vessel_count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
     )
-
-    avg_waiting_days = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.DoubleValue,
+    vessel_dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    median_waiting_days = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    avg_waiting_days = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.DoubleValue,
+    )
+    median_waiting_days = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -399,39 +511,53 @@ class DryDockResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    number_of_current_vessels = proto.Field(proto.INT32, number=1)
-
-    current_top_ports = proto.RepeatedField(proto.MESSAGE, number=2,
+    number_of_current_vessels = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    current_top_ports = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='DryDockSplitRow',
     )
-
-    current_top_sub_segments = proto.RepeatedField(proto.MESSAGE, number=3,
+    current_top_sub_segments = proto.RepeatedField(
+        proto.MESSAGE,
+        number=3,
         message='DryDockSplitRow',
     )
-
-    current_top_countries = proto.RepeatedField(proto.MESSAGE, number=4,
+    current_top_countries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=4,
         message='DryDockSplitRow',
     )
-
-    current_top_shipyards = proto.RepeatedField(proto.MESSAGE, number=10,
+    current_top_shipyards = proto.RepeatedField(
+        proto.MESSAGE,
+        number=10,
         message='DryDockSplitRow',
     )
-
-    timeseriesDefault = proto.Field(proto.MESSAGE, number=5,
+    timeseriesDefault = proto.Field(
+        proto.MESSAGE,
+        number=5,
         message='DryDockTimeseriesGroup',
     )
-
-    current_vessels = proto.RepeatedField(proto.MESSAGE, number=6,
+    current_vessels = proto.RepeatedField(
+        proto.MESSAGE,
+        number=6,
         message='DryDockStay',
     )
-
-    timeseries = proto.RepeatedField(proto.MESSAGE, number=7,
+    timeseries = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
         message='DryDockTimeseriesGroup',
     )
-
-    csv = proto.Field(proto.STRING, number=8)
-
-    xlsx = proto.Field(proto.STRING, number=9)
+    csv = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=9,
+    )
 
 
 class DryDockSplitRow(proto.Message):
@@ -450,22 +576,29 @@ class DryDockSplitRow(proto.Message):
 
     """
 
-    item = proto.Field(proto.STRING, number=1)
-
-    count = proto.Field(proto.MESSAGE, number=2,
-        message=wrappers.Int32Value,
+    item = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    dwt = proto.Field(proto.MESSAGE, number=3,
-        message=wrappers.DoubleValue,
+    count = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=wrappers_pb2.Int32Value,
     )
-
-    count_percent = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.DoubleValue,
+    dwt = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.DoubleValue,
     )
-
-    dwt_percent = proto.Field(proto.MESSAGE, number=5,
-        message=wrappers.DoubleValue,
+    count_percent = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.DoubleValue,
+    )
+    dwt_percent = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=wrappers_pb2.DoubleValue,
     )
 
 
@@ -523,48 +656,81 @@ class DryDockStay(proto.Message):
             Not implemented.
     """
 
-    imo = proto.Field(proto.INT32, number=1)
-
-    vessel_name = proto.Field(proto.STRING, number=2)
-
-    segment = proto.Field(proto.STRING, number=3)
-
-    sub_segment = proto.Field(proto.STRING, number=4)
-
-    dwt = proto.Field(proto.DOUBLE, number=5)
-
-    port_id = proto.Field(proto.INT32, number=6)
-
-    port_name = proto.Field(proto.STRING, number=7)
-
-    shipyard_id = proto.Field(proto.INT32, number=11)
-
-    shipyard_name = proto.Field(proto.STRING, number=12)
-
-    country_name = proto.Field(proto.STRING, number=26)
-
-    country_code = proto.Field(proto.STRING, number=27)
-
-    current_country_code = proto.Field(proto.STRING, number=8)
-
-    arrived_at = proto.Field(proto.STRING, number=9)
-
-    waiting_time_days = proto.Field(proto.DOUBLE, number=10)
-
-    lat = proto.Field(proto.MESSAGE, number=22,
-        message=wrappers.DoubleValue,
+    imo = proto.Field(
+        proto.INT32,
+        number=1,
     )
-
-    lng = proto.Field(proto.MESSAGE, number=23,
-        message=wrappers.DoubleValue,
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=2,
     )
-
-    course = proto.Field(proto.MESSAGE, number=25,
-        message=wrappers.DoubleValue,
+    segment = proto.Field(
+        proto.STRING,
+        number=3,
     )
-
-    speed = proto.Field(proto.MESSAGE, number=24,
-        message=wrappers.DoubleValue,
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=5,
+    )
+    port_id = proto.Field(
+        proto.INT32,
+        number=6,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    shipyard_id = proto.Field(
+        proto.INT32,
+        number=11,
+    )
+    shipyard_name = proto.Field(
+        proto.STRING,
+        number=12,
+    )
+    country_name = proto.Field(
+        proto.STRING,
+        number=26,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=27,
+    )
+    current_country_code = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    waiting_time_days = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    lat = proto.Field(
+        proto.MESSAGE,
+        number=22,
+        message=wrappers_pb2.DoubleValue,
+    )
+    lng = proto.Field(
+        proto.MESSAGE,
+        number=23,
+        message=wrappers_pb2.DoubleValue,
+    )
+    course = proto.Field(
+        proto.MESSAGE,
+        number=25,
+        message=wrappers_pb2.DoubleValue,
+    )
+    speed = proto.Field(
+        proto.MESSAGE,
+        number=24,
+        message=wrappers_pb2.DoubleValue,
     )
 
 

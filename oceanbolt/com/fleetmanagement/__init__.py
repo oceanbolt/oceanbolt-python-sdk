@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +14,9 @@
 # limitations under the License.
 #
 
-from oceanbolt.com.fleetmanagement_v3.services.fleet_management_service.async_client import FleetManagementServiceAsyncClient
 from oceanbolt.com.fleetmanagement_v3.services.fleet_management_service.client import FleetManagementServiceClient
+from oceanbolt.com.fleetmanagement_v3.services.fleet_management_service.async_client import FleetManagementServiceAsyncClient
+
 from oceanbolt.com.fleetmanagement_v3.types.service import AddVesselRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import BatchVesselsRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import CreateFleetRequest
@@ -38,11 +38,12 @@ from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselParams
 from oceanbolt.com.fleetmanagement_v3.types.service import UpdateVesselRequest
 from oceanbolt.com.fleetmanagement_v3.types.service import Vessel
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselParams
+from oceanbolt.com.fleetmanagement_v3.types.service import Vessels
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselStatus
 from oceanbolt.com.fleetmanagement_v3.types.service import VesselStoppageEvent
-from oceanbolt.com.fleetmanagement_v3.types.service import Vessels
 
-__all__ = (
+__all__ = ('FleetManagementServiceClient',
+    'FleetManagementServiceAsyncClient',
     'AddVesselRequest',
     'BatchVesselsRequest',
     'CreateFleetRequest',
@@ -52,8 +53,6 @@ __all__ = (
     'EmptyParams',
     'EmptyResponse',
     'Fleet',
-    'FleetManagementServiceAsyncClient',
-    'FleetManagementServiceClient',
     'Fleets',
     'GetFleetLiveMapRequest',
     'GetFleetLiveMapResponse',
@@ -66,7 +65,7 @@ __all__ = (
     'UpdateVesselRequest',
     'Vessel',
     'VesselParams',
+    'Vessels',
     'VesselStatus',
     'VesselStoppageEvent',
-    'Vessels',
 )

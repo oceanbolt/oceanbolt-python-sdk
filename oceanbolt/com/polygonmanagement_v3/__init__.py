@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,8 @@
 #
 
 from .services.polygon_management_service import PolygonManagementServiceClient
+from .services.polygon_management_service import PolygonManagementServiceAsyncClient
+
 from .types.service import AddPolygonRequest
 from .types.service import BatchPolygonsRequest
 from .types.service import CopyLayerRequest
@@ -36,26 +37,26 @@ from .types.service import RenameLayerRequest
 from .types.service import ShareLayerRequest
 from .types.service import UpdatePolygonRequest
 
-
 __all__ = (
-    'AddPolygonRequest',
-    'BatchPolygonsRequest',
-    'CopyLayerRequest',
-    'CreateLayerRequest',
-    'DeleteLayerRequest',
-    'DeletePolygonRequest',
-    'DropPolygonsRequest',
-    'EmptyParams',
-    'EmptyResponse',
-    'GetLayerRequest',
-    'Layer',
-    'Layers',
-    'ListPolygonsRequest',
-    'Polygon',
-    'PolygonParams',
-    'Polygons',
-    'RenameLayerRequest',
-    'ShareLayerRequest',
-    'UpdatePolygonRequest',
+    'PolygonManagementServiceAsyncClient',
+'AddPolygonRequest',
+'BatchPolygonsRequest',
+'CopyLayerRequest',
+'CreateLayerRequest',
+'DeleteLayerRequest',
+'DeletePolygonRequest',
+'DropPolygonsRequest',
+'EmptyParams',
+'EmptyResponse',
+'GetLayerRequest',
+'Layer',
+'Layers',
+'ListPolygonsRequest',
+'Polygon',
 'PolygonManagementServiceClient',
+'PolygonParams',
+'Polygons',
+'RenameLayerRequest',
+'ShareLayerRequest',
+'UpdatePolygonRequest',
 )

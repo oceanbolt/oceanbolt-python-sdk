@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
 
-
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -57,9 +54,14 @@ class RenameLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    new_layer_name = proto.Field(proto.STRING, number=2)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    new_layer_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class CreateLayerRequest(proto.Message):
@@ -70,7 +72,10 @@ class CreateLayerRequest(proto.Message):
 
     """
 
-    layer_name = proto.Field(proto.STRING, number=2)
+    layer_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class DeleteLayerRequest(proto.Message):
@@ -81,7 +86,10 @@ class DeleteLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class CopyLayerRequest(proto.Message):
@@ -92,7 +100,10 @@ class CopyLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class GetLayerRequest(proto.Message):
@@ -103,7 +114,10 @@ class GetLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ListPolygonsRequest(proto.Message):
@@ -114,7 +128,10 @@ class ListPolygonsRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class ShareLayerRequest(proto.Message):
@@ -125,7 +142,10 @@ class ShareLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class DropPolygonsRequest(proto.Message):
@@ -136,7 +156,10 @@ class DropPolygonsRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
 
 
 class BatchPolygonsRequest(proto.Message):
@@ -151,13 +174,19 @@ class BatchPolygonsRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    polygons = proto.RepeatedField(proto.MESSAGE, number=2,
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    polygons = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='PolygonParams',
     )
-
-    upsert = proto.Field(proto.BOOL, number=4)
+    upsert = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
 
 
 class Layers(proto.Message):
@@ -170,11 +199,14 @@ class Layers(proto.Message):
 
     """
 
-    layers = proto.RepeatedField(proto.MESSAGE, number=1,
+    layers = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Layer',
     )
-
-    predefined_layers = proto.RepeatedField(proto.MESSAGE, number=2,
+    predefined_layers = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
         message='Layer',
     )
 
@@ -199,24 +231,36 @@ class Layer(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    layer_name = proto.Field(proto.STRING, number=2)
-
-    owner_user_id = proto.Field(proto.STRING, number=3)
-
-    organization = proto.Field(proto.STRING, number=6)
-
-    polygons_in_layer = proto.Field(proto.MESSAGE, number=4,
-        message=wrappers.Int32Value,
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
     )
-
-    polygons = proto.RepeatedField(proto.MESSAGE, number=5,
+    layer_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    owner_user_id = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    organization = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    polygons_in_layer = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=wrappers_pb2.Int32Value,
+    )
+    polygons = proto.RepeatedField(
+        proto.MESSAGE,
+        number=5,
         message='Polygon',
     )
-
-    shared_with_org = proto.Field(proto.MESSAGE, number=7,
-        message=wrappers.BoolValue,
+    shared_with_org = proto.Field(
+        proto.MESSAGE,
+        number=7,
+        message=wrappers_pb2.BoolValue,
     )
 
 
@@ -233,11 +277,19 @@ class PolygonParams(proto.Message):
 
     """
 
-    polygon_name = proto.Field(proto.STRING, number=2)
-
-    geojson = proto.Field(proto.STRING, number=11)
-
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
+    polygon_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    geojson = proto.Field(
+        proto.STRING,
+        number=11,
+    )
+    metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=3,
+    )
 
 
 class AddPolygonRequest(proto.Message):
@@ -250,9 +302,13 @@ class AddPolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    polygon = proto.Field(proto.MESSAGE, number=2,
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    polygon = proto.Field(
+        proto.MESSAGE,
+        number=2,
         message='PolygonParams',
     )
 
@@ -267,9 +323,14 @@ class DeletePolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    polygon_id = proto.Field(proto.STRING, number=2)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    polygon_id = proto.Field(
+        proto.STRING,
+        number=2,
+    )
 
 
 class UpdatePolygonRequest(proto.Message):
@@ -286,15 +347,23 @@ class UpdatePolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=1)
-
-    polygon_id = proto.Field(proto.STRING, number=2)
-
-    polygon = proto.Field(proto.MESSAGE, number=3,
+    layer_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    polygon_id = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    polygon = proto.Field(
+        proto.MESSAGE,
+        number=3,
         message='PolygonParams',
     )
-
-    upsert = proto.Field(proto.BOOL, number=4)
+    upsert = proto.Field(
+        proto.BOOL,
+        number=4,
+    )
 
 
 class Polygons(proto.Message):
@@ -307,11 +376,15 @@ class Polygons(proto.Message):
 
     """
 
-    polygons = proto.RepeatedField(proto.MESSAGE, number=1,
+    polygons = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
         message='Polygon',
     )
-
-    polygons_in_layer = proto.Field(proto.INT32, number=2)
+    polygons_in_layer = proto.Field(
+        proto.INT32,
+        number=2,
+    )
 
 
 class Polygon(proto.Message):
@@ -328,21 +401,33 @@ class Polygon(proto.Message):
 
     """
 
-    layer_id = proto.Field(proto.STRING, number=4)
-
-    polygon_id = proto.Field(proto.STRING, number=1)
-
-    polygon_name = proto.Field(proto.STRING, number=2)
-
-    metadata = proto.MapField(proto.STRING, proto.STRING, number=3)
+    layer_id = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    polygon_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    polygon_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    metadata = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=3,
+    )
 
 
 class EmptyParams(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 class EmptyResponse(proto.Message):
-    r""""""
+    r"""
+    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

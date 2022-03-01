@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,31 +13,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from .service import (
-    GetPortCallsRequest,
-    GetPortCallsResponse,
-    PortCall,
     EmptyParams,
     EmptyResponse,
-    GetPortParticularsRequest,
-    Statistic,
-    GetPortParticularsResponse,
+    GetPortCallsRequest,
+    GetPortCallsResponse,
     GetPortCallTimeseriesResponse,
+    GetPortParticularsRequest,
+    GetPortParticularsResponse,
+    PortCall,
+    Statistic,
     TimeseriesGroup,
     TimeseriesRow,
 )
 
 __all__ = (
-    'GetPortCallsRequest',
-    'GetPortCallsResponse',
-    'PortCall',
     'EmptyParams',
     'EmptyResponse',
-    'GetPortParticularsRequest',
-    'Statistic',
-    'GetPortParticularsResponse',
+    'GetPortCallsRequest',
+    'GetPortCallsResponse',
     'GetPortCallTimeseriesResponse',
+    'GetPortParticularsRequest',
+    'GetPortParticularsResponse',
+    'PortCall',
+    'Statistic',
     'TimeseriesGroup',
     'TimeseriesRow',
 )

@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,15 +39,14 @@ def partition(
 class tonnageCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'get_global_tonnage_status': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
-    'get_tonnage_basin_count': ('basin', 'segment', 'sub_segment', 'start_date', 'end_date', 'exclude_mpv', 'last_n_days', 'format_', ),
-    'get_tonnage_chinese_waters': ('start_date', 'end_date', 'segment', 'sub_segment', 'group_by', 'sort', 'format_', ),
-    'get_tonnage_fleet_growth': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
-    'get_tonnage_fleet_speed': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
-    'get_tonnage_fleet_status': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
-    'get_tonnage_zone_changes': ('from_zone_id', 'to_zone_id', 'segment', 'sub_segment', 'laden_status', 'start_date', 'end_date', 'group_by', 'sort', 'format_', 'frequency', ),
-    'get_tonnage_zone_count': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
-
+        'get_global_tonnage_status': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
+        'get_tonnage_basin_count': ('basin', 'segment', 'sub_segment', 'start_date', 'end_date', 'exclude_mpv', 'last_n_days', 'format_', ),
+        'get_tonnage_chinese_waters': ('start_date', 'end_date', 'segment', 'sub_segment', 'group_by', 'sort', 'format_', ),
+        'get_tonnage_fleet_growth': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
+        'get_tonnage_fleet_speed': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
+        'get_tonnage_fleet_status': ('frequency', 'segment', 'sub_segment', 'group_by', 'metric', 'format_', 'exclude_mpv', 'sort', 'start_date', 'end_date', ),
+        'get_tonnage_zone_changes': ('from_zone_id', 'to_zone_id', 'segment', 'sub_segment', 'laden_status', 'start_date', 'end_date', 'group_by', 'sort', 'format_', 'frequency', ),
+        'get_tonnage_zone_count': ('zone_id', 'segment', 'sub_segment', 'direction', 'laden_status', 'port_status', 'group_by', 'exclude_mpv', 'start_date', 'end_date', 'last_n_days', 'format_', 'sort', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -68,7 +65,7 @@ class tonnageCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -80,7 +77,7 @@ class tonnageCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,47 +13,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from .service import (
-    RenameLayerRequest,
+    AddPolygonRequest,
+    BatchPolygonsRequest,
+    CopyLayerRequest,
     CreateLayerRequest,
     DeleteLayerRequest,
-    CopyLayerRequest,
-    GetLayerRequest,
-    ListPolygonsRequest,
-    ShareLayerRequest,
-    DropPolygonsRequest,
-    BatchPolygonsRequest,
-    Layers,
-    Layer,
-    PolygonParams,
-    AddPolygonRequest,
     DeletePolygonRequest,
-    UpdatePolygonRequest,
-    Polygons,
-    Polygon,
+    DropPolygonsRequest,
     EmptyParams,
     EmptyResponse,
+    GetLayerRequest,
+    Layer,
+    Layers,
+    ListPolygonsRequest,
+    Polygon,
+    PolygonParams,
+    Polygons,
+    RenameLayerRequest,
+    ShareLayerRequest,
+    UpdatePolygonRequest,
 )
 
 __all__ = (
-    'RenameLayerRequest',
+    'AddPolygonRequest',
+    'BatchPolygonsRequest',
+    'CopyLayerRequest',
     'CreateLayerRequest',
     'DeleteLayerRequest',
-    'CopyLayerRequest',
-    'GetLayerRequest',
-    'ListPolygonsRequest',
-    'ShareLayerRequest',
-    'DropPolygonsRequest',
-    'BatchPolygonsRequest',
-    'Layers',
-    'Layer',
-    'PolygonParams',
-    'AddPolygonRequest',
     'DeletePolygonRequest',
-    'UpdatePolygonRequest',
-    'Polygons',
-    'Polygon',
+    'DropPolygonsRequest',
     'EmptyParams',
     'EmptyResponse',
+    'GetLayerRequest',
+    'Layer',
+    'Layers',
+    'ListPolygonsRequest',
+    'Polygon',
+    'PolygonParams',
+    'Polygons',
+    'RenameLayerRequest',
+    'ShareLayerRequest',
+    'UpdatePolygonRequest',
 )

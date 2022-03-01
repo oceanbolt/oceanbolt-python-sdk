@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import argparse
 import os
 import libcst as cst
@@ -41,21 +39,20 @@ def partition(
 class polygonmanagementCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-    'add_polygon': ('layer_id', 'polygon', ),
-    'batch_add_polygons': ('layer_id', 'polygons', 'upsert', ),
-    'create_layer': ('layer_name', ),
-    'delete_layer': ('layer_id', ),
-    'delete_polygon': ('layer_id', 'polygon_id', ),
-    'describe_layer': ('layer_id', ),
-    'drop_polygons': ('layer_id', ),
-    'list_layers': (),
-    'list_polygons': ('layer_id', ),
-    'rename_layer': ('layer_id', 'new_layer_name', ),
-    'replace_polygons': ('layer_id', 'polygons', 'upsert', ),
-    'share_layer': ('layer_id', ),
-    'unshare_layer': ('layer_id', ),
-    'update_polygon': ('layer_id', 'polygon_id', 'polygon', 'upsert', ),
-
+        'add_polygon': ('layer_id', 'polygon', ),
+        'batch_add_polygons': ('layer_id', 'polygons', 'upsert', ),
+        'create_layer': ('layer_name', ),
+        'delete_layer': ('layer_id', ),
+        'delete_polygon': ('layer_id', 'polygon_id', ),
+        'describe_layer': ('layer_id', ),
+        'drop_polygons': ('layer_id', ),
+        'list_layers': (),
+        'list_polygons': ('layer_id', ),
+        'rename_layer': ('layer_id', 'new_layer_name', ),
+        'replace_polygons': ('layer_id', 'polygons', 'upsert', ),
+        'share_layer': ('layer_id', ),
+        'unshare_layer': ('layer_id', ),
+        'update_polygon': ('layer_id', 'polygon_id', 'polygon', 'upsert', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
@@ -74,7 +71,7 @@ class polygonmanagementCallTransformer(cst.CSTTransformer):
             return updated
 
         kwargs, ctrl_kwargs = partition(
-            lambda a: not a.keyword.value in self.CTRL_PARAMS,
+            lambda a: a.keyword.value not in self.CTRL_PARAMS,
             kwargs
         )
 
@@ -86,7 +83,7 @@ class polygonmanagementCallTransformer(cst.CSTTransformer):
             value=cst.Dict([
                 cst.DictElement(
                     cst.SimpleString("'{}'".format(name)),
-                    cst.Element(value=arg.value)
+cst.Element(value=arg.value)
                 )
                 # Note: the args + kwargs looks silly, but keep in mind that
                 # the control parameters had to be stripped out, and that

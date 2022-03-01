@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +13,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
-from distutils import util
 import os
 import re
-from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions                            # type: ignore
-from google.api_core import gapic_v1                              # type: ignore
-from google.api_core import retry as retries                      # type: ignore
-from google.auth import credentials                               # type: ignore
+from google.api_core import client_options as client_options_lib
+from google.api_core import exceptions as core_exceptions
+from google.api_core import gapic_v1
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials             # type: ignore
 from google.auth.transport import mtls                            # type: ignore
 from google.auth.transport.grpc import SslCredentials             # type: ignore
 from google.auth.exceptions import MutualTLSChannelError          # type: ignore
 from google.oauth2 import service_account                         # type: ignore
 
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
-from oceanbolt.com.polygonmanagement_v3.types import service
+try:
+    OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
+except AttributeError:  # pragma: NO COVER
+    OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.polygonmanagement_v3.types import service
 from .transports.base import PolygonManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import PolygonManagementServiceGrpcTransport
 from .transports.grpc_asyncio import PolygonManagementServiceGrpcAsyncIOTransport
@@ -48,13 +49,13 @@ class PolygonManagementServiceClientMeta(type):
     objects.
     """
     _transport_registry = OrderedDict()  # type: Dict[str, Type[PolygonManagementServiceTransport]]
-    _transport_registry['grpc'] = PolygonManagementServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = PolygonManagementServiceGrpcAsyncIOTransport
+    _transport_registry["grpc"] = PolygonManagementServiceGrpcTransport
+    _transport_registry["grpc_asyncio"] = PolygonManagementServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
             label: str = None,
         ) -> Type[PolygonManagementServiceTransport]:
-        """Return an appropriate transport class.
+        """Returns an appropriate transport class.
 
         Args:
             label: The name of the desired transport. If none is
@@ -77,7 +78,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
-        """Convert api endpoint to mTLS endpoint.
+        """Converts api endpoint to mTLS endpoint.
+
         Convert "*.sandbox.googleapis.com" and "*.googleapis.com" to
         "*.mtls.sandbox.googleapis.com" and "*.mtls.googleapis.com" respectively.
         Args:
@@ -104,14 +106,15 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'api.oceanbolt.com'
+    DEFAULT_ENDPOINT = "api.oceanbolt.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
 
     @classmethod
     def from_service_account_info(cls, info: dict, *args, **kwargs):
-        """Creates an instance of this client using the provided credentials info.
+        """Creates an instance of this client using the provided credentials
+            info.
 
         Args:
             info (dict): The service account private key info.
@@ -128,7 +131,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
     @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
-        file.
+            file.
 
         Args:
             filename (str): The path to the service account private key json
@@ -141,23 +144,24 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         """
         credentials = service_account.Credentials.from_service_account_file(
             filename)
-        kwargs['credentials'] = credentials
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
     @property
     def transport(self) -> PolygonManagementServiceTransport:
-        """Return the transport used by the client instance.
+        """Returns the transport used by the client instance.
 
         Returns:
-            PolygonManagementServiceTransport: The transport used by the client instance.
+            PolygonManagementServiceTransport: The transport used by the client
+                instance.
         """
         return self._transport
 
     @staticmethod
     def common_billing_account_path(billing_account: str, ) -> str:
-        """Return a fully-qualified billing_account string."""
+        """Returns a fully-qualified billing_account string."""
         return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
 
     @staticmethod
@@ -168,7 +172,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
     @staticmethod
     def common_folder_path(folder: str, ) -> str:
-        """Return a fully-qualified folder string."""
+        """Returns a fully-qualified folder string."""
         return "folders/{folder}".format(folder=folder, )
 
     @staticmethod
@@ -179,7 +183,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
     @staticmethod
     def common_organization_path(organization: str, ) -> str:
-        """Return a fully-qualified organization string."""
+        """Returns a fully-qualified organization string."""
         return "organizations/{organization}".format(organization=organization, )
 
     @staticmethod
@@ -190,7 +194,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
     @staticmethod
     def common_project_path(project: str, ) -> str:
-        """Return a fully-qualified project string."""
+        """Returns a fully-qualified project string."""
         return "projects/{project}".format(project=project, )
 
     @staticmethod
@@ -201,7 +205,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
     @staticmethod
     def common_location_path(project: str, location: str, ) -> str:
-        """Return a fully-qualified location string."""
+        """Returns a fully-qualified location string."""
         return "projects/{project}/locations/{location}".format(project=project, location=location, )
 
     @staticmethod
@@ -210,13 +214,72 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
         return m.groupdict() if m else {}
 
+    @classmethod
+    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[client_options_lib.ClientOptions] = None):
+        """Return the API endpoint and client cert source for mutual TLS.
+
+        The client cert source is determined in the following order:
+        (1) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is not "true", the
+        client cert source is None.
+        (2) if `client_options.client_cert_source` is provided, use the provided one; if the
+        default client cert source exists, use the default one; otherwise the client cert
+        source is None.
+
+        The API endpoint is determined in the following order:
+        (1) if `client_options.api_endpoint` if provided, use the provided one.
+        (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
+        default mTLS endpoint; if the environment variabel is "never", use the default API
+        endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
+        use the default API endpoint.
+
+        More details can be found at https://google.aip.dev/auth/4114.
+
+        Args:
+            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+                client. Only the `api_endpoint` and `client_cert_source` properties may be used
+                in this method.
+
+        Returns:
+            Tuple[str, Callable[[], Tuple[bytes, bytes]]]: returns the API endpoint and the
+                client cert source to use.
+
+        Raises:
+            google.auth.exceptions.MutualTLSChannelError: If any errors happen.
+        """
+        if client_options is None:
+            client_options = client_options_lib.ClientOptions()
+        use_client_cert = os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")
+        use_mtls_endpoint = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
+        if use_client_cert not in ("true", "false"):
+            raise ValueError("Environment variable `GOOGLE_API_USE_CLIENT_CERTIFICATE` must be either `true` or `false`")
+        if use_mtls_endpoint not in ("auto", "never", "always"):
+            raise MutualTLSChannelError("Environment variable `GOOGLE_API_USE_MTLS_ENDPOINT` must be `never`, `auto` or `always`")
+
+        # Figure out the client cert source to use.
+        client_cert_source = None
+        if use_client_cert == "true":
+            if client_options.client_cert_source:
+                client_cert_source = client_options.client_cert_source
+            elif mtls.has_default_client_cert_source():
+                client_cert_source = mtls.default_client_cert_source()
+
+        # Figure out which api endpoint to use.
+        if client_options.api_endpoint is not None:
+            api_endpoint = client_options.api_endpoint
+        elif use_mtls_endpoint == "always" or (use_mtls_endpoint == "auto" and client_cert_source):
+            api_endpoint = cls.DEFAULT_MTLS_ENDPOINT
+        else:
+            api_endpoint = cls.DEFAULT_ENDPOINT
+
+        return api_endpoint, client_cert_source
+
     def __init__(self, *,
-            credentials: Optional[credentials.Credentials] = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, PolygonManagementServiceTransport, None] = None,
             client_options: Optional[client_options_lib.ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
-        """Instantiate the polygon management service client.
+        """Instantiates the polygon management service client.
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -258,50 +321,32 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
 
-        # Create SSL credentials for mutual TLS if needed.
-        use_client_cert = bool(util.strtobool(os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")))
+        api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
-        client_cert_source_func = None
-        is_mtls = False
-        if use_client_cert:
-            if client_options.client_cert_source:
-                is_mtls = True
-                client_cert_source_func = client_options.client_cert_source
-            else:
-                is_mtls = mtls.has_default_client_cert_source()
-                client_cert_source_func = mtls.default_client_cert_source() if is_mtls else None
-
-        # Figure out which api endpoint to use.
-        if client_options.api_endpoint is not None:
-            api_endpoint = client_options.api_endpoint
-        else:
-            use_mtls_env = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
-            if use_mtls_env == "never":
-                api_endpoint = self.DEFAULT_ENDPOINT
-            elif use_mtls_env == "always":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT
-            elif use_mtls_env == "auto":
-                api_endpoint = self.DEFAULT_MTLS_ENDPOINT if is_mtls else self.DEFAULT_ENDPOINT
-            else:
-                raise MutualTLSChannelError(
-                    "Unsupported GOOGLE_API_USE_MTLS_ENDPOINT value. Accepted values: never, auto, always"
-                )
+        api_key_value = getattr(client_options, "api_key", None)
+        if api_key_value and credentials:
+            raise ValueError("client_options.api_key and credentials are mutually exclusive")
 
         # Save or instantiate the transport.
         # Ordinarily, we provide the transport, but allowing a custom transport
         # instance provides an extensibility point for unusual situations.
         if isinstance(transport, PolygonManagementServiceTransport):
             # transport is a PolygonManagementServiceTransport instance.
-            if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+            if credentials or client_options.credentials_file or api_key_value:
+                raise ValueError("When providing a transport instance, "
+                                 "provide its credentials directly.")
             if client_options.scopes:
                 raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its scopes directly."
+                    "When providing a transport instance, provide its scopes "
+                    "directly."
                 )
             self._transport = transport
         else:
+            import google.auth._default  # type: ignore
+
+            if api_key_value and hasattr(google.auth._default, "get_api_key_credentials"):
+                credentials = google.auth._default.get_api_key_credentials(api_key_value)
+
             Transport = type(self).get_transport_class(transport)
             self._transport = Transport(
                 credentials=credentials,
@@ -311,21 +356,39 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 client_cert_source_for_mtls=client_cert_source_func,
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
+                always_use_jwt_access=True,
             )
 
     def list_layers(self,
-            request: service.EmptyParams = None,
+            request: Union[service.EmptyParams, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layers:
         r"""ListLayers lists layers for the current user
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.EmptyParams):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_list_layers():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.EmptyParams(
+                )
+
+                # Make the request
+                response = client.list_layers(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.EmptyParams, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -337,7 +400,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.EmptyParams.
         # There's no risk of modifying the input as we've already verified
@@ -361,18 +423,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def create_layer(self,
-            request: service.CreateLayerRequest = None,
+            request: Union[service.CreateLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layer:
         r"""CreateLayer creates new layer for the current user
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.CreateLayerRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_create_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.CreateLayerRequest(
+                )
+
+                # Make the request
+                response = client.create_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.CreateLayerRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -384,7 +463,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.CreateLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -408,18 +486,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def delete_layer(self,
-            request: service.DeleteLayerRequest = None,
+            request: Union[service.DeleteLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""DeleteLayer deletes layer for the current user
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.DeleteLayerRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_delete_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.DeleteLayerRequest(
+                )
+
+                # Make the request
+                response = client.delete_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.DeleteLayerRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -431,7 +526,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.DeleteLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -455,18 +549,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def describe_layer(self,
-            request: service.GetLayerRequest = None,
+            request: Union[service.GetLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layer:
         r"""GetLayer gets fleed by layer id for the current user
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.GetLayerRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_describe_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.GetLayerRequest(
+                )
+
+                # Make the request
+                response = client.describe_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.GetLayerRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -478,7 +589,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.GetLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -502,20 +612,38 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def rename_layer(self,
-            request: service.RenameLayerRequest = None,
+            request: Union[service.RenameLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layer:
         r"""RenameLayer changes the name of the layer for the
         current user
 
+
+        .. code-block:: python
+
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_rename_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.RenameLayerRequest(
+                )
+
+                # Make the request
+                response = client.rename_layer(request=request)
+
+                # Handle the response
+                print(response)
+
         Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.RenameLayerRequest):
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.RenameLayerRequest, dict]):
                 The request object.  LayerManagement requests ans
                 responses
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -527,7 +655,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.RenameLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -551,19 +678,37 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def share_layer(self,
-            request: service.ShareLayerRequest = None,
+            request: Union[service.ShareLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest):
-                The request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_share_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.ShareLayerRequest(
+                )
+
+                # Make the request
+                response = client.share_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -575,7 +720,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.ShareLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -599,19 +743,37 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def unshare_layer(self,
-            request: service.ShareLayerRequest = None,
+            request: Union[service.ShareLayerRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest):
-                The request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_unshare_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.ShareLayerRequest(
+                )
+
+                # Make the request
+                response = client.unshare_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -623,7 +785,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.ShareLayerRequest.
         # There's no risk of modifying the input as we've already verified
@@ -647,19 +808,37 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def list_polygons(self,
-            request: service.ListPolygonsRequest = None,
+            request: Union[service.ListPolygonsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Polygons:
         r"""GetLayerPolygons gets layer polygons for the current
         user
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.ListPolygonsRequest):
-                The request object.
 
+        .. code-block:: python
+
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_list_polygons():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.ListPolygonsRequest(
+                )
+
+                # Make the request
+                response = client.list_polygons(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.ListPolygonsRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -671,7 +850,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.ListPolygonsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -695,18 +873,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def add_polygon(self,
-            request: service.AddPolygonRequest = None,
+            request: Union[service.AddPolygonRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Polygon:
         r"""AddPolygon adds new vessel to user's layer
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.AddPolygonRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_add_polygon():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.AddPolygonRequest(
+                )
+
+                # Make the request
+                response = client.add_polygon(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.AddPolygonRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -718,7 +913,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.AddPolygonRequest.
         # There's no risk of modifying the input as we've already verified
@@ -742,18 +936,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def update_polygon(self,
-            request: service.UpdatePolygonRequest = None,
+            request: Union[service.UpdatePolygonRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Polygon:
         r"""UpdatePolygon updates existing vessel to user's layer
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.UpdatePolygonRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_update_polygon():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.UpdatePolygonRequest(
+                )
+
+                # Make the request
+                response = client.update_polygon(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.UpdatePolygonRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -765,7 +976,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.UpdatePolygonRequest.
         # There's no risk of modifying the input as we've already verified
@@ -789,18 +999,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def delete_polygon(self,
-            request: service.DeletePolygonRequest = None,
+            request: Union[service.DeletePolygonRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""DeletePolygon removes vessel from user's layer
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.DeletePolygonRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_delete_polygon():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.DeletePolygonRequest(
+                )
+
+                # Make the request
+                response = client.delete_polygon(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.DeletePolygonRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -812,7 +1039,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.DeletePolygonRequest.
         # There's no risk of modifying the input as we've already verified
@@ -836,18 +1062,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def batch_add_polygons(self,
-            request: service.BatchPolygonsRequest = None,
+            request: Union[service.BatchPolygonsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_batch_add_polygons():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.BatchPolygonsRequest(
+                )
+
+                # Make the request
+                response = client.batch_add_polygons(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -859,7 +1102,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.BatchPolygonsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -883,18 +1125,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def replace_polygons(self,
-            request: service.BatchPolygonsRequest = None,
+            request: Union[service.BatchPolygonsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_replace_polygons():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.BatchPolygonsRequest(
+                )
+
+                # Make the request
+                response = client.replace_polygons(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -906,7 +1165,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.BatchPolygonsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -930,18 +1188,35 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def drop_polygons(self,
-            request: service.DropPolygonsRequest = None,
+            request: Union[service.DropPolygonsRequest, dict] = None,
             *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""
 
-        Args:
-            request (oceanbolt.com.polygonmanagement_v3.types.DropPolygonsRequest):
-                The request object.
+        .. code-block:: python
 
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_drop_polygons():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.DropPolygonsRequest(
+                )
+
+                # Make the request
+                response = client.drop_polygons(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.DropPolygonsRequest, dict]):
+                The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -953,7 +1228,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.DropPolygonsRequest.
         # There's no risk of modifying the input as we've already verified
@@ -976,16 +1250,25 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Done; return the response.
         return response
 
+    def __enter__(self):
+        return self
 
+    def __exit__(self, type, value, traceback):
+        """Releases underlying transport's resources.
 
-
+        .. warning::
+            ONLY use as a context manager if the transport is NOT shared
+            with other clients! Exiting the with block will CLOSE the transport
+            and may cause errors in other clients!
+        """
+        self.transport.close()
 
 
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution(
-            'oceanbolt-com-polygonmanagement',
+            "oceanbolt-com-polygonmanagement",
         ).version,
     )
 except pkg_resources.DistributionNotFound:
@@ -993,5 +1276,5 @@ except pkg_resources.DistributionNotFound:
 
 
 __all__ = (
-    'PolygonManagementServiceClient',
+    "PolygonManagementServiceClient",
 )
