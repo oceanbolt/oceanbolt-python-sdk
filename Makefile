@@ -28,3 +28,6 @@ install:
 	pip install -e ".[docs]"
 	pip install -e ".[test]"
 	pip install -e ".[publish]"
+
+install.m1:
+	conda install grpcio cython pip pandas numpy google-api-core googleapis-common-protos protobuf libcst proto-plus
