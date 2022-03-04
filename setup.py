@@ -41,7 +41,7 @@ setuptools.setup(
         'libcst >= 0.4.1',
         'proto-plus >= 1.20.0',
         'pandas>=1.1.5',
-        'numpy>=1.22.0',
+        'numpy>=1.21.5',
     ),
     python_requires='>=3.6',
     scripts=[
