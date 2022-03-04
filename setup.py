@@ -40,7 +40,7 @@ setuptools.setup(
         'google-api-core >= 2.6',
         'libcst >= 0.4.1',
         'proto-plus >= 1.20.0',
-        'pandas>=1.4.1',
+        'pandas>=1.1.5',
         'numpy>=1.22.0',
     ),
     python_requires='>=3.6',
