@@ -32,7 +32,7 @@ from .grpc import EntityServiceGrpcTransport
 class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
     """gRPC AsyncIO backend transport for EntityService.
 
-    TradeflowService provides service to get tradeflow data.
+    EntityService provides service to get entity data.
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation

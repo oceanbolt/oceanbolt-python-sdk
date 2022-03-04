@@ -73,7 +73,7 @@ class EntityServiceClientMeta(type):
 
 
 class EntityServiceClient(metaclass=EntityServiceClientMeta):
-    """TradeflowService provides service to get tradeflow data."""
+    """EntityService provides service to get entity data."""
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):

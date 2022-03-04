@@ -38,7 +38,7 @@ from .client import EntityServiceClient
 
 
 class EntityServiceAsyncClient:
-    """TradeflowService provides service to get tradeflow data."""
+    """EntityService provides service to get entity data."""
 
     _client: EntityServiceClient
 
