@@ -31,6 +31,8 @@ Response
 --------
 .. autoclass:: oceanbolt.com.vesselstates_v3.types.VesselStatesResponse
     :members:
+    :noindex:
 
 .. autoclass:: oceanbolt.com.vesselstates_v3.types.VesselState
     :members:
+    :noindex:
