@@ -6,6 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import google.protobuf.wrappers_pb2
 import typing
 import typing_extensions
 
@@ -19,41 +20,45 @@ class VesselFilter(google.protobuf.message.Message):
     SUB_SEGMENT_FIELD_NUMBER: builtins.int
     DWT_FIELD_NUMBER: builtins.int
     MAX_DRAUGHT_FIELD_NUMBER: builtins.int
-    VESSEL_NAME_FIELD_NUMBER: builtins.int
-    EX_NAME_FIELD_NUMBER: builtins.int
     LOA_FIELD_NUMBER: builtins.int
     BEAM_FIELD_NUMBER: builtins.int
     LOG_FITTED_FIELD_NUMBER: builtins.int
     SELF_UNLOADER_FIELD_NUMBER: builtins.int
-    GEAR_FIELD_NUMBER: builtins.int
+    GEARED_FIELD_NUMBER: builtins.int
     ICE_CLASSED_FIELD_NUMBER: builtins.int
     MPV_FIELD_NUMBER: builtins.int
     GT_FIELD_NUMBER: builtins.int
     GRAIN_CAPACITY_FIELD_NUMBER: builtins.int
     GAS_CAPACITY_CBM_FIELD_NUMBER: builtins.int
     BUILT_FIELD_NUMBER: builtins.int
-    PLATFORM_FIELD_NUMBER: builtins.int
     VESSEL_TYPE_FIELD_NUMBER: builtins.int
     FLAG_STATE_FIELD_NUMBER: builtins.int
-    imo: builtins.int
-    highlevel_type: typing.Text
-    segment: typing.Text
-    sub_segment: typing.Text
+    @property
+    def imo(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]: ...
+    @property
+    def highlevel_type(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
+    @property
+    def segment(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
+    @property
+    def sub_segment(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
     @property
     def dwt(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     @property
     def max_draught(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
-    vessel_name: typing.Text
-    ex_name: typing.Text
     @property
     def loa(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     @property
     def beam(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
-    log_fitted: builtins.bool
-    self_unloader: builtins.bool
-    gear: builtins.bool
-    ice_classed: builtins.bool
-    mpv: builtins.bool
+    @property
+    def log_fitted(self) -> google.protobuf.wrappers_pb2.BoolValue: ...
+    @property
+    def self_unloader(self) -> google.protobuf.wrappers_pb2.BoolValue: ...
+    @property
+    def geared(self) -> google.protobuf.wrappers_pb2.BoolValue: ...
+    @property
+    def ice_classed(self) -> google.protobuf.wrappers_pb2.BoolValue: ...
+    @property
+    def mpv(self) -> google.protobuf.wrappers_pb2.BoolValue: ...
     @property
     def gt(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     @property
@@ -62,33 +67,32 @@ class VesselFilter(google.protobuf.message.Message):
     def gas_capacity_cbm(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]: ...
     @property
     def built(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]: ...
-    platform: typing.Text
-    vessel_type: typing.Text
-    flag_state: typing.Text
+    @property
+    def vessel_type(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
+    @property
+    def flag_state(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]: ...
     def __init__(self,
         *,
-        imo: builtins.int = ...,
-        highlevel_type: typing.Text = ...,
-        segment: typing.Text = ...,
-        sub_segment: typing.Text = ...,
+        imo: typing.Optional[typing.Iterable[builtins.int]] = ...,
+        highlevel_type: typing.Optional[typing.Iterable[typing.Text]] = ...,
+        segment: typing.Optional[typing.Iterable[typing.Text]] = ...,
+        sub_segment: typing.Optional[typing.Iterable[typing.Text]] = ...,
         dwt: typing.Optional[typing.Iterable[builtins.float]] = ...,
         max_draught: typing.Optional[typing.Iterable[builtins.float]] = ...,
-        vessel_name: typing.Text = ...,
-        ex_name: typing.Text = ...,
         loa: typing.Optional[typing.Iterable[builtins.float]] = ...,
         beam: typing.Optional[typing.Iterable[builtins.float]] = ...,
-        log_fitted: builtins.bool = ...,
-        self_unloader: builtins.bool = ...,
-        gear: builtins.bool = ...,
-        ice_classed: builtins.bool = ...,
-        mpv: builtins.bool = ...,
+        log_fitted: typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
+        self_unloader: typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
+        geared: typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
+        ice_classed: typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
+        mpv: typing.Optional[google.protobuf.wrappers_pb2.BoolValue] = ...,
         gt: typing.Optional[typing.Iterable[builtins.float]] = ...,
         grain_capacity: typing.Optional[typing.Iterable[builtins.float]] = ...,
         gas_capacity_cbm: typing.Optional[typing.Iterable[builtins.float]] = ...,
         built: typing.Optional[typing.Iterable[builtins.int]] = ...,
-        platform: typing.Text = ...,
-        vessel_type: typing.Text = ...,
-        flag_state: typing.Text = ...,
+        vessel_type: typing.Optional[typing.Iterable[typing.Text]] = ...,
+        flag_state: typing.Optional[typing.Iterable[typing.Text]] = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["beam",b"beam","built",b"built","dwt",b"dwt","ex_name",b"ex_name","flag_state",b"flag_state","gas_capacity_cbm",b"gas_capacity_cbm","gear",b"gear","grain_capacity",b"grain_capacity","gt",b"gt","highlevel_type",b"highlevel_type","ice_classed",b"ice_classed","imo",b"imo","loa",b"loa","log_fitted",b"log_fitted","max_draught",b"max_draught","mpv",b"mpv","platform",b"platform","segment",b"segment","self_unloader",b"self_unloader","sub_segment",b"sub_segment","vessel_name",b"vessel_name","vessel_type",b"vessel_type"]) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["geared",b"geared","ice_classed",b"ice_classed","log_fitted",b"log_fitted","mpv",b"mpv","self_unloader",b"self_unloader"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["beam",b"beam","built",b"built","dwt",b"dwt","flag_state",b"flag_state","gas_capacity_cbm",b"gas_capacity_cbm","geared",b"geared","grain_capacity",b"grain_capacity","gt",b"gt","highlevel_type",b"highlevel_type","ice_classed",b"ice_classed","imo",b"imo","loa",b"loa","log_fitted",b"log_fitted","max_draught",b"max_draught","mpv",b"mpv","segment",b"segment","self_unloader",b"self_unloader","sub_segment",b"sub_segment","vessel_type",b"vessel_type"]) -> None: ...
 global___VesselFilter = VesselFilter

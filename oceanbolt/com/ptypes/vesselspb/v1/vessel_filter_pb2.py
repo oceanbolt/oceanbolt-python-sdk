@@ -12,9 +12,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'ptypes/vesselspb/v1/vessel_filter.proto\x12!oceanbolt.com.ptypes.vesselspb.v1\"\xf3\x04\n\x0cVesselFilter\x12\x10\n\x03imo\x18\x01 \x01(\x05R\x03imo\x12%\n\x0ehighlevel_type\x18\x02 \x01(\tR\rhighlevelType\x12\x18\n\x07segment\x18\x03 \x01(\tR\x07segment\x12\x1f\n\x0bsub_segment\x18\x04 \x01(\tR\nsubSegment\x12\x10\n\x03\x64wt\x18\x05 \x03(\x01R\x03\x64wt\x12\x1f\n\x0bmax_draught\x18\x06 \x03(\x01R\nmaxDraught\x12\x1f\n\x0bvessel_name\x18\x07 \x01(\tR\nvesselName\x12\x17\n\x07\x65x_name\x18\x08 \x01(\tR\x06\x65xName\x12\x10\n\x03loa\x18\t \x03(\x01R\x03loa\x12\x12\n\x04\x62\x65\x61m\x18\n \x03(\x01R\x04\x62\x65\x61m\x12\x1d\n\nlog_fitted\x18\x0b \x01(\x08R\tlogFitted\x12#\n\rself_unloader\x18\x0c \x01(\x08R\x0cselfUnloader\x12\x12\n\x04gear\x18\r \x01(\x08R\x04gear\x12\x1f\n\x0bice_classed\x18\x0e \x01(\x08R\niceClassed\x12\x10\n\x03mpv\x18\x0f \x01(\x08R\x03mpv\x12\x0e\n\x02gt\x18\x10 \x03(\x01R\x02gt\x12%\n\x0egrain_capacity\x18\x11 \x03(\x01R\rgrainCapacity\x12(\n\x10gas_capacity_cbm\x18\x12 \x03(\x01R\x0egasCapacityCbm\x12\x14\n\x05\x62uilt\x18\x13 \x03(\x05R\x05\x62uilt\x12\x1a\n\x08platform\x18\x14 \x01(\tR\x08platform\x12\x1f\n\x0bvessel_type\x18\x15 \x01(\tR\nvesselType\x12\x1d\n\nflag_state\x18\x16 \x01(\tR\tflagStateBKZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/vesselspb/v1;vesselspbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\'ptypes/vesselspb/v1/vessel_filter.proto\x12!oceanbolt.com.ptypes.vesselspb.v1\x1a\x1egoogle/protobuf/wrappers.proto\"\xad\x05\n\x0cVesselFilter\x12\x10\n\x03imo\x18\x01 \x03(\rR\x03imo\x12%\n\x0ehighlevel_type\x18\x02 \x03(\tR\rhighlevelType\x12\x18\n\x07segment\x18\x03 \x03(\tR\x07segment\x12\x1f\n\x0bsub_segment\x18\x04 \x03(\tR\nsubSegment\x12\x10\n\x03\x64wt\x18\x05 \x03(\x01R\x03\x64wt\x12\x1f\n\x0bmax_draught\x18\x06 \x03(\x01R\nmaxDraught\x12\x10\n\x03loa\x18\t \x03(\x01R\x03loa\x12\x12\n\x04\x62\x65\x61m\x18\n \x03(\x01R\x04\x62\x65\x61m\x12\x39\n\nlog_fitted\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\tlogFitted\x12?\n\rself_unloader\x18\x0c \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x0cselfUnloader\x12\x32\n\x06geared\x18\r \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x06geared\x12;\n\x0bice_classed\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\niceClassed\x12,\n\x03mpv\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.BoolValueR\x03mpv\x12\x0e\n\x02gt\x18\x10 \x03(\x01R\x02gt\x12%\n\x0egrain_capacity\x18\x11 \x03(\x01R\rgrainCapacity\x12(\n\x10gas_capacity_cbm\x18\x12 \x03(\x01R\x0egasCapacityCbm\x12\x14\n\x05\x62uilt\x18\x13 \x03(\x05R\x05\x62uilt\x12\x1f\n\x0bvessel_type\x18\x15 \x03(\tR\nvesselType\x12\x1d\n\nflag_state\x18\x16 \x03(\tR\tflagStateBKZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/vesselspb/v1;vesselspbb\x06proto3')
 
 
 
@@ -30,6 +31,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'ZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/vesselspb/v1;vesselspb'
-  _VESSELFILTER._serialized_start=79
-  _VESSELFILTER._serialized_end=706
+  _VESSELFILTER._serialized_start=111
+  _VESSELFILTER._serialized_end=796
 # @@protoc_insertion_point(module_scope)
