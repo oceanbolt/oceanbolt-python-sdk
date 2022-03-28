@@ -646,6 +646,33 @@ class FleetManagementServiceGrpcTransport(FleetManagementServiceTransport):
             )
         return self._stubs['get_fleet_live_map']
 
+    @property
+    def upload_fleet_list(self) -> Callable[
+            [service.GetFleetListRequest],
+            service.EmptyResponse]:
+        r"""Return a callable for the upload fleet list method over gRPC.
+
+        Uploads file containing fleet data to be parsed into
+        a batch of vessels.
+
+        Returns:
+            Callable[[~.GetFleetListRequest],
+                    ~.EmptyResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'upload_fleet_list' not in self._stubs:
+            self._stubs['upload_fleet_list'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.fleetmanagement.v3.FleetManagementService/UploadFleetList',
+                request_serializer=service.GetFleetListRequest.serialize,
+                response_deserializer=service.EmptyResponse.deserialize,
+            )
+        return self._stubs['upload_fleet_list']
+
     def close(self):
         self.grpc_channel.close()
 

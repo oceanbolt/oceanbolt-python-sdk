@@ -43,6 +43,7 @@ __protobuf__ = proto.module(
         'VesselStoppageEvent',
         'GetFleetLiveMapRequest',
         'GetFleetLiveMapResponse',
+        'GetFleetListRequest',
         'EmptyParams',
         'EmptyResponse',
     },
@@ -742,6 +743,26 @@ class GetFleetLiveMapResponse(proto.Message):
     map_image = proto.Field(
         proto.STRING,
         number=1,
+    )
+
+
+class GetFleetListRequest(proto.Message):
+    r"""Request object for parsing a file into a fleet
+
+    Attributes:
+        file_name (str):
+            Original file name including file extension
+        file (bytes):
+            Serialized file data
+    """
+
+    file_name = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    file = proto.Field(
+        proto.BYTES,
+        number=2,
     )
 
 

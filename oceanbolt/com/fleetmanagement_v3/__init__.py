@@ -27,6 +27,7 @@ from .types.service import EmptyParams
 from .types.service import EmptyResponse
 from .types.service import Fleet
 from .types.service import Fleets
+from .types.service import GetFleetListRequest
 from .types.service import GetFleetLiveMapRequest
 from .types.service import GetFleetLiveMapResponse
 from .types.service import GetFleetRequest
@@ -55,6 +56,7 @@ __all__ = (
 'Fleet',
 'FleetManagementServiceClient',
 'Fleets',
+'GetFleetListRequest',
 'GetFleetLiveMapRequest',
 'GetFleetLiveMapResponse',
 'GetFleetRequest',

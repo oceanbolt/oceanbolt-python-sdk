@@ -193,6 +193,11 @@ class FleetManagementServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.upload_fleet_list: gapic_v1.method.wrap_method(
+                self.upload_fleet_list,
+                default_timeout=None,
+                client_info=client_info,
+            ),
          }
 
     def close(self):
@@ -345,6 +350,15 @@ class FleetManagementServiceTransport(abc.ABC):
             Union[
                 service.GetFleetLiveMapResponse,
                 Awaitable[service.GetFleetLiveMapResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def upload_fleet_list(self) -> Callable[
+            [service.GetFleetListRequest],
+            Union[
+                service.EmptyResponse,
+                Awaitable[service.EmptyResponse]
             ]]:
         raise NotImplementedError()
 

@@ -1196,6 +1196,71 @@ class FleetManagementServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def upload_fleet_list(self,
+            request: Union[service.GetFleetListRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.EmptyResponse:
+        r"""Uploads file containing fleet data to be parsed into
+        a batch of vessels.
+
+
+        .. code-block:: python
+
+            from oceanbolt.com import fleetmanagement_v3
+
+            def sample_upload_fleet_list():
+                # Create a client
+                client = fleetmanagement_v3.FleetManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = fleetmanagement_v3.GetFleetListRequest(
+                )
+
+                # Make the request
+                response = client.upload_fleet_list(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.fleetmanagement_v3.types.GetFleetListRequest, dict]):
+                The request object. Request object for parsing a file
+                into a fleet
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.fleetmanagement_v3.types.EmptyResponse:
+                Empty response object
+        """
+        # Create or coerce a protobuf request object.
+        request = service.GetFleetListRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.upload_fleet_list,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def __aenter__(self):
         return self
 
