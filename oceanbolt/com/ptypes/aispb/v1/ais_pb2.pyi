@@ -66,6 +66,9 @@ global___AisPositionExtended = AisPositionExtended
 
 class AisPosition(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    IMO_FIELD_NUMBER: builtins.int
+    MMSI_FIELD_NUMBER: builtins.int
+    VESSEL_NAME_FIELD_NUMBER: builtins.int
     LON_FIELD_NUMBER: builtins.int
     LAT_FIELD_NUMBER: builtins.int
     TIMESTAMP_FIELD_NUMBER: builtins.int
@@ -76,8 +79,9 @@ class AisPosition(google.protobuf.message.Message):
     DRAUGHT_FIELD_NUMBER: builtins.int
     COURSE_FIELD_NUMBER: builtins.int
     HEADING_FIELD_NUMBER: builtins.int
-    IMO_FIELD_NUMBER: builtins.int
-    MMSI_FIELD_NUMBER: builtins.int
+    imo: builtins.int
+    mmsi: builtins.int
+    vessel_name: typing.Text
     lon: builtins.float
     lat: builtins.float
     @property
@@ -95,10 +99,11 @@ class AisPosition(google.protobuf.message.Message):
     def course(self) -> google.protobuf.wrappers_pb2.DoubleValue: ...
     @property
     def heading(self) -> google.protobuf.wrappers_pb2.DoubleValue: ...
-    imo: builtins.int
-    mmsi: builtins.int
     def __init__(self,
         *,
+        imo: builtins.int = ...,
+        mmsi: builtins.int = ...,
+        vessel_name: typing.Text = ...,
         lon: builtins.float = ...,
         lat: builtins.float = ...,
         timestamp: typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
@@ -109,9 +114,7 @@ class AisPosition(google.protobuf.message.Message):
         draught: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
         course: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
         heading: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
-        imo: builtins.int = ...,
-        mmsi: builtins.int = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["course",b"course","draught",b"draught","eta",b"eta","heading",b"heading","navigational_status",b"navigational_status","speed",b"speed","timestamp",b"timestamp"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","destination",b"destination","draught",b"draught","eta",b"eta","heading",b"heading","imo",b"imo","lat",b"lat","lon",b"lon","mmsi",b"mmsi","navigational_status",b"navigational_status","speed",b"speed","timestamp",b"timestamp"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","destination",b"destination","draught",b"draught","eta",b"eta","heading",b"heading","imo",b"imo","lat",b"lat","lon",b"lon","mmsi",b"mmsi","navigational_status",b"navigational_status","speed",b"speed","timestamp",b"timestamp","vessel_name",b"vessel_name"]) -> None: ...
 global___AisPosition = AisPosition
