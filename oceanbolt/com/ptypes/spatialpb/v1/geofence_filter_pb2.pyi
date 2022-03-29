@@ -11,6 +11,39 @@ import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+class Geofence(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    GEOFENCE_ID_FIELD_NUMBER: builtins.int
+    CENTER_RADIUS_FIELD_NUMBER: builtins.int
+    POLYGON_FIELD_NUMBER: builtins.int
+    geofence_id: typing.Text
+    @property
+    def center_radius(self) -> global___CenterRadius: ...
+    @property
+    def polygon(self) -> global___Polygon: ...
+    def __init__(self,
+        *,
+        geofence_id: typing.Text = ...,
+        center_radius: typing.Optional[global___CenterRadius] = ...,
+        polygon: typing.Optional[global___Polygon] = ...,
+        ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","geometry",b"geometry","polygon",b"polygon"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","geofence_id",b"geofence_id","geometry",b"geometry","polygon",b"polygon"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["geometry",b"geometry"]) -> typing.Optional[typing_extensions.Literal["center_radius","polygon"]]: ...
+global___Geofence = Geofence
+
+class Geofences(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    GEOFENCES_FIELD_NUMBER: builtins.int
+    @property
+    def geofences(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geofence]: ...
+    def __init__(self,
+        *,
+        geofences: typing.Optional[typing.Iterable[global___Geofence]] = ...,
+        ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["geofences",b"geofences"]) -> None: ...
+global___Geofences = Geofences
+
 class GeofenceFilter(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
     WKT_FIELD_NUMBER: builtins.int
@@ -37,7 +70,7 @@ class GeofenceFilter(google.protobuf.message.Message):
         pass
     @property
     def polygon(self) -> global___Polygon:
-        """Polygon"""
+        """Polygon format for submitting a geofence as a list of points."""
         pass
     def __init__(self,
         *,
