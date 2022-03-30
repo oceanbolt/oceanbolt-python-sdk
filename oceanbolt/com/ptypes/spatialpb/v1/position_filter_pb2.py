@@ -12,10 +12,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from oceanbolt.com.ptypes.enumspb.v1 import port_call_status_pb2 as ptypes_dot_enumspb_dot_v1_dot_port__call__status__pb2
+from oceanbolt.com.ptypes.enumspb.v1 import polygon_status_pb2 as ptypes_dot_enumspb_dot_v1_dot_polygon__status__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ptypes/spatialpb/v1/position_filter.proto\x12!oceanbolt.com.ptypes.spatialpb.v1\x1a(ptypes/enumspb/v1/port_call_status.proto\"\x85\x02\n\x0ePositionFilter\x12\x16\n\x06\x63ourse\x18\x01 \x03(\x01R\x06\x63ourse\x12\x18\n\x07heading\x18\x02 \x03(\x01R\x07heading\x12\x14\n\x05speed\x18\x03 \x03(\x01R\x05speed\x12%\n\x0e\x64raught_meters\x18\x04 \x03(\x01R\rdraughtMeters\x12-\n\x12\x64raught_percentage\x18\x05 \x03(\x01R\x11\x64raughtPercentage\x12U\n\x0epolygon_status\x18\x06 \x03(\x0e\x32..oceanbolt.com.ptypes.enumspb.v1.PolygonStatusR\rpolygonStatusBKZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/spatialpb/v1;spatialpbb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ptypes/spatialpb/v1/position_filter.proto\x12!oceanbolt.com.ptypes.spatialpb.v1\x1a&ptypes/enumspb/v1/polygon_status.proto\"\x85\x02\n\x0ePositionFilter\x12\x16\n\x06\x63ourse\x18\x01 \x03(\x01R\x06\x63ourse\x12\x18\n\x07heading\x18\x02 \x03(\x01R\x07heading\x12\x14\n\x05speed\x18\x03 \x03(\x01R\x05speed\x12%\n\x0e\x64raught_meters\x18\x04 \x03(\x01R\rdraughtMeters\x12-\n\x12\x64raught_percentage\x18\x05 \x03(\x01R\x11\x64raughtPercentage\x12U\n\x0epolygon_status\x18\x06 \x03(\x0e\x32..oceanbolt.com.ptypes.enumspb.v1.PolygonStatusR\rpolygonStatusBKZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/spatialpb/v1;spatialpbb\x06proto3')
 
 
 
@@ -31,6 +31,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'ZIgitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/spatialpb/v1;spatialpb'
-  _POSITIONFILTER._serialized_start=123
-  _POSITIONFILTER._serialized_end=384
+  _POSITIONFILTER._serialized_start=121
+  _POSITIONFILTER._serialized_end=382
 # @@protoc_insertion_point(module_scope)

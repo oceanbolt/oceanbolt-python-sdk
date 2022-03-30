@@ -6,7 +6,7 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import oceanbolt.com.ptypes.enumspb.v1.port_call_status_pb2
+import oceanbolt.com.ptypes.enumspb.v1.polygon_status_pb2
 import typing
 import typing_extensions
 
@@ -41,7 +41,7 @@ class PositionFilter(google.protobuf.message.Message):
         """Draught percentage range to filter on (value in percentage). Example: [0.6,1] (both values inclusive)."""
         pass
     @property
-    def polygon_status(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ptypes.enumspb.v1.port_call_status_pb2.PolygonStatus.ValueType]:
+    def polygon_status(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ptypes.enumspb.v1.polygon_status_pb2.PolygonStatus.ValueType]:
         """Polygon statuses to filter on. See oceanbolt.com.ptypes.enumspb.v1.PolygonStatus for list of valid values."""
         pass
     def __init__(self,
@@ -51,7 +51,7 @@ class PositionFilter(google.protobuf.message.Message):
         speed: typing.Optional[typing.Iterable[builtins.float]] = ...,
         draught_meters: typing.Optional[typing.Iterable[builtins.float]] = ...,
         draught_percentage: typing.Optional[typing.Iterable[builtins.float]] = ...,
-        polygon_status: typing.Optional[typing.Iterable[ptypes.enumspb.v1.port_call_status_pb2.PolygonStatus.ValueType]] = ...,
+        polygon_status: typing.Optional[typing.Iterable[ptypes.enumspb.v1.polygon_status_pb2.PolygonStatus.ValueType]] = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["course",b"course","draught_meters",b"draught_meters","draught_percentage",b"draught_percentage","heading",b"heading","polygon_status",b"polygon_status","speed",b"speed"]) -> None: ...
 global___PositionFilter = PositionFilter

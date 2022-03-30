@@ -55,7 +55,7 @@ class fleetmanagementCallTransformer(cst.CSTTransformer):
         'share_fleet': ('fleet_id', ),
         'unshare_fleet': ('fleet_id', ),
         'update_vessel': ('fleet_id', 'imo', 'vessel', 'upsert', ),
-        'upload_fleet_list': ('file_name', 'file', ),
+        'upload_fleet_list': ('file_name', 'file', 'fleet_id', 'fleet_name', 'overwrite', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:

@@ -754,6 +754,13 @@ class GetFleetListRequest(proto.Message):
             Original file name including file extension
         file (bytes):
             Serialized file data
+        fleet_id (str):
+            Fleet ID of existing fleet
+        fleet_name (str):
+            Name of existing fleet
+        overwrite (bool):
+            Specifies whether an existing fleet should be
+            appended or overwritten
     """
 
     file_name = proto.Field(
@@ -763,6 +770,18 @@ class GetFleetListRequest(proto.Message):
     file = proto.Field(
         proto.BYTES,
         number=2,
+    )
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    fleet_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    overwrite = proto.Field(
+        proto.BOOL,
+        number=5,
     )
 
 
