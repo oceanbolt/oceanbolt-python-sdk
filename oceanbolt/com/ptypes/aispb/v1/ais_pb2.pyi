@@ -7,6 +7,7 @@ import google.protobuf.descriptor
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
 import google.protobuf.wrappers_pb2
+import oceanbolt.com.ptypes.enumspb.v1.port_call_status_pb2
 import typing
 import typing_extensions
 
@@ -79,6 +80,7 @@ class AisPosition(google.protobuf.message.Message):
     DRAUGHT_FIELD_NUMBER: builtins.int
     COURSE_FIELD_NUMBER: builtins.int
     HEADING_FIELD_NUMBER: builtins.int
+    POLYGON_STATUS_FIELD_NUMBER: builtins.int
     imo: builtins.int
     mmsi: builtins.int
     vessel_name: typing.Text
@@ -99,6 +101,7 @@ class AisPosition(google.protobuf.message.Message):
     def course(self) -> google.protobuf.wrappers_pb2.DoubleValue: ...
     @property
     def heading(self) -> google.protobuf.wrappers_pb2.DoubleValue: ...
+    polygon_status: oceanbolt.com.ptypes.enumspb.v1.port_call_status_pb2.PolygonStatus.ValueType
     def __init__(self,
         *,
         imo: builtins.int = ...,
@@ -114,7 +117,8 @@ class AisPosition(google.protobuf.message.Message):
         draught: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
         course: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
         heading: typing.Optional[google.protobuf.wrappers_pb2.DoubleValue] = ...,
+        polygon_status: oceanbolt.com.ptypes.enumspb.v1.port_call_status_pb2.PolygonStatus.ValueType = ...,
         ) -> None: ...
     def HasField(self, field_name: typing_extensions.Literal["course",b"course","draught",b"draught","eta",b"eta","heading",b"heading","navigational_status",b"navigational_status","speed",b"speed","timestamp",b"timestamp"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","destination",b"destination","draught",b"draught","eta",b"eta","heading",b"heading","imo",b"imo","lat",b"lat","lon",b"lon","mmsi",b"mmsi","navigational_status",b"navigational_status","speed",b"speed","timestamp",b"timestamp","vessel_name",b"vessel_name"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","destination",b"destination","draught",b"draught","eta",b"eta","heading",b"heading","imo",b"imo","lat",b"lat","lon",b"lon","mmsi",b"mmsi","navigational_status",b"navigational_status","polygon_status",b"polygon_status","speed",b"speed","timestamp",b"timestamp","vessel_name",b"vessel_name"]) -> None: ...
 global___AisPosition = AisPosition
