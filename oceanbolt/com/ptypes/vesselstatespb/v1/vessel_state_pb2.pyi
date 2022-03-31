@@ -282,18 +282,21 @@ class PredictedDestination(google.protobuf.message.Message):
     PORT_ID_FIELD_NUMBER: builtins.int
     COUNTRY_CODE_FIELD_NUMBER: builtins.int
     REGION_ID_FIELD_NUMBER: builtins.int
+    EXPLANATION_FIELD_NUMBER: builtins.int
     score: builtins.float
     port_id: builtins.int
     country_code: typing.Text
     region_id: typing.Text
+    explanation: typing.Text
     def __init__(self,
         *,
         score: builtins.float = ...,
         port_id: builtins.int = ...,
         country_code: typing.Text = ...,
         region_id: typing.Text = ...,
+        explanation: typing.Text = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["country_code",b"country_code","port_id",b"port_id","region_id",b"region_id","score",b"score"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["country_code",b"country_code","explanation",b"explanation","port_id",b"port_id","region_id",b"region_id","score",b"score"]) -> None: ...
 global___PredictedDestination = PredictedDestination
 
 class ParsedDestinations(google.protobuf.message.Message):
