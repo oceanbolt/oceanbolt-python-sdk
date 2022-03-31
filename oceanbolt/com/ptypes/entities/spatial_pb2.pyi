@@ -35,3 +35,9 @@ class Port(google.protobuf.message.Message):
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal["country_code",b"country_code","lat",b"lat","lon",b"lon","port_id",b"port_id","port_name",b"port_name","region",b"region"]) -> None: ...
 global___Port = Port
+
+class Region(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    def __init__(self,
+        ) -> None: ...
+global___Region = Region
