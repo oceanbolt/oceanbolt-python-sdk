@@ -16,6 +16,7 @@
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.ptypes.filters import vessel_filter_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -148,6 +149,8 @@ class GetCongestionRequest(proto.Message):
             DWT range to filter on. Example: [60000,90000] - this would
             filter only to only include dwt between 60k and 90k (both
             values inclusive).
+        vessel_filter (oceanbolt.com.ptypes.filters.vessel_filter_pb2.VesselFilter):
+            Specifies vessel parameters to filter on.
     """
 
     port_id = proto.RepeatedField(
@@ -253,6 +256,11 @@ class GetCongestionRequest(proto.Message):
     dwt = proto.RepeatedField(
         proto.DOUBLE,
         number=33,
+    )
+    vessel_filter = proto.Field(
+        proto.MESSAGE,
+        number=34,
+        message=vessel_filter_pb2.VesselFilter,
     )
 
 

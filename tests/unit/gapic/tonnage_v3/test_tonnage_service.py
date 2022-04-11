@@ -32,6 +32,8 @@ from google.api_core import path_template
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.oauth2 import service_account
+from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.ptypes.filters import vessel_filter_pb2  # type: ignore
 from oceanbolt.com.tonnage_v3.services.tonnage_service import TonnageServiceAsyncClient
 from oceanbolt.com.tonnage_v3.services.tonnage_service import TonnageServiceClient
 from oceanbolt.com.tonnage_v3.services.tonnage_service import transports

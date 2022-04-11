@@ -16,6 +16,7 @@
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.ptypes.filters import vessel_filter_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -845,6 +846,8 @@ class GetTonnageZoneChangesRequest(proto.Message):
             timeseries. Allowed values are: **["daily", "weekly",
             "monthly","quarterly "yearly"]**. Default value is
             "monthly".
+        vessel_filter (oceanbolt.com.ptypes.filters.vessel_filter_pb2.VesselFilter):
+            Specifies vessel parameters to filter on.
     """
 
     from_zone_id = proto.RepeatedField(
@@ -890,6 +893,11 @@ class GetTonnageZoneChangesRequest(proto.Message):
     frequency = proto.Field(
         proto.STRING,
         number=11,
+    )
+    vessel_filter = proto.Field(
+        proto.MESSAGE,
+        number=12,
+        message=vessel_filter_pb2.VesselFilter,
     )
 
 

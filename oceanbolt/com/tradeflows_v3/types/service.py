@@ -16,6 +16,7 @@
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.ptypes.filters import vessel_filter_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -356,6 +357,8 @@ class TradeFlowDataRequest(proto.Message):
             queries. This parameter only has effect on the
             GetTradeFlowAggregation method (REST endpoint:
             /tradeflows/aggregation).
+        vessel_filter (oceanbolt.com.ptypes.filters.vessel_filter_pb2.VesselFilter):
+            Specifies vessel parameters to filter on.
     """
 
     frequency = proto.Field(
@@ -505,6 +508,11 @@ class TradeFlowDataRequest(proto.Message):
     category = proto.Field(
         proto.STRING,
         number=38,
+    )
+    vessel_filter = proto.Field(
+        proto.MESSAGE,
+        number=39,
+        message=vessel_filter_pb2.VesselFilter,
     )
 
 
