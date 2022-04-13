@@ -37,9 +37,6 @@ class GetVesselStatesRequest(proto.Message):
 
         end_date (str):
 
-        format_ (str):
-            response format (default is json, supported:
-            csv, xlsx)
     """
 
     imo = proto.RepeatedField(
@@ -54,10 +51,6 @@ class GetVesselStatesRequest(proto.Message):
         proto.STRING,
         number=3,
     )
-    format_ = proto.Field(
-        proto.STRING,
-        number=4,
-    )
 
 
 class GetVesselStatesForDateRequest(proto.Message):
@@ -66,18 +59,11 @@ class GetVesselStatesForDateRequest(proto.Message):
     Attributes:
         date (str):
 
-        format_ (str):
-            response format (default is json, supported:
-            csv, xlsx)
     """
 
     date = proto.Field(
         proto.STRING,
         number=1,
-    )
-    format_ = proto.Field(
-        proto.STRING,
-        number=2,
     )
 
 
@@ -89,24 +75,12 @@ class VesselStatesResponse(proto.Message):
         vessel_states (Sequence[oceanbolt.com.vesselstates_v3.types.VesselState]):
             A collection of VesselState objects that is
             returned by the API.
-        csv (str):
-
-        xlsx (str):
-
     """
 
     vessel_states = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='VesselState',
-    )
-    csv = proto.Field(
-        proto.STRING,
-        number=2,
-    )
-    xlsx = proto.Field(
-        proto.STRING,
-        number=3,
     )
 
 
@@ -179,6 +153,17 @@ class VesselState(proto.Message):
         destination_score (float):
             Destination score for parsed destination
             result
+        predicted_destination_port_id (int):
+            Predicted destination port id
+        predicted_destination_port_name (str):
+            Predicted destination port name
+        predicted_destination_region (str):
+            Predicted destination region
+        predicted_destination_country_code (str):
+            Predicted destination country code
+        predicted_destination_score (float):
+            Destination score for predicted destination
+            result
         eta (str):
 
         navigational_status (str):
@@ -187,6 +172,8 @@ class VesselState(proto.Message):
             Navigational status code of the vessel
         port_call_status (str):
 
+        commodity_id (int):
+            Commodity id of the commodity carried
         commodity_group (str):
             Name of the commodity group carried
         commodity_name (str):
@@ -339,6 +326,26 @@ class VesselState(proto.Message):
         proto.DOUBLE,
         number=41,
     )
+    predicted_destination_port_id = proto.Field(
+        proto.UINT32,
+        number=52,
+    )
+    predicted_destination_port_name = proto.Field(
+        proto.STRING,
+        number=53,
+    )
+    predicted_destination_region = proto.Field(
+        proto.STRING,
+        number=54,
+    )
+    predicted_destination_country_code = proto.Field(
+        proto.STRING,
+        number=55,
+    )
+    predicted_destination_score = proto.Field(
+        proto.DOUBLE,
+        number=56,
+    )
     eta = proto.Field(
         proto.STRING,
         number=17,
@@ -354,6 +361,10 @@ class VesselState(proto.Message):
     port_call_status = proto.Field(
         proto.STRING,
         number=22,
+    )
+    commodity_id = proto.Field(
+        proto.UINT32,
+        number=57,
     )
     commodity_group = proto.Field(
         proto.STRING,

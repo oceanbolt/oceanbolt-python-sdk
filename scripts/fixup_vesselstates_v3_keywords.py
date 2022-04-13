@@ -39,8 +39,8 @@ def partition(
 class vesselstatesCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-        'get_vessel_states': ('imo', 'start_date', 'end_date', 'format_', ),
-        'get_vessel_states_for_date': ('date', 'format_', ),
+        'get_vessel_states': ('imo', 'start_date', 'end_date', ),
+        'get_vessel_states_for_date': ('date', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:
