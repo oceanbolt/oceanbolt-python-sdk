@@ -17,6 +17,8 @@
 from .services.distance_calculator_service import DistanceCalculatorServiceClient
 from .services.distance_calculator_service import DistanceCalculatorServiceAsyncClient
 
+from .types.service import BatchDistanceRequest
+from .types.service import BatchDistanceResponse
 from .types.service import DistanceRequest
 from .types.service import DistanceResponse
 from .types.service import Leg
@@ -25,6 +27,8 @@ from .types.service import Point
 
 __all__ = (
     'DistanceCalculatorServiceAsyncClient',
+'BatchDistanceRequest',
+'BatchDistanceResponse',
 'DistanceCalculatorServiceClient',
 'DistanceRequest',
 'DistanceResponse',

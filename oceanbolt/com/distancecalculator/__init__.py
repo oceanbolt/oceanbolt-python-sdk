@@ -17,6 +17,8 @@
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service.client import DistanceCalculatorServiceClient
 from oceanbolt.com.distancecalculator_v3.services.distance_calculator_service.async_client import DistanceCalculatorServiceAsyncClient
 
+from oceanbolt.com.distancecalculator_v3.types.service import BatchDistanceRequest
+from oceanbolt.com.distancecalculator_v3.types.service import BatchDistanceResponse
 from oceanbolt.com.distancecalculator_v3.types.service import DistanceRequest
 from oceanbolt.com.distancecalculator_v3.types.service import DistanceResponse
 from oceanbolt.com.distancecalculator_v3.types.service import Leg
@@ -25,6 +27,8 @@ from oceanbolt.com.distancecalculator_v3.types.service import Point
 
 __all__ = ('DistanceCalculatorServiceClient',
     'DistanceCalculatorServiceAsyncClient',
+    'BatchDistanceRequest',
+    'BatchDistanceResponse',
     'DistanceRequest',
     'DistanceResponse',
     'Leg',

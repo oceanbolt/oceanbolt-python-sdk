@@ -572,6 +572,90 @@ async def test_calculate_distance_async_from_dict():
     await test_calculate_distance_async(request_type=dict)
 
 
+@pytest.mark.parametrize("request_type", [
+  service.BatchDistanceRequest,
+  dict,
+])
+def test_batch_calculate_distance(request_type, transport: str = 'grpc'):
+    client = DistanceCalculatorServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.batch_calculate_distance),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.BatchDistanceResponse(
+        )
+        response = client.batch_calculate_distance(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.BatchDistanceRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.BatchDistanceResponse)
+
+
+def test_batch_calculate_distance_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = DistanceCalculatorServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.batch_calculate_distance),
+            '__call__') as call:
+        client.batch_calculate_distance()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.BatchDistanceRequest()
+
+
+@pytest.mark.asyncio
+async def test_batch_calculate_distance_async(transport: str = 'grpc_asyncio', request_type=service.BatchDistanceRequest):
+    client = DistanceCalculatorServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.batch_calculate_distance),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.BatchDistanceResponse(
+        ))
+        response = await client.batch_calculate_distance(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.BatchDistanceRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.BatchDistanceResponse)
+
+
+@pytest.mark.asyncio
+async def test_batch_calculate_distance_async_from_dict():
+    await test_batch_calculate_distance_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.DistanceCalculatorServiceGrpcTransport(
@@ -689,6 +773,7 @@ def test_distance_calculator_service_base_transport():
     # raise NotImplementedError.
     methods = (
         'calculate_distance',
+        'batch_calculate_distance',
     )
     for method in methods:
         with pytest.raises(NotImplementedError):

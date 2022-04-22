@@ -255,6 +255,30 @@ class DistanceCalculatorServiceGrpcTransport(DistanceCalculatorServiceTransport)
             )
         return self._stubs['calculate_distance']
 
+    @property
+    def batch_calculate_distance(self) -> Callable[
+            [service.BatchDistanceRequest],
+            service.BatchDistanceResponse]:
+        r"""Return a callable for the batch calculate distance method over gRPC.
+
+        Returns:
+            Callable[[~.BatchDistanceRequest],
+                    ~.BatchDistanceResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'batch_calculate_distance' not in self._stubs:
+            self._stubs['batch_calculate_distance'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.distancecalculator.v3.DistanceCalculatorService/BatchCalculateDistance',
+                request_serializer=service.BatchDistanceRequest.serialize,
+                response_deserializer=service.BatchDistanceResponse.deserialize,
+            )
+        return self._stubs['batch_calculate_distance']
+
     def close(self):
         self.grpc_channel.close()
 

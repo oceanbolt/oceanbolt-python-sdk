@@ -253,6 +253,71 @@ class DistanceCalculatorServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def batch_calculate_distance(self,
+            request: Union[service.BatchDistanceRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.BatchDistanceResponse:
+        r"""
+
+        .. code-block:: python
+
+            from oceanbolt.com import distancecalculator_v3
+
+            def sample_batch_calculate_distance():
+                # Create a client
+                client = distancecalculator_v3.DistanceCalculatorServiceClient()
+
+                # Initialize request argument(s)
+                request = distancecalculator_v3.BatchDistanceRequest(
+                )
+
+                # Make the request
+                response = client.batch_calculate_distance(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.distancecalculator_v3.types.BatchDistanceRequest, dict]):
+                The request object. Request object for
+                BatchCalculateDistance method
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.distancecalculator_v3.types.BatchDistanceResponse:
+                Response object for
+                BatchCalculateDistance method
+
+        """
+        # Create or coerce a protobuf request object.
+        request = service.BatchDistanceRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.batch_calculate_distance,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def __aenter__(self):
         return self
 

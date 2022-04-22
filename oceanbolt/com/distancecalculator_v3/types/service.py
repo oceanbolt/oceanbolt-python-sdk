@@ -21,6 +21,8 @@ from google.protobuf import wrappers_pb2  # type: ignore
 __protobuf__ = proto.module(
     package='oceanbolt.com.distancecalculator.v3',
     manifest={
+        'BatchDistanceRequest',
+        'BatchDistanceResponse',
         'Location',
         'DistanceRequest',
         'Leg',
@@ -28,6 +30,36 @@ __protobuf__ = proto.module(
         'Point',
     },
 )
+
+
+class BatchDistanceRequest(proto.Message):
+    r"""Request object for BatchCalculateDistance method
+
+    Attributes:
+        Requests (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceRequest]):
+            Array of distance requests
+    """
+
+    Requests = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='DistanceRequest',
+    )
+
+
+class BatchDistanceResponse(proto.Message):
+    r"""Response object for BatchCalculateDistance method
+
+    Attributes:
+        Responses (Sequence[oceanbolt.com.distancecalculator_v3.types.BatchDistanceResponse]):
+            Array of distance requests
+    """
+
+    Responses = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='BatchDistanceResponse',
+    )
 
 
 class Location(proto.Message):

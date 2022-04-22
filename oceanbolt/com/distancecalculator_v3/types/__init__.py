@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 from .service import (
+    BatchDistanceRequest,
+    BatchDistanceResponse,
     DistanceRequest,
     DistanceResponse,
     Leg,
@@ -22,6 +24,8 @@ from .service import (
 )
 
 __all__ = (
+    'BatchDistanceRequest',
+    'BatchDistanceResponse',
     'DistanceRequest',
     'DistanceResponse',
     'Leg',

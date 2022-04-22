@@ -118,6 +118,11 @@ class DistanceCalculatorServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.batch_calculate_distance: gapic_v1.method.wrap_method(
+                self.batch_calculate_distance,
+                default_timeout=None,
+                client_info=client_info,
+            ),
          }
 
     def close(self):
@@ -135,6 +140,15 @@ class DistanceCalculatorServiceTransport(abc.ABC):
             Union[
                 service.DistanceResponse,
                 Awaitable[service.DistanceResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def batch_calculate_distance(self) -> Callable[
+            [service.BatchDistanceRequest],
+            Union[
+                service.BatchDistanceResponse,
+                Awaitable[service.BatchDistanceResponse]
             ]]:
         raise NotImplementedError()
 
