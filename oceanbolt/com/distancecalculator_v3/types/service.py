@@ -51,14 +51,14 @@ class BatchDistanceResponse(proto.Message):
     r"""Response object for BatchCalculateDistance method
 
     Attributes:
-        Responses (Sequence[oceanbolt.com.distancecalculator_v3.types.BatchDistanceResponse]):
+        Responses (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceResponse]):
             Array of distance requests
     """
 
     Responses = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='BatchDistanceResponse',
+        message='DistanceResponse',
     )
 
 
