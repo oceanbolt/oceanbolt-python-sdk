@@ -149,6 +149,12 @@ class DistanceRequest(proto.Message):
             antimeridian should be adjusted to form a continuous line
             for plotting. Allowed values are [antimeridian,none].
             Default value is 'antimeridian.
+        block_suez (bool):
+            Flag indicating whether to block navigation
+            through the Suez Canal
+        block_panama (bool):
+            Flag indicating whether to Block navigation
+            through the Panama Canal
     """
 
     locations = proto.RepeatedField(
@@ -167,6 +173,14 @@ class DistanceRequest(proto.Message):
     longitude_adjustment = proto.Field(
         proto.STRING,
         number=4,
+    )
+    block_suez = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    block_panama = proto.Field(
+        proto.BOOL,
+        number=6,
     )
 
 
@@ -224,7 +238,14 @@ class DistanceResponse(proto.Message):
         individual_legs (Sequence[oceanbolt.com.distancecalculator_v3.types.Leg]):
             Array of the individual legs that compose the
             voyage
+        status (oceanbolt.com.distancecalculator_v3.types.DistanceResponse.DistanceAlgorithmStatus):
+            Status
     """
+    class DistanceAlgorithmStatus(proto.Enum):
+        r""""""
+        ALGORITHM_ERROR = 0
+        PLANAR = 1
+        SPHERICAL = 2
 
     total_distance = proto.Field(
         proto.DOUBLE,
@@ -243,6 +264,11 @@ class DistanceResponse(proto.Message):
         proto.MESSAGE,
         number=4,
         message='Leg',
+    )
+    status = proto.Field(
+        proto.ENUM,
+        number=5,
+        enum=DistanceAlgorithmStatus,
     )
 
 

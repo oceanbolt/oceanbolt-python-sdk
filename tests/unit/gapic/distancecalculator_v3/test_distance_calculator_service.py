@@ -502,6 +502,7 @@ def test_calculate_distance(request_type, transport: str = 'grpc'):
         call.return_value = service.DistanceResponse(
             total_distance=0.1486,
             total_duration_hours=0.2169,
+            status=service.DistanceResponse.DistanceAlgorithmStatus.PLANAR,
         )
         response = client.calculate_distance(request)
 
@@ -514,6 +515,7 @@ def test_calculate_distance(request_type, transport: str = 'grpc'):
     assert isinstance(response, service.DistanceResponse)
     assert math.isclose(response.total_distance, 0.1486, rel_tol=1e-6)
     assert math.isclose(response.total_duration_hours, 0.2169, rel_tol=1e-6)
+    assert response.status == service.DistanceResponse.DistanceAlgorithmStatus.PLANAR
 
 
 def test_calculate_distance_empty_call():
@@ -553,6 +555,7 @@ async def test_calculate_distance_async(transport: str = 'grpc_asyncio', request
         call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.DistanceResponse(
             total_distance=0.1486,
             total_duration_hours=0.2169,
+            status=service.DistanceResponse.DistanceAlgorithmStatus.PLANAR,
         ))
         response = await client.calculate_distance(request)
 
@@ -565,6 +568,7 @@ async def test_calculate_distance_async(transport: str = 'grpc_asyncio', request
     assert isinstance(response, service.DistanceResponse)
     assert math.isclose(response.total_distance, 0.1486, rel_tol=1e-6)
     assert math.isclose(response.total_duration_hours, 0.2169, rel_tol=1e-6)
+    assert response.status == service.DistanceResponse.DistanceAlgorithmStatus.PLANAR
 
 
 @pytest.mark.asyncio
