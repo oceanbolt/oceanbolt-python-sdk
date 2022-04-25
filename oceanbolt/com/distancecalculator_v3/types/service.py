@@ -36,11 +36,11 @@ class BatchDistanceRequest(proto.Message):
     r"""Request object for BatchCalculateDistance method
 
     Attributes:
-        Requests (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceRequest]):
+        requests (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceRequest]):
             Array of distance requests
     """
 
-    Requests = proto.RepeatedField(
+    requests = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DistanceRequest',
@@ -51,11 +51,11 @@ class BatchDistanceResponse(proto.Message):
     r"""Response object for BatchCalculateDistance method
 
     Attributes:
-        Responses (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceResponse]):
+        responses (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceResponse]):
             Array of distance requests
     """
 
-    Responses = proto.RepeatedField(
+    responses = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DistanceResponse',
