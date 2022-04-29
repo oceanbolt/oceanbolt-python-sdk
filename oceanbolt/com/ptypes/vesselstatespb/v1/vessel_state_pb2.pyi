@@ -236,6 +236,10 @@ class CargoState(google.protobuf.message.Message):
     LAST_OPS_PORT_ID_FIELD_NUMBER: builtins.int
     LAST_OPS_PORT_CALL_ID_FIELD_NUMBER: builtins.int
     LAST_OPS_PORT_REGION_ID_FIELD_NUMBER: builtins.int
+    NEXT_VISITED_PORT_ID_FIELD_NUMBER: builtins.int
+    NEXT_OPS_PORT_ID_FIELD_NUMBER: builtins.int
+    NEXT_OPS_PORT_CALL_ID_FIELD_NUMBER: builtins.int
+    NEXT_OPS_PORT_REGION_ID_FIELD_NUMBER: builtins.int
     VOLUME_ON_BOARD_FIELD_NUMBER: builtins.int
     VOLUME_UNIT_FIELD_NUMBER: builtins.int
     commodity_id: builtins.int
@@ -246,6 +250,10 @@ class CargoState(google.protobuf.message.Message):
     last_ops_port_id: builtins.int
     last_ops_port_call_id: typing.Text
     last_ops_port_region_id: typing.Text
+    next_visited_port_id: builtins.int
+    next_ops_port_id: builtins.int
+    next_ops_port_call_id: typing.Text
+    next_ops_port_region_id: typing.Text
     volume_on_board: builtins.float
     volume_unit: typing.Text
     def __init__(self,
@@ -258,10 +266,14 @@ class CargoState(google.protobuf.message.Message):
         last_ops_port_id: builtins.int = ...,
         last_ops_port_call_id: typing.Text = ...,
         last_ops_port_region_id: typing.Text = ...,
+        next_visited_port_id: builtins.int = ...,
+        next_ops_port_id: builtins.int = ...,
+        next_ops_port_call_id: typing.Text = ...,
+        next_ops_port_region_id: typing.Text = ...,
         volume_on_board: builtins.float = ...,
         volume_unit: typing.Text = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["commodity_id",b"commodity_id","laden_status_model",b"laden_status_model","last_ops_port_call_id",b"last_ops_port_call_id","last_ops_port_id",b"last_ops_port_id","last_ops_port_region_id",b"last_ops_port_region_id","last_visited_port_id",b"last_visited_port_id","trade_flow_id",b"trade_flow_id","vessel_status",b"vessel_status","volume_on_board",b"volume_on_board","volume_unit",b"volume_unit"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["commodity_id",b"commodity_id","laden_status_model",b"laden_status_model","last_ops_port_call_id",b"last_ops_port_call_id","last_ops_port_id",b"last_ops_port_id","last_ops_port_region_id",b"last_ops_port_region_id","last_visited_port_id",b"last_visited_port_id","next_ops_port_call_id",b"next_ops_port_call_id","next_ops_port_id",b"next_ops_port_id","next_ops_port_region_id",b"next_ops_port_region_id","next_visited_port_id",b"next_visited_port_id","trade_flow_id",b"trade_flow_id","vessel_status",b"vessel_status","volume_on_board",b"volume_on_board","volume_unit",b"volume_unit"]) -> None: ...
 global___CargoState = CargoState
 
 class PredictedDestinations(google.protobuf.message.Message):
