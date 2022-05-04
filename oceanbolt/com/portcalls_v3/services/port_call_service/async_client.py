@@ -387,6 +387,70 @@ class PortCallServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def get_vessels_in_port(self,
+            request: Union[service.GetVesselsInPortRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetVesselsInPortResponse:
+        r"""GetVesselsInPort lists all vessels that were within a
+        port (or related anchorages) at a certain time.
+
+
+        .. code-block:: python
+
+            from oceanbolt.com import portcalls_v3
+
+            def sample_get_vessels_in_port():
+                # Create a client
+                client = portcalls_v3.PortCallServiceClient()
+
+                # Initialize request argument(s)
+                request = portcalls_v3.GetVesselsInPortRequest(
+                )
+
+                # Make the request
+                response = client.get_vessels_in_port(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.portcalls_v3.types.GetVesselsInPortRequest, dict]):
+                The request object.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.portcalls_v3.types.GetVesselsInPortResponse:
+                Response object for port call queries
+        """
+        # Create or coerce a protobuf request object.
+        request = service.GetVesselsInPortRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_vessels_in_port,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def __aenter__(self):
         return self
 

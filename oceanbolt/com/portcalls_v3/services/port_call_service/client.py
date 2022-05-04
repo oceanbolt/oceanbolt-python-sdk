@@ -568,6 +568,71 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
         # Done; return the response.
         return response
 
+    def get_vessels_in_port(self,
+            request: Union[service.GetVesselsInPortRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetVesselsInPortResponse:
+        r"""GetVesselsInPort lists all vessels that were within a
+        port (or related anchorages) at a certain time.
+
+
+        .. code-block:: python
+
+            from oceanbolt.com import portcalls_v3
+
+            def sample_get_vessels_in_port():
+                # Create a client
+                client = portcalls_v3.PortCallServiceClient()
+
+                # Initialize request argument(s)
+                request = portcalls_v3.GetVesselsInPortRequest(
+                )
+
+                # Make the request
+                response = client.get_vessels_in_port(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.portcalls_v3.types.GetVesselsInPortRequest, dict]):
+                The request object.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.portcalls_v3.types.GetVesselsInPortResponse:
+                Response object for port call queries
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a service.GetVesselsInPortRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, service.GetVesselsInPortRequest):
+            request = service.GetVesselsInPortRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.get_vessels_in_port]
+
+        # Send the request.
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     def __enter__(self):
         return self
 

@@ -315,6 +315,33 @@ class PortCallServiceGrpcAsyncIOTransport(PortCallServiceTransport):
             )
         return self._stubs['get_port_particulars']
 
+    @property
+    def get_vessels_in_port(self) -> Callable[
+            [service.GetVesselsInPortRequest],
+            Awaitable[service.GetVesselsInPortResponse]]:
+        r"""Return a callable for the get vessels in port method over gRPC.
+
+        GetVesselsInPort lists all vessels that were within a
+        port (or related anchorages) at a certain time.
+
+        Returns:
+            Callable[[~.GetVesselsInPortRequest],
+                    Awaitable[~.GetVesselsInPortResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_vessels_in_port' not in self._stubs:
+            self._stubs['get_vessels_in_port'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.portcalls.v3.PortCallService/GetVesselsInPort',
+                request_serializer=service.GetVesselsInPortRequest.serialize,
+                response_deserializer=service.GetVesselsInPortResponse.deserialize,
+            )
+        return self._stubs['get_vessels_in_port']
+
     def close(self):
         return self.grpc_channel.close()
 

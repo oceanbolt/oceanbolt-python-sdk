@@ -15,6 +15,7 @@
 #
 import proto  # type: ignore
 
+from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
 from oceanbolt.com.ptypes.filters import vessel_filter_pb2  # type: ignore
 
@@ -33,6 +34,11 @@ __protobuf__ = proto.module(
         'GetPortCallTimeseriesResponse',
         'TimeseriesGroup',
         'TimeseriesRow',
+        'GetVesselsInPortRequest',
+        'GetVesselsInPortResponse',
+        'VesselInPort',
+        'BerthStay',
+        'AnchorageStay',
     },
 )
 
@@ -293,10 +299,11 @@ class PortCall(proto.Message):
         unlocode (str):
             UNLOCODE of the port.
         berth_id (google.protobuf.wrappers_pb2.Int32Value):
-            Oceanbolt database identifier of the
-            berth/terminal.
+            Oceanbolt database identifier of the primary
+            berth/terminal visited during the port call.
         berth_name (str):
-            Name of the berth/terminal.
+            Name of the primary berth/terminal visited
+            during the port call.
         anchorage_id (google.protobuf.wrappers_pb2.Int32Value):
             Oceanbolt database identifier of the
             anchorage.
@@ -714,6 +721,364 @@ class TimeseriesRow(proto.Message):
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
+    )
+
+
+class GetVesselsInPortRequest(proto.Message):
+    r"""
+
+    Attributes:
+        port_id (int):
+
+        unlocode (str):
+
+        timestamp (google.protobuf.timestamp_pb2.Timestamp):
+
+    """
+
+    port_id = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    timestamp = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=timestamp_pb2.Timestamp,
+    )
+
+
+class GetVesselsInPortResponse(proto.Message):
+    r"""Response object for port call queries
+
+    Attributes:
+        data (Sequence[oceanbolt.com.portcalls_v3.types.PortCall]):
+            List of vessels in port at the given time.
+        csv (str):
+            Link to download csv file, if format was
+            specified to be "csv".
+        xlsx (str):
+            Link to download excel file, if format was
+            specified to be "xlsx".
+    """
+
+    data = proto.RepeatedField(
+        proto.MESSAGE,
+        number=7,
+        message='PortCall',
+    )
+    csv = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+
+
+class VesselInPort(proto.Message):
+    r"""Port call object
+
+    Attributes:
+        voyage_id (str):
+            Unique ID for the voyage. This can be shared
+            across multiple port calls in the case of
+            parceling voyages.
+        port_call_id (str):
+            Unique ID for the port call. This will always
+            be unique to the port call.
+        imo (int):
+            IMO number of the vessel.
+        vessel_name (str):
+            Name of the vessel.
+        port_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the port.
+        port_name (str):
+            Name of the port.
+        segment (str):
+            Segment of the vessel.
+        sub_segment (str):
+            Sub segment of the vessel.
+        unlocode (str):
+            UNLOCODE of the port.
+        berth_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the primary
+            berth/terminal visited during the port call.
+        berth_name (str):
+            Name of the primary berth/terminal visited
+            during the port call.
+        anchorage_id (google.protobuf.wrappers_pb2.Int32Value):
+            Oceanbolt database identifier of the
+            anchorage.
+        anchorage_name (str):
+            Name of the anchorage.
+        arrived_at (str):
+            UTC timestamp for when the vessel arrived at
+            the port.
+        berthed_at (str):
+            UTC timestamp for when the vessel berthed in
+            the port.
+        unberthed_at (str):
+            UTC timestamp for when the vessel left the
+            berth/terminal.
+        departed_at (str):
+            UTC timestamp for when the vessel left the
+            port.
+        days_in_port (google.protobuf.wrappers_pb2.DoubleValue):
+            Total duration of the port call (in days).
+        days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was at berth in
+            during the duration of the port call.
+        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was waiting at
+            anchor before shifting to berth.
+        country_code (str):
+            ISO 2-letter country code of the load
+            country.
+        operation (str):
+            Operation type of the port call.
+        voyage_type (str):
+            The type of the voyage.
+        commodity (str):
+            Name of the commodity.
+        commodity_value (str):
+            Database friendly name of the commodity.
+        commodity_group (str):
+            Name of the commodity group.
+        volume (google.protobuf.wrappers_pb2.DoubleValue):
+            Volume loaded in metric tons.
+        port_visited (bool):
+            Flag to indicate whether the vessel has
+            visited the port interior. If the flag is false
+            the vessels only visited an anchorage.
+        berth_stays (Sequence[oceanbolt.com.portcalls_v3.types.BerthStay]):
+            List of all berths that the vessel visited
+            during the port call
+        anchorage_stays (Sequence[oceanbolt.com.portcalls_v3.types.AnchorageStay]):
+            List of all anchorages that the vessel
+            visited during the port call
+        vessel_status (str):
+            Current Vessel status
+    """
+
+    voyage_id = proto.Field(
+        proto.STRING,
+        number=16,
+    )
+    port_call_id = proto.Field(
+        proto.STRING,
+        number=15,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    port_id = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=wrappers_pb2.Int32Value,
+    )
+    port_name = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    segment = proto.Field(
+        proto.STRING,
+        number=18,
+    )
+    sub_segment = proto.Field(
+        proto.STRING,
+        number=19,
+    )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=25,
+    )
+    berth_id = proto.Field(
+        proto.MESSAGE,
+        number=27,
+        message=wrappers_pb2.Int32Value,
+    )
+    berth_name = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    anchorage_id = proto.Field(
+        proto.MESSAGE,
+        number=28,
+        message=wrappers_pb2.Int32Value,
+    )
+    anchorage_name = proto.Field(
+        proto.STRING,
+        number=6,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    berthed_at = proto.Field(
+        proto.STRING,
+        number=8,
+    )
+    unberthed_at = proto.Field(
+        proto.STRING,
+        number=26,
+    )
+    departed_at = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    days_in_port = proto.Field(
+        proto.MESSAGE,
+        number=10,
+        message=wrappers_pb2.DoubleValue,
+    )
+    days_waiting = proto.Field(
+        proto.MESSAGE,
+        number=11,
+        message=wrappers_pb2.DoubleValue,
+    )
+    days_at_berth = proto.Field(
+        proto.MESSAGE,
+        number=12,
+        message=wrappers_pb2.DoubleValue,
+    )
+    country_code = proto.Field(
+        proto.STRING,
+        number=13,
+    )
+    operation = proto.Field(
+        proto.STRING,
+        number=14,
+    )
+    voyage_type = proto.Field(
+        proto.STRING,
+        number=17,
+    )
+    commodity = proto.Field(
+        proto.STRING,
+        number=20,
+    )
+    commodity_value = proto.Field(
+        proto.STRING,
+        number=21,
+    )
+    commodity_group = proto.Field(
+        proto.STRING,
+        number=22,
+    )
+    volume = proto.Field(
+        proto.MESSAGE,
+        number=23,
+        message=wrappers_pb2.DoubleValue,
+    )
+    port_visited = proto.Field(
+        proto.BOOL,
+        number=24,
+    )
+    berth_stays = proto.RepeatedField(
+        proto.MESSAGE,
+        number=29,
+        message='BerthStay',
+    )
+    anchorage_stays = proto.RepeatedField(
+        proto.MESSAGE,
+        number=30,
+        message='AnchorageStay',
+    )
+    vessel_status = proto.Field(
+        proto.STRING,
+        number=31,
+    )
+
+
+class BerthStay(proto.Message):
+    r"""
+
+    Attributes:
+        berth_id (int):
+
+        berth_name (str):
+
+        berth_type (str):
+
+        arrived_at (str):
+
+        departed_at (str):
+
+        draught_in (float):
+
+        draught_out (float):
+
+    """
+
+    berth_id = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    berth_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    berth_type = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    departed_at = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    draught_in = proto.Field(
+        proto.DOUBLE,
+        number=6,
+    )
+    draught_out = proto.Field(
+        proto.DOUBLE,
+        number=7,
+    )
+
+
+class AnchorageStay(proto.Message):
+    r"""
+
+    Attributes:
+        anchorage_id (int):
+
+        anchorage_name (str):
+
+        arrived_at (str):
+
+        departed_at (str):
+
+    """
+
+    anchorage_id = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    anchorage_name = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    arrived_at = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    departed_at = proto.Field(
+        proto.STRING,
+        number=4,
     )
 
 

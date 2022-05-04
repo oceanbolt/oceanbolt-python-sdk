@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 from .service import (
+    AnchorageStay,
+    BerthStay,
     EmptyParams,
     EmptyResponse,
     GetPortCallsRequest,
@@ -21,13 +23,18 @@ from .service import (
     GetPortCallTimeseriesResponse,
     GetPortParticularsRequest,
     GetPortParticularsResponse,
+    GetVesselsInPortRequest,
+    GetVesselsInPortResponse,
     PortCall,
     Statistic,
     TimeseriesGroup,
     TimeseriesRow,
+    VesselInPort,
 )
 
 __all__ = (
+    'AnchorageStay',
+    'BerthStay',
     'EmptyParams',
     'EmptyResponse',
     'GetPortCallsRequest',
@@ -35,8 +42,11 @@ __all__ = (
     'GetPortCallTimeseriesResponse',
     'GetPortParticularsRequest',
     'GetPortParticularsResponse',
+    'GetVesselsInPortRequest',
+    'GetVesselsInPortResponse',
     'PortCall',
     'Statistic',
     'TimeseriesGroup',
     'TimeseriesRow',
+    'VesselInPort',
 )

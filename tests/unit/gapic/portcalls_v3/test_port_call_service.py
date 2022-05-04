@@ -32,6 +32,7 @@ from google.api_core import path_template
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.oauth2 import service_account
+from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
 from oceanbolt.com.portcalls_v3.services.port_call_service import PortCallServiceAsyncClient
 from oceanbolt.com.portcalls_v3.services.port_call_service import PortCallServiceClient
@@ -761,6 +762,98 @@ async def test_get_port_particulars_async_from_dict():
     await test_get_port_particulars_async(request_type=dict)
 
 
+@pytest.mark.parametrize("request_type", [
+  service.GetVesselsInPortRequest,
+  dict,
+])
+def test_get_vessels_in_port(request_type, transport: str = 'grpc'):
+    client = PortCallServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessels_in_port),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetVesselsInPortResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
+        )
+        response = client.get_vessels_in_port(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselsInPortRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetVesselsInPortResponse)
+    assert response.csv == 'csv_value'
+    assert response.xlsx == 'xlsx_value'
+
+
+def test_get_vessels_in_port_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = PortCallServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessels_in_port),
+            '__call__') as call:
+        client.get_vessels_in_port()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselsInPortRequest()
+
+
+@pytest.mark.asyncio
+async def test_get_vessels_in_port_async(transport: str = 'grpc_asyncio', request_type=service.GetVesselsInPortRequest):
+    client = PortCallServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessels_in_port),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.GetVesselsInPortResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
+        ))
+        response = await client.get_vessels_in_port(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselsInPortRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetVesselsInPortResponse)
+    assert response.csv == 'csv_value'
+    assert response.xlsx == 'xlsx_value'
+
+
+@pytest.mark.asyncio
+async def test_get_vessels_in_port_async_from_dict():
+    await test_get_vessels_in_port_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.PortCallServiceGrpcTransport(
@@ -880,6 +973,7 @@ def test_port_call_service_base_transport():
         'get_port_calls',
         'get_port_call_timeseries',
         'get_port_particulars',
+        'get_vessels_in_port',
     )
     for method in methods:
         with pytest.raises(NotImplementedError):

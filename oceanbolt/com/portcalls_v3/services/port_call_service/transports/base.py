@@ -128,6 +128,11 @@ class PortCallServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_vessels_in_port: gapic_v1.method.wrap_method(
+                self.get_vessels_in_port,
+                default_timeout=None,
+                client_info=client_info,
+            ),
          }
 
     def close(self):
@@ -163,6 +168,15 @@ class PortCallServiceTransport(abc.ABC):
             Union[
                 service.GetPortParticularsResponse,
                 Awaitable[service.GetPortParticularsResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_vessels_in_port(self) -> Callable[
+            [service.GetVesselsInPortRequest],
+            Union[
+                service.GetVesselsInPortResponse,
+                Awaitable[service.GetVesselsInPortResponse]
             ]]:
         raise NotImplementedError()
 
