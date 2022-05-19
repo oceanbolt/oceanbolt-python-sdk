@@ -42,7 +42,7 @@ class portcallsCallTransformer(cst.CSTTransformer):
         'get_port_calls': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', 'vessel_filter', ),
         'get_port_call_timeseries': ('imo', 'port_id', 'berth_id', 'unlocode', 'country_code', 'region', 'basin', 'latest_only', 'next_token', 'max_results', 'format_', 'segment', 'sub_segment', 'start_date', 'end_date', 'commodity', 'commodity_group', 'operation', 'sort', 'group_by', 'frequency', 'limit_groups', 'dwt', 'vessel_filter', ),
         'get_port_particulars': ('start_date', 'end_date', 'port_id', 'berth_id', 'unlocode', 'last_n_days', ),
-        'get_vessels_in_port': ('port_id', 'unlocode', 'timestamp', ),
+        'get_vessels_in_port': ('port_id', 'unlocode', 'vessel_filter', 'timestamp', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:

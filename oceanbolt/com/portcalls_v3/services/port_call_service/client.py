@@ -599,7 +599,7 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
 
         Args:
             request (Union[oceanbolt.com.portcalls_v3.types.GetVesselsInPortRequest, dict]):
-                The request object.
+                The request object. Request object for GetVesselsInPort
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -608,7 +608,7 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
 
         Returns:
             oceanbolt.com.portcalls_v3.types.GetVesselsInPortResponse:
-                Response object for port call queries
+                Response object for GetVesselsInPort
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes

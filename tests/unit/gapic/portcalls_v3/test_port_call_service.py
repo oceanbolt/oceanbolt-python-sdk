@@ -782,8 +782,6 @@ def test_get_vessels_in_port(request_type, transport: str = 'grpc'):
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.GetVesselsInPortResponse(
-            csv='csv_value',
-            xlsx='xlsx_value',
         )
         response = client.get_vessels_in_port(request)
 
@@ -794,8 +792,6 @@ def test_get_vessels_in_port(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetVesselsInPortResponse)
-    assert response.csv == 'csv_value'
-    assert response.xlsx == 'xlsx_value'
 
 
 def test_get_vessels_in_port_empty_call():
@@ -833,8 +829,6 @@ async def test_get_vessels_in_port_async(transport: str = 'grpc_asyncio', reques
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.GetVesselsInPortResponse(
-            csv='csv_value',
-            xlsx='xlsx_value',
         ))
         response = await client.get_vessels_in_port(request)
 
@@ -845,8 +839,6 @@ async def test_get_vessels_in_port_async(transport: str = 'grpc_asyncio', reques
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetVesselsInPortResponse)
-    assert response.csv == 'csv_value'
-    assert response.xlsx == 'xlsx_value'
 
 
 @pytest.mark.asyncio

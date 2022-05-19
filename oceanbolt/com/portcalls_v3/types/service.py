@@ -725,15 +725,17 @@ class TimeseriesRow(proto.Message):
 
 
 class GetVesselsInPortRequest(proto.Message):
-    r"""
+    r"""Request object for GetVesselsInPort
 
     Attributes:
         port_id (int):
-
+            Database id of the port to filter on
         unlocode (str):
-
+            UNLOCODE of the port to filter on
+        vessel_filter (oceanbolt.com.ptypes.filters.vessel_filter_pb2.VesselFilter):
+            Specifies vessel parameters to filter on.
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
-
+            Timestamp to generate the vessel list for
     """
 
     port_id = proto.Field(
@@ -744,6 +746,11 @@ class GetVesselsInPortRequest(proto.Message):
         proto.STRING,
         number=2,
     )
+    vessel_filter = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=vessel_filter_pb2.VesselFilter,
+    )
     timestamp = proto.Field(
         proto.MESSAGE,
         number=4,
@@ -752,36 +759,23 @@ class GetVesselsInPortRequest(proto.Message):
 
 
 class GetVesselsInPortResponse(proto.Message):
-    r"""Response object for port call queries
+    r"""Response object for GetVesselsInPort
 
     Attributes:
-        data (Sequence[oceanbolt.com.portcalls_v3.types.PortCall]):
-            List of vessels in port at the given time.
-        csv (str):
-            Link to download csv file, if format was
-            specified to be "csv".
-        xlsx (str):
-            Link to download excel file, if format was
-            specified to be "xlsx".
+        data (Sequence[oceanbolt.com.portcalls_v3.types.VesselInPort]):
+            List of vessels in port at the requested
+            time.
     """
 
     data = proto.RepeatedField(
         proto.MESSAGE,
         number=7,
-        message='PortCall',
-    )
-    csv = proto.Field(
-        proto.STRING,
-        number=8,
-    )
-    xlsx = proto.Field(
-        proto.STRING,
-        number=9,
+        message='VesselInPort',
     )
 
 
 class VesselInPort(proto.Message):
-    r"""Port call object
+    r"""VesselInPort object
 
     Attributes:
         voyage_id (str):
