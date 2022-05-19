@@ -995,23 +995,27 @@ class VesselInPort(proto.Message):
 
 
 class BerthStay(proto.Message):
-    r"""
+    r"""BerthStay object
 
     Attributes:
         berth_id (int):
-
+            Berth id of the berth
         berth_name (str):
-
+            Name of the berth
         berth_type (str):
-
+            Type of the berth
         arrived_at (str):
-
+            Timestamp of when the vessel arrived at the
+            berth
         departed_at (str):
-
+            Timestamp of when the vessel departed from
+            the berth
         draught_in (float):
-
+            The draught when the vessel arrived at the
+            berth
         draught_out (float):
-
+            The draught when the vessel departed from the
+            berth
     """
 
     berth_id = proto.Field(
@@ -1049,13 +1053,15 @@ class AnchorageStay(proto.Message):
 
     Attributes:
         anchorage_id (int):
-
+            Anchorage id of the anchorage
         anchorage_name (str):
-
+            Name of the anchorage
         arrived_at (str):
-
+            Timestamp of when the vessel arrived at the
+            anchorage
         departed_at (str):
-
+            Timestamp of when the vessel departed from
+            the anchorage
     """
 
     anchorage_id = proto.Field(
