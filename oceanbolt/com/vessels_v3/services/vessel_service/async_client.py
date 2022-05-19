@@ -31,6 +31,7 @@ try:
 except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
+from google.protobuf import timestamp_pb2  # type: ignore
 from oceanbolt.com.vessels_v3.types import service
 from .transports.base import VesselServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import VesselServiceGrpcAsyncIOTransport
@@ -291,6 +292,73 @@ class VesselServiceAsyncClient:
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.list_stoppage_events,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
+    async def get_ais_summary(self,
+            request: Union[service.GetAisSummaryRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.GetAisSummaryResponse:
+        r"""Generates summary data regarding AIS received during
+        a specific requested period for a single vessel
+
+
+        .. code-block:: python
+
+            from oceanbolt.com import vessels_v3
+
+            def sample_get_ais_summary():
+                # Create a client
+                client = vessels_v3.VesselServiceClient()
+
+                # Initialize request argument(s)
+                request = vessels_v3.GetAisSummaryRequest(
+                )
+
+                # Make the request
+                response = client.get_ais_summary(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.vessels_v3.types.GetAisSummaryRequest, dict]):
+                The request object. Request object for
+                GetAisSummaryRequest
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.vessels_v3.types.GetAisSummaryResponse:
+                Request object for
+                GetAisSummaryResponse
+
+        """
+        # Create or coerce a protobuf request object.
+        request = service.GetAisSummaryRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_ais_summary,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )

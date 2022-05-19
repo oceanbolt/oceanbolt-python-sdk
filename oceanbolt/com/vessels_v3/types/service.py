@@ -15,6 +15,7 @@
 #
 import proto  # type: ignore
 
+from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
 
 
@@ -27,6 +28,8 @@ __protobuf__ = proto.module(
         'ListStoppageEventsResponse',
         'Vessel',
         'StoppageEvent',
+        'GetAisSummaryRequest',
+        'GetAisSummaryResponse',
     },
 )
 
@@ -642,6 +645,93 @@ class StoppageEvent(proto.Message):
     classification = proto.Field(
         proto.STRING,
         number=12,
+    )
+
+
+class GetAisSummaryRequest(proto.Message):
+    r"""Request object for GetAisSummaryRequest
+
+    Attributes:
+        imo (int):
+            IMO number of the vessel
+        start_time (google.protobuf.timestamp_pb2.Timestamp):
+            Start time for the AIS summary request
+        end_time (google.protobuf.timestamp_pb2.Timestamp):
+            End time for the AIS summary request
+        resolution (oceanbolt.com.vessels_v3.types.GetAisSummaryRequest.Resolution):
+            Resolution of the AIS data. If not supplied,
+            it will default to hourly.
+    """
+    class Resolution(proto.Enum):
+        r""""""
+        UNDEFINED_RESOLUTION = 0
+        DAILY = 1
+        HOURLY = 2
+        FULL = 3
+
+    imo = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
+    start_time = proto.Field(
+        proto.MESSAGE,
+        number=2,
+        message=timestamp_pb2.Timestamp,
+    )
+    end_time = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=timestamp_pb2.Timestamp,
+    )
+    resolution = proto.Field(
+        proto.ENUM,
+        number=4,
+        enum=Resolution,
+    )
+
+
+class GetAisSummaryResponse(proto.Message):
+    r"""Request object for GetAisSummaryResponse
+
+    Attributes:
+        distance_traveled_nm (float):
+            The total distance traveled during the period
+            in nautical miles
+        average_speed_knots (float):
+            Average speed of the vessel in the period in
+            knots
+        number_of_positions (int):
+            The number of positions received during the
+            period (at the selected resolution)
+        initial_timestamp_for_period (google.protobuf.timestamp_pb2.Timestamp):
+            The timestamp of the first AIS position in
+            the requested period
+        last_timestamp_for_period (google.protobuf.timestamp_pb2.Timestamp):
+            The timestamp of the final AIS position in
+            the requested period
+    """
+
+    distance_traveled_nm = proto.Field(
+        proto.DOUBLE,
+        number=1,
+    )
+    average_speed_knots = proto.Field(
+        proto.DOUBLE,
+        number=2,
+    )
+    number_of_positions = proto.Field(
+        proto.UINT32,
+        number=3,
+    )
+    initial_timestamp_for_period = proto.Field(
+        proto.MESSAGE,
+        number=4,
+        message=timestamp_pb2.Timestamp,
+    )
+    last_timestamp_for_period = proto.Field(
+        proto.MESSAGE,
+        number=5,
+        message=timestamp_pb2.Timestamp,
     )
 
 

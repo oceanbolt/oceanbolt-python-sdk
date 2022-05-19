@@ -39,6 +39,7 @@ def partition(
 class vesselsCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
+        'get_ais_summary': ('imo', 'start_time', 'end_time', 'resolution', ),
         'list_stoppage_events': ('imo', 'start_date', 'end_date', 'format_', ),
         'list_vessels': ('dwt', 'eta', 'segment', 'sub_segment', 'load_region', 'load_country', 'load_port', 'destination_region', 'destination_country', 'destination_port', 'destination_unlocode', 'cargo_status', 'laden_status', 'laden_status_draught', 'speed', 'draught', 'exclude_unknown_destination', 'group', 'range_', 'flow_date', 'commodity', 'commodity_group', 'zone_id', 'port_id', 'anchorage_id', 'berth_id', 'shipyard_id', 'direction', 'imo', 'port_status', 'exclude_mpv', 'limit', 'hours_since_last', 'format_', ),
     }

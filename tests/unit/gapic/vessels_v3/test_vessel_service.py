@@ -32,6 +32,7 @@ from google.api_core import path_template
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.oauth2 import service_account
+from google.protobuf import timestamp_pb2  # type: ignore
 from oceanbolt.com.vessels_v3.services.vessel_service import VesselServiceAsyncClient
 from oceanbolt.com.vessels_v3.services.vessel_service import VesselServiceClient
 from oceanbolt.com.vessels_v3.services.vessel_service import transports
@@ -663,6 +664,102 @@ async def test_list_stoppage_events_async_from_dict():
     await test_list_stoppage_events_async(request_type=dict)
 
 
+@pytest.mark.parametrize("request_type", [
+  service.GetAisSummaryRequest,
+  dict,
+])
+def test_get_ais_summary(request_type, transport: str = 'grpc'):
+    client = VesselServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_ais_summary),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.GetAisSummaryResponse(
+            distance_traveled_nm=0.2107,
+            average_speed_knots=0.20090000000000002,
+            number_of_positions=2052,
+        )
+        response = client.get_ais_summary(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetAisSummaryRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetAisSummaryResponse)
+    assert math.isclose(response.distance_traveled_nm, 0.2107, rel_tol=1e-6)
+    assert math.isclose(response.average_speed_knots, 0.20090000000000002, rel_tol=1e-6)
+    assert response.number_of_positions == 2052
+
+
+def test_get_ais_summary_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = VesselServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_ais_summary),
+            '__call__') as call:
+        client.get_ais_summary()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetAisSummaryRequest()
+
+
+@pytest.mark.asyncio
+async def test_get_ais_summary_async(transport: str = 'grpc_asyncio', request_type=service.GetAisSummaryRequest):
+    client = VesselServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_ais_summary),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.GetAisSummaryResponse(
+            distance_traveled_nm=0.2107,
+            average_speed_knots=0.20090000000000002,
+            number_of_positions=2052,
+        ))
+        response = await client.get_ais_summary(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetAisSummaryRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.GetAisSummaryResponse)
+    assert math.isclose(response.distance_traveled_nm, 0.2107, rel_tol=1e-6)
+    assert math.isclose(response.average_speed_knots, 0.20090000000000002, rel_tol=1e-6)
+    assert response.number_of_positions == 2052
+
+
+@pytest.mark.asyncio
+async def test_get_ais_summary_async_from_dict():
+    await test_get_ais_summary_async(request_type=dict)
+
+
 def test_credentials_transport_error():
     # It is an error to provide credentials and a transport instance.
     transport = transports.VesselServiceGrpcTransport(
@@ -781,6 +878,7 @@ def test_vessel_service_base_transport():
     methods = (
         'list_vessels',
         'list_stoppage_events',
+        'get_ais_summary',
     )
     for method in methods:
         with pytest.raises(NotImplementedError):

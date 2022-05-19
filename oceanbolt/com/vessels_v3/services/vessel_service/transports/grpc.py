@@ -274,6 +274,33 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
             )
         return self._stubs['list_stoppage_events']
 
+    @property
+    def get_ais_summary(self) -> Callable[
+            [service.GetAisSummaryRequest],
+            service.GetAisSummaryResponse]:
+        r"""Return a callable for the get ais summary method over gRPC.
+
+        Generates summary data regarding AIS received during
+        a specific requested period for a single vessel
+
+        Returns:
+            Callable[[~.GetAisSummaryRequest],
+                    ~.GetAisSummaryResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_ais_summary' not in self._stubs:
+            self._stubs['get_ais_summary'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.vessels.v3.VesselService/GetAisSummary',
+                request_serializer=service.GetAisSummaryRequest.serialize,
+                response_deserializer=service.GetAisSummaryResponse.deserialize,
+            )
+        return self._stubs['get_ais_summary']
+
     def close(self):
         self.grpc_channel.close()
 

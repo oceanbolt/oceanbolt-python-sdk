@@ -123,6 +123,11 @@ class VesselServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.get_ais_summary: gapic_v1.method.wrap_method(
+                self.get_ais_summary,
+                default_timeout=None,
+                client_info=client_info,
+            ),
          }
 
     def close(self):
@@ -149,6 +154,15 @@ class VesselServiceTransport(abc.ABC):
             Union[
                 service.ListStoppageEventsResponse,
                 Awaitable[service.ListStoppageEventsResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def get_ais_summary(self) -> Callable[
+            [service.GetAisSummaryRequest],
+            Union[
+                service.GetAisSummaryResponse,
+                Awaitable[service.GetAisSummaryResponse]
             ]]:
         raise NotImplementedError()
 

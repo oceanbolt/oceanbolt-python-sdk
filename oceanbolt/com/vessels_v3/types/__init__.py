@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 from .service import (
+    GetAisSummaryRequest,
+    GetAisSummaryResponse,
     ListStoppageEventsRequest,
     ListStoppageEventsResponse,
     ListVesselsRequest,
@@ -23,6 +25,8 @@ from .service import (
 )
 
 __all__ = (
+    'GetAisSummaryRequest',
+    'GetAisSummaryResponse',
     'ListStoppageEventsRequest',
     'ListStoppageEventsResponse',
     'ListVesselsRequest',
