@@ -735,7 +735,12 @@ class GetVesselsInPortRequest(proto.Message):
         vessel_filter (oceanbolt.com.ptypes.filters.vessel_filter_pb2.VesselFilter):
             Specifies vessel parameters to filter on.
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
-            Timestamp to generate the vessel list for
+            Timestamp to generate the vessel in port list
+            for. This allows to generate historical
+            snapshots of the vessels that were inside a port
+            at a given time in history. If left blank, then
+            it the vessel list will default to be generated
+            for the current time.
         merge_sequential_polygon_stays (bool):
             Flag to indicate whether to merge sequential
             berth stays in same berth (if the stays are
@@ -842,41 +847,27 @@ class VesselInPort(proto.Message):
         arrived_at (str):
             UTC timestamp for when the vessel arrived at
             the port.
-        berthed_at (str):
-            UTC timestamp for when the vessel berthed in
-            the port.
-        unberthed_at (str):
-            UTC timestamp for when the vessel left the
-            berth/terminal.
         departed_at (str):
             UTC timestamp for when the vessel left the
-            port.
+            port (only applies for historical snapshot
+            views), if blank, then the vessel is still
+            inside the port.
         days_in_port (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the port call (in days).
-        days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
-            Number of days the vessel was waiting at
-            anchor before shifting to berth. Calculated as
-            the difference from when the vessel arrived at
-            the port/anchorage and until it entered the
-            primary berth.
-        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
-            Number of days the vessel was at berth in
-            during the duration of the port call. Calculated
-            as the total amount of time spent in the primary
-            berth.
         country_code (str):
             ISO 2-letter country code of the load
             country.
         operation (str):
-            Operation type of the port call.
+            Predicted operation type of the port call.
         voyage_type (str):
-            The type of the voyage.
+            Predicted the type of the voyage.
         commodity (str):
-            Name of the commodity.
+            Name of the predicted commodity.
         commodity_value (str):
-            Database friendly name of the commodity.
+            Database friendly name of the predicted
+            commodity.
         commodity_group (str):
-            Name of the commodity group.
+            Name of the predicted commodity group.
         volume (google.protobuf.wrappers_pb2.DoubleValue):
             Volume loaded in metric tons.
         port_visited (bool):
@@ -957,14 +948,6 @@ class VesselInPort(proto.Message):
         proto.STRING,
         number=7,
     )
-    berthed_at = proto.Field(
-        proto.STRING,
-        number=8,
-    )
-    unberthed_at = proto.Field(
-        proto.STRING,
-        number=32,
-    )
     departed_at = proto.Field(
         proto.STRING,
         number=9,
@@ -972,16 +955,6 @@ class VesselInPort(proto.Message):
     days_in_port = proto.Field(
         proto.MESSAGE,
         number=10,
-        message=wrappers_pb2.DoubleValue,
-    )
-    days_waiting = proto.Field(
-        proto.MESSAGE,
-        number=11,
-        message=wrappers_pb2.DoubleValue,
-    )
-    days_at_berth = proto.Field(
-        proto.MESSAGE,
-        number=12,
         message=wrappers_pb2.DoubleValue,
     )
     country_code = proto.Field(
@@ -1095,7 +1068,7 @@ class BerthStay(proto.Message):
 
 
 class AnchorageStay(proto.Message):
-    r"""
+    r"""AnchorageStay object
 
     Attributes:
         anchorage_id (int):
