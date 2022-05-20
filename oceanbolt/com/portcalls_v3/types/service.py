@@ -324,11 +324,11 @@ class PortCall(proto.Message):
         days_in_port (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the port call (in days).
         days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
-            Number of days the vessel was at berth in
-            during the duration of the port call.
-        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was waiting at
             anchor before shifting to berth.
+        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was at berth in
+            during the duration of the port call.
         country_code (str):
             ISO 2-letter country code of the load
             country.
@@ -736,6 +736,19 @@ class GetVesselsInPortRequest(proto.Message):
             Specifies vessel parameters to filter on.
         timestamp (google.protobuf.timestamp_pb2.Timestamp):
             Timestamp to generate the vessel list for
+        merge_sequential_polygon_stays (bool):
+            Flag to indicate whether to merge sequential
+            berth stays in same berth (if the stays are
+            within the merge threshold). Default is false,
+            meaning that by default berth stays will not be
+            merged.
+        merge_threshold_hours (float):
+            The threshold in hours for a merge to take
+            place for multiple consequtive stays. If the
+            time from when the vessel left the berth until
+            it reentered into the same berth is above the
+            threshold, the polygon stays will not be merged.
+            Default value is 6 hours.
     """
 
     port_id = proto.Field(
@@ -756,17 +769,31 @@ class GetVesselsInPortRequest(proto.Message):
         number=4,
         message=timestamp_pb2.Timestamp,
     )
+    merge_sequential_polygon_stays = proto.Field(
+        proto.BOOL,
+        number=5,
+    )
+    merge_threshold_hours = proto.Field(
+        proto.DOUBLE,
+        number=6,
+    )
 
 
 class GetVesselsInPortResponse(proto.Message):
     r"""Response object for GetVesselsInPort
 
     Attributes:
+        vessels_in_port (int):
+            The number of vessels in port
         data (Sequence[oceanbolt.com.portcalls_v3.types.VesselInPort]):
             List of vessels in port at the requested
             time.
     """
 
+    vessels_in_port = proto.Field(
+        proto.UINT32,
+        number=1,
+    )
     data = proto.RepeatedField(
         proto.MESSAGE,
         number=7,
@@ -793,12 +820,14 @@ class VesselInPort(proto.Message):
             Oceanbolt database identifier of the port.
         port_name (str):
             Name of the port.
+        unlocode (str):
+            UNLOCODE of the port.
         segment (str):
             Segment of the vessel.
         sub_segment (str):
             Sub segment of the vessel.
-        unlocode (str):
-            UNLOCODE of the port.
+        dwt (float):
+            DWT of the vessel
         berth_id (google.protobuf.wrappers_pb2.Int32Value):
             Oceanbolt database identifier of the primary
             berth/terminal visited during the port call.
@@ -825,11 +854,16 @@ class VesselInPort(proto.Message):
         days_in_port (google.protobuf.wrappers_pb2.DoubleValue):
             Total duration of the port call (in days).
         days_waiting (google.protobuf.wrappers_pb2.DoubleValue):
-            Number of days the vessel was at berth in
-            during the duration of the port call.
-        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
             Number of days the vessel was waiting at
-            anchor before shifting to berth.
+            anchor before shifting to berth. Calculated as
+            the difference from when the vessel arrived at
+            the port/anchorage and until it entered the
+            primary berth.
+        days_at_berth (google.protobuf.wrappers_pb2.DoubleValue):
+            Number of days the vessel was at berth in
+            during the duration of the port call. Calculated
+            as the total amount of time spent in the primary
+            berth.
         country_code (str):
             ISO 2-letter country code of the load
             country.
@@ -848,7 +882,8 @@ class VesselInPort(proto.Message):
         port_visited (bool):
             Flag to indicate whether the vessel has
             visited the port interior. If the flag is false
-            the vessels only visited an anchorage.
+            the vessels only visited an anchorage or a
+            berth.
         berth_stays (Sequence[oceanbolt.com.portcalls_v3.types.BerthStay]):
             List of all berths that the vessel visited
             during the port call
@@ -884,6 +919,10 @@ class VesselInPort(proto.Message):
         proto.STRING,
         number=4,
     )
+    unlocode = proto.Field(
+        proto.STRING,
+        number=25,
+    )
     segment = proto.Field(
         proto.STRING,
         number=18,
@@ -892,9 +931,9 @@ class VesselInPort(proto.Message):
         proto.STRING,
         number=19,
     )
-    unlocode = proto.Field(
-        proto.STRING,
-        number=25,
+    dwt = proto.Field(
+        proto.DOUBLE,
+        number=26,
     )
     berth_id = proto.Field(
         proto.MESSAGE,
@@ -924,7 +963,7 @@ class VesselInPort(proto.Message):
     )
     unberthed_at = proto.Field(
         proto.STRING,
-        number=26,
+        number=32,
     )
     departed_at = proto.Field(
         proto.STRING,
@@ -1016,6 +1055,9 @@ class BerthStay(proto.Message):
         draught_out (float):
             The draught when the vessel departed from the
             berth
+        hours_in_berth (float):
+            The duration of the stay in the berth in
+            hours.
     """
 
     berth_id = proto.Field(
@@ -1046,6 +1088,10 @@ class BerthStay(proto.Message):
         proto.DOUBLE,
         number=7,
     )
+    hours_in_berth = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
 
 
 class AnchorageStay(proto.Message):
@@ -1062,6 +1108,9 @@ class AnchorageStay(proto.Message):
         departed_at (str):
             Timestamp of when the vessel departed from
             the anchorage
+        hours_in_anchorage (float):
+            The duration of the stay in the anchorage in
+            hours.
     """
 
     anchorage_id = proto.Field(
@@ -1079,6 +1128,10 @@ class AnchorageStay(proto.Message):
     departed_at = proto.Field(
         proto.STRING,
         number=4,
+    )
+    hours_in_anchorage = proto.Field(
+        proto.DOUBLE,
+        number=5,
     )
 
 

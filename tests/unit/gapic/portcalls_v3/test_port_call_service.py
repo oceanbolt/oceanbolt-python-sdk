@@ -782,6 +782,7 @@ def test_get_vessels_in_port(request_type, transport: str = 'grpc'):
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.GetVesselsInPortResponse(
+            vessels_in_port=1631,
         )
         response = client.get_vessels_in_port(request)
 
@@ -792,6 +793,7 @@ def test_get_vessels_in_port(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetVesselsInPortResponse)
+    assert response.vessels_in_port == 1631
 
 
 def test_get_vessels_in_port_empty_call():
@@ -829,6 +831,7 @@ async def test_get_vessels_in_port_async(transport: str = 'grpc_asyncio', reques
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.GetVesselsInPortResponse(
+            vessels_in_port=1631,
         ))
         response = await client.get_vessels_in_port(request)
 
@@ -839,6 +842,7 @@ async def test_get_vessels_in_port_async(transport: str = 'grpc_asyncio', reques
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.GetVesselsInPortResponse)
+    assert response.vessels_in_port == 1631
 
 
 @pytest.mark.asyncio
