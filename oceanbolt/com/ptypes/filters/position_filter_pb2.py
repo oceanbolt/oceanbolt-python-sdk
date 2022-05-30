@@ -14,9 +14,10 @@ _sym_db = _symbol_database.Default()
 
 from oceanbolt.com.ptypes.enums import polygon_status_pb2 as ptypes_dot_enums_dot_polygon__status__pb2
 from oceanbolt.com.ptypes.enums import direction_pb2 as ptypes_dot_enums_dot_direction__pb2
+from oceanbolt.com.ptypes.enums import navigational_status_pb2 as ptypes_dot_enums_dot_navigational__status__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$ptypes/filters/position_filter.proto\x12\x1coceanbolt.com.ptypes.filters\x1a!ptypes/enums/polygon_status.proto\x1a\x1cptypes/enums/direction.proto\"\xc5\x02\n\x0ePositionFilter\x12\x16\n\x06\x63ourse\x18\x01 \x03(\x01R\x06\x63ourse\x12\x18\n\x07heading\x18\x02 \x03(\x01R\x07heading\x12\x14\n\x05speed\x18\x03 \x03(\x01R\x05speed\x12%\n\x0e\x64raught_meters\x18\x04 \x03(\x01R\rdraughtMeters\x12-\n\x12\x64raught_percentage\x18\x05 \x03(\x01R\x11\x64raughtPercentage\x12P\n\x0epolygon_status\x18\x06 \x03(\x0e\x32).oceanbolt.com.ptypes.enums.PolygonStatusR\rpolygonStatus\x12\x43\n\tdirection\x18\x07 \x03(\x0e\x32%.oceanbolt.com.ptypes.enums.DirectionR\tdirectionB<Z:gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/filtersb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n$ptypes/filters/position_filter.proto\x12\x1coceanbolt.com.ptypes.filters\x1a!ptypes/enums/polygon_status.proto\x1a\x1cptypes/enums/direction.proto\x1a&ptypes/enums/navigational_status.proto\"\xa6\x03\n\x0ePositionFilter\x12\x16\n\x06\x63ourse\x18\x01 \x03(\x01R\x06\x63ourse\x12\x18\n\x07heading\x18\x02 \x03(\x01R\x07heading\x12\x14\n\x05speed\x18\x03 \x03(\x01R\x05speed\x12%\n\x0e\x64raught_meters\x18\x04 \x03(\x01R\rdraughtMeters\x12-\n\x12\x64raught_percentage\x18\x05 \x03(\x01R\x11\x64raughtPercentage\x12P\n\x0epolygon_status\x18\x06 \x03(\x0e\x32).oceanbolt.com.ptypes.enums.PolygonStatusR\rpolygonStatus\x12\x43\n\tdirection\x18\x07 \x03(\x0e\x32%.oceanbolt.com.ptypes.enums.DirectionR\tdirection\x12_\n\x13navigational_status\x18\x08 \x03(\x0e\x32..oceanbolt.com.ptypes.enums.NavigationalStatusR\x12navigationalStatusB<Z:gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/filtersb\x06proto3')
 
 
 
@@ -32,6 +33,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z:gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/filters'
-  _POSITIONFILTER._serialized_start=136
-  _POSITIONFILTER._serialized_end=461
+  _POSITIONFILTER._serialized_start=176
+  _POSITIONFILTER._serialized_end=598
 # @@protoc_insertion_point(module_scope)

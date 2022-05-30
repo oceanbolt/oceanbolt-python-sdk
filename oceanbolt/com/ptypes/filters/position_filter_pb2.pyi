@@ -7,6 +7,7 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import oceanbolt.com.ptypes.enums.direction_pb2
+import oceanbolt.com.ptypes.enums.navigational_status_pb2
 import oceanbolt.com.ptypes.enums.polygon_status_pb2
 import typing
 import typing_extensions
@@ -22,6 +23,7 @@ class PositionFilter(google.protobuf.message.Message):
     DRAUGHT_PERCENTAGE_FIELD_NUMBER: builtins.int
     POLYGON_STATUS_FIELD_NUMBER: builtins.int
     DIRECTION_FIELD_NUMBER: builtins.int
+    NAVIGATIONAL_STATUS_FIELD_NUMBER: builtins.int
     @property
     def course(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         """Course range to filter on. Example: [0,45] (both values inclusive)."""
@@ -50,6 +52,10 @@ class PositionFilter(google.protobuf.message.Message):
     def direction(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ptypes.enums.direction_pb2.Direction.ValueType]:
         """Directions to filter on. See oceanbolt.com.ptypes.enumspb.v1.Directions for list of valid values."""
         pass
+    @property
+    def navigational_status(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ptypes.enums.navigational_status_pb2.NavigationalStatus.ValueType]:
+        """Nav statuses to filter on. See oceanbolt.com.ptypes.enumspb.v1.NavigationalStatus for list of valid values."""
+        pass
     def __init__(self,
         *,
         course: typing.Optional[typing.Iterable[builtins.float]] = ...,
@@ -59,6 +65,7 @@ class PositionFilter(google.protobuf.message.Message):
         draught_percentage: typing.Optional[typing.Iterable[builtins.float]] = ...,
         polygon_status: typing.Optional[typing.Iterable[ptypes.enums.polygon_status_pb2.PolygonStatus.ValueType]] = ...,
         direction: typing.Optional[typing.Iterable[ptypes.enums.direction_pb2.Direction.ValueType]] = ...,
+        navigational_status: typing.Optional[typing.Iterable[ptypes.enums.navigational_status_pb2.NavigationalStatus.ValueType]] = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","direction",b"direction","draught_meters",b"draught_meters","draught_percentage",b"draught_percentage","heading",b"heading","polygon_status",b"polygon_status","speed",b"speed"]) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["course",b"course","direction",b"direction","draught_meters",b"draught_meters","draught_percentage",b"draught_percentage","heading",b"heading","navigational_status",b"navigational_status","polygon_status",b"polygon_status","speed",b"speed"]) -> None: ...
 global___PositionFilter = PositionFilter
