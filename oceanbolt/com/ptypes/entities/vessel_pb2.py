@@ -12,9 +12,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from oceanbolt.com.ptypes.enums import platforms_pb2 as ptypes_dot_enums_dot_platforms__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cptypes/entities/vessel.proto\x12\x1doceanbolt.com.ptypes.entities\"\xa8\x01\n\x06Vessel\x12\x18\n\x07segment\x18\x01 \x01(\tR\x07segment\x12\x1f\n\x0bsub_segment\x18\x02 \x01(\tR\nsubSegment\x12\x14\n\x05\x62uilt\x18\x03 \x01(\rR\x05\x62uilt\x12\x1f\n\x0bvessel_name\x18\x04 \x01(\tR\nvesselName\x12\x1a\n\x08platform\x18\x05 \x01(\tR\x08platform\x12\x10\n\x03imo\x18\x06 \x01(\rR\x03imoB=Z;gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/entitiesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cptypes/entities/vessel.proto\x12\x1doceanbolt.com.ptypes.entities\x1a\x1cptypes/enums/platforms.proto\"\xd4\x02\n\x06Vessel\x12\x10\n\x03imo\x18\x01 \x01(\rR\x03imo\x12\x12\n\x04name\x18\x02 \x01(\tR\x04name\x12\x17\n\x07\x65x_name\x18\x03 \x01(\tR\x06\x65xName\x12@\n\x08platform\x18\x04 \x01(\x0e\x32$.oceanbolt.com.ptypes.enums.PlatformR\x08platform\x12\x18\n\x07segment\x18\x05 \x01(\tR\x07segment\x12\x1f\n\x0bsub_segment\x18\x06 \x01(\tR\nsubSegment\x12\x1f\n\x0bvessel_type\x18\x07 \x01(\tR\nvesselType\x12\x10\n\x03\x64wt\x18\x08 \x01(\x01R\x03\x64wt\x12\x1f\n\x0bmax_draught\x18\t \x01(\x01R\nmaxDraught\x12\x14\n\x05\x62uilt\x18\n \x01(\rR\x05\x62uilt\x12\x10\n\x03loa\x18\x0b \x01(\x01R\x03loa\x12\x12\n\x04\x62\x65\x61m\x18\x0c \x01(\x01R\x04\x62\x65\x61mB=Z;gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/entitiesb\x06proto3')
 
 
 
@@ -30,6 +31,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z;gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/entities'
-  _VESSEL._serialized_start=64
-  _VESSEL._serialized_end=232
+  _VESSEL._serialized_start=94
+  _VESSEL._serialized_end=434
 # @@protoc_insertion_point(module_scope)
