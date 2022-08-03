@@ -164,6 +164,12 @@ class VesselState(proto.Message):
         predicted_destination_score (float):
             Destination score for predicted destination
             result
+        prediction_destination_description (str):
+            description of how the prediction destination
+            was determined
+        predicted_arrival (str):
+            the predicted arrival to the predicted
+            destination port
         eta (str):
 
         navigational_status (str):
@@ -345,6 +351,14 @@ class VesselState(proto.Message):
     predicted_destination_score = proto.Field(
         proto.DOUBLE,
         number=56,
+    )
+    prediction_destination_description = proto.Field(
+        proto.STRING,
+        number=60,
+    )
+    predicted_arrival = proto.Field(
+        proto.STRING,
+        number=61,
     )
     eta = proto.Field(
         proto.STRING,
