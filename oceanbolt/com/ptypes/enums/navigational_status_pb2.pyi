@@ -15,7 +15,8 @@ class _NavigationalStatus:
     V: typing_extensions.TypeAlias = ValueType
 class _NavigationalStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_NavigationalStatus.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
-    UNDER_WAY_USING_ENGINE: _NavigationalStatus.ValueType  # 0
+    UNKNOWN_NAVIGATIONAL_STATUS: _NavigationalStatus.ValueType  # 0
+    UNDER_WAY_USING_ENGINE: _NavigationalStatus.ValueType  # 100
     AT_ANCHOR: _NavigationalStatus.ValueType  # 1
     NOT_UNDER_COMMAND: _NavigationalStatus.ValueType  # 2
     RESTRICTED_MANOEUVRABILITY: _NavigationalStatus.ValueType  # 3
@@ -30,7 +31,8 @@ class _NavigationalStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrap
 class NavigationalStatus(_NavigationalStatus, metaclass=_NavigationalStatusEnumTypeWrapper):
     pass
 
-UNDER_WAY_USING_ENGINE: NavigationalStatus.ValueType  # 0
+UNKNOWN_NAVIGATIONAL_STATUS: NavigationalStatus.ValueType  # 0
+UNDER_WAY_USING_ENGINE: NavigationalStatus.ValueType  # 100
 AT_ANCHOR: NavigationalStatus.ValueType  # 1
 NOT_UNDER_COMMAND: NavigationalStatus.ValueType  # 2
 RESTRICTED_MANOEUVRABILITY: NavigationalStatus.ValueType  # 3
