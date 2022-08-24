@@ -40,7 +40,7 @@ setuptools.setup(
         'libcst >= 0.4.1',
         'googleapis-common-protos >= 1.56.2, <2.0.0dev',
         'proto-plus >= 1.22',
-        "grpcio >= 1.47.0"
+        "grpcio >= 1.47.0",
         'pandas>=1.4.3',
         'numpy>=1.23.2',
         'protobuf >= 3.20.1',
