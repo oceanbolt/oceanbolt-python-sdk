@@ -11,11 +11,12 @@ class CongestionVessels:
 
     def __init__(self, client: APIClient):
         self.client = client._congestion_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves current congested vessels as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_list_to_pandas(self.client.get_congestion_vessels(kwargs).current_vessels)
+        df = pb_list_to_pandas(self.client.get_congestion_vessels(request=kwargs, metadata=self.metadata).current_vessels)
         if "speed" in df.columns:
             del df["speed"]
         if "course" in df.columns:
@@ -36,8 +37,9 @@ class CongestionTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._congestion_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves congested timeseries as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_timeseries_to_pandas(self.client.get_congestion_timeseries(kwargs).timeseries)
+        return pb_timeseries_to_pandas(self.client.get_congestion_timeseries(request=kwargs, metadata=self.metadata).timeseries)

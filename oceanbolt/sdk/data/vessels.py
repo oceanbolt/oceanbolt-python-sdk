@@ -9,11 +9,12 @@ class Vessels:
 
     def __init__(self, client: APIClient):
         self.client = client._vessels_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves trade flow data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_list_to_pandas(self.client.list_vessels(kwargs).vessels)
+        return pb_list_to_pandas(self.client.list_vessels(request=kwargs, metadata=self.metadata).vessels)
 
 
 class StoppageEvents:
@@ -23,8 +24,9 @@ class StoppageEvents:
 
     def __init__(self, client: APIClient):
         self.client = client._vessels_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_list_to_pandas(self.client.list_stoppage_events(kwargs).stoppage_events)
+        return pb_list_to_pandas(self.client.list_stoppage_events(request=kwargs, metadata=self.metadata).stoppage_events)

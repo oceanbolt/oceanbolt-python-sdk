@@ -11,10 +11,11 @@ class Ports:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
         """Retrieves list of ports as a pandas.DataFrame"""
-        return pb_list_to_pandas(self.client.list_ports().ports)
+        return pb_list_to_pandas(self.client.list_ports(metadata=self.metadata).ports)
 
 
 class Zones:
@@ -26,10 +27,11 @@ class Zones:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
         """Retrieves list of zones as a pandas.DataFrame"""
-        return pb_list_to_pandas(self.client.list_zones().zones)
+        return pb_list_to_pandas(self.client.list_zones(metadata=self.metadata).zones)
 
 
 class Regions:
@@ -41,10 +43,11 @@ class Regions:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
         """Retrieves list of regions as a pandas.DataFrame"""
-        return pb_list_to_pandas(self.client.list_regions().regions)
+        return pb_list_to_pandas(self.client.list_regions(metadata=self.metadata).regions)
 
 
 class Countries:
@@ -56,9 +59,10 @@ class Countries:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
-        return pb_list_to_pandas(self.client.list_countries().countries)
+        return pb_list_to_pandas(self.client.list_countries(metadata=self.metadata).countries)
 
 
 class Commodities:
@@ -70,10 +74,11 @@ class Commodities:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
         """Retrieves list of commodites as a pandas.DataFrame"""
-        return pb_list_to_pandas(self.client.list_commodities().commodities)
+        return pb_list_to_pandas(self.client.list_commodities(metadata=self.metadata).commodities)
 
 
 class Segments:
@@ -85,10 +90,11 @@ class Segments:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def get(self):
         """Retrieves list of segments as a pandas.DataFrame"""
-        return pb_list_to_pandas(self.client.list_segments().segments)
+        return pb_list_to_pandas(self.client.list_segments(metadata=self.metadata).segments)
 
 
 class Search:
@@ -100,6 +106,7 @@ class Search:
 
     def __init__(self, client: APIClient):
         self.client = client._entities_client()
+        self.metadata = client.metadata
 
     def search_polygons(self, q):
         r"""
@@ -108,7 +115,7 @@ class Search:
         Args:
             q (str): The search query
         """
-        return pb_list_to_pandas(self.client.search_polygons({"q": q}).polygons)
+        return pb_list_to_pandas(self.client.search_polygons(request={"q": q}, metadata=self.metadata).polygons)
 
     def search_vessels(self, q):
         r"""
@@ -117,4 +124,4 @@ class Search:
         Args:
             q (str): The search query
         """
-        return pb_list_to_pandas(self.client.search_vessels({"q": q}).vessels)
+        return pb_list_to_pandas(self.client.search_vessels(request={"q": q}, metadata=self.metadata).vessels)

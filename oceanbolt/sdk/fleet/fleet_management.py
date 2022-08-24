@@ -41,48 +41,49 @@ class FleetManagement:
 
     def __init__(self, client: APIClient):
         self.client = client._fleet_client()
+        self.metadata = client.metadata
 
     def create_fleet(self, **kwargs):
-        return self.client.create_fleet(kwargs)
+        return self.client.create_fleet(request=kwargs, metadata=self.metadata)
 
     def list_fleets(self, **kwargs):
-        return self.client.list_fleets(kwargs)
+        return self.client.list_fleets(request=kwargs, metadata=self.metadata)
 
     def describe_fleet(self, **kwargs):
-        return self.client.describe_fleet(kwargs)
+        return self.client.describe_fleet(request=kwargs, metadata=self.metadata)
 
     def delete_fleet(self, **kwargs):
-        return self.client.delete_fleet(kwargs)
+        return self.client.delete_fleet(request=kwargs, metadata=self.metadata)
 
     def rename_fleet(self, **kwargs):
-        return self.client.rename_fleet(kwargs)
+        return self.client.rename_fleet(request=kwargs, metadata=self.metadata)
 
     def share_fleet(self, **kwargs):
-        return self.client.share_fleet(kwargs)
+        return self.client.share_fleet(request=kwargs, metadata=self.metadata)
 
     def unshare_fleet(self, **kwargs):
-        return self.client.unshare_fleet(kwargs)
+        return self.client.unshare_fleet(request=kwargs, metadata=self.metadata)
 
     def drop_vessels(self, **kwargs):
-        return self.client.drop_vessels(kwargs)
+        return self.client.drop_vessels(request=kwargs, metadata=self.metadata)
 
     def batch_add_vessels(self, **kwargs):
-        return self.client.batch_add_vessels(kwargs)
+        return self.client.batch_add_vessels(request=kwargs, metadata=self.metadata)
 
     def replace_vessels(self, **kwargs):
-        return self.client.replace_vessels(kwargs)
+        return self.client.replace_vessels(request=kwargs, metadata=self.metadata)
 
     def add_vessel(self, **kwargs):
-        return self.client.add_vessel(kwargs)
+        return self.client.add_vessel(request=kwargs, metadata=self.metadata)
 
     def delete_vessel(self, **kwargs):
-        return self.client.delete_vessel(kwargs)
+        return self.client.delete_vessel(request=kwargs, metadata=self.metadata)
 
     def update_vessel(self, **kwargs):
-        return self.client.update_vessel(kwargs)
+        return self.client.update_vessel(request=kwargs, metadata=self.metadata)
 
     def list_vessels(self, **kwargs):
-        return self.client.list_vessels(kwargs)
+        return self.client.list_vessels(request=kwargs, metadata=self.metadata)
 
     def replace_vessels_from_csv(self, fleet_id, path):
         r"""
@@ -103,7 +104,7 @@ class FleetManagement:
         for key, value in fleet_dict.items():
             vessels.append({"imo": key, "metadata": value})
 
-        return self.client.replace_vessels({"fleet_id": fleet_id, "vessels": vessels})
+        return self.client.replace_vessels(request={"fleet_id": fleet_id, "vessels": vessels}, metadata=self.metadata)
 
     def batch_add_vessels_from_csv(self, fleet_id, path):
         r"""
@@ -124,4 +125,4 @@ class FleetManagement:
         for key, value in fleet_dict.items():
             vessels.append({"imo": key, "metadata": value})
 
-        return self.client.batch_add_vessels({"fleet_id": fleet_id, "vessels": vessels})
+        return self.client.batch_add_vessels(request={"fleet_id": fleet_id, "vessels": vessels}, metadata=self.metadata)

@@ -11,11 +11,12 @@ class DryDockCurrentVessels:
 
     def __init__(self, client: APIClient):
         self.client = client._drydock_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves currently active dry dock data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_list_to_pandas(self.client.get_dry_dock_vessels(kwargs).current_vessels)
+        return pb_list_to_pandas(self.client.get_dry_dock_vessels(request=kwargs, metadata=self.metadata).current_vessels)
 
 
 class DryDockHistoricalStays:
@@ -27,11 +28,12 @@ class DryDockHistoricalStays:
 
     def __init__(self, client: APIClient):
         self.client = client._drydock_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves historical dry dock data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_list_to_pandas(self.client.get_dry_dock_stays(kwargs).data)
+        return pb_list_to_pandas(self.client.get_dry_dock_stays(request=kwargs, metadata=self.metadata).data)
 
 
 class DryDockTimeseries:
@@ -43,7 +45,8 @@ class DryDockTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._drydock_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves dry dock timeseries data as a pandas.DataFrame"""
-        return pb_timeseries_to_pandas(self.client.get_dry_dock_timeseries(kwargs).timeseries)
+        return pb_timeseries_to_pandas(self.client.get_dry_dock_timeseries(request=kwargs, metadata=self.metadata).timeseries)

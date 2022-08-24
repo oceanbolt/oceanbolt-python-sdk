@@ -11,11 +11,12 @@ class FleetStatusTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_status(kwargs).timeseries)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_status(request=kwargs, metadata=self.metadata).timeseries)
         return df
 
 
@@ -28,11 +29,12 @@ class FleetGrowthTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_growth(kwargs).timeseries)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_growth(request=kwargs, metadata=self.metadata).timeseries)
         return df
 
 
@@ -45,11 +47,12 @@ class TonnageZoneTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_timeseries_to_pandas(self.client.get_tonnage_zone_count(kwargs).timeseries)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_zone_count(request=kwargs, metadata=self.metadata).timeseries)
         if "avg_speed""" in df.index:
             del df["avg_speed"]
         return df
@@ -64,11 +67,12 @@ class ZoneChangesTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_timeseries_to_pandas(self.client.get_tonnage_zone_changes(kwargs).timeseries)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_zone_changes(request=kwargs, metadata=self.metadata).timeseries)
         return df
 
 
@@ -81,11 +85,12 @@ class FleetSpeedTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_speed(kwargs).timeseries)
+        df = pb_timeseries_to_pandas(self.client.get_tonnage_fleet_speed(request=kwargs, metadata=self.metadata).timeseries)
         if 'vessel_count' in df.columns:
             del df["vessel_count"]
         if 'vessel_dwt' in df.columns:
@@ -102,11 +107,12 @@ class ChineseWatersTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._tonnage_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_timeseries_to_pandas(self.client.get_tonnage_chinese_waters(kwargs).timeseries)
+        return pb_timeseries_to_pandas(self.client.get_tonnage_chinese_waters(request=kwargs, metadata=self.metadata).timeseries)
 
 
 class CustomPolygonTimeseries:
@@ -119,8 +125,9 @@ class CustomPolygonTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._custompolygon_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_timeseries_to_pandas(self.client.get_polygon_counts(kwargs).timeseries)
+        return pb_timeseries_to_pandas(self.client.get_polygon_counts(request=kwargs, metadata=self.metadata).timeseries)

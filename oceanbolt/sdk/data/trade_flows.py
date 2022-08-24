@@ -9,11 +9,12 @@ class TradeFlows:
 
     def __init__(self, client: APIClient):
         self.client = client._trade_flows_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves trade flow data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_list_to_pandas(self.client.get_trade_flows(kwargs).data)
+        return pb_list_to_pandas(self.client.get_trade_flows(request=kwargs, metadata=self.metadata).data)
 
 
 class TradeFlowTimeseries:
@@ -23,8 +24,9 @@ class TradeFlowTimeseries:
 
     def __init__(self, client: APIClient):
         self.client = client._trade_flows_client()
+        self.metadata = client.metadata
 
     def get(self, **kwargs):
         """Retrieves timeseries data as a pandas.DataFrame"""
         kwargs = validate(kwargs)
-        return pb_timeseries_to_pandas(self.client.get_trade_flow_timeseries(kwargs).timeseries)
+        return pb_timeseries_to_pandas(self.client.get_trade_flow_timeseries(request=kwargs, metadata=self.metadata).timeseries)

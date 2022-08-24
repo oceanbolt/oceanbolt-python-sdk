@@ -53,7 +53,7 @@ class OBClientInfo(ClientInfo):
 
 class APIClient:
 
-    def __init__(self, token=None):
+    def __init__(self, token=None, platform="dry"):
         api_key = os.getenv("OCEANBOLT_API_KEY")
         if api_key is None and token is None:
             raise KeyError(
@@ -68,6 +68,7 @@ class APIClient:
         else:
             creds.token = api_key
 
+        self.metadata = [('x-ob-platform', platform)]
         self.tonnageClient = tonnage.TonnageServiceClient(credentials=creds, client_info=OBClientInfo())
         self.portCallsClient = portcalls.PortCallServiceClient(credentials=creds, client_info=OBClientInfo())
         self.tradeFlowsClient = tradeflows.TradeFlowServiceClient(credentials=creds, client_info=OBClientInfo())
