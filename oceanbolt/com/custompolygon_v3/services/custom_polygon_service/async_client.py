@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -192,21 +192,20 @@ class CustomPolygonServiceAsyncClient:
         r"""GetPolygonCounts returns vessels counts (points) in
         polygon the given filter parameters
 
-
         .. code-block:: python
 
             from oceanbolt.com import custompolygon_v3
 
-            def sample_get_polygon_counts():
+            async def sample_get_polygon_counts():
                 # Create a client
-                client = custompolygon_v3.CustomPolygonServiceClient()
+                client = custompolygon_v3.CustomPolygonServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = custompolygon_v3.CustomPolygonRequest(
                 )
 
                 # Make the request
-                response = client.get_polygon_counts(request=request)
+                response = await client.get_polygon_counts(request=request)
 
                 # Handle the response
                 print(response)

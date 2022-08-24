@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,12 @@
 # limitations under the License.
 #
 import os
-import mock
+# try/except added for compatibility with python < 3.8
+try:
+    from unittest import mock
+    from unittest.mock import AsyncMock
+except ImportError:
+    import mock
 
 import grpc
 from grpc.experimental import aio
@@ -66,20 +71,22 @@ def test__get_default_mtls_endpoint():
     assert VesselServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize("client_class", [
-    VesselServiceClient,
-    VesselServiceAsyncClient,
+@pytest.mark.parametrize("client_class,transport_name", [
+    (VesselServiceClient, "grpc"),
+    (VesselServiceAsyncClient, "grpc_asyncio"),
 ])
-def test_vessel_service_client_from_service_account_info(client_class):
+def test_vessel_service_client_from_service_account_info(client_class, transport_name):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(service_account.Credentials, 'from_service_account_info') as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = client_class.from_service_account_info(info)
+        client = client_class.from_service_account_info(info, transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'api.oceanbolt.com:443'
+        assert client.transport._host == (
+            'api.oceanbolt.com:443'
+        )
 
 
 @pytest.mark.parametrize("transport_class,transport_name", [
@@ -98,23 +105,25 @@ def test_vessel_service_client_service_account_always_use_jwt(transport_class, t
         use_jwt.assert_not_called()
 
 
-@pytest.mark.parametrize("client_class", [
-    VesselServiceClient,
-    VesselServiceAsyncClient,
+@pytest.mark.parametrize("client_class,transport_name", [
+    (VesselServiceClient, "grpc"),
+    (VesselServiceAsyncClient, "grpc_asyncio"),
 ])
-def test_vessel_service_client_from_service_account_file(client_class):
+def test_vessel_service_client_from_service_account_file(client_class, transport_name):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
         factory.return_value = creds
-        client = client_class.from_service_account_file("dummy/file/path.json")
+        client = client_class.from_service_account_file("dummy/file/path.json", transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        client = client_class.from_service_account_json("dummy/file/path.json")
+        client = client_class.from_service_account_json("dummy/file/path.json", transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'api.oceanbolt.com:443'
+        assert client.transport._host == (
+            'api.oceanbolt.com:443'
+        )
 
 
 def test_vessel_service_client_get_transport_class():
@@ -162,6 +171,7 @@ def test_vessel_service_client_client_options(client_class, transport_class, tra
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
@@ -179,6 +189,7 @@ def test_vessel_service_client_client_options(client_class, transport_class, tra
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
@@ -196,6 +207,7 @@ def test_vessel_service_client_client_options(client_class, transport_class, tra
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT has
@@ -223,6 +235,23 @@ def test_vessel_service_client_client_options(client_class, transport_class, tra
             quota_project_id="octopus",
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
+        )
+    # Check the case api_endpoint is provided
+    options = client_options.ClientOptions(api_audience="https://language.googleapis.com")
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(
+            credentials=None,
+            credentials_file=None,
+            host=client.DEFAULT_ENDPOINT,
+            scopes=None,
+            client_cert_source_for_mtls=None,
+            quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
+            always_use_jwt_access=True,
+            api_audience="https://language.googleapis.com"
         )
 
 @pytest.mark.parametrize("client_class,transport_class,transport_name,use_client_cert_env", [
@@ -262,6 +291,7 @@ def test_vessel_service_client_mtls_env_auto(client_class, transport_class, tran
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case ADC client cert is provided. Whether client cert is used depends on
@@ -288,6 +318,7 @@ def test_vessel_service_client_mtls_env_auto(client_class, transport_class, tran
                         quota_project_id=None,
                         client_info=transports.base.DEFAULT_CLIENT_INFO,
                         always_use_jwt_access=True,
+                        api_audience=None,
                     )
 
     # Check the case client_cert_source and ADC client cert are not provided.
@@ -305,6 +336,7 @@ def test_vessel_service_client_mtls_env_auto(client_class, transport_class, tran
                     quota_project_id=None,
                     client_info=transports.base.DEFAULT_CLIENT_INFO,
                     always_use_jwt_access=True,
+                    api_audience=None,
                 )
 
 
@@ -382,6 +414,7 @@ def test_vessel_service_client_client_options_scopes(client_class, transport_cla
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 @pytest.mark.parametrize("client_class,transport_class,transport_name,grpc_helpers", [
@@ -406,6 +439,7 @@ def test_vessel_service_client_client_options_credentials_file(client_class, tra
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 def test_vessel_service_client_client_options_from_dict():
@@ -423,6 +457,7 @@ def test_vessel_service_client_client_options_from_dict():
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 
@@ -448,6 +483,7 @@ def test_vessel_service_client_create_channel_credentials_file(client_class, tra
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
     # test that the credentials from file are saved and used as the credentials.
@@ -532,7 +568,6 @@ def test_list_vessels_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ListVesselsRequest()
-
 
 @pytest.mark.asyncio
 async def test_list_vessels_async(transport: str = 'grpc_asyncio', request_type=service.ListVesselsRequest):
@@ -624,7 +659,6 @@ def test_list_stoppage_events_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ListStoppageEventsRequest()
-
 
 @pytest.mark.asyncio
 async def test_list_stoppage_events_async(transport: str = 'grpc_asyncio', request_type=service.ListStoppageEventsRequest):
@@ -718,7 +752,6 @@ def test_get_ais_summary_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.GetAisSummaryRequest()
-
 
 @pytest.mark.asyncio
 async def test_get_ais_summary_async(transport: str = 'grpc_asyncio', request_type=service.GetAisSummaryRequest):
@@ -846,6 +879,15 @@ def test_transport_adc(transport_class):
         transport_class()
         adc.assert_called_once()
 
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+])
+def test_transport_kind(transport_name):
+    transport = VesselServiceClient.get_transport_class(transport_name)(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+    assert transport.kind == transport_name
+
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = VesselServiceClient(
@@ -886,6 +928,14 @@ def test_vessel_service_base_transport():
 
     with pytest.raises(NotImplementedError):
         transport.close()
+
+    # Catch all for all remaining methods and properties
+    remainder = [
+        'kind',
+    ]
+    for r in remainder:
+        with pytest.raises(NotImplementedError):
+            getattr(transport, r)()
 
 
 def test_vessel_service_base_transport_with_credentials_file():
@@ -945,6 +995,28 @@ def test_vessel_service_transport_auth_adc(transport_class):
             default_scopes=(),
             quota_project_id="octopus",
         )
+
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.VesselServiceGrpcTransport,
+        transports.VesselServiceGrpcAsyncIOTransport,
+    ],
+)
+def test_vessel_service_transport_auth_gdch_credentials(transport_class):
+    host = 'https://language.com'
+    api_audience_tests = [None, 'https://language2.com']
+    api_audience_expect = [host, 'https://language2.com']
+    for t, e in zip(api_audience_tests, api_audience_expect):
+        with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+            gdch_mock = mock.MagicMock()
+            type(gdch_mock).with_gdch_audience = mock.PropertyMock(return_value=gdch_mock)
+            adc.return_value = (gdch_mock, None)
+            transport_class(host=host, api_audience=t)
+            gdch_mock.with_gdch_audience.assert_called_once_with(
+                e
+            )
 
 
 @pytest.mark.parametrize(
@@ -1026,20 +1098,33 @@ def test_vessel_service_grpc_transport_client_cert_source_for_mtls(
             )
 
 
-def test_vessel_service_host_no_port():
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+    "grpc_asyncio",
+])
+def test_vessel_service_host_no_port(transport_name):
     client = VesselServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com'),
+         transport=transport_name,
     )
-    assert client.transport._host == 'api.oceanbolt.com:443'
+    assert client.transport._host == (
+        'api.oceanbolt.com:443'
+    )
 
-
-def test_vessel_service_host_with_port():
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+    "grpc_asyncio",
+])
+def test_vessel_service_host_with_port(transport_name):
     client = VesselServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com:8000'),
+        transport=transport_name,
     )
-    assert client.transport._host == 'api.oceanbolt.com:8000'
+    assert client.transport._host == (
+        'api.oceanbolt.com:8000'
+    )
 
 def test_vessel_service_grpc_transport_channel():
     channel = grpc.secure_channel('http://localhost/', grpc.local_channel_credentials())
@@ -1257,7 +1342,6 @@ def test_client_with_default_client_info():
         )
         prep.assert_called_once_with(client_info)
 
-
 @pytest.mark.asyncio
 async def test_transport_close_async():
     client = VesselServiceAsyncClient(
@@ -1268,6 +1352,7 @@ async def test_transport_close_async():
         async with client:
             close.assert_not_called()
         close.assert_called_once()
+
 
 def test_transport_close():
     transports = {
@@ -1324,4 +1409,5 @@ def test_api_key_credentials(client_class, transport_class):
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )

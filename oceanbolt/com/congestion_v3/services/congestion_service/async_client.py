@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -190,21 +190,20 @@ class CongestionServiceAsyncClient:
         r"""GetCongestionTimeseries retrieves congestion data for a
         specified list of port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import congestion_v3
 
-            def sample_get_congestion_timeseries():
+            async def sample_get_congestion_timeseries():
                 # Create a client
-                client = congestion_v3.CongestionServiceClient()
+                client = congestion_v3.CongestionServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = congestion_v3.GetCongestionRequest(
                 )
 
                 # Make the request
-                response = client.get_congestion_timeseries(request=request)
+                response = await client.get_congestion_timeseries(request=request)
 
                 # Handle the response
                 print(response)
@@ -254,21 +253,20 @@ class CongestionServiceAsyncClient:
         r"""GetCongestion retrieves congestion data for a specified list of
         port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import congestion_v3
 
-            def sample_get_congestion_web():
+            async def sample_get_congestion_web():
                 # Create a client
-                client = congestion_v3.CongestionServiceClient()
+                client = congestion_v3.CongestionServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = congestion_v3.GetCongestionRequest(
                 )
 
                 # Make the request
-                response = client.get_congestion_web(request=request)
+                response = await client.get_congestion_web(request=request)
 
                 # Handle the response
                 print(response)
@@ -318,21 +316,20 @@ class CongestionServiceAsyncClient:
         r"""GetCongestionVessels retrieves congestion data for a specified
         list of port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import congestion_v3
 
-            def sample_get_congestion_vessels():
+            async def sample_get_congestion_vessels():
                 # Create a client
-                client = congestion_v3.CongestionServiceClient()
+                client = congestion_v3.CongestionServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = congestion_v3.GetCongestionRequest(
                 )
 
                 # Make the request
-                response = client.get_congestion_vessels(request=request)
+                response = await client.get_congestion_vessels(request=request)
 
                 # Handle the response
                 print(response)

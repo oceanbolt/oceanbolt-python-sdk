@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -192,21 +192,20 @@ class VesselStateServiceAsyncClient:
         r"""Returns historical vessel states for the given dates
         and imo numbers supplied.
 
-
         .. code-block:: python
 
             from oceanbolt.com import vesselstates_v3
 
-            def sample_get_vessel_states():
+            async def sample_get_vessel_states():
                 # Create a client
-                client = vesselstates_v3.VesselStateServiceClient()
+                client = vesselstates_v3.VesselStateServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = vesselstates_v3.GetVesselStatesRequest(
                 )
 
                 # Make the request
-                response = client.get_vessel_states(request=request)
+                response = await client.get_vessel_states(request=request)
 
                 # Handle the response
                 print(response)
@@ -260,21 +259,20 @@ class VesselStateServiceAsyncClient:
         r"""Returns all historical states for the entire fleet
         for a single date.
 
-
         .. code-block:: python
 
             from oceanbolt.com import vesselstates_v3
 
-            def sample_get_vessel_states_for_date():
+            async def sample_get_vessel_states_for_date():
                 # Create a client
-                client = vesselstates_v3.VesselStateServiceClient()
+                client = vesselstates_v3.VesselStateServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = vesselstates_v3.GetVesselStatesForDateRequest(
                 )
 
                 # Make the request
-                response = client.get_vessel_states_for_date(request=request)
+                response = await client.get_vessel_states_for_date(request=request)
 
                 # Handle the response
                 print(response)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -358,6 +358,7 @@ class VesselStateServiceClient(metaclass=VesselStateServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_vessel_states(self,
@@ -369,7 +370,6 @@ class VesselStateServiceClient(metaclass=VesselStateServiceClientMeta):
             ) -> service.VesselStatesResponse:
         r"""Returns historical vessel states for the given dates
         and imo numbers supplied.
-
 
         .. code-block:: python
 
@@ -438,7 +438,6 @@ class VesselStateServiceClient(metaclass=VesselStateServiceClientMeta):
             ) -> service.VesselStatesResponse:
         r"""Returns all historical states for the entire fleet
         for a single date.
-
 
         .. code-block:: python
 
@@ -510,6 +509,9 @@ class VesselStateServiceClient(metaclass=VesselStateServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

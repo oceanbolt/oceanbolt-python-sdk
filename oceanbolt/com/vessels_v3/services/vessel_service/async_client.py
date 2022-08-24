@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -191,21 +191,20 @@ class VesselServiceAsyncClient:
         r"""Vessels gets a list of vessels for the given filter
         parameters
 
-
         .. code-block:: python
 
             from oceanbolt.com import vessels_v3
 
-            def sample_list_vessels():
+            async def sample_list_vessels():
                 # Create a client
-                client = vessels_v3.VesselServiceClient()
+                client = vessels_v3.VesselServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = vessels_v3.ListVesselsRequest(
                 )
 
                 # Make the request
-                response = client.list_vessels(request=request)
+                response = await client.list_vessels(request=request)
 
                 # Handle the response
                 print(response)
@@ -258,16 +257,16 @@ class VesselServiceAsyncClient:
 
             from oceanbolt.com import vessels_v3
 
-            def sample_list_stoppage_events():
+            async def sample_list_stoppage_events():
                 # Create a client
-                client = vessels_v3.VesselServiceClient()
+                client = vessels_v3.VesselServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = vessels_v3.ListStoppageEventsRequest(
                 )
 
                 # Make the request
-                response = client.list_stoppage_events(request=request)
+                response = await client.list_stoppage_events(request=request)
 
                 # Handle the response
                 print(response)
@@ -317,21 +316,20 @@ class VesselServiceAsyncClient:
         r"""Generates summary data regarding AIS received during
         a specific requested period for a single vessel
 
-
         .. code-block:: python
 
             from oceanbolt.com import vessels_v3
 
-            def sample_get_ais_summary():
+            async def sample_get_ais_summary():
                 # Create a client
-                client = vessels_v3.VesselServiceClient()
+                client = vessels_v3.VesselServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = vessels_v3.GetAisSummaryRequest(
                 )
 
                 # Make the request
-                response = client.get_ais_summary(request=request)
+                response = await client.get_ais_summary(request=request)
 
                 # Handle the response
                 print(response)

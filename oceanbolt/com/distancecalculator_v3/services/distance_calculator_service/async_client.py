@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -196,21 +196,20 @@ class DistanceCalculatorServiceAsyncClient:
         a series of points. If speed is specified, expected
         duration of the voyage will also be returned.
 
-
         .. code-block:: python
 
             from oceanbolt.com import distancecalculator_v3
 
-            def sample_calculate_distance():
+            async def sample_calculate_distance():
                 # Create a client
-                client = distancecalculator_v3.DistanceCalculatorServiceClient()
+                client = distancecalculator_v3.DistanceCalculatorServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = distancecalculator_v3.DistanceRequest(
                 )
 
                 # Make the request
-                response = client.calculate_distance(request=request)
+                response = await client.calculate_distance(request=request)
 
                 # Handle the response
                 print(response)
@@ -266,16 +265,16 @@ class DistanceCalculatorServiceAsyncClient:
 
             from oceanbolt.com import distancecalculator_v3
 
-            def sample_batch_calculate_distance():
+            async def sample_batch_calculate_distance():
                 # Create a client
-                client = distancecalculator_v3.DistanceCalculatorServiceClient()
+                client = distancecalculator_v3.DistanceCalculatorServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = distancecalculator_v3.BatchDistanceRequest(
                 )
 
                 # Make the request
-                response = client.batch_calculate_distance(request=request)
+                response = await client.batch_calculate_distance(request=request)
 
                 # Handle the response
                 print(response)

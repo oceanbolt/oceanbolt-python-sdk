@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -317,7 +317,7 @@ class VesselParams(proto.Message):
     Attributes:
         imo (int):
             Imo of the vessel.
-        metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselParams.MetadataEntry]):
+        metadata (Mapping[str, str]):
             A dict/map of arbitratry metadata that should
             be added to the vessel in the context of the
             current fleet. This can for example be links to
@@ -345,7 +345,7 @@ class UpdateVesselParams(proto.Message):
     r"""Parameter object for updating a vessel in a Fleet
 
     Attributes:
-        metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.UpdateVesselParams.MetadataEntry]):
+        metadata (Mapping[str, str]):
             New set of metadata information for a Vessel.
             This will overwrite existing keys/values
             currently stored in the metadata object of the
@@ -487,7 +487,7 @@ class Vessel(proto.Message):
             Ex name of the Vessel.
         type_ (str):
             The type of the vessel.
-        metadata (Sequence[oceanbolt.com.fleetmanagement_v3.types.Vessel.MetadataEntry]):
+        metadata (Mapping[str, str]):
             Metadata object that contains arbitrary data
             fields defined by the user.
         status (oceanbolt.com.fleetmanagement_v3.types.VesselStatus):

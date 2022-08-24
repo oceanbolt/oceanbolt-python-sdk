@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -356,6 +356,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_tonnage_zone_count(self,
@@ -563,7 +564,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         have developed over time. This timeseries shows number
         of active vessels on the water at any given time.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
@@ -632,7 +632,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         have developed over time. This timeseries shows number
         of vessels added to/removed from the fleet during any
         given period.
-
 
         .. code-block:: python
 
@@ -703,7 +702,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         trading inside and outside of Chinese waters
         respectively.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
@@ -771,7 +769,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         r"""Provides timeseries data on the number of vessels
         that cross zone boundaries during any given period.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
@@ -835,7 +832,6 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             ) -> service.GetTonnageBasinResponse:
         r"""Provides timeseries data on the number of vessels
         that are within the four major basins.
-
 
         .. code-block:: python
 
@@ -903,6 +899,9 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

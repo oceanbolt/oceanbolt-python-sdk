@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -273,7 +273,7 @@ class PolygonParams(proto.Message):
         geojson (str):
             geojson format for geometry encoding,
             https://en.wikipedia.org/wiki/GeoJSON
-        metadata (Sequence[oceanbolt.com.polygonmanagement_v3.types.PolygonParams.MetadataEntry]):
+        metadata (Mapping[str, str]):
 
     """
 
@@ -397,7 +397,7 @@ class Polygon(proto.Message):
 
         polygon_name (str):
 
-        metadata (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon.MetadataEntry]):
+        metadata (Mapping[str, str]):
 
     """
 

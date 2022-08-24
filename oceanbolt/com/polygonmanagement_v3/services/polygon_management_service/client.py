@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -357,6 +357,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def list_layers(self,
@@ -537,6 +538,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.delete_layer]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -600,6 +609,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.describe_layer]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -620,7 +637,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             ) -> service.Layer:
         r"""RenameLayer changes the name of the layer for the
         current user
-
 
         .. code-block:: python
 
@@ -666,6 +682,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.rename_layer]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -686,7 +710,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             ) -> service.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
-
 
         .. code-block:: python
 
@@ -731,6 +754,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.share_layer]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -751,7 +782,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             ) -> service.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
-
 
         .. code-block:: python
 
@@ -796,6 +826,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.unshare_layer]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -816,7 +854,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             ) -> service.Polygons:
         r"""GetLayerPolygons gets layer polygons for the current
         user
-
 
         .. code-block:: python
 
@@ -860,6 +897,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.list_polygons]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -924,6 +969,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.add_polygon]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -986,6 +1039,15 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.update_polygon]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+                ("polygon_id", request.polygon_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -1050,6 +1112,15 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.delete_polygon]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+                ("polygon_id", request.polygon_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1112,6 +1183,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.batch_add_polygons]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -1176,6 +1255,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.replace_polygons]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1239,6 +1326,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.drop_polygons]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1262,6 +1357,9 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

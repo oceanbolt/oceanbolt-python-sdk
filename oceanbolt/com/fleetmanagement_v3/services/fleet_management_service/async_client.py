@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -191,21 +191,20 @@ class FleetManagementServiceAsyncClient:
         r"""Lists Fleets for the current user (or fleets that are
         shared with the current user)
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_list_fleets():
+            async def sample_list_fleets():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_fleets(request=request)
+                response = await client.list_fleets(request=request)
 
                 # Handle the response
                 print(response)
@@ -258,16 +257,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_create_fleet():
+            async def sample_create_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.CreateFleetRequest(
                 )
 
                 # Make the request
-                response = client.create_fleet(request=request)
+                response = await client.create_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -320,16 +319,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_delete_fleet():
+            async def sample_delete_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.DeleteFleetRequest(
                 )
 
                 # Make the request
-                response = client.delete_fleet(request=request)
+                response = await client.delete_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -358,6 +357,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -382,16 +389,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_describe_fleet():
+            async def sample_describe_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.GetFleetRequest(
                 )
 
                 # Make the request
-                response = client.describe_fleet(request=request)
+                response = await client.describe_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -421,6 +428,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -445,16 +460,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_rename_fleet():
+            async def sample_rename_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.RenameFleetRequest(
                 )
 
                 # Make the request
-                response = client.rename_fleet(request=request)
+                response = await client.rename_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -483,6 +498,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -507,16 +530,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_share_fleet():
+            async def sample_share_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.ShareFleetRequest(
                 )
 
                 # Make the request
-                response = client.share_fleet(request=request)
+                response = await client.share_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -545,6 +568,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -569,16 +600,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_unshare_fleet():
+            async def sample_unshare_fleet():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.ShareFleetRequest(
                 )
 
                 # Make the request
-                response = client.unshare_fleet(request=request)
+                response = await client.unshare_fleet(request=request)
 
                 # Handle the response
                 print(response)
@@ -607,6 +638,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -631,16 +670,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_list_vessels():
+            async def sample_list_vessels():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.ListVesselsRequest(
                 )
 
                 # Make the request
-                response = client.list_vessels(request=request)
+                response = await client.list_vessels(request=request)
 
                 # Handle the response
                 print(response)
@@ -670,6 +709,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -694,16 +741,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_list_vessels_with_status():
+            async def sample_list_vessels_with_status():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.ListVesselsWithStatusRequest(
                 )
 
                 # Make the request
-                response = client.list_vessels_with_status(request=request)
+                response = await client.list_vessels_with_status(request=request)
 
                 # Handle the response
                 print(response)
@@ -733,6 +780,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -754,21 +809,20 @@ class FleetManagementServiceAsyncClient:
         r"""Adds new vessel to a Fleet. A maximum of 1000 vessels
         can be added to a fleet.
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_add_vessel():
+            async def sample_add_vessel():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.AddVesselRequest(
                 )
 
                 # Make the request
-                response = client.add_vessel(request=request)
+                response = await client.add_vessel(request=request)
 
                 # Handle the response
                 print(response)
@@ -798,6 +852,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -822,16 +884,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_update_vessel():
+            async def sample_update_vessel():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.UpdateVesselRequest(
                 )
 
                 # Make the request
-                response = client.update_vessel(request=request)
+                response = await client.update_vessel(request=request)
 
                 # Handle the response
                 print(response)
@@ -860,6 +922,15 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -884,16 +955,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_delete_vessel():
+            async def sample_delete_vessel():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.DeleteVesselRequest(
                 )
 
                 # Make the request
-                response = client.delete_vessel(request=request)
+                response = await client.delete_vessel(request=request)
 
                 # Handle the response
                 print(response)
@@ -923,6 +994,15 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -944,21 +1024,20 @@ class FleetManagementServiceAsyncClient:
         r"""Batch adds vessels into a Fleet. A maximum of 1000
         vessels can be added to a fleet.
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_batch_add_vessels():
+            async def sample_batch_add_vessels():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.BatchVesselsRequest(
                 )
 
                 # Make the request
-                response = client.batch_add_vessels(request=request)
+                response = await client.batch_add_vessels(request=request)
 
                 # Handle the response
                 print(response)
@@ -988,6 +1067,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -1011,21 +1098,20 @@ class FleetManagementServiceAsyncClient:
         DropVessels and then calling BatchAddVessels A maximum
         of 1000 vessels can be added to a fleet.
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_replace_vessels():
+            async def sample_replace_vessels():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.BatchVesselsRequest(
                 )
 
                 # Make the request
-                response = client.replace_vessels(request=request)
+                response = await client.replace_vessels(request=request)
 
                 # Handle the response
                 print(response)
@@ -1055,6 +1141,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -1079,16 +1173,16 @@ class FleetManagementServiceAsyncClient:
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_drop_vessels():
+            async def sample_drop_vessels():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.DropVesselsRequest(
                 )
 
                 # Make the request
-                response = client.drop_vessels(request=request)
+                response = await client.drop_vessels(request=request)
 
                 # Handle the response
                 print(response)
@@ -1118,6 +1212,14 @@ class FleetManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -1139,21 +1241,20 @@ class FleetManagementServiceAsyncClient:
         r"""GetFleetLiveMap display static location for vessels
         in a fleet (as static image).
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_get_fleet_live_map():
+            async def sample_get_fleet_live_map():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.GetFleetLiveMapRequest(
                 )
 
                 # Make the request
-                response = client.get_fleet_live_map(request=request)
+                response = await client.get_fleet_live_map(request=request)
 
                 # Handle the response
                 print(response)
@@ -1206,21 +1307,20 @@ class FleetManagementServiceAsyncClient:
         r"""Uploads file containing fleet data to be parsed into
         a batch of vessels.
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
 
-            def sample_upload_fleet_list():
+            async def sample_upload_fleet_list():
                 # Create a client
-                client = fleetmanagement_v3.FleetManagementServiceClient()
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = fleetmanagement_v3.GetFleetListRequest(
                 )
 
                 # Make the request
-                response = client.upload_fleet_list(request=request)
+                response = await client.upload_fleet_list(request=request)
 
                 # Handle the response
                 print(response)

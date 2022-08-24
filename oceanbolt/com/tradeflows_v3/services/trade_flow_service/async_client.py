@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -193,21 +193,20 @@ class TradeFlowServiceAsyncClient:
         page to return. It is also possible to set the number of
         voyages to return per query.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_flows():
+            async def sample_get_trade_flows():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_flows(request=request)
+                response = await client.get_trade_flows(request=request)
 
                 # Handle the response
                 print(response)
@@ -263,16 +262,16 @@ class TradeFlowServiceAsyncClient:
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_flow_aggregation():
+            async def sample_get_trade_flow_aggregation():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_flow_aggregation(request=request)
+                response = await client.get_trade_flow_aggregation(request=request)
 
                 # Handle the response
                 print(response)
@@ -326,16 +325,16 @@ class TradeFlowServiceAsyncClient:
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_flow_timeseries():
+            async def sample_get_trade_flow_timeseries():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_flow_timeseries(request=request)
+                response = await client.get_trade_flow_timeseries(request=request)
 
                 # Handle the response
                 print(response)
@@ -388,21 +387,20 @@ class TradeFlowServiceAsyncClient:
         r"""Gets aggregated trade flow timeseries (on the water)
         by period.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_flow_on_the_water():
+            async def sample_get_trade_flow_on_the_water():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_flow_on_the_water(request=request)
+                response = await client.get_trade_flow_on_the_water(request=request)
 
                 # Handle the response
                 print(response)
@@ -455,21 +453,20 @@ class TradeFlowServiceAsyncClient:
         r"""GetTradeFlowHistogramValues gets trade flow histogram
         values by grouping.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_flow_histogram():
+            async def sample_get_trade_flow_histogram():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_flow_histogram(request=request)
+                response = await client.get_trade_flow_histogram(request=request)
 
                 # Handle the response
                 print(response)
@@ -521,21 +518,20 @@ class TradeFlowServiceAsyncClient:
         (port/berth/country/region) flow stats for the given
         filter parameters
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_location_volume():
+            async def sample_get_location_volume():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_location_volume(request=request)
+                response = await client.get_location_volume(request=request)
 
                 # Handle the response
                 print(response)
@@ -586,21 +582,20 @@ class TradeFlowServiceAsyncClient:
         r"""GetTradeflowModelVoyage gets trade flow model voyage
         values by grouping
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
 
-            def sample_get_trade_lane_metrics():
+            async def sample_get_trade_lane_metrics():
                 # Create a client
-                client = tradeflows_v3.TradeFlowServiceClient()
+                client = tradeflows_v3.TradeFlowServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tradeflows_v3.TradeFlowDataRequest(
                 )
 
                 # Make the request
-                response = client.get_trade_lane_metrics(request=request)
+                response = await client.get_trade_lane_metrics(request=request)
 
                 # Handle the response
                 print(response)

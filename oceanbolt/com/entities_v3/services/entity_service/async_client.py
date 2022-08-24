@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -193,16 +193,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_segments():
+            async def sample_list_segments():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_segments(request=request)
+                response = await client.list_segments(request=request)
 
                 # Handle the response
                 print(response)
@@ -255,16 +255,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_zones():
+            async def sample_list_zones():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_zones(request=request)
+                response = await client.list_zones(request=request)
 
                 # Handle the response
                 print(response)
@@ -314,21 +314,20 @@ class EntityServiceAsyncClient:
         r"""ListZonesWithPolygons retrieves all zones with
         Polygons
 
-
         .. code-block:: python
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_zones_with_polygons():
+            async def sample_list_zones_with_polygons():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_zones_with_polygons(request=request)
+                response = await client.list_zones_with_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -381,16 +380,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_regions():
+            async def sample_list_regions():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_regions(request=request)
+                response = await client.list_regions(request=request)
 
                 # Handle the response
                 print(response)
@@ -443,16 +442,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_commodities():
+            async def sample_list_commodities():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_commodities(request=request)
+                response = await client.list_commodities(request=request)
 
                 # Handle the response
                 print(response)
@@ -505,16 +504,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_countries():
+            async def sample_list_countries():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_countries(request=request)
+                response = await client.list_countries(request=request)
 
                 # Handle the response
                 print(response)
@@ -564,21 +563,20 @@ class EntityServiceAsyncClient:
         r"""ListRegionsWithPolygons retrives all regions with geo
         polygons
 
-
         .. code-block:: python
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_regions_with_polygons():
+            async def sample_list_regions_with_polygons():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_regions_with_polygons(request=request)
+                response = await client.list_regions_with_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -631,16 +629,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_list_ports():
+            async def sample_list_ports():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_ports(request=request)
+                response = await client.list_ports(request=request)
 
                 # Handle the response
                 print(response)
@@ -693,16 +691,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_search_polygons():
+            async def sample_search_polygons():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.SearchRequest(
                 )
 
                 # Make the request
-                response = client.search_polygons(request=request)
+                response = await client.search_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -755,16 +753,16 @@ class EntityServiceAsyncClient:
 
             from oceanbolt.com import entities_v3
 
-            def sample_search_vessels():
+            async def sample_search_vessels():
                 # Create a client
-                client = entities_v3.EntityServiceClient()
+                client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = entities_v3.SearchRequest(
                 )
 
                 # Make the request
-                response = client.search_vessels(request=request)
+                response = await client.search_vessels(request=request)
 
                 # Handle the response
                 print(response)

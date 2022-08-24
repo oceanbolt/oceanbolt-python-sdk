@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -356,6 +356,7 @@ class CongestionServiceClient(metaclass=CongestionServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_congestion_timeseries(self,
@@ -367,7 +368,6 @@ class CongestionServiceClient(metaclass=CongestionServiceClientMeta):
             ) -> service.CongestionResponse:
         r"""GetCongestionTimeseries retrieves congestion data for a
         specified list of port_ids/segments
-
 
         .. code-block:: python
 
@@ -433,7 +433,6 @@ class CongestionServiceClient(metaclass=CongestionServiceClientMeta):
         r"""GetCongestion retrieves congestion data for a specified list of
         port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import congestion_v3
@@ -497,7 +496,6 @@ class CongestionServiceClient(metaclass=CongestionServiceClientMeta):
             ) -> service.CongestionResponse:
         r"""GetCongestionVessels retrieves congestion data for a specified
         list of port_ids/segments
-
 
         .. code-block:: python
 
@@ -565,6 +563,9 @@ class CongestionServiceClient(metaclass=CongestionServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

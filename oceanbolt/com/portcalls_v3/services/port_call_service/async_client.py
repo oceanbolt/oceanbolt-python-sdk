@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -194,21 +194,20 @@ class PortCallServiceAsyncClient:
         port calls to return per query, default is 50 and
         maximum is 2000.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
 
-            def sample_get_port_calls():
+            async def sample_get_port_calls():
                 # Create a client
-                client = portcalls_v3.PortCallServiceClient()
+                client = portcalls_v3.PortCallServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = portcalls_v3.GetPortCallsRequest(
                 )
 
                 # Make the request
-                response = client.get_port_calls(request=request)
+                response = await client.get_port_calls(request=request)
 
                 # Handle the response
                 print(response)
@@ -259,21 +258,20 @@ class PortCallServiceAsyncClient:
         r"""GetPortCallTimeseries retrieves aggregated counts for
         port calls for a set of request params.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
 
-            def sample_get_port_call_timeseries():
+            async def sample_get_port_call_timeseries():
                 # Create a client
-                client = portcalls_v3.PortCallServiceClient()
+                client = portcalls_v3.PortCallServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = portcalls_v3.GetPortCallsRequest(
                 )
 
                 # Make the request
-                response = client.get_port_call_timeseries(request=request)
+                response = await client.get_port_call_timeseries(request=request)
 
                 # Handle the response
                 print(response)
@@ -330,21 +328,20 @@ class PortCallServiceAsyncClient:
         calls to return per query, default is 50 and maximum is
         2000.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
 
-            def sample_get_port_particulars():
+            async def sample_get_port_particulars():
                 # Create a client
-                client = portcalls_v3.PortCallServiceClient()
+                client = portcalls_v3.PortCallServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = portcalls_v3.GetPortParticularsRequest(
                 )
 
                 # Make the request
-                response = client.get_port_particulars(request=request)
+                response = await client.get_port_particulars(request=request)
 
                 # Handle the response
                 print(response)
@@ -397,21 +394,20 @@ class PortCallServiceAsyncClient:
         r"""GetVesselsInPort lists all vessels that were within a
         port (or related anchorages) at a certain time.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
 
-            def sample_get_vessels_in_port():
+            async def sample_get_vessels_in_port():
                 # Create a client
-                client = portcalls_v3.PortCallServiceClient()
+                client = portcalls_v3.PortCallServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = portcalls_v3.GetVesselsInPortRequest(
                 )
 
                 # Make the request
-                response = client.get_vessels_in_port(request=request)
+                response = await client.get_vessels_in_port(request=request)
 
                 # Handle the response
                 print(response)

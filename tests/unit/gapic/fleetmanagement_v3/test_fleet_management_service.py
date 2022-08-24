@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,12 @@
 # limitations under the License.
 #
 import os
-import mock
+# try/except added for compatibility with python < 3.8
+try:
+    from unittest import mock
+    from unittest.mock import AsyncMock
+except ImportError:
+    import mock
 
 import grpc
 from grpc.experimental import aio
@@ -66,20 +71,22 @@ def test__get_default_mtls_endpoint():
     assert FleetManagementServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize("client_class", [
-    FleetManagementServiceClient,
-    FleetManagementServiceAsyncClient,
+@pytest.mark.parametrize("client_class,transport_name", [
+    (FleetManagementServiceClient, "grpc"),
+    (FleetManagementServiceAsyncClient, "grpc_asyncio"),
 ])
-def test_fleet_management_service_client_from_service_account_info(client_class):
+def test_fleet_management_service_client_from_service_account_info(client_class, transport_name):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(service_account.Credentials, 'from_service_account_info') as factory:
         factory.return_value = creds
         info = {"valid": True}
-        client = client_class.from_service_account_info(info)
+        client = client_class.from_service_account_info(info, transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'api.oceanbolt.com:443'
+        assert client.transport._host == (
+            'api.oceanbolt.com:443'
+        )
 
 
 @pytest.mark.parametrize("transport_class,transport_name", [
@@ -98,23 +105,25 @@ def test_fleet_management_service_client_service_account_always_use_jwt(transpor
         use_jwt.assert_not_called()
 
 
-@pytest.mark.parametrize("client_class", [
-    FleetManagementServiceClient,
-    FleetManagementServiceAsyncClient,
+@pytest.mark.parametrize("client_class,transport_name", [
+    (FleetManagementServiceClient, "grpc"),
+    (FleetManagementServiceAsyncClient, "grpc_asyncio"),
 ])
-def test_fleet_management_service_client_from_service_account_file(client_class):
+def test_fleet_management_service_client_from_service_account_file(client_class, transport_name):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
         factory.return_value = creds
-        client = client_class.from_service_account_file("dummy/file/path.json")
+        client = client_class.from_service_account_file("dummy/file/path.json", transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        client = client_class.from_service_account_json("dummy/file/path.json")
+        client = client_class.from_service_account_json("dummy/file/path.json", transport=transport_name)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'api.oceanbolt.com:443'
+        assert client.transport._host == (
+            'api.oceanbolt.com:443'
+        )
 
 
 def test_fleet_management_service_client_get_transport_class():
@@ -162,6 +171,7 @@ def test_fleet_management_service_client_client_options(client_class, transport_
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
@@ -179,6 +189,7 @@ def test_fleet_management_service_client_client_options(client_class, transport_
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
@@ -196,6 +207,7 @@ def test_fleet_management_service_client_client_options(client_class, transport_
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT has
@@ -223,6 +235,23 @@ def test_fleet_management_service_client_client_options(client_class, transport_
             quota_project_id="octopus",
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
+        )
+    # Check the case api_endpoint is provided
+    options = client_options.ClientOptions(api_audience="https://language.googleapis.com")
+    with mock.patch.object(transport_class, '__init__') as patched:
+        patched.return_value = None
+        client = client_class(client_options=options, transport=transport_name)
+        patched.assert_called_once_with(
+            credentials=None,
+            credentials_file=None,
+            host=client.DEFAULT_ENDPOINT,
+            scopes=None,
+            client_cert_source_for_mtls=None,
+            quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
+            always_use_jwt_access=True,
+            api_audience="https://language.googleapis.com"
         )
 
 @pytest.mark.parametrize("client_class,transport_class,transport_name,use_client_cert_env", [
@@ -262,6 +291,7 @@ def test_fleet_management_service_client_mtls_env_auto(client_class, transport_c
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )
 
     # Check the case ADC client cert is provided. Whether client cert is used depends on
@@ -288,6 +318,7 @@ def test_fleet_management_service_client_mtls_env_auto(client_class, transport_c
                         quota_project_id=None,
                         client_info=transports.base.DEFAULT_CLIENT_INFO,
                         always_use_jwt_access=True,
+                        api_audience=None,
                     )
 
     # Check the case client_cert_source and ADC client cert are not provided.
@@ -305,6 +336,7 @@ def test_fleet_management_service_client_mtls_env_auto(client_class, transport_c
                     quota_project_id=None,
                     client_info=transports.base.DEFAULT_CLIENT_INFO,
                     always_use_jwt_access=True,
+                    api_audience=None,
                 )
 
 
@@ -382,6 +414,7 @@ def test_fleet_management_service_client_client_options_scopes(client_class, tra
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 @pytest.mark.parametrize("client_class,transport_class,transport_name,grpc_helpers", [
@@ -406,6 +439,7 @@ def test_fleet_management_service_client_client_options_credentials_file(client_
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 def test_fleet_management_service_client_client_options_from_dict():
@@ -423,6 +457,7 @@ def test_fleet_management_service_client_client_options_from_dict():
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
 
@@ -448,6 +483,7 @@ def test_fleet_management_service_client_create_channel_credentials_file(client_
             quota_project_id=None,
             client_info=transports.base.DEFAULT_CLIENT_INFO,
             always_use_jwt_access=True,
+            api_audience=None,
         )
 
     # test that the credentials from file are saved and used as the credentials.
@@ -528,7 +564,6 @@ def test_list_fleets_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.EmptyParams()
-
 
 @pytest.mark.asyncio
 async def test_list_fleets_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
@@ -623,7 +658,6 @@ def test_create_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.CreateFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_create_fleet_async(transport: str = 'grpc_asyncio', request_type=service.CreateFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -717,7 +751,6 @@ def test_delete_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.DeleteFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_delete_fleet_async(transport: str = 'grpc_asyncio', request_type=service.DeleteFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -750,6 +783,69 @@ async def test_delete_fleet_async(transport: str = 'grpc_asyncio', request_type=
 @pytest.mark.asyncio
 async def test_delete_fleet_async_from_dict():
     await test_delete_fleet_async(request_type=dict)
+
+
+def test_delete_fleet_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DeleteFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.delete_fleet),
+            '__call__') as call:
+        call.return_value = service.EmptyResponse()
+        client.delete_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_delete_fleet_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DeleteFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.delete_fleet),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        await client.delete_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -811,7 +907,6 @@ def test_describe_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.GetFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_describe_fleet_async(transport: str = 'grpc_asyncio', request_type=service.GetFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -854,6 +949,69 @@ async def test_describe_fleet_async(transport: str = 'grpc_asyncio', request_typ
 @pytest.mark.asyncio
 async def test_describe_fleet_async_from_dict():
     await test_describe_fleet_async(request_type=dict)
+
+
+def test_describe_fleet_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.GetFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.describe_fleet),
+            '__call__') as call:
+        call.return_value = service.Fleet()
+        client.describe_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_describe_fleet_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.GetFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.describe_fleet),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet())
+        await client.describe_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -915,7 +1073,6 @@ def test_rename_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.RenameFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_rename_fleet_async(transport: str = 'grpc_asyncio', request_type=service.RenameFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -958,6 +1115,69 @@ async def test_rename_fleet_async(transport: str = 'grpc_asyncio', request_type=
 @pytest.mark.asyncio
 async def test_rename_fleet_async_from_dict():
     await test_rename_fleet_async(request_type=dict)
+
+
+def test_rename_fleet_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.RenameFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.rename_fleet),
+            '__call__') as call:
+        call.return_value = service.Fleet()
+        client.rename_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_rename_fleet_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.RenameFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.rename_fleet),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet())
+        await client.rename_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1019,7 +1239,6 @@ def test_share_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ShareFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_share_fleet_async(transport: str = 'grpc_asyncio', request_type=service.ShareFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1062,6 +1281,69 @@ async def test_share_fleet_async(transport: str = 'grpc_asyncio', request_type=s
 @pytest.mark.asyncio
 async def test_share_fleet_async_from_dict():
     await test_share_fleet_async(request_type=dict)
+
+
+def test_share_fleet_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ShareFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.share_fleet),
+            '__call__') as call:
+        call.return_value = service.Fleet()
+        client.share_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_share_fleet_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ShareFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.share_fleet),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet())
+        await client.share_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1123,7 +1405,6 @@ def test_unshare_fleet_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ShareFleetRequest()
 
-
 @pytest.mark.asyncio
 async def test_unshare_fleet_async(transport: str = 'grpc_asyncio', request_type=service.ShareFleetRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1166,6 +1447,69 @@ async def test_unshare_fleet_async(transport: str = 'grpc_asyncio', request_type
 @pytest.mark.asyncio
 async def test_unshare_fleet_async_from_dict():
     await test_unshare_fleet_async(request_type=dict)
+
+
+def test_unshare_fleet_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ShareFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.unshare_fleet),
+            '__call__') as call:
+        call.return_value = service.Fleet()
+        client.unshare_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_unshare_fleet_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ShareFleetRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.unshare_fleet),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Fleet())
+        await client.unshare_fleet(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1219,7 +1563,6 @@ def test_list_vessels_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ListVesselsRequest()
 
-
 @pytest.mark.asyncio
 async def test_list_vessels_async(transport: str = 'grpc_asyncio', request_type=service.ListVesselsRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1254,6 +1597,69 @@ async def test_list_vessels_async(transport: str = 'grpc_asyncio', request_type=
 @pytest.mark.asyncio
 async def test_list_vessels_async_from_dict():
     await test_list_vessels_async(request_type=dict)
+
+
+def test_list_vessels_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ListVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels),
+            '__call__') as call:
+        call.return_value = service.Vessels()
+        client.list_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_list_vessels_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ListVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessels())
+        await client.list_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1307,7 +1713,6 @@ def test_list_vessels_with_status_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.ListVesselsWithStatusRequest()
 
-
 @pytest.mark.asyncio
 async def test_list_vessels_with_status_async(transport: str = 'grpc_asyncio', request_type=service.ListVesselsWithStatusRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1342,6 +1747,69 @@ async def test_list_vessels_with_status_async(transport: str = 'grpc_asyncio', r
 @pytest.mark.asyncio
 async def test_list_vessels_with_status_async_from_dict():
     await test_list_vessels_with_status_async(request_type=dict)
+
+
+def test_list_vessels_with_status_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ListVesselsWithStatusRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels_with_status),
+            '__call__') as call:
+        call.return_value = service.Vessels()
+        client.list_vessels_with_status(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_list_vessels_with_status_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.ListVesselsWithStatusRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_vessels_with_status),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessels())
+        await client.list_vessels_with_status(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1411,7 +1879,6 @@ def test_add_vessel_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.AddVesselRequest()
 
-
 @pytest.mark.asyncio
 async def test_add_vessel_async(transport: str = 'grpc_asyncio', request_type=service.AddVesselRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1462,6 +1929,69 @@ async def test_add_vessel_async(transport: str = 'grpc_asyncio', request_type=se
 @pytest.mark.asyncio
 async def test_add_vessel_async_from_dict():
     await test_add_vessel_async(request_type=dict)
+
+
+def test_add_vessel_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.AddVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.add_vessel),
+            '__call__') as call:
+        call.return_value = service.Vessel()
+        client.add_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_add_vessel_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.AddVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.add_vessel),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessel())
+        await client.add_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1531,7 +2061,6 @@ def test_update_vessel_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.UpdateVesselRequest()
 
-
 @pytest.mark.asyncio
 async def test_update_vessel_async(transport: str = 'grpc_asyncio', request_type=service.UpdateVesselRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1584,6 +2113,71 @@ async def test_update_vessel_async_from_dict():
     await test_update_vessel_async(request_type=dict)
 
 
+def test_update_vessel_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.UpdateVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.update_vessel),
+            '__call__') as call:
+        call.return_value = service.Vessel()
+        client.update_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_update_vessel_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.UpdateVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.update_vessel),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessel())
+        await client.update_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
+
+
 @pytest.mark.parametrize("request_type", [
   service.DeleteVesselRequest,
   dict,
@@ -1633,7 +2227,6 @@ def test_delete_vessel_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.DeleteVesselRequest()
 
-
 @pytest.mark.asyncio
 async def test_delete_vessel_async(transport: str = 'grpc_asyncio', request_type=service.DeleteVesselRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1666,6 +2259,71 @@ async def test_delete_vessel_async(transport: str = 'grpc_asyncio', request_type
 @pytest.mark.asyncio
 async def test_delete_vessel_async_from_dict():
     await test_delete_vessel_async(request_type=dict)
+
+
+def test_delete_vessel_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DeleteVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.delete_vessel),
+            '__call__') as call:
+        call.return_value = service.EmptyResponse()
+        client.delete_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_delete_vessel_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DeleteVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.delete_vessel),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        await client.delete_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1717,7 +2375,6 @@ def test_batch_add_vessels_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.BatchVesselsRequest()
 
-
 @pytest.mark.asyncio
 async def test_batch_add_vessels_async(transport: str = 'grpc_asyncio', request_type=service.BatchVesselsRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1750,6 +2407,69 @@ async def test_batch_add_vessels_async(transport: str = 'grpc_asyncio', request_
 @pytest.mark.asyncio
 async def test_batch_add_vessels_async_from_dict():
     await test_batch_add_vessels_async(request_type=dict)
+
+
+def test_batch_add_vessels_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.BatchVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.batch_add_vessels),
+            '__call__') as call:
+        call.return_value = service.EmptyResponse()
+        client.batch_add_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_batch_add_vessels_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.BatchVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.batch_add_vessels),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        await client.batch_add_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1801,7 +2521,6 @@ def test_replace_vessels_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.BatchVesselsRequest()
 
-
 @pytest.mark.asyncio
 async def test_replace_vessels_async(transport: str = 'grpc_asyncio', request_type=service.BatchVesselsRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1834,6 +2553,69 @@ async def test_replace_vessels_async(transport: str = 'grpc_asyncio', request_ty
 @pytest.mark.asyncio
 async def test_replace_vessels_async_from_dict():
     await test_replace_vessels_async(request_type=dict)
+
+
+def test_replace_vessels_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.BatchVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.replace_vessels),
+            '__call__') as call:
+        call.return_value = service.EmptyResponse()
+        client.replace_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_replace_vessels_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.BatchVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.replace_vessels),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        await client.replace_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1885,7 +2667,6 @@ def test_drop_vessels_empty_call():
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.DropVesselsRequest()
 
-
 @pytest.mark.asyncio
 async def test_drop_vessels_async(transport: str = 'grpc_asyncio', request_type=service.DropVesselsRequest):
     client = FleetManagementServiceAsyncClient(
@@ -1918,6 +2699,69 @@ async def test_drop_vessels_async(transport: str = 'grpc_asyncio', request_type=
 @pytest.mark.asyncio
 async def test_drop_vessels_async_from_dict():
     await test_drop_vessels_async(request_type=dict)
+
+
+def test_drop_vessels_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DropVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.drop_vessels),
+            '__call__') as call:
+        call.return_value = service.EmptyResponse()
+        client.drop_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_drop_vessels_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.DropVesselsRequest()
+
+    request.fleet_id = 'fleet_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.drop_vessels),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        await client.drop_vessels(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value',
+    ) in kw['metadata']
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1970,7 +2814,6 @@ def test_get_fleet_live_map_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.GetFleetLiveMapRequest()
-
 
 @pytest.mark.asyncio
 async def test_get_fleet_live_map_async(transport: str = 'grpc_asyncio', request_type=service.GetFleetLiveMapRequest):
@@ -2056,7 +2899,6 @@ def test_upload_fleet_list_empty_call():
         call.assert_called()
         _, args, _ = call.mock_calls[0]
         assert args[0] == service.GetFleetListRequest()
-
 
 @pytest.mark.asyncio
 async def test_upload_fleet_list_async(transport: str = 'grpc_asyncio', request_type=service.GetFleetListRequest):
@@ -2178,6 +3020,15 @@ def test_transport_adc(transport_class):
         transport_class()
         adc.assert_called_once()
 
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+])
+def test_transport_kind(transport_name):
+    transport = FleetManagementServiceClient.get_transport_class(transport_name)(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+    assert transport.kind == transport_name
+
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = FleetManagementServiceClient(
@@ -2232,6 +3083,14 @@ def test_fleet_management_service_base_transport():
 
     with pytest.raises(NotImplementedError):
         transport.close()
+
+    # Catch all for all remaining methods and properties
+    remainder = [
+        'kind',
+    ]
+    for r in remainder:
+        with pytest.raises(NotImplementedError):
+            getattr(transport, r)()
 
 
 def test_fleet_management_service_base_transport_with_credentials_file():
@@ -2291,6 +3150,28 @@ def test_fleet_management_service_transport_auth_adc(transport_class):
             default_scopes=(),
             quota_project_id="octopus",
         )
+
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.FleetManagementServiceGrpcTransport,
+        transports.FleetManagementServiceGrpcAsyncIOTransport,
+    ],
+)
+def test_fleet_management_service_transport_auth_gdch_credentials(transport_class):
+    host = 'https://language.com'
+    api_audience_tests = [None, 'https://language2.com']
+    api_audience_expect = [host, 'https://language2.com']
+    for t, e in zip(api_audience_tests, api_audience_expect):
+        with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+            gdch_mock = mock.MagicMock()
+            type(gdch_mock).with_gdch_audience = mock.PropertyMock(return_value=gdch_mock)
+            adc.return_value = (gdch_mock, None)
+            transport_class(host=host, api_audience=t)
+            gdch_mock.with_gdch_audience.assert_called_once_with(
+                e
+            )
 
 
 @pytest.mark.parametrize(
@@ -2372,20 +3253,33 @@ def test_fleet_management_service_grpc_transport_client_cert_source_for_mtls(
             )
 
 
-def test_fleet_management_service_host_no_port():
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+    "grpc_asyncio",
+])
+def test_fleet_management_service_host_no_port(transport_name):
     client = FleetManagementServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com'),
+         transport=transport_name,
     )
-    assert client.transport._host == 'api.oceanbolt.com:443'
+    assert client.transport._host == (
+        'api.oceanbolt.com:443'
+    )
 
-
-def test_fleet_management_service_host_with_port():
+@pytest.mark.parametrize("transport_name", [
+    "grpc",
+    "grpc_asyncio",
+])
+def test_fleet_management_service_host_with_port(transport_name):
     client = FleetManagementServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
         client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com:8000'),
+        transport=transport_name,
     )
-    assert client.transport._host == 'api.oceanbolt.com:8000'
+    assert client.transport._host == (
+        'api.oceanbolt.com:8000'
+    )
 
 def test_fleet_management_service_grpc_transport_channel():
     channel = grpc.secure_channel('http://localhost/', grpc.local_channel_credentials())
@@ -2603,7 +3497,6 @@ def test_client_with_default_client_info():
         )
         prep.assert_called_once_with(client_info)
 
-
 @pytest.mark.asyncio
 async def test_transport_close_async():
     client = FleetManagementServiceAsyncClient(
@@ -2614,6 +3507,7 @@ async def test_transport_close_async():
         async with client:
             close.assert_not_called()
         close.assert_called_once()
+
 
 def test_transport_close():
     transports = {
@@ -2670,4 +3564,5 @@ def test_api_key_credentials(client_class, transport_class):
                 quota_project_id=None,
                 client_info=transports.base.DEFAULT_CLIENT_INFO,
                 always_use_jwt_access=True,
+                api_audience=None,
             )

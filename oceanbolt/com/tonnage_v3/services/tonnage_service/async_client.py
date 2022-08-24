@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -193,16 +193,16 @@ class TonnageServiceAsyncClient:
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_zone_count():
+            async def sample_get_tonnage_zone_count():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageDataRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_zone_count(request=request)
+                response = await client.get_tonnage_zone_count(request=request)
 
                 # Handle the response
                 print(response)
@@ -258,16 +258,16 @@ class TonnageServiceAsyncClient:
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_fleet_speed():
+            async def sample_get_tonnage_fleet_speed():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageDataRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_fleet_speed(request=request)
+                response = await client.get_tonnage_fleet_speed(request=request)
 
                 # Handle the response
                 print(response)
@@ -321,16 +321,16 @@ class TonnageServiceAsyncClient:
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_global_tonnage_status():
+            async def sample_get_global_tonnage_status():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageDataRequest(
                 )
 
                 # Make the request
-                response = client.get_global_tonnage_status(request=request)
+                response = await client.get_global_tonnage_status(request=request)
 
                 # Handle the response
                 print(response)
@@ -382,21 +382,20 @@ class TonnageServiceAsyncClient:
         have developed over time. This timeseries shows number
         of active vessels on the water at any given time.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_fleet_status():
+            async def sample_get_tonnage_fleet_status():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageFleetRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_fleet_status(request=request)
+                response = await client.get_tonnage_fleet_status(request=request)
 
                 # Handle the response
                 print(response)
@@ -451,21 +450,20 @@ class TonnageServiceAsyncClient:
         of vessels added to/removed from the fleet during any
         given period.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_fleet_growth():
+            async def sample_get_tonnage_fleet_growth():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageFleetRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_fleet_growth(request=request)
+                response = await client.get_tonnage_fleet_growth(request=request)
 
                 # Handle the response
                 print(response)
@@ -520,21 +518,20 @@ class TonnageServiceAsyncClient:
         trading inside and outside of Chinese waters
         respectively.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_chinese_waters():
+            async def sample_get_tonnage_chinese_waters():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.TonnageChineseWatersRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_chinese_waters(request=request)
+                response = await client.get_tonnage_chinese_waters(request=request)
 
                 # Handle the response
                 print(response)
@@ -587,21 +584,20 @@ class TonnageServiceAsyncClient:
         r"""Provides timeseries data on the number of vessels
         that cross zone boundaries during any given period.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_zone_changes():
+            async def sample_get_tonnage_zone_changes():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageZoneChangesRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_zone_changes(request=request)
+                response = await client.get_tonnage_zone_changes(request=request)
 
                 # Handle the response
                 print(response)
@@ -651,21 +647,20 @@ class TonnageServiceAsyncClient:
         r"""Provides timeseries data on the number of vessels
         that are within the four major basins.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tonnage_v3
 
-            def sample_get_tonnage_basin_count():
+            async def sample_get_tonnage_basin_count():
                 # Create a client
-                client = tonnage_v3.TonnageServiceClient()
+                client = tonnage_v3.TonnageServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = tonnage_v3.GetTonnageBasinRequest(
                 )
 
                 # Make the request
-                response = client.get_tonnage_basin_count(request=request)
+                response = await client.get_tonnage_basin_count(request=request)
 
                 # Handle the response
                 print(response)

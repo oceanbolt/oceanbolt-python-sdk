@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -358,6 +358,7 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_polygon_counts(self,
@@ -369,7 +370,6 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
             ) -> service.CustomPolygonResponse:
         r"""GetPolygonCounts returns vessels counts (points) in
         polygon the given filter parameters
-
 
         .. code-block:: python
 
@@ -437,6 +437,9 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

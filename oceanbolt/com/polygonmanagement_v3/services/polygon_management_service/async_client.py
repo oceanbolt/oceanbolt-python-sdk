@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -194,16 +194,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_list_layers():
+            async def sample_list_layers():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.EmptyParams(
                 )
 
                 # Make the request
-                response = client.list_layers(request=request)
+                response = await client.list_layers(request=request)
 
                 # Handle the response
                 print(response)
@@ -256,16 +256,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_create_layer():
+            async def sample_create_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.CreateLayerRequest(
                 )
 
                 # Make the request
-                response = client.create_layer(request=request)
+                response = await client.create_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -318,16 +318,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_delete_layer():
+            async def sample_delete_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.DeleteLayerRequest(
                 )
 
                 # Make the request
-                response = client.delete_layer(request=request)
+                response = await client.delete_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -356,6 +356,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -380,16 +388,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_describe_layer():
+            async def sample_describe_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.GetLayerRequest(
                 )
 
                 # Make the request
-                response = client.describe_layer(request=request)
+                response = await client.describe_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -418,6 +426,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -439,21 +455,20 @@ class PolygonManagementServiceAsyncClient:
         r"""RenameLayer changes the name of the layer for the
         current user
 
-
         .. code-block:: python
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_rename_layer():
+            async def sample_rename_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.RenameLayerRequest(
                 )
 
                 # Make the request
-                response = client.rename_layer(request=request)
+                response = await client.rename_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -483,6 +498,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -504,21 +527,20 @@ class PolygonManagementServiceAsyncClient:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
-
         .. code-block:: python
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_share_layer():
+            async def sample_share_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.ShareLayerRequest(
                 )
 
                 # Make the request
-                response = client.share_layer(request=request)
+                response = await client.share_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -547,6 +569,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -568,21 +598,20 @@ class PolygonManagementServiceAsyncClient:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
-
         .. code-block:: python
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_unshare_layer():
+            async def sample_unshare_layer():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.ShareLayerRequest(
                 )
 
                 # Make the request
-                response = client.unshare_layer(request=request)
+                response = await client.unshare_layer(request=request)
 
                 # Handle the response
                 print(response)
@@ -611,6 +640,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -632,21 +669,20 @@ class PolygonManagementServiceAsyncClient:
         r"""GetLayerPolygons gets layer polygons for the current
         user
 
-
         .. code-block:: python
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_list_polygons():
+            async def sample_list_polygons():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.ListPolygonsRequest(
                 )
 
                 # Make the request
-                response = client.list_polygons(request=request)
+                response = await client.list_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -675,6 +711,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -699,16 +743,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_add_polygon():
+            async def sample_add_polygon():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.AddPolygonRequest(
                 )
 
                 # Make the request
-                response = client.add_polygon(request=request)
+                response = await client.add_polygon(request=request)
 
                 # Handle the response
                 print(response)
@@ -737,6 +781,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -761,16 +813,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_update_polygon():
+            async def sample_update_polygon():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.UpdatePolygonRequest(
                 )
 
                 # Make the request
-                response = client.update_polygon(request=request)
+                response = await client.update_polygon(request=request)
 
                 # Handle the response
                 print(response)
@@ -799,6 +851,15 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+                ("polygon_id", request.polygon_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -823,16 +884,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_delete_polygon():
+            async def sample_delete_polygon():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.DeletePolygonRequest(
                 )
 
                 # Make the request
-                response = client.delete_polygon(request=request)
+                response = await client.delete_polygon(request=request)
 
                 # Handle the response
                 print(response)
@@ -861,6 +922,15 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+                ("polygon_id", request.polygon_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -885,16 +955,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_batch_add_polygons():
+            async def sample_batch_add_polygons():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.BatchPolygonsRequest(
                 )
 
                 # Make the request
-                response = client.batch_add_polygons(request=request)
+                response = await client.batch_add_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -923,6 +993,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -947,16 +1025,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_replace_polygons():
+            async def sample_replace_polygons():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.BatchPolygonsRequest(
                 )
 
                 # Make the request
-                response = client.replace_polygons(request=request)
+                response = await client.replace_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -985,6 +1063,14 @@ class PolygonManagementServiceAsyncClient:
             client_info=DEFAULT_CLIENT_INFO,
         )
 
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
         # Send the request.
         response = await rpc(
             request,
@@ -1009,16 +1095,16 @@ class PolygonManagementServiceAsyncClient:
 
             from oceanbolt.com import polygonmanagement_v3
 
-            def sample_drop_polygons():
+            async def sample_drop_polygons():
                 # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
+                client = polygonmanagement_v3.PolygonManagementServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = polygonmanagement_v3.DropPolygonsRequest(
                 )
 
                 # Make the request
-                response = client.drop_polygons(request=request)
+                response = await client.drop_polygons(request=request)
 
                 # Handle the response
                 print(response)
@@ -1045,6 +1131,14 @@ class PolygonManagementServiceAsyncClient:
             self._client._transport.drop_polygons,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
         )
 
         # Send the request.

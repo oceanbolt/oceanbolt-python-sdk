@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core.client_options import ClientOptions
@@ -190,21 +190,20 @@ class DrydockServiceAsyncClient:
         r"""GetDryDockStays retrives individual historical dry
         dock stays
 
-
         .. code-block:: python
 
             from oceanbolt.com import drydock_v3
 
-            def sample_get_dry_dock_stays():
+            async def sample_get_dry_dock_stays():
                 # Create a client
-                client = drydock_v3.DrydockServiceClient()
+                client = drydock_v3.DrydockServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = drydock_v3.GetDryDockStaysRequest(
                 )
 
                 # Make the request
-                response = client.get_dry_dock_stays(request=request)
+                response = await client.get_dry_dock_stays(request=request)
 
                 # Handle the response
                 print(response)
@@ -254,21 +253,20 @@ class DrydockServiceAsyncClient:
         r"""GetDryDockTimeseries retrieves dry dock timeseries data for a
         specified list of port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import drydock_v3
 
-            def sample_get_dry_dock_timeseries():
+            async def sample_get_dry_dock_timeseries():
                 # Create a client
-                client = drydock_v3.DrydockServiceClient()
+                client = drydock_v3.DrydockServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = drydock_v3.GetDryDockRequest(
                 )
 
                 # Make the request
-                response = client.get_dry_dock_timeseries(request=request)
+                response = await client.get_dry_dock_timeseries(request=request)
 
                 # Handle the response
                 print(response)
@@ -318,21 +316,20 @@ class DrydockServiceAsyncClient:
         r"""GetDryDockWeb retrieves current and live dry dock data for a
         specified list of port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import drydock_v3
 
-            def sample_get_dry_dock_web():
+            async def sample_get_dry_dock_web():
                 # Create a client
-                client = drydock_v3.DrydockServiceClient()
+                client = drydock_v3.DrydockServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = drydock_v3.GetDryDockRequest(
                 )
 
                 # Make the request
-                response = client.get_dry_dock_web(request=request)
+                response = await client.get_dry_dock_web(request=request)
 
                 # Handle the response
                 print(response)
@@ -382,21 +379,20 @@ class DrydockServiceAsyncClient:
         r"""GetDryDockVessels retrieves list of currently active dry dock
         stays for a specified list of port_ids/segments
 
-
         .. code-block:: python
 
             from oceanbolt.com import drydock_v3
 
-            def sample_get_dry_dock_vessels():
+            async def sample_get_dry_dock_vessels():
                 # Create a client
-                client = drydock_v3.DrydockServiceClient()
+                client = drydock_v3.DrydockServiceAsyncClient()
 
                 # Initialize request argument(s)
                 request = drydock_v3.GetDryDockRequest(
                 )
 
                 # Make the request
-                response = client.get_dry_dock_vessels(request=request)
+                response = await client.get_dry_dock_vessels(request=request)
 
                 # Handle the response
                 print(response)

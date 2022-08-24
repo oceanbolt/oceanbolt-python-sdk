@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -356,6 +356,7 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_port_calls(self,
@@ -371,7 +372,6 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
         page to return. It is also possible to set the number of
         port calls to return per query, default is 50 and
         maximum is 2000.
-
 
         .. code-block:: python
 
@@ -437,7 +437,6 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
             ) -> service.GetPortCallTimeseriesResponse:
         r"""GetPortCallTimeseries retrieves aggregated counts for
         port calls for a set of request params.
-
 
         .. code-block:: python
 
@@ -510,7 +509,6 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
         calls to return per query, default is 50 and maximum is
         2000.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
@@ -578,7 +576,6 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
         r"""GetVesselsInPort lists all vessels that were within a
         port (or related anchorages) at a certain time.
 
-
         .. code-block:: python
 
             from oceanbolt.com import portcalls_v3
@@ -645,6 +642,9 @@ class PortCallServiceClient(metaclass=PortCallServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

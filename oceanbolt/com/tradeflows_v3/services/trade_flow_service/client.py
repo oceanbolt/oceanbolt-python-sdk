@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -356,6 +356,7 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def get_trade_flows(self,
@@ -370,7 +371,6 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
         endpoint accepts a paging parameter to specify which
         page to return. It is also possible to set the number of
         voyages to return per query.
-
 
         .. code-block:: python
 
@@ -569,7 +569,6 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
         r"""Gets aggregated trade flow timeseries (on the water)
         by period.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
@@ -637,7 +636,6 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
         r"""GetTradeFlowHistogramValues gets trade flow histogram
         values by grouping.
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
@@ -704,7 +702,6 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
         (port/berth/country/region) flow stats for the given
         filter parameters
 
-
         .. code-block:: python
 
             from oceanbolt.com import tradeflows_v3
@@ -769,7 +766,6 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
             ) -> service.GetTradeLaneMetricsResponse:
         r"""GetTradeflowModelVoyage gets trade flow model voyage
         values by grouping
-
 
         .. code-block:: python
 
@@ -838,6 +834,9 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 

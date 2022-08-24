@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Google LLC
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -357,6 +357,7 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
                 client_info=client_info,
                 always_use_jwt_access=True,
+                api_audience=client_options.api_audience,
             )
 
     def list_fleets(self,
@@ -368,7 +369,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             ) -> service.Fleets:
         r"""Lists Fleets for the current user (or fleets that are
         shared with the current user)
-
 
         .. code-block:: python
 
@@ -539,6 +539,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.delete_fleet]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -603,6 +611,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.describe_fleet]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -665,6 +681,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.rename_fleet]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -729,6 +753,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.share_fleet]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -791,6 +823,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.unshare_fleet]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -856,6 +896,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.list_vessels]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -920,6 +968,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.list_vessels_with_status]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -940,7 +996,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             ) -> service.Vessel:
         r"""Adds new vessel to a Fleet. A maximum of 1000 vessels
         can be added to a fleet.
-
 
         .. code-block:: python
 
@@ -985,6 +1040,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.add_vessel]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -1048,6 +1111,15 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.update_vessel]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -1113,6 +1185,15 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.delete_vessel]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1133,7 +1214,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             ) -> service.EmptyResponse:
         r"""Batch adds vessels into a Fleet. A maximum of 1000
         vessels can be added to a fleet.
-
 
         .. code-block:: python
 
@@ -1179,6 +1259,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.batch_add_vessels]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1201,7 +1289,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         of new vessels. This is equivalent to first calling
         DropVessels and then calling BatchAddVessels A maximum
         of 1000 vessels can be added to a fleet.
-
 
         .. code-block:: python
 
@@ -1246,6 +1333,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.replace_vessels]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
 
         # Send the request.
         response = rpc(
@@ -1311,6 +1406,14 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.drop_vessels]
 
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+            )),
+        )
+
         # Send the request.
         response = rpc(
             request,
@@ -1331,7 +1434,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             ) -> service.GetFleetLiveMapResponse:
         r"""GetFleetLiveMap display static location for vessels
         in a fleet (as static image).
-
 
         .. code-block:: python
 
@@ -1400,7 +1502,6 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         r"""Uploads file containing fleet data to be parsed into
         a batch of vessels.
 
-
         .. code-block:: python
 
             from oceanbolt.com import fleetmanagement_v3
@@ -1468,6 +1569,9 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             and may cause errors in other clients!
         """
         self.transport.close()
+
+
+
 
 
 
