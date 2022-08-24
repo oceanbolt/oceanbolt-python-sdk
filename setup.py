@@ -36,14 +36,14 @@ setuptools.setup(
     platforms='Posix; MacOS X; Windows',
     include_package_data=True,
     install_requires=(
-        'google-api-core >= 2.6',
-        "googleapis-common-protos >= 1.55.0",
-        'protobuf >= 3.19.4',
+        'google-api-core >= 2.8.0, < 3.0.0dev',
         'libcst >= 0.4.1',
-        'proto-plus >= 1.20.0',
-        'pandas>=1.1.5',
-        'grpcio>=1.44.0',
-        'numpy>=1.21.5',
+        'googleapis-common-protos >= 1.56.2, <2.0.0dev',
+        'proto-plus >= 1.22',
+        "grpcio >= 1.47.0"
+        'pandas>=1.4.3',
+        'numpy>=1.23.2',
+        'protobuf >= 3.20.1',
     ),
     python_requires='>=3.6',
     scripts=[
