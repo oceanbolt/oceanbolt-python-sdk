@@ -14,8 +14,11 @@
 # limitations under the License.
 #
 from .service import (
+    DarkPeriodEvent,
     GetAisSummaryRequest,
     GetAisSummaryResponse,
+    ListDarkPeriodsRequest,
+    ListDarkPeriodsResponse,
     ListStoppageEventsRequest,
     ListStoppageEventsResponse,
     ListVesselsRequest,
@@ -25,8 +28,11 @@ from .service import (
 )
 
 __all__ = (
+    'DarkPeriodEvent',
     'GetAisSummaryRequest',
     'GetAisSummaryResponse',
+    'ListDarkPeriodsRequest',
+    'ListDarkPeriodsResponse',
     'ListStoppageEventsRequest',
     'ListStoppageEventsResponse',
     'ListVesselsRequest',

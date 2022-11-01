@@ -17,6 +17,7 @@ import proto  # type: ignore
 
 from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.ptypes.enums import platforms_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -26,8 +27,11 @@ __protobuf__ = proto.module(
         'ListVesselsResponse',
         'ListStoppageEventsRequest',
         'ListStoppageEventsResponse',
+        'ListDarkPeriodsRequest',
+        'ListDarkPeriodsResponse',
         'Vessel',
         'StoppageEvent',
+        'DarkPeriodEvent',
         'GetAisSummaryRequest',
         'GetAisSummaryResponse',
     },
@@ -277,7 +281,7 @@ class ListVesselsResponse(proto.Message):
 
 
 class ListStoppageEventsRequest(proto.Message):
-    r"""
+    r"""VesselStoppageEvents
 
     Attributes:
         imo (Sequence[int]):
@@ -333,6 +337,47 @@ class ListStoppageEventsResponse(proto.Message):
     xlsx = proto.Field(
         proto.STRING,
         number=3,
+    )
+
+
+class ListDarkPeriodsRequest(proto.Message):
+    r"""
+
+    Attributes:
+        imo (Sequence[int]):
+            included vessel imos
+        start_date (str):
+
+        end_date (str):
+
+    """
+
+    imo = proto.RepeatedField(
+        proto.INT32,
+        number=1,
+    )
+    start_date = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    end_date = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+
+
+class ListDarkPeriodsResponse(proto.Message):
+    r"""
+
+    Attributes:
+        dark_periods (Sequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
+
+    """
+
+    dark_periods = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='DarkPeriodEvent',
     )
 
 
@@ -648,6 +693,100 @@ class StoppageEvent(proto.Message):
     )
 
 
+class DarkPeriodEvent(proto.Message):
+    r"""
+
+    Attributes:
+        platform (oceanbolt.com.ptypes.enums.platforms_pb2.Platform):
+
+        imo (int):
+
+        vessel_name (str):
+
+        started_at (str):
+
+        ended_at (str):
+
+        start_zone_id (int):
+
+        start_zone_name (str):
+
+        end_zone_id (int):
+
+        end_zone_name (str):
+
+        start_lat (float):
+
+        start_lon (float):
+
+        end_lat (float):
+
+        end_lon (float):
+
+        duration_hours (google.protobuf.wrappers_pb2.DoubleValue):
+
+    """
+
+    platform = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=platforms_pb2.Platform,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=2,
+    )
+    vessel_name = proto.Field(
+        proto.STRING,
+        number=3,
+    )
+    started_at = proto.Field(
+        proto.STRING,
+        number=4,
+    )
+    ended_at = proto.Field(
+        proto.STRING,
+        number=5,
+    )
+    start_zone_id = proto.Field(
+        proto.INT32,
+        number=6,
+    )
+    start_zone_name = proto.Field(
+        proto.STRING,
+        number=7,
+    )
+    end_zone_id = proto.Field(
+        proto.INT32,
+        number=8,
+    )
+    end_zone_name = proto.Field(
+        proto.STRING,
+        number=9,
+    )
+    start_lat = proto.Field(
+        proto.DOUBLE,
+        number=10,
+    )
+    start_lon = proto.Field(
+        proto.DOUBLE,
+        number=11,
+    )
+    end_lat = proto.Field(
+        proto.DOUBLE,
+        number=12,
+    )
+    end_lon = proto.Field(
+        proto.DOUBLE,
+        number=13,
+    )
+    duration_hours = proto.Field(
+        proto.MESSAGE,
+        number=14,
+        message=wrappers_pb2.DoubleValue,
+    )
+
+
 class GetAisSummaryRequest(proto.Message):
     r"""Request object for GetAisSummaryRequest
 
@@ -709,6 +848,12 @@ class GetAisSummaryResponse(proto.Message):
         last_timestamp_for_period (google.protobuf.timestamp_pb2.Timestamp):
             The timestamp of the final AIS position in
             the requested period
+        requested_start_time (google.protobuf.timestamp_pb2.Timestamp):
+            Start time for the AIS summary request. Equal
+            to timestamp in request.
+        requested_end_time (google.protobuf.timestamp_pb2.Timestamp):
+            End time for the AIS summary request. Equal
+            to timestamp in request.
     """
 
     distance_traveled_nm = proto.Field(
@@ -731,6 +876,16 @@ class GetAisSummaryResponse(proto.Message):
     last_timestamp_for_period = proto.Field(
         proto.MESSAGE,
         number=5,
+        message=timestamp_pb2.Timestamp,
+    )
+    requested_start_time = proto.Field(
+        proto.MESSAGE,
+        number=6,
+        message=timestamp_pb2.Timestamp,
+    )
+    requested_end_time = proto.Field(
+        proto.MESSAGE,
+        number=7,
         message=timestamp_pb2.Timestamp,
     )
 

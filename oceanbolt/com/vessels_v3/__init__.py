@@ -17,8 +17,11 @@
 from .services.vessel_service import VesselServiceClient
 from .services.vessel_service import VesselServiceAsyncClient
 
+from .types.service import DarkPeriodEvent
 from .types.service import GetAisSummaryRequest
 from .types.service import GetAisSummaryResponse
+from .types.service import ListDarkPeriodsRequest
+from .types.service import ListDarkPeriodsResponse
 from .types.service import ListStoppageEventsRequest
 from .types.service import ListStoppageEventsResponse
 from .types.service import ListVesselsRequest
@@ -28,8 +31,11 @@ from .types.service import Vessel
 
 __all__ = (
     'VesselServiceAsyncClient',
+'DarkPeriodEvent',
 'GetAisSummaryRequest',
 'GetAisSummaryResponse',
+'ListDarkPeriodsRequest',
+'ListDarkPeriodsResponse',
 'ListStoppageEventsRequest',
 'ListStoppageEventsResponse',
 'ListVesselsRequest',

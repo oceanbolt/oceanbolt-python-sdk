@@ -277,6 +277,30 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         return self._stubs['list_stoppage_events']
 
     @property
+    def list_dark_periods(self) -> Callable[
+            [service.ListDarkPeriodsRequest],
+            service.ListDarkPeriodsResponse]:
+        r"""Return a callable for the list dark periods method over gRPC.
+
+        Returns:
+            Callable[[~.ListDarkPeriodsRequest],
+                    ~.ListDarkPeriodsResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'list_dark_periods' not in self._stubs:
+            self._stubs['list_dark_periods'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.vessels.v3.VesselService/ListDarkPeriods',
+                request_serializer=service.ListDarkPeriodsRequest.serialize,
+                response_deserializer=service.ListDarkPeriodsResponse.deserialize,
+            )
+        return self._stubs['list_dark_periods']
+
+    @property
     def get_ais_summary(self) -> Callable[
             [service.GetAisSummaryRequest],
             service.GetAisSummaryResponse]:

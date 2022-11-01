@@ -699,6 +699,89 @@ async def test_list_stoppage_events_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
+  service.ListDarkPeriodsRequest,
+  dict,
+])
+def test_list_dark_periods(request_type, transport: str = 'grpc'):
+    client = VesselServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_dark_periods),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.ListDarkPeriodsResponse(
+        )
+        response = client.list_dark_periods(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.ListDarkPeriodsRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.ListDarkPeriodsResponse)
+
+
+def test_list_dark_periods_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = VesselServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_dark_periods),
+            '__call__') as call:
+        client.list_dark_periods()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.ListDarkPeriodsRequest()
+
+@pytest.mark.asyncio
+async def test_list_dark_periods_async(transport: str = 'grpc_asyncio', request_type=service.ListDarkPeriodsRequest):
+    client = VesselServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.list_dark_periods),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListDarkPeriodsResponse(
+        ))
+        response = await client.list_dark_periods(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.ListDarkPeriodsRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.ListDarkPeriodsResponse)
+
+
+@pytest.mark.asyncio
+async def test_list_dark_periods_async_from_dict():
+    await test_list_dark_periods_async(request_type=dict)
+
+
+@pytest.mark.parametrize("request_type", [
   service.GetAisSummaryRequest,
   dict,
 ])
@@ -920,6 +1003,7 @@ def test_vessel_service_base_transport():
     methods = (
         'list_vessels',
         'list_stoppage_events',
+        'list_dark_periods',
         'get_ais_summary',
     )
     for method in methods:
