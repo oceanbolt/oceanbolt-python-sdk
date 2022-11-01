@@ -27,8 +27,8 @@ __protobuf__ = proto.module(
         'ListVesselsResponse',
         'ListStoppageEventsRequest',
         'ListStoppageEventsResponse',
-        'ListDarkPeriodsRequest',
-        'ListDarkPeriodsResponse',
+        'ListDarkPeriodEventsRequest',
+        'ListDarkPeriodEventsResponse',
         'Vessel',
         'StoppageEvent',
         'DarkPeriodEvent',
@@ -63,7 +63,7 @@ class ListVesselsRequest(proto.Message):
         destination_port (Sequence[str]):
             included discharge ports
         destination_unlocode (Sequence[str]):
-            included discharge ports
+            included discharge port unlocodes
         cargo_status (Sequence[str]):
             included cargo states
         laden_status (Sequence[str]):
@@ -340,7 +340,7 @@ class ListStoppageEventsResponse(proto.Message):
     )
 
 
-class ListDarkPeriodsRequest(proto.Message):
+class ListDarkPeriodEventsRequest(proto.Message):
     r"""
 
     Attributes:
@@ -366,15 +366,15 @@ class ListDarkPeriodsRequest(proto.Message):
     )
 
 
-class ListDarkPeriodsResponse(proto.Message):
+class ListDarkPeriodEventsResponse(proto.Message):
     r"""
 
     Attributes:
-        dark_periods (Sequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
+        dark_period_events (Sequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
 
     """
 
-    dark_periods = proto.RepeatedField(
+    dark_period_events = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DarkPeriodEvent',

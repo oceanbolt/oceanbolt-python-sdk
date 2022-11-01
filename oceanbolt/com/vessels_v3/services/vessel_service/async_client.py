@@ -251,7 +251,7 @@ class VesselServiceAsyncClient:
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListStoppageEventsResponse:
-        r"""
+        r"""Fetches ais based stoppage events for a single vessel
 
         .. code-block:: python
 
@@ -306,35 +306,37 @@ class VesselServiceAsyncClient:
         # Done; return the response.
         return response
 
-    async def list_dark_periods(self,
-            request: Union[service.ListDarkPeriodsRequest, dict] = None,
+    async def list_dark_period_events(self,
+            request: Union[service.ListDarkPeriodEventsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.ListDarkPeriodsResponse:
-        r"""
+            ) -> service.ListDarkPeriodEventsResponse:
+        r"""Fetches ais based dark period events for a single
+        vessel. A dark period event, is where a vessel has not
+        transmitted AIS data for a period greater than 48 hours.
 
         .. code-block:: python
 
             from oceanbolt.com import vessels_v3
 
-            async def sample_list_dark_periods():
+            async def sample_list_dark_period_events():
                 # Create a client
                 client = vessels_v3.VesselServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = vessels_v3.ListDarkPeriodsRequest(
+                request = vessels_v3.ListDarkPeriodEventsRequest(
                 )
 
                 # Make the request
-                response = await client.list_dark_periods(request=request)
+                response = await client.list_dark_period_events(request=request)
 
                 # Handle the response
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.vessels_v3.types.ListDarkPeriodsRequest, dict]):
+            request (Union[oceanbolt.com.vessels_v3.types.ListDarkPeriodEventsRequest, dict]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -343,16 +345,16 @@ class VesselServiceAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.vessels_v3.types.ListDarkPeriodsResponse:
+            oceanbolt.com.vessels_v3.types.ListDarkPeriodEventsResponse:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.ListDarkPeriodsRequest(request)
+        request = service.ListDarkPeriodEventsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method_async.wrap_method(
-            self._client._transport.list_dark_periods,
+            self._client._transport.list_dark_period_events,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )

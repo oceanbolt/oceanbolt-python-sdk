@@ -699,10 +699,10 @@ async def test_list_stoppage_events_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.ListDarkPeriodsRequest,
+  service.ListDarkPeriodEventsRequest,
   dict,
 ])
-def test_list_dark_periods(request_type, transport: str = 'grpc'):
+def test_list_dark_period_events(request_type, transport: str = 'grpc'):
     client = VesselServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -714,23 +714,23 @@ def test_list_dark_periods(request_type, transport: str = 'grpc'):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_dark_periods),
+            type(client.transport.list_dark_period_events),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.ListDarkPeriodsResponse(
+        call.return_value = service.ListDarkPeriodEventsResponse(
         )
-        response = client.list_dark_periods(request)
+        response = client.list_dark_period_events(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.ListDarkPeriodsRequest()
+        assert args[0] == service.ListDarkPeriodEventsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.ListDarkPeriodsResponse)
+    assert isinstance(response, service.ListDarkPeriodEventsResponse)
 
 
-def test_list_dark_periods_empty_call():
+def test_list_dark_period_events_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = VesselServiceClient(
@@ -740,15 +740,15 @@ def test_list_dark_periods_empty_call():
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_dark_periods),
+            type(client.transport.list_dark_period_events),
             '__call__') as call:
-        client.list_dark_periods()
+        client.list_dark_period_events()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.ListDarkPeriodsRequest()
+        assert args[0] == service.ListDarkPeriodEventsRequest()
 
 @pytest.mark.asyncio
-async def test_list_dark_periods_async(transport: str = 'grpc_asyncio', request_type=service.ListDarkPeriodsRequest):
+async def test_list_dark_period_events_async(transport: str = 'grpc_asyncio', request_type=service.ListDarkPeriodEventsRequest):
     client = VesselServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -760,25 +760,25 @@ async def test_list_dark_periods_async(transport: str = 'grpc_asyncio', request_
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_dark_periods),
+            type(client.transport.list_dark_period_events),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListDarkPeriodsResponse(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListDarkPeriodEventsResponse(
         ))
-        response = await client.list_dark_periods(request)
+        response = await client.list_dark_period_events(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.ListDarkPeriodsRequest()
+        assert args[0] == service.ListDarkPeriodEventsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.ListDarkPeriodsResponse)
+    assert isinstance(response, service.ListDarkPeriodEventsResponse)
 
 
 @pytest.mark.asyncio
-async def test_list_dark_periods_async_from_dict():
-    await test_list_dark_periods_async(request_type=dict)
+async def test_list_dark_period_events_async_from_dict():
+    await test_list_dark_period_events_async(request_type=dict)
 
 
 @pytest.mark.parametrize("request_type", [
@@ -1003,7 +1003,7 @@ def test_vessel_service_base_transport():
     methods = (
         'list_vessels',
         'list_stoppage_events',
-        'list_dark_periods',
+        'list_dark_period_events',
         'get_ais_summary',
     )
     for method in methods:

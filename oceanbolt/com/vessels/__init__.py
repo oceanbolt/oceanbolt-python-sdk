@@ -20,8 +20,8 @@ from oceanbolt.com.vessels_v3.services.vessel_service.async_client import Vessel
 from oceanbolt.com.vessels_v3.types.service import DarkPeriodEvent
 from oceanbolt.com.vessels_v3.types.service import GetAisSummaryRequest
 from oceanbolt.com.vessels_v3.types.service import GetAisSummaryResponse
-from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodsRequest
-from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodsResponse
+from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodEventsRequest
+from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodEventsResponse
 from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsRequest
 from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsResponse
 from oceanbolt.com.vessels_v3.types.service import ListVesselsRequest
@@ -34,8 +34,8 @@ __all__ = ('VesselServiceClient',
     'DarkPeriodEvent',
     'GetAisSummaryRequest',
     'GetAisSummaryResponse',
-    'ListDarkPeriodsRequest',
-    'ListDarkPeriodsResponse',
+    'ListDarkPeriodEventsRequest',
+    'ListDarkPeriodEventsResponse',
     'ListStoppageEventsRequest',
     'ListStoppageEventsResponse',
     'ListVesselsRequest',

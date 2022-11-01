@@ -258,6 +258,8 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
             service.ListStoppageEventsResponse]:
         r"""Return a callable for the list stoppage events method over gRPC.
 
+        Fetches ais based stoppage events for a single vessel
+
         Returns:
             Callable[[~.ListStoppageEventsRequest],
                     ~.ListStoppageEventsResponse]:
@@ -277,14 +279,18 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         return self._stubs['list_stoppage_events']
 
     @property
-    def list_dark_periods(self) -> Callable[
-            [service.ListDarkPeriodsRequest],
-            service.ListDarkPeriodsResponse]:
-        r"""Return a callable for the list dark periods method over gRPC.
+    def list_dark_period_events(self) -> Callable[
+            [service.ListDarkPeriodEventsRequest],
+            service.ListDarkPeriodEventsResponse]:
+        r"""Return a callable for the list dark period events method over gRPC.
+
+        Fetches ais based dark period events for a single
+        vessel. A dark period event, is where a vessel has not
+        transmitted AIS data for a period greater than 48 hours.
 
         Returns:
-            Callable[[~.ListDarkPeriodsRequest],
-                    ~.ListDarkPeriodsResponse]:
+            Callable[[~.ListDarkPeriodEventsRequest],
+                    ~.ListDarkPeriodEventsResponse]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -292,13 +298,13 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_dark_periods' not in self._stubs:
-            self._stubs['list_dark_periods'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.vessels.v3.VesselService/ListDarkPeriods',
-                request_serializer=service.ListDarkPeriodsRequest.serialize,
-                response_deserializer=service.ListDarkPeriodsResponse.deserialize,
+        if 'list_dark_period_events' not in self._stubs:
+            self._stubs['list_dark_period_events'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.vessels.v3.VesselService/ListDarkPeriodEvents',
+                request_serializer=service.ListDarkPeriodEventsRequest.serialize,
+                response_deserializer=service.ListDarkPeriodEventsResponse.deserialize,
             )
-        return self._stubs['list_dark_periods']
+        return self._stubs['list_dark_period_events']
 
     @property
     def get_ais_summary(self) -> Callable[

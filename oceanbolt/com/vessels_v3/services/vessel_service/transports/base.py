@@ -128,8 +128,8 @@ class VesselServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.list_dark_periods: gapic_v1.method.wrap_method(
-                self.list_dark_periods,
+            self.list_dark_period_events: gapic_v1.method.wrap_method(
+                self.list_dark_period_events,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -168,11 +168,11 @@ class VesselServiceTransport(abc.ABC):
         raise NotImplementedError()
 
     @property
-    def list_dark_periods(self) -> Callable[
-            [service.ListDarkPeriodsRequest],
+    def list_dark_period_events(self) -> Callable[
+            [service.ListDarkPeriodEventsRequest],
             Union[
-                service.ListDarkPeriodsResponse,
-                Awaitable[service.ListDarkPeriodsResponse]
+                service.ListDarkPeriodEventsResponse,
+                Awaitable[service.ListDarkPeriodEventsResponse]
             ]]:
         raise NotImplementedError()
 
