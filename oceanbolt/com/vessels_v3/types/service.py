@@ -350,6 +350,9 @@ class ListDarkPeriodEventsRequest(proto.Message):
 
         end_date (str):
 
+        format_ (str):
+            response format (default is json, supported:
+            csv, xlsx)
     """
 
     imo = proto.RepeatedField(
@@ -363,6 +366,10 @@ class ListDarkPeriodEventsRequest(proto.Message):
     end_date = proto.Field(
         proto.STRING,
         number=3,
+    )
+    format_ = proto.Field(
+        proto.STRING,
+        number=4,
     )
 
 
