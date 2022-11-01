@@ -372,12 +372,24 @@ class ListDarkPeriodEventsResponse(proto.Message):
     Attributes:
         dark_period_events (Sequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
 
+        csv (str):
+
+        xlsx (str):
+
     """
 
     dark_period_events = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DarkPeriodEvent',
+    )
+    csv = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    xlsx = proto.Field(
+        proto.STRING,
+        number=3,
     )
 
 

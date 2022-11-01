@@ -718,6 +718,8 @@ def test_list_dark_period_events(request_type, transport: str = 'grpc'):
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.ListDarkPeriodEventsResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
         )
         response = client.list_dark_period_events(request)
 
@@ -728,6 +730,8 @@ def test_list_dark_period_events(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListDarkPeriodEventsResponse)
+    assert response.csv == 'csv_value'
+    assert response.xlsx == 'xlsx_value'
 
 
 def test_list_dark_period_events_empty_call():
@@ -764,6 +768,8 @@ async def test_list_dark_period_events_async(transport: str = 'grpc_asyncio', re
             '__call__') as call:
         # Designate an appropriate return value for the call.
         call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListDarkPeriodEventsResponse(
+            csv='csv_value',
+            xlsx='xlsx_value',
         ))
         response = await client.list_dark_period_events(request)
 
@@ -774,6 +780,8 @@ async def test_list_dark_period_events_async(transport: str = 'grpc_asyncio', re
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListDarkPeriodEventsResponse)
+    assert response.csv == 'csv_value'
+    assert response.xlsx == 'xlsx_value'
 
 
 @pytest.mark.asyncio
