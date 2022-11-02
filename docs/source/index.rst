@@ -97,6 +97,7 @@ API Reference
 
     vessels_v3/list_vessels
     vessels_v3/stoppage_events
+    vessels_v3/dark_period_events
 
 .. toctree::
     :maxdepth: 1
