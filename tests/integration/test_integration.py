@@ -5,9 +5,10 @@ from oceanbolt.sdk.data import PortCalls, PortCallTimeseries, PortParticulars
 from oceanbolt.sdk.data import TonnageZoneTimeseries, FleetSpeedTimeseries, ChineseWatersTimeseries, FleetStatusTimeseries, FleetGrowthTimeseries, ZoneChangesTimeseries
 from oceanbolt.sdk.data import CongestionVessels, CongestionTimeseries
 from oceanbolt.sdk.data import DryDockTimeseries, DryDockCurrentVessels, DryDockHistoricalStays
-from oceanbolt.sdk.data import Vessels
+from oceanbolt.sdk.data import Vessels, DarkPeriodEvents, StoppageEvents
 from oceanbolt.sdk.data import VesselStates, VesselStatesForDate
-
+import pandas as pd
+from datetime import date, timedelta
 from oceanbolt.sdk.data import CustomPolygonTimeseries
 
 
@@ -76,6 +77,30 @@ def test_congestion_timeseries():
     df = CongestionTimeseries(__client__).get(country_code=["cn"], start_date="2021-01-01")
     assert len(df) > 0
 
+def last_day_of_month(any_day):
+    next_month = any_day.replace(day=28) + timedelta(days=4)
+    return next_month - timedelta(days=next_month.day)
+def test_congestion_timeseries_large():
+    appended_data = []
+    for n in pd.period_range(start='2015-01', end='2022-12', freq='Y'):
+        start_date = date(n.year, n.month, 1)
+        end_date = last_day_of_month(start_date)
+        data = CongestionTimeseries(__client__).get(
+            region_id=["AG", "BALTIC", "BLACKSEA", "CARRIBEAN", "CASPIAN", "CONT", "EASTAFRICA", "ECCA", "ECINDIA",
+                       "ECSA",
+                       "EAUSSIE", "EASTMED", "FAREAST", "NCSA", "NWAFRICA", "REDSEA", "SEA", "SOUTHERNAFRICA", "USEC",
+                       "USG", "USWC", "WCCA", "WCINDIA", "WCSA", "WAUSSIE", "WESTMED"],
+            segment=["handysize", "capesize", "panamax", "supramax"],
+            start_date=start_date,
+            end_date=end_date,
+        )
+        appended_data.append(data)
+
+        print("Fetching from:", start_date, " -> ", end_date, "| Rows: ", len(data))
+
+    df = pd.concat(appended_data)
+
+    print(df.head())
 
 def test_drydock_historical_stays():
     df = DryDockHistoricalStays(__client__).get(port_id=[403], start_date="2021-01-01")
@@ -170,5 +195,9 @@ def test_vessels():
 
 
 def test_stoppage_events():
-    df = Vessels(__client__).get(imo=[9583706])
+    df = StoppageEvents(__client__).get(imo=[9583706])
+    assert len(df) > 0
+
+def test_dark_period_events():
+    df = DarkPeriodEvents(__client__).get(imo=[9583706])
     assert len(df) > 0

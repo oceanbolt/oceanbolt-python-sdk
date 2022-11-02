@@ -37,7 +37,7 @@ Example
     #Distance between a vessel's current location and a port
     distance = DistanceCalculator(base_client).distance(
         locations=[
-            {imo: 9586801},
+            {"imo": 9586801},
             {"unlocode": "HKHKG"},
         ]
     )
@@ -50,6 +50,15 @@ Example
             {"unlocode":"USHOU"}
         ]
     )
+
+    #Distance between a raw coordinates
+    distance = DistanceCalculator(base_client).distance(
+        locations=[
+            {"point": {"lon":-75.522015,"lat":10.298378}},
+            {"point": {"lon":-95.127000,"lat":29.727500}},
+        ]
+    )
+
 
 
 
