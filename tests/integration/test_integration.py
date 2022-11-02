@@ -199,5 +199,5 @@ def test_stoppage_events():
     assert len(df) > 0
 
 def test_dark_period_events():
-    df = DarkPeriodEvents(__client__).get(imo=[9583706])
+    df = DarkPeriodEvents(__client__).get(imo=[8706686])
     assert len(df) > 0
