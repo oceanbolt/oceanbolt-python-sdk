@@ -493,7 +493,7 @@ class Vessel(proto.Message):
         status (oceanbolt.com.fleetmanagement_v3.types.VesselStatus):
             Vessel status (livestate data).
         stoppage_events (Sequence[oceanbolt.com.fleetmanagement_v3.types.VesselStoppageEvent]):
-            Vessel speed events (stopage data).
+            Vessel speed events (stoppage data).
     """
 
     imo = proto.Field(
