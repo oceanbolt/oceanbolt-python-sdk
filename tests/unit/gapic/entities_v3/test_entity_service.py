@@ -516,7 +516,7 @@ def test_entity_service_client_create_channel_credentials_file(client_class, tra
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListSegmentsRequest,
   dict,
 ])
 def test_list_segments(request_type, transport: str = 'grpc'):
@@ -541,7 +541,7 @@ def test_list_segments(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListSegmentsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListSegmentsResponse)
@@ -562,10 +562,10 @@ def test_list_segments_empty_call():
         client.list_segments()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListSegmentsRequest()
 
 @pytest.mark.asyncio
-async def test_list_segments_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_segments_async(transport: str = 'grpc_asyncio', request_type=service.ListSegmentsRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -587,7 +587,7 @@ async def test_list_segments_async(transport: str = 'grpc_asyncio', request_type
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListSegmentsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListSegmentsResponse)
@@ -599,7 +599,7 @@ async def test_list_segments_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListZonesRequest,
   dict,
 ])
 def test_list_zones(request_type, transport: str = 'grpc'):
@@ -624,7 +624,7 @@ def test_list_zones(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListTonnageZonesResponse)
@@ -645,10 +645,10 @@ def test_list_zones_empty_call():
         client.list_zones()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
 @pytest.mark.asyncio
-async def test_list_zones_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_zones_async(transport: str = 'grpc_asyncio', request_type=service.ListZonesRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -670,7 +670,7 @@ async def test_list_zones_async(transport: str = 'grpc_asyncio', request_type=se
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListTonnageZonesResponse)
@@ -682,7 +682,7 @@ async def test_list_zones_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListZonesRequest,
   dict,
 ])
 def test_list_zones_with_polygons(request_type, transport: str = 'grpc'):
@@ -707,7 +707,7 @@ def test_list_zones_with_polygons(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListTonnageZonesWithPolygonsResponse)
@@ -728,10 +728,10 @@ def test_list_zones_with_polygons_empty_call():
         client.list_zones_with_polygons()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
 @pytest.mark.asyncio
-async def test_list_zones_with_polygons_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_zones_with_polygons_async(transport: str = 'grpc_asyncio', request_type=service.ListZonesRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -753,7 +753,7 @@ async def test_list_zones_with_polygons_async(transport: str = 'grpc_asyncio', r
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListZonesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListTonnageZonesWithPolygonsResponse)
@@ -765,7 +765,7 @@ async def test_list_zones_with_polygons_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListRegionsRequest,
   dict,
 ])
 def test_list_regions(request_type, transport: str = 'grpc'):
@@ -790,7 +790,7 @@ def test_list_regions(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListRegionsResponse)
@@ -811,10 +811,10 @@ def test_list_regions_empty_call():
         client.list_regions()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
 @pytest.mark.asyncio
-async def test_list_regions_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_regions_async(transport: str = 'grpc_asyncio', request_type=service.ListRegionsRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -836,7 +836,7 @@ async def test_list_regions_async(transport: str = 'grpc_asyncio', request_type=
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListRegionsResponse)
@@ -848,7 +848,7 @@ async def test_list_regions_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListCommoditiesRequest,
   dict,
 ])
 def test_list_commodities(request_type, transport: str = 'grpc'):
@@ -873,7 +873,7 @@ def test_list_commodities(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCommoditiesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListCommoditiesResponse)
@@ -894,10 +894,10 @@ def test_list_commodities_empty_call():
         client.list_commodities()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCommoditiesRequest()
 
 @pytest.mark.asyncio
-async def test_list_commodities_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_commodities_async(transport: str = 'grpc_asyncio', request_type=service.ListCommoditiesRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -919,7 +919,7 @@ async def test_list_commodities_async(transport: str = 'grpc_asyncio', request_t
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCommoditiesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListCommoditiesResponse)
@@ -931,7 +931,7 @@ async def test_list_commodities_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListCountriesRequest,
   dict,
 ])
 def test_list_countries(request_type, transport: str = 'grpc'):
@@ -956,7 +956,7 @@ def test_list_countries(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCountriesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListCountriesResponse)
@@ -977,10 +977,10 @@ def test_list_countries_empty_call():
         client.list_countries()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCountriesRequest()
 
 @pytest.mark.asyncio
-async def test_list_countries_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_countries_async(transport: str = 'grpc_asyncio', request_type=service.ListCountriesRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -1002,7 +1002,7 @@ async def test_list_countries_async(transport: str = 'grpc_asyncio', request_typ
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListCountriesRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListCountriesResponse)
@@ -1014,7 +1014,7 @@ async def test_list_countries_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListRegionsRequest,
   dict,
 ])
 def test_list_regions_with_polygons(request_type, transport: str = 'grpc'):
@@ -1039,7 +1039,7 @@ def test_list_regions_with_polygons(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListRegionsWithPolygonResponse)
@@ -1060,10 +1060,10 @@ def test_list_regions_with_polygons_empty_call():
         client.list_regions_with_polygons()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
 @pytest.mark.asyncio
-async def test_list_regions_with_polygons_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_regions_with_polygons_async(transport: str = 'grpc_asyncio', request_type=service.ListRegionsRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -1085,7 +1085,7 @@ async def test_list_regions_with_polygons_async(transport: str = 'grpc_asyncio',
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListRegionsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListRegionsWithPolygonResponse)
@@ -1097,7 +1097,7 @@ async def test_list_regions_with_polygons_async_from_dict():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListPortsRequest,
   dict,
 ])
 def test_list_ports(request_type, transport: str = 'grpc'):
@@ -1122,7 +1122,7 @@ def test_list_ports(request_type, transport: str = 'grpc'):
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListPortsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListPortsResponse)
@@ -1143,10 +1143,10 @@ def test_list_ports_empty_call():
         client.list_ports()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListPortsRequest()
 
 @pytest.mark.asyncio
-async def test_list_ports_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_ports_async(transport: str = 'grpc_asyncio', request_type=service.ListPortsRequest):
     client = EntityServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -1168,7 +1168,7 @@ async def test_list_ports_async(transport: str = 'grpc_asyncio', request_type=se
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListPortsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.ListPortsResponse)

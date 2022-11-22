@@ -14,12 +14,16 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dptypes/entities/spatial.proto\x12\x1doceanbolt.com.ptypes.entities\"\x9b\x01\n\x04Port\x12\x17\n\x07port_id\x18\x01 \x01(\rR\x06portId\x12\x1b\n\tport_name\x18\x02 \x01(\tR\x08portName\x12\x16\n\x06region\x18\x03 \x01(\tR\x06region\x12!\n\x0c\x63ountry_code\x18\x04 \x01(\tR\x0b\x63ountryCode\x12\x10\n\x03lat\x18\x05 \x01(\x01R\x03lat\x12\x10\n\x03lon\x18\x06 \x01(\x01R\x03lon\"\x08\n\x06RegionB=Z;gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/entitiesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dptypes/entities/spatial.proto\x12\x1doceanbolt.com.ptypes.entities\"\x9b\x01\n\x04Port\x12\x17\n\x07port_id\x18\x01 \x01(\rR\x06portId\x12\x1b\n\tport_name\x18\x02 \x01(\tR\x08portName\x12\x16\n\x06region\x18\x03 \x01(\tR\x06region\x12!\n\x0c\x63ountry_code\x18\x04 \x01(\tR\x0b\x63ountryCode\x12\x10\n\x03lat\x18\x05 \x01(\x01R\x03lat\x12\x10\n\x03lon\x18\x06 \x01(\x01R\x03lon\"\x08\n\x06Region\"\xa3\x02\n\x0fGeofencePayload\x12\x12\n\x03wkt\x18\n \x01(\tH\x00R\x03wkt\x12\x1a\n\x07geojson\x18\x0b \x01(\tH\x00R\x07geojson\x12\x12\n\x03wkb\x18\x0c \x01(\x0cH\x00R\x03wkb\x12\x1f\n\nesri_shape\x18\r \x01(\x0cH\x00R\tesriShape\x12R\n\rcenter_radius\x18\x0e \x01(\x0b\x32+.oceanbolt.com.ptypes.entities.CenterRadiusH\x00R\x0c\x63\x65nterRadius\x12O\n\x0cpolygon_list\x18\x0f \x01(\x0b\x32*.oceanbolt.com.ptypes.entities.PolygonListH\x00R\x0bpolygonListB\x06\n\x04\x64\x61ta\"b\n\x0c\x43\x65nterRadius\x12:\n\x05point\x18\x01 \x01(\x0b\x32$.oceanbolt.com.ptypes.entities.PointR\x05point\x12\x16\n\x06radius\x18\x02 \x01(\x01R\x06radius\"K\n\x0bPolygonList\x12<\n\x06points\x18\x01 \x03(\x0b\x32$.oceanbolt.com.ptypes.entities.PointR\x06points\"+\n\x05Point\x12\x10\n\x03lon\x18\x01 \x01(\x01R\x03lon\x12\x10\n\x03lat\x18\x02 \x01(\x01R\x03latB=Z;gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/entitiesb\x06proto3')
 
 
 
 _PORT = DESCRIPTOR.message_types_by_name['Port']
 _REGION = DESCRIPTOR.message_types_by_name['Region']
+_GEOFENCEPAYLOAD = DESCRIPTOR.message_types_by_name['GeofencePayload']
+_CENTERRADIUS = DESCRIPTOR.message_types_by_name['CenterRadius']
+_POLYGONLIST = DESCRIPTOR.message_types_by_name['PolygonList']
+_POINT = DESCRIPTOR.message_types_by_name['Point']
 Port = _reflection.GeneratedProtocolMessageType('Port', (_message.Message,), {
   'DESCRIPTOR' : _PORT,
   '__module__' : 'ptypes.entities.spatial_pb2'
@@ -34,6 +38,34 @@ Region = _reflection.GeneratedProtocolMessageType('Region', (_message.Message,),
   })
 _sym_db.RegisterMessage(Region)
 
+GeofencePayload = _reflection.GeneratedProtocolMessageType('GeofencePayload', (_message.Message,), {
+  'DESCRIPTOR' : _GEOFENCEPAYLOAD,
+  '__module__' : 'ptypes.entities.spatial_pb2'
+  # @@protoc_insertion_point(class_scope:oceanbolt.com.ptypes.entities.GeofencePayload)
+  })
+_sym_db.RegisterMessage(GeofencePayload)
+
+CenterRadius = _reflection.GeneratedProtocolMessageType('CenterRadius', (_message.Message,), {
+  'DESCRIPTOR' : _CENTERRADIUS,
+  '__module__' : 'ptypes.entities.spatial_pb2'
+  # @@protoc_insertion_point(class_scope:oceanbolt.com.ptypes.entities.CenterRadius)
+  })
+_sym_db.RegisterMessage(CenterRadius)
+
+PolygonList = _reflection.GeneratedProtocolMessageType('PolygonList', (_message.Message,), {
+  'DESCRIPTOR' : _POLYGONLIST,
+  '__module__' : 'ptypes.entities.spatial_pb2'
+  # @@protoc_insertion_point(class_scope:oceanbolt.com.ptypes.entities.PolygonList)
+  })
+_sym_db.RegisterMessage(PolygonList)
+
+Point = _reflection.GeneratedProtocolMessageType('Point', (_message.Message,), {
+  'DESCRIPTOR' : _POINT,
+  '__module__' : 'ptypes.entities.spatial_pb2'
+  # @@protoc_insertion_point(class_scope:oceanbolt.com.ptypes.entities.Point)
+  })
+_sym_db.RegisterMessage(Point)
+
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
@@ -42,4 +74,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _PORT._serialized_end=220
   _REGION._serialized_start=222
   _REGION._serialized_end=230
+  _GEOFENCEPAYLOAD._serialized_start=233
+  _GEOFENCEPAYLOAD._serialized_end=524
+  _CENTERRADIUS._serialized_start=526
+  _CENTERRADIUS._serialized_end=624
+  _POLYGONLIST._serialized_start=626
+  _POLYGONLIST._serialized_end=701
+  _POINT._serialized_start=703
+  _POINT._serialized_end=746
 # @@protoc_insertion_point(module_scope)

@@ -19,17 +19,20 @@ from .services.entity_service import EntityServiceAsyncClient
 
 from .types.service import Commodity
 from .types.service import Country
-from .types.service import EmptyParams
+from .types.service import ListCommoditiesRequest
 from .types.service import ListCommoditiesResponse
 from .types.service import ListCountriesRequest
 from .types.service import ListCountriesResponse
+from .types.service import ListPortsRequest
 from .types.service import ListPortsResponse
 from .types.service import ListRegionsRequest
 from .types.service import ListRegionsResponse
 from .types.service import ListRegionsWithPolygonResponse
+from .types.service import ListSegmentsRequest
 from .types.service import ListSegmentsResponse
 from .types.service import ListTonnageZonesResponse
 from .types.service import ListTonnageZonesWithPolygonsResponse
+from .types.service import ListZonesRequest
 from .types.service import Polygon
 from .types.service import Port
 from .types.service import Region
@@ -46,18 +49,21 @@ __all__ = (
     'EntityServiceAsyncClient',
 'Commodity',
 'Country',
-'EmptyParams',
 'EntityServiceClient',
+'ListCommoditiesRequest',
 'ListCommoditiesResponse',
 'ListCountriesRequest',
 'ListCountriesResponse',
+'ListPortsRequest',
 'ListPortsResponse',
 'ListRegionsRequest',
 'ListRegionsResponse',
 'ListRegionsWithPolygonResponse',
+'ListSegmentsRequest',
 'ListSegmentsResponse',
 'ListTonnageZonesResponse',
 'ListTonnageZonesWithPolygonsResponse',
+'ListZonesRequest',
 'Polygon',
 'Port',
 'Region',

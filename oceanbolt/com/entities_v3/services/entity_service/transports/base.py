@@ -181,7 +181,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_segments(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListSegmentsRequest],
             Union[
                 service.ListSegmentsResponse,
                 Awaitable[service.ListSegmentsResponse]
@@ -190,7 +190,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_zones(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListZonesRequest],
             Union[
                 service.ListTonnageZonesResponse,
                 Awaitable[service.ListTonnageZonesResponse]
@@ -199,7 +199,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_zones_with_polygons(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListZonesRequest],
             Union[
                 service.ListTonnageZonesWithPolygonsResponse,
                 Awaitable[service.ListTonnageZonesWithPolygonsResponse]
@@ -208,7 +208,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_regions(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListRegionsRequest],
             Union[
                 service.ListRegionsResponse,
                 Awaitable[service.ListRegionsResponse]
@@ -217,7 +217,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_commodities(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListCommoditiesRequest],
             Union[
                 service.ListCommoditiesResponse,
                 Awaitable[service.ListCommoditiesResponse]
@@ -226,7 +226,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_countries(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListCountriesRequest],
             Union[
                 service.ListCountriesResponse,
                 Awaitable[service.ListCountriesResponse]
@@ -235,7 +235,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_regions_with_polygons(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListRegionsRequest],
             Union[
                 service.ListRegionsWithPolygonResponse,
                 Awaitable[service.ListRegionsWithPolygonResponse]
@@ -244,7 +244,7 @@ class EntityServiceTransport(abc.ABC):
 
     @property
     def list_ports(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListPortsRequest],
             Union[
                 service.ListPortsResponse,
                 Awaitable[service.ListPortsResponse]

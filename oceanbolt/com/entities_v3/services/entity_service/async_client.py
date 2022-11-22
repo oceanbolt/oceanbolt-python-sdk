@@ -181,7 +181,7 @@ class EntityServiceAsyncClient:
         )
 
     async def list_segments(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListSegmentsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -198,7 +198,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListSegmentsRequest(
                 )
 
                 # Make the request
@@ -208,8 +208,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListSegmentsRequest, dict]):
+                The request object. ListSegments
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -218,10 +218,10 @@ class EntityServiceAsyncClient:
 
         Returns:
             oceanbolt.com.entities_v3.types.ListSegmentsResponse:
-                ListSegments
+
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListSegmentsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -243,7 +243,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_zones(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListZonesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -260,7 +260,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListZonesRequest(
                 )
 
                 # Make the request
@@ -270,8 +270,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListZonesRequest, dict]):
+                The request object. ListTonnageZonesWithPolygons
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -283,7 +283,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListZonesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -305,7 +305,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_zones_with_polygons(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListZonesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -323,7 +323,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListZonesRequest(
                 )
 
                 # Make the request
@@ -333,8 +333,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListZonesRequest, dict]):
+                The request object. ListTonnageZonesWithPolygons
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -346,7 +346,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListZonesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -368,7 +368,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_regions(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListRegionsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -385,7 +385,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListRegionsRequest(
                 )
 
                 # Make the request
@@ -395,8 +395,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListRegionsRequest, dict]):
+                The request object. ListRegions
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -408,7 +408,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListRegionsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -430,7 +430,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_commodities(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListCommoditiesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -447,7 +447,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListCommoditiesRequest(
                 )
 
                 # Make the request
@@ -457,8 +457,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListCommoditiesRequest, dict]):
+                The request object. ListCommodities
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -470,7 +470,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListCommoditiesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -492,7 +492,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_countries(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListCountriesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -509,7 +509,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListCountriesRequest(
                 )
 
                 # Make the request
@@ -519,8 +519,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListCountriesRequest, dict]):
+                The request object. ListCountries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -532,7 +532,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListCountriesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -554,7 +554,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_regions_with_polygons(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListRegionsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -572,7 +572,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListRegionsRequest(
                 )
 
                 # Make the request
@@ -582,8 +582,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListRegionsRequest, dict]):
+                The request object. ListRegions
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -595,7 +595,7 @@ class EntityServiceAsyncClient:
 
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListRegionsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -617,7 +617,7 @@ class EntityServiceAsyncClient:
         return response
 
     async def list_ports(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListPortsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -634,7 +634,7 @@ class EntityServiceAsyncClient:
                 client = entities_v3.EntityServiceAsyncClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListPortsRequest(
                 )
 
                 # Make the request
@@ -644,8 +644,8 @@ class EntityServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListPortsRequest, dict]):
+                The request object. Response object for ListPorts
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -654,10 +654,10 @@ class EntityServiceAsyncClient:
 
         Returns:
             oceanbolt.com.entities_v3.types.ListPortsResponse:
-                List Ports
+
         """
         # Create or coerce a protobuf request object.
-        request = service.EmptyParams(request)
+        request = service.ListPortsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

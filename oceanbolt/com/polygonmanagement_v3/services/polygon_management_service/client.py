@@ -34,7 +34,7 @@ try:
 except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
-from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.polygonmanagement_v3.types import resources
 from oceanbolt.com.polygonmanagement_v3.types import service
 from .transports.base import PolygonManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import PolygonManagementServiceGrpcTransport
@@ -74,7 +74,9 @@ class PolygonManagementServiceClientMeta(type):
 
 
 class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMeta):
-    """LayerManagement provides service to manage layers for clients"""
+    """PolygonManagementService provides service to manage layers
+    and polygons for clients
+    """
 
     @staticmethod
     def _get_default_mtls_endpoint(api_endpoint):
@@ -361,12 +363,12 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             )
 
     def list_layers(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListLayersRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layers:
+            ) -> service.ListLayersResponse:
         r"""ListLayers lists layers for the current user
 
         .. code-block:: python
@@ -378,7 +380,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 client = polygonmanagement_v3.PolygonManagementServiceClient()
 
                 # Initialize request argument(s)
-                request = polygonmanagement_v3.EmptyParams(
+                request = polygonmanagement_v3.ListLayersRequest(
                 )
 
                 # Make the request
@@ -388,8 +390,9 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.ListLayersRequest, dict]):
+                The request object. LayerManagement requests and
+                responses
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -397,16 +400,16 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.polygonmanagement_v3.types.Layers:
+            oceanbolt.com.polygonmanagement_v3.types.ListLayersResponse:
 
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListLayersRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListLayersRequest):
+            request = service.ListLayersRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -429,7 +432,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layer:
+            ) -> resources.Layer:
         r"""CreateLayer creates new layer for the current user
 
         .. code-block:: python
@@ -492,7 +495,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EmptyResponse:
+            ) -> None:
         r"""DeleteLayer deletes layer for the current user
 
         .. code-block:: python
@@ -508,10 +511,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 )
 
                 # Make the request
-                response = client.delete_layer(request=request)
-
-                # Handle the response
-                print(response)
+                client.delete_layer(request=request)
 
         Args:
             request (Union[oceanbolt.com.polygonmanagement_v3.types.DeleteLayerRequest, dict]):
@@ -521,10 +521,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.polygonmanagement_v3.types.EmptyResponse:
-
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
@@ -537,6 +533,75 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = self._transport._wrapped_methods[self._transport.delete_layer]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("layer_id", request.layer_id),
+            )),
+        )
+
+        # Send the request.
+        rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+    def copy_layer(self,
+            request: Union[service.CopyLayerRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> resources.Layer:
+        r"""CopyLayer creates a copy of the existing layer for
+        the current user
+
+        .. code-block:: python
+
+            from oceanbolt.com import polygonmanagement_v3
+
+            def sample_copy_layer():
+                # Create a client
+                client = polygonmanagement_v3.PolygonManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = polygonmanagement_v3.CopyLayerRequest(
+                )
+
+                # Make the request
+                response = client.copy_layer(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.CopyLayerRequest, dict]):
+                The request object.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.polygonmanagement_v3.types.Layer:
+
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a service.CopyLayerRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, service.CopyLayerRequest):
+            request = service.CopyLayerRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.copy_layer]
 
          # Certain fields should be provided within the metadata header;
         # add these here.
@@ -563,7 +628,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layer:
+            ) -> resources.Layer:
         r"""GetLayer gets fleed by layer id for the current user
 
         .. code-block:: python
@@ -628,86 +693,13 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         # Done; return the response.
         return response
 
-    def rename_layer(self,
-            request: Union[service.RenameLayerRequest, dict] = None,
-            *,
-            retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layer:
-        r"""RenameLayer changes the name of the layer for the
-        current user
-
-        .. code-block:: python
-
-            from oceanbolt.com import polygonmanagement_v3
-
-            def sample_rename_layer():
-                # Create a client
-                client = polygonmanagement_v3.PolygonManagementServiceClient()
-
-                # Initialize request argument(s)
-                request = polygonmanagement_v3.RenameLayerRequest(
-                )
-
-                # Make the request
-                response = client.rename_layer(request=request)
-
-                # Handle the response
-                print(response)
-
-        Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.RenameLayerRequest, dict]):
-                The request object.  LayerManagement requests ans
-                responses
-            retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                should be retried.
-            timeout (float): The timeout for this request.
-            metadata (Sequence[Tuple[str, str]]): Strings which should be
-                sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.polygonmanagement_v3.types.Layer:
-
-        """
-        # Create or coerce a protobuf request object.
-        # Minor optimization to avoid making a copy if the user passes
-        # in a service.RenameLayerRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, service.RenameLayerRequest):
-            request = service.RenameLayerRequest(request)
-
-        # Wrap the RPC method; this adds retry and timeout information,
-        # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.rename_layer]
-
-         # Certain fields should be provided within the metadata header;
-        # add these here.
-        metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ("layer_id", request.layer_id),
-            )),
-        )
-
-        # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
-
-        # Done; return the response.
-        return response
-
     def share_layer(self,
             request: Union[service.ShareLayerRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layer:
+            ) -> resources.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
@@ -779,7 +771,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Layer:
+            ) -> resources.Layer:
         r"""Sets the shared status of the layer to be either
         shared/not shared
 
@@ -851,9 +843,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Polygons:
-        r"""GetLayerPolygons gets layer polygons for the current
-        user
+            ) -> service.ListPolygonsResponse:
+        r"""GetLayerPolygons gets polygons for a given layer
 
         .. code-block:: python
 
@@ -883,7 +874,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.polygonmanagement_v3.types.Polygons:
+            oceanbolt.com.polygonmanagement_v3.types.ListPolygonsResponse:
 
         """
         # Create or coerce a protobuf request object.
@@ -923,8 +914,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Polygon:
-        r"""AddPolygon adds new vessel to user's layer
+            ) -> resources.Polygon:
+        r"""AddPolygon adds new polygon to a layer
 
         .. code-block:: python
 
@@ -994,8 +985,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.Polygon:
-        r"""UpdatePolygon updates existing vessel to user's layer
+            ) -> resources.Polygon:
+        r"""UpdatePolygon updates a polygon in a given layer
 
         .. code-block:: python
 
@@ -1066,8 +1057,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EmptyResponse:
-        r"""DeletePolygon removes vessel from user's layer
+            ) -> None:
+        r"""DeletePolygon removes a polygon from a given layer
 
         .. code-block:: python
 
@@ -1082,10 +1073,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 )
 
                 # Make the request
-                response = client.delete_polygon(request=request)
-
-                # Handle the response
-                print(response)
+                client.delete_polygon(request=request)
 
         Args:
             request (Union[oceanbolt.com.polygonmanagement_v3.types.DeletePolygonRequest, dict]):
@@ -1095,10 +1083,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.polygonmanagement_v3.types.EmptyResponse:
-
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
@@ -1122,24 +1106,21 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         )
 
         # Send the request.
-        response = rpc(
+        rpc(
             request,
             retry=retry,
             timeout=timeout,
             metadata=metadata,
         )
 
-        # Done; return the response.
-        return response
-
     def batch_add_polygons(self,
-            request: Union[service.BatchPolygonsRequest, dict] = None,
+            request: Union[service.BatchAddPolygonsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EmptyResponse:
-        r"""
+            ) -> service.BatchAddPolygonsResponse:
+        r"""BatchAddPolygons adds a batch of polygons to a layer
 
         .. code-block:: python
 
@@ -1150,7 +1131,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 client = polygonmanagement_v3.PolygonManagementServiceClient()
 
                 # Initialize request argument(s)
-                request = polygonmanagement_v3.BatchPolygonsRequest(
+                request = polygonmanagement_v3.BatchAddPolygonsRequest(
                 )
 
                 # Make the request
@@ -1160,7 +1141,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest, dict]):
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchAddPolygonsRequest, dict]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1169,16 +1150,16 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 sent along with the request as metadata.
 
         Returns:
-            oceanbolt.com.polygonmanagement_v3.types.EmptyResponse:
+            oceanbolt.com.polygonmanagement_v3.types.BatchAddPolygonsResponse:
 
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.BatchPolygonsRequest.
+        # in a service.BatchAddPolygonsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.BatchPolygonsRequest):
-            request = service.BatchPolygonsRequest(request)
+        if not isinstance(request, service.BatchAddPolygonsRequest):
+            request = service.BatchAddPolygonsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1204,13 +1185,14 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         return response
 
     def replace_polygons(self,
-            request: Union[service.BatchPolygonsRequest, dict] = None,
+            request: Union[service.ReplacePolygonsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EmptyResponse:
-        r"""
+            ) -> None:
+        r"""ReplacePolygons replaces all existing polygons in a
+        layer with a new batch of polygons
 
         .. code-block:: python
 
@@ -1221,35 +1203,28 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 client = polygonmanagement_v3.PolygonManagementServiceClient()
 
                 # Initialize request argument(s)
-                request = polygonmanagement_v3.BatchPolygonsRequest(
+                request = polygonmanagement_v3.ReplacePolygonsRequest(
                 )
 
                 # Make the request
-                response = client.replace_polygons(request=request)
-
-                # Handle the response
-                print(response)
+                client.replace_polygons(request=request)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchPolygonsRequest, dict]):
+            request (Union[oceanbolt.com.polygonmanagement_v3.types.ReplacePolygonsRequest, dict]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.polygonmanagement_v3.types.EmptyResponse:
-
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.BatchPolygonsRequest.
+        # in a service.ReplacePolygonsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.BatchPolygonsRequest):
-            request = service.BatchPolygonsRequest(request)
+        if not isinstance(request, service.ReplacePolygonsRequest):
+            request = service.ReplacePolygonsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -1264,15 +1239,12 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         )
 
         # Send the request.
-        response = rpc(
+        rpc(
             request,
             retry=retry,
             timeout=timeout,
             metadata=metadata,
         )
-
-        # Done; return the response.
-        return response
 
     def drop_polygons(self,
             request: Union[service.DropPolygonsRequest, dict] = None,
@@ -1280,8 +1252,8 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
             metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EmptyResponse:
-        r"""
+            ) -> None:
+        r"""Drop polygons drops all polygons from a layer
 
         .. code-block:: python
 
@@ -1296,10 +1268,7 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
                 )
 
                 # Make the request
-                response = client.drop_polygons(request=request)
-
-                # Handle the response
-                print(response)
+                client.drop_polygons(request=request)
 
         Args:
             request (Union[oceanbolt.com.polygonmanagement_v3.types.DropPolygonsRequest, dict]):
@@ -1309,10 +1278,6 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
-
-        Returns:
-            oceanbolt.com.polygonmanagement_v3.types.EmptyResponse:
-
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
@@ -1335,15 +1300,12 @@ class PolygonManagementServiceClient(metaclass=PolygonManagementServiceClientMet
         )
 
         # Send the request.
-        response = rpc(
+        rpc(
             request,
             retry=retry,
             timeout=timeout,
             metadata=metadata,
         )
-
-        # Done; return the response.
-        return response
 
     def __enter__(self):
         return self

@@ -360,7 +360,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
             )
 
     def list_segments(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListSegmentsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -377,7 +377,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListSegmentsRequest(
                 )
 
                 # Make the request
@@ -387,8 +387,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListSegmentsRequest, dict]):
+                The request object. ListSegments
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -397,15 +397,15 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
         Returns:
             oceanbolt.com.entities_v3.types.ListSegmentsResponse:
-                ListSegments
+
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListSegmentsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListSegmentsRequest):
+            request = service.ListSegmentsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -423,7 +423,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_zones(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListZonesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -440,7 +440,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListZonesRequest(
                 )
 
                 # Make the request
@@ -450,8 +450,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListZonesRequest, dict]):
+                The request object. ListTonnageZonesWithPolygons
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -464,11 +464,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListZonesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListZonesRequest):
+            request = service.ListZonesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -486,7 +486,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_zones_with_polygons(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListZonesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -504,7 +504,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListZonesRequest(
                 )
 
                 # Make the request
@@ -514,8 +514,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListZonesRequest, dict]):
+                The request object. ListTonnageZonesWithPolygons
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -528,11 +528,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListZonesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListZonesRequest):
+            request = service.ListZonesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -550,7 +550,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_regions(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListRegionsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -567,7 +567,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListRegionsRequest(
                 )
 
                 # Make the request
@@ -577,8 +577,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListRegionsRequest, dict]):
+                The request object. ListRegions
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -591,11 +591,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListRegionsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListRegionsRequest):
+            request = service.ListRegionsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -613,7 +613,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_commodities(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListCommoditiesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -630,7 +630,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListCommoditiesRequest(
                 )
 
                 # Make the request
@@ -640,8 +640,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListCommoditiesRequest, dict]):
+                The request object. ListCommodities
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -654,11 +654,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListCommoditiesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListCommoditiesRequest):
+            request = service.ListCommoditiesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -676,7 +676,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_countries(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListCountriesRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -693,7 +693,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListCountriesRequest(
                 )
 
                 # Make the request
@@ -703,8 +703,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListCountriesRequest, dict]):
+                The request object. ListCountries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -717,11 +717,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListCountriesRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListCountriesRequest):
+            request = service.ListCountriesRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -739,7 +739,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_regions_with_polygons(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListRegionsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -757,7 +757,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListRegionsRequest(
                 )
 
                 # Make the request
@@ -767,8 +767,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListRegionsRequest, dict]):
+                The request object. ListRegions
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -781,11 +781,11 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListRegionsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListRegionsRequest):
+            request = service.ListRegionsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -803,7 +803,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_ports(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Union[service.ListPortsRequest, dict] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
             timeout: float = None,
@@ -820,7 +820,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 client = entities_v3.EntityServiceClient()
 
                 # Initialize request argument(s)
-                request = entities_v3.EmptyParams(
+                request = entities_v3.ListPortsRequest(
                 )
 
                 # Make the request
@@ -830,8 +830,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.entities_v3.types.EmptyParams, dict]):
-                The request object.
+            request (Union[oceanbolt.com.entities_v3.types.ListPortsRequest, dict]):
+                The request object. Response object for ListPorts
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -840,15 +840,15 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
         Returns:
             oceanbolt.com.entities_v3.types.ListPortsResponse:
-                List Ports
+
         """
         # Create or coerce a protobuf request object.
         # Minor optimization to avoid making a copy if the user passes
-        # in a service.EmptyParams.
+        # in a service.ListPortsRequest.
         # There's no risk of modifying the input as we've already verified
         # there are no flattened fields.
-        if not isinstance(request, service.EmptyParams):
-            request = service.EmptyParams(request)
+        if not isinstance(request, service.ListPortsRequest):
+            request = service.ListPortsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

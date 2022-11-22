@@ -24,6 +24,8 @@ from google.auth.transport.grpc import SslCredentials  # type: ignore
 import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
+from google.protobuf import empty_pb2  # type: ignore
+from oceanbolt.com.polygonmanagement_v3.types import resources
 from oceanbolt.com.polygonmanagement_v3.types import service
 from .base import PolygonManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .grpc import PolygonManagementServiceGrpcTransport
@@ -32,7 +34,8 @@ from .grpc import PolygonManagementServiceGrpcTransport
 class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTransport):
     """gRPC AsyncIO backend transport for PolygonManagementService.
 
-    LayerManagement provides service to manage layers for clients
+    PolygonManagementService provides service to manage layers
+    and polygons for clients
 
     This class defines the same methods as the primary client, so the
     primary client can load the underlying transport implementation
@@ -230,15 +233,15 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
 
     @property
     def list_layers(self) -> Callable[
-            [service.EmptyParams],
-            Awaitable[service.Layers]]:
+            [service.ListLayersRequest],
+            Awaitable[service.ListLayersResponse]]:
         r"""Return a callable for the list layers method over gRPC.
 
         ListLayers lists layers for the current user
 
         Returns:
-            Callable[[~.EmptyParams],
-                    Awaitable[~.Layers]]:
+            Callable[[~.ListLayersRequest],
+                    Awaitable[~.ListLayersResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -249,15 +252,15 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
         if 'list_layers' not in self._stubs:
             self._stubs['list_layers'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/ListLayers',
-                request_serializer=service.EmptyParams.serialize,
-                response_deserializer=service.Layers.deserialize,
+                request_serializer=service.ListLayersRequest.serialize,
+                response_deserializer=service.ListLayersResponse.deserialize,
             )
         return self._stubs['list_layers']
 
     @property
     def create_layer(self) -> Callable[
             [service.CreateLayerRequest],
-            Awaitable[service.Layer]]:
+            Awaitable[resources.Layer]]:
         r"""Return a callable for the create layer method over gRPC.
 
         CreateLayer creates new layer for the current user
@@ -276,21 +279,21 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['create_layer'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/CreateLayer',
                 request_serializer=service.CreateLayerRequest.serialize,
-                response_deserializer=service.Layer.deserialize,
+                response_deserializer=resources.Layer.deserialize,
             )
         return self._stubs['create_layer']
 
     @property
     def delete_layer(self) -> Callable[
             [service.DeleteLayerRequest],
-            Awaitable[service.EmptyResponse]]:
+            Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the delete layer method over gRPC.
 
         DeleteLayer deletes layer for the current user
 
         Returns:
             Callable[[~.DeleteLayerRequest],
-                    Awaitable[~.EmptyResponse]]:
+                    Awaitable[~.Empty]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -302,14 +305,41 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['delete_layer'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/DeleteLayer',
                 request_serializer=service.DeleteLayerRequest.serialize,
-                response_deserializer=service.EmptyResponse.deserialize,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs['delete_layer']
 
     @property
+    def copy_layer(self) -> Callable[
+            [service.CopyLayerRequest],
+            Awaitable[resources.Layer]]:
+        r"""Return a callable for the copy layer method over gRPC.
+
+        CopyLayer creates a copy of the existing layer for
+        the current user
+
+        Returns:
+            Callable[[~.CopyLayerRequest],
+                    Awaitable[~.Layer]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'copy_layer' not in self._stubs:
+            self._stubs['copy_layer'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/CopyLayer',
+                request_serializer=service.CopyLayerRequest.serialize,
+                response_deserializer=resources.Layer.deserialize,
+            )
+        return self._stubs['copy_layer']
+
+    @property
     def describe_layer(self) -> Callable[
             [service.GetLayerRequest],
-            Awaitable[service.Layer]]:
+            Awaitable[resources.Layer]]:
         r"""Return a callable for the describe layer method over gRPC.
 
         GetLayer gets fleed by layer id for the current user
@@ -328,41 +358,14 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['describe_layer'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/DescribeLayer',
                 request_serializer=service.GetLayerRequest.serialize,
-                response_deserializer=service.Layer.deserialize,
+                response_deserializer=resources.Layer.deserialize,
             )
         return self._stubs['describe_layer']
 
     @property
-    def rename_layer(self) -> Callable[
-            [service.RenameLayerRequest],
-            Awaitable[service.Layer]]:
-        r"""Return a callable for the rename layer method over gRPC.
-
-        RenameLayer changes the name of the layer for the
-        current user
-
-        Returns:
-            Callable[[~.RenameLayerRequest],
-                    Awaitable[~.Layer]]:
-                A function that, when called, will call the underlying RPC
-                on the server.
-        """
-        # Generate a "stub function" on-the-fly which will actually make
-        # the request.
-        # gRPC handles serialization and deserialization, so we just need
-        # to pass in the functions for each.
-        if 'rename_layer' not in self._stubs:
-            self._stubs['rename_layer'] = self.grpc_channel.unary_unary(
-                '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/RenameLayer',
-                request_serializer=service.RenameLayerRequest.serialize,
-                response_deserializer=service.Layer.deserialize,
-            )
-        return self._stubs['rename_layer']
-
-    @property
     def share_layer(self) -> Callable[
             [service.ShareLayerRequest],
-            Awaitable[service.Layer]]:
+            Awaitable[resources.Layer]]:
         r"""Return a callable for the share layer method over gRPC.
 
         Sets the shared status of the layer to be either
@@ -382,14 +385,14 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['share_layer'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/ShareLayer',
                 request_serializer=service.ShareLayerRequest.serialize,
-                response_deserializer=service.Layer.deserialize,
+                response_deserializer=resources.Layer.deserialize,
             )
         return self._stubs['share_layer']
 
     @property
     def unshare_layer(self) -> Callable[
             [service.ShareLayerRequest],
-            Awaitable[service.Layer]]:
+            Awaitable[resources.Layer]]:
         r"""Return a callable for the unshare layer method over gRPC.
 
         Sets the shared status of the layer to be either
@@ -409,22 +412,21 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['unshare_layer'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/UnshareLayer',
                 request_serializer=service.ShareLayerRequest.serialize,
-                response_deserializer=service.Layer.deserialize,
+                response_deserializer=resources.Layer.deserialize,
             )
         return self._stubs['unshare_layer']
 
     @property
     def list_polygons(self) -> Callable[
             [service.ListPolygonsRequest],
-            Awaitable[service.Polygons]]:
+            Awaitable[service.ListPolygonsResponse]]:
         r"""Return a callable for the list polygons method over gRPC.
 
-        GetLayerPolygons gets layer polygons for the current
-        user
+        GetLayerPolygons gets polygons for a given layer
 
         Returns:
             Callable[[~.ListPolygonsRequest],
-                    Awaitable[~.Polygons]]:
+                    Awaitable[~.ListPolygonsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -436,17 +438,17 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['list_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/ListPolygons',
                 request_serializer=service.ListPolygonsRequest.serialize,
-                response_deserializer=service.Polygons.deserialize,
+                response_deserializer=service.ListPolygonsResponse.deserialize,
             )
         return self._stubs['list_polygons']
 
     @property
     def add_polygon(self) -> Callable[
             [service.AddPolygonRequest],
-            Awaitable[service.Polygon]]:
+            Awaitable[resources.Polygon]]:
         r"""Return a callable for the add polygon method over gRPC.
 
-        AddPolygon adds new vessel to user's layer
+        AddPolygon adds new polygon to a layer
 
         Returns:
             Callable[[~.AddPolygonRequest],
@@ -462,17 +464,17 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['add_polygon'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/AddPolygon',
                 request_serializer=service.AddPolygonRequest.serialize,
-                response_deserializer=service.Polygon.deserialize,
+                response_deserializer=resources.Polygon.deserialize,
             )
         return self._stubs['add_polygon']
 
     @property
     def update_polygon(self) -> Callable[
             [service.UpdatePolygonRequest],
-            Awaitable[service.Polygon]]:
+            Awaitable[resources.Polygon]]:
         r"""Return a callable for the update polygon method over gRPC.
 
-        UpdatePolygon updates existing vessel to user's layer
+        UpdatePolygon updates a polygon in a given layer
 
         Returns:
             Callable[[~.UpdatePolygonRequest],
@@ -488,21 +490,21 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['update_polygon'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/UpdatePolygon',
                 request_serializer=service.UpdatePolygonRequest.serialize,
-                response_deserializer=service.Polygon.deserialize,
+                response_deserializer=resources.Polygon.deserialize,
             )
         return self._stubs['update_polygon']
 
     @property
     def delete_polygon(self) -> Callable[
             [service.DeletePolygonRequest],
-            Awaitable[service.EmptyResponse]]:
+            Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the delete polygon method over gRPC.
 
-        DeletePolygon removes vessel from user's layer
+        DeletePolygon removes a polygon from a given layer
 
         Returns:
             Callable[[~.DeletePolygonRequest],
-                    Awaitable[~.EmptyResponse]]:
+                    Awaitable[~.Empty]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -514,19 +516,21 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['delete_polygon'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/DeletePolygon',
                 request_serializer=service.DeletePolygonRequest.serialize,
-                response_deserializer=service.EmptyResponse.deserialize,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs['delete_polygon']
 
     @property
     def batch_add_polygons(self) -> Callable[
-            [service.BatchPolygonsRequest],
-            Awaitable[service.EmptyResponse]]:
+            [service.BatchAddPolygonsRequest],
+            Awaitable[service.BatchAddPolygonsResponse]]:
         r"""Return a callable for the batch add polygons method over gRPC.
 
+        BatchAddPolygons adds a batch of polygons to a layer
+
         Returns:
-            Callable[[~.BatchPolygonsRequest],
-                    Awaitable[~.EmptyResponse]]:
+            Callable[[~.BatchAddPolygonsRequest],
+                    Awaitable[~.BatchAddPolygonsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -537,20 +541,23 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
         if 'batch_add_polygons' not in self._stubs:
             self._stubs['batch_add_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/BatchAddPolygons',
-                request_serializer=service.BatchPolygonsRequest.serialize,
-                response_deserializer=service.EmptyResponse.deserialize,
+                request_serializer=service.BatchAddPolygonsRequest.serialize,
+                response_deserializer=service.BatchAddPolygonsResponse.deserialize,
             )
         return self._stubs['batch_add_polygons']
 
     @property
     def replace_polygons(self) -> Callable[
-            [service.BatchPolygonsRequest],
-            Awaitable[service.EmptyResponse]]:
+            [service.ReplacePolygonsRequest],
+            Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the replace polygons method over gRPC.
 
+        ReplacePolygons replaces all existing polygons in a
+        layer with a new batch of polygons
+
         Returns:
-            Callable[[~.BatchPolygonsRequest],
-                    Awaitable[~.EmptyResponse]]:
+            Callable[[~.ReplacePolygonsRequest],
+                    Awaitable[~.Empty]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -561,20 +568,22 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
         if 'replace_polygons' not in self._stubs:
             self._stubs['replace_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/ReplacePolygons',
-                request_serializer=service.BatchPolygonsRequest.serialize,
-                response_deserializer=service.EmptyResponse.deserialize,
+                request_serializer=service.ReplacePolygonsRequest.serialize,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs['replace_polygons']
 
     @property
     def drop_polygons(self) -> Callable[
             [service.DropPolygonsRequest],
-            Awaitable[service.EmptyResponse]]:
+            Awaitable[empty_pb2.Empty]]:
         r"""Return a callable for the drop polygons method over gRPC.
+
+        Drop polygons drops all polygons from a layer
 
         Returns:
             Callable[[~.DropPolygonsRequest],
-                    Awaitable[~.EmptyResponse]]:
+                    Awaitable[~.Empty]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
         """
@@ -586,7 +595,7 @@ class PolygonManagementServiceGrpcAsyncIOTransport(PolygonManagementServiceTrans
             self._stubs['drop_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.polygonmanagement.v3.PolygonManagementService/DropPolygons',
                 request_serializer=service.DropPolygonsRequest.serialize,
-                response_deserializer=service.EmptyResponse.deserialize,
+                response_deserializer=empty_pb2.Empty.FromString,
             )
         return self._stubs['drop_polygons']
 

@@ -19,13 +19,15 @@ import proto  # type: ignore
 __protobuf__ = proto.module(
     package='oceanbolt.com.entities.v3',
     manifest={
-        'EmptyParams',
+        'ListSegmentsRequest',
         'ListSegmentsResponse',
         'Segment',
+        'ListPortsRequest',
         'ListPortsResponse',
         'Port',
-        'ZoneWithPolygon',
+        'ListZonesRequest',
         'ListTonnageZonesWithPolygonsResponse',
+        'ZoneWithPolygon',
         'Zone',
         'ListTonnageZonesResponse',
         'ListRegionsRequest',
@@ -36,6 +38,7 @@ __protobuf__ = proto.module(
         'ListCountriesRequest',
         'Country',
         'ListCountriesResponse',
+        'ListCommoditiesRequest',
         'Commodity',
         'ListCommoditiesResponse',
         'SearchRequest',
@@ -47,13 +50,13 @@ __protobuf__ = proto.module(
 )
 
 
-class EmptyParams(proto.Message):
-    r"""
+class ListSegmentsRequest(proto.Message):
+    r"""ListSegments
     """
 
 
 class ListSegmentsResponse(proto.Message):
-    r"""ListSegments
+    r"""
 
     Attributes:
         segments (Sequence[oceanbolt.com.entities_v3.types.Segment]):
@@ -83,9 +86,13 @@ class Segment(proto.Message):
 
         sub_segment_key (str):
 
-        cutoff_low (float):
+        cutoff_low_dwt (float):
 
-        cutoff_high (float):
+        cutoff_high_dwt (float):
+
+        cutoff_low_cbm (float):
+
+        cutoff_high_cbm (float):
 
         platform (str):
 
@@ -117,13 +124,21 @@ class Segment(proto.Message):
         proto.STRING,
         number=5,
     )
-    cutoff_low = proto.Field(
+    cutoff_low_dwt = proto.Field(
         proto.DOUBLE,
         number=7,
     )
-    cutoff_high = proto.Field(
+    cutoff_high_dwt = proto.Field(
         proto.DOUBLE,
         number=8,
+    )
+    cutoff_low_cbm = proto.Field(
+        proto.DOUBLE,
+        number=11,
+    )
+    cutoff_high_cbm = proto.Field(
+        proto.DOUBLE,
+        number=12,
     )
     platform = proto.Field(
         proto.STRING,
@@ -135,8 +150,13 @@ class Segment(proto.Message):
     )
 
 
+class ListPortsRequest(proto.Message):
+    r"""Response object for ListPorts
+    """
+
+
 class ListPortsResponse(proto.Message):
-    r"""List Ports
+    r"""
 
     Attributes:
         ports (Sequence[oceanbolt.com.entities_v3.types.Port]):
@@ -151,7 +171,7 @@ class ListPortsResponse(proto.Message):
 
 
 class Port(proto.Message):
-    r"""
+    r"""Port entity in the Oceanbolt data model.
 
     Attributes:
         port_id (int):
@@ -167,6 +187,10 @@ class Port(proto.Message):
         unlocode_alias (Sequence[str]):
 
         port_name_alias (Sequence[str]):
+
+        longitude (float):
+
+        latitude (float):
 
     """
 
@@ -198,10 +222,38 @@ class Port(proto.Message):
         proto.STRING,
         number=7,
     )
+    longitude = proto.Field(
+        proto.DOUBLE,
+        number=8,
+    )
+    latitude = proto.Field(
+        proto.DOUBLE,
+        number=9,
+    )
+
+
+class ListZonesRequest(proto.Message):
+    r"""ListTonnageZonesWithPolygons
+    """
+
+
+class ListTonnageZonesWithPolygonsResponse(proto.Message):
+    r"""
+
+    Attributes:
+        zones (Sequence[oceanbolt.com.entities_v3.types.ZoneWithPolygon]):
+
+    """
+
+    zones = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='ZoneWithPolygon',
+    )
 
 
 class ZoneWithPolygon(proto.Message):
-    r"""ListTonnageZonesWithPolygons
+    r"""
 
     Attributes:
         zone_id (int):
@@ -250,21 +302,6 @@ class ZoneWithPolygon(proto.Message):
     )
 
 
-class ListTonnageZonesWithPolygonsResponse(proto.Message):
-    r"""
-
-    Attributes:
-        zones (Sequence[oceanbolt.com.entities_v3.types.ZoneWithPolygon]):
-
-    """
-
-    zones = proto.RepeatedField(
-        proto.MESSAGE,
-        number=1,
-        message='ZoneWithPolygon',
-    )
-
-
 class Zone(proto.Message):
     r"""ListZones
 
@@ -302,16 +339,7 @@ class ListTonnageZonesResponse(proto.Message):
 
 class ListRegionsRequest(proto.Message):
     r"""ListRegions
-
-    Attributes:
-        direction (str):
-
     """
-
-    direction = proto.Field(
-        proto.STRING,
-        number=1,
-    )
 
 
 class Region(proto.Message):
@@ -392,16 +420,7 @@ class ListRegionsWithPolygonResponse(proto.Message):
 
 class ListCountriesRequest(proto.Message):
     r"""ListCountries
-
-    Attributes:
-        direction (str):
-
     """
-
-    direction = proto.Field(
-        proto.STRING,
-        number=1,
-    )
 
 
 class Country(proto.Message):
@@ -439,8 +458,13 @@ class ListCountriesResponse(proto.Message):
     )
 
 
-class Commodity(proto.Message):
+class ListCommoditiesRequest(proto.Message):
     r"""ListCommodities
+    """
+
+
+class Commodity(proto.Message):
+    r"""
 
     Attributes:
         commodity (str):

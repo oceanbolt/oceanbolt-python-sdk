@@ -230,14 +230,14 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
 
     @property
     def list_segments(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListSegmentsRequest],
             Awaitable[service.ListSegmentsResponse]]:
         r"""Return a callable for the list segments method over gRPC.
 
         ListSegments retrieves all available vessel segments
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListSegmentsRequest],
                     Awaitable[~.ListSegmentsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -249,21 +249,21 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_segments' not in self._stubs:
             self._stubs['list_segments'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListSegments',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListSegmentsRequest.serialize,
                 response_deserializer=service.ListSegmentsResponse.deserialize,
             )
         return self._stubs['list_segments']
 
     @property
     def list_zones(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListZonesRequest],
             Awaitable[service.ListTonnageZonesResponse]]:
         r"""Return a callable for the list zones method over gRPC.
 
         ListZones retrieves all zones
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListZonesRequest],
                     Awaitable[~.ListTonnageZonesResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -275,14 +275,14 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_zones' not in self._stubs:
             self._stubs['list_zones'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListZones',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListZonesRequest.serialize,
                 response_deserializer=service.ListTonnageZonesResponse.deserialize,
             )
         return self._stubs['list_zones']
 
     @property
     def list_zones_with_polygons(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListZonesRequest],
             Awaitable[service.ListTonnageZonesWithPolygonsResponse]]:
         r"""Return a callable for the list zones with polygons method over gRPC.
 
@@ -290,7 +290,7 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         Polygons
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListZonesRequest],
                     Awaitable[~.ListTonnageZonesWithPolygonsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -302,21 +302,21 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_zones_with_polygons' not in self._stubs:
             self._stubs['list_zones_with_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListZonesWithPolygons',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListZonesRequest.serialize,
                 response_deserializer=service.ListTonnageZonesWithPolygonsResponse.deserialize,
             )
         return self._stubs['list_zones_with_polygons']
 
     @property
     def list_regions(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListRegionsRequest],
             Awaitable[service.ListRegionsResponse]]:
         r"""Return a callable for the list regions method over gRPC.
 
         ListRegions retrives all regions
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListRegionsRequest],
                     Awaitable[~.ListRegionsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -328,21 +328,21 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_regions' not in self._stubs:
             self._stubs['list_regions'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListRegions',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListRegionsRequest.serialize,
                 response_deserializer=service.ListRegionsResponse.deserialize,
             )
         return self._stubs['list_regions']
 
     @property
     def list_commodities(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListCommoditiesRequest],
             Awaitable[service.ListCommoditiesResponse]]:
         r"""Return a callable for the list commodities method over gRPC.
 
         ListCommodities retrives all commodities
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListCommoditiesRequest],
                     Awaitable[~.ListCommoditiesResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -354,21 +354,21 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_commodities' not in self._stubs:
             self._stubs['list_commodities'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListCommodities',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListCommoditiesRequest.serialize,
                 response_deserializer=service.ListCommoditiesResponse.deserialize,
             )
         return self._stubs['list_commodities']
 
     @property
     def list_countries(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListCountriesRequest],
             Awaitable[service.ListCountriesResponse]]:
         r"""Return a callable for the list countries method over gRPC.
 
         ListCountries retrives all countries
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListCountriesRequest],
                     Awaitable[~.ListCountriesResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -380,14 +380,14 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_countries' not in self._stubs:
             self._stubs['list_countries'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListCountries',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListCountriesRequest.serialize,
                 response_deserializer=service.ListCountriesResponse.deserialize,
             )
         return self._stubs['list_countries']
 
     @property
     def list_regions_with_polygons(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListRegionsRequest],
             Awaitable[service.ListRegionsWithPolygonResponse]]:
         r"""Return a callable for the list regions with polygons method over gRPC.
 
@@ -395,7 +395,7 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         polygons
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListRegionsRequest],
                     Awaitable[~.ListRegionsWithPolygonResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -407,21 +407,21 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_regions_with_polygons' not in self._stubs:
             self._stubs['list_regions_with_polygons'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListRegionsWithPolygons',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListRegionsRequest.serialize,
                 response_deserializer=service.ListRegionsWithPolygonResponse.deserialize,
             )
         return self._stubs['list_regions_with_polygons']
 
     @property
     def list_ports(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListPortsRequest],
             Awaitable[service.ListPortsResponse]]:
         r"""Return a callable for the list ports method over gRPC.
 
         ListPorts retrieves all ports
 
         Returns:
-            Callable[[~.EmptyParams],
+            Callable[[~.ListPortsRequest],
                     Awaitable[~.ListPortsResponse]]:
                 A function that, when called, will call the underlying RPC
                 on the server.
@@ -433,7 +433,7 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
         if 'list_ports' not in self._stubs:
             self._stubs['list_ports'] = self.grpc_channel.unary_unary(
                 '/oceanbolt.com.entities.v3.EntityService/ListPorts',
-                request_serializer=service.EmptyParams.serialize,
+                request_serializer=service.ListPortsRequest.serialize,
                 response_deserializer=service.ListPortsResponse.deserialize,
             )
         return self._stubs['list_ports']

@@ -25,6 +25,8 @@ from google.api_core import retry as retries
 from google.auth import credentials as ga_credentials  # type: ignore
 from google.oauth2 import service_account # type: ignore
 
+from google.protobuf import empty_pb2  # type: ignore
+from oceanbolt.com.polygonmanagement_v3.types import resources
 from oceanbolt.com.polygonmanagement_v3.types import service
 
 try:
@@ -133,13 +135,13 @@ class PolygonManagementServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.describe_layer: gapic_v1.method.wrap_method(
-                self.describe_layer,
+            self.copy_layer: gapic_v1.method.wrap_method(
+                self.copy_layer,
                 default_timeout=None,
                 client_info=client_info,
             ),
-            self.rename_layer: gapic_v1.method.wrap_method(
-                self.rename_layer,
+            self.describe_layer: gapic_v1.method.wrap_method(
+                self.describe_layer,
                 default_timeout=None,
                 client_info=client_info,
             ),
@@ -201,10 +203,10 @@ class PolygonManagementServiceTransport(abc.ABC):
 
     @property
     def list_layers(self) -> Callable[
-            [service.EmptyParams],
+            [service.ListLayersRequest],
             Union[
-                service.Layers,
-                Awaitable[service.Layers]
+                service.ListLayersResponse,
+                Awaitable[service.ListLayersResponse]
             ]]:
         raise NotImplementedError()
 
@@ -212,8 +214,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def create_layer(self) -> Callable[
             [service.CreateLayerRequest],
             Union[
-                service.Layer,
-                Awaitable[service.Layer]
+                resources.Layer,
+                Awaitable[resources.Layer]
             ]]:
         raise NotImplementedError()
 
@@ -221,8 +223,17 @@ class PolygonManagementServiceTransport(abc.ABC):
     def delete_layer(self) -> Callable[
             [service.DeleteLayerRequest],
             Union[
-                service.EmptyResponse,
-                Awaitable[service.EmptyResponse]
+                empty_pb2.Empty,
+                Awaitable[empty_pb2.Empty]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def copy_layer(self) -> Callable[
+            [service.CopyLayerRequest],
+            Union[
+                resources.Layer,
+                Awaitable[resources.Layer]
             ]]:
         raise NotImplementedError()
 
@@ -230,17 +241,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def describe_layer(self) -> Callable[
             [service.GetLayerRequest],
             Union[
-                service.Layer,
-                Awaitable[service.Layer]
-            ]]:
-        raise NotImplementedError()
-
-    @property
-    def rename_layer(self) -> Callable[
-            [service.RenameLayerRequest],
-            Union[
-                service.Layer,
-                Awaitable[service.Layer]
+                resources.Layer,
+                Awaitable[resources.Layer]
             ]]:
         raise NotImplementedError()
 
@@ -248,8 +250,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def share_layer(self) -> Callable[
             [service.ShareLayerRequest],
             Union[
-                service.Layer,
-                Awaitable[service.Layer]
+                resources.Layer,
+                Awaitable[resources.Layer]
             ]]:
         raise NotImplementedError()
 
@@ -257,8 +259,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def unshare_layer(self) -> Callable[
             [service.ShareLayerRequest],
             Union[
-                service.Layer,
-                Awaitable[service.Layer]
+                resources.Layer,
+                Awaitable[resources.Layer]
             ]]:
         raise NotImplementedError()
 
@@ -266,8 +268,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def list_polygons(self) -> Callable[
             [service.ListPolygonsRequest],
             Union[
-                service.Polygons,
-                Awaitable[service.Polygons]
+                service.ListPolygonsResponse,
+                Awaitable[service.ListPolygonsResponse]
             ]]:
         raise NotImplementedError()
 
@@ -275,8 +277,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def add_polygon(self) -> Callable[
             [service.AddPolygonRequest],
             Union[
-                service.Polygon,
-                Awaitable[service.Polygon]
+                resources.Polygon,
+                Awaitable[resources.Polygon]
             ]]:
         raise NotImplementedError()
 
@@ -284,8 +286,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def update_polygon(self) -> Callable[
             [service.UpdatePolygonRequest],
             Union[
-                service.Polygon,
-                Awaitable[service.Polygon]
+                resources.Polygon,
+                Awaitable[resources.Polygon]
             ]]:
         raise NotImplementedError()
 
@@ -293,26 +295,26 @@ class PolygonManagementServiceTransport(abc.ABC):
     def delete_polygon(self) -> Callable[
             [service.DeletePolygonRequest],
             Union[
-                service.EmptyResponse,
-                Awaitable[service.EmptyResponse]
+                empty_pb2.Empty,
+                Awaitable[empty_pb2.Empty]
             ]]:
         raise NotImplementedError()
 
     @property
     def batch_add_polygons(self) -> Callable[
-            [service.BatchPolygonsRequest],
+            [service.BatchAddPolygonsRequest],
             Union[
-                service.EmptyResponse,
-                Awaitable[service.EmptyResponse]
+                service.BatchAddPolygonsResponse,
+                Awaitable[service.BatchAddPolygonsResponse]
             ]]:
         raise NotImplementedError()
 
     @property
     def replace_polygons(self) -> Callable[
-            [service.BatchPolygonsRequest],
+            [service.ReplacePolygonsRequest],
             Union[
-                service.EmptyResponse,
-                Awaitable[service.EmptyResponse]
+                empty_pb2.Empty,
+                Awaitable[empty_pb2.Empty]
             ]]:
         raise NotImplementedError()
 
@@ -320,8 +322,8 @@ class PolygonManagementServiceTransport(abc.ABC):
     def drop_polygons(self) -> Callable[
             [service.DropPolygonsRequest],
             Union[
-                service.EmptyResponse,
-                Awaitable[service.EmptyResponse]
+                empty_pb2.Empty,
+                Awaitable[empty_pb2.Empty]
             ]]:
         raise NotImplementedError()
 

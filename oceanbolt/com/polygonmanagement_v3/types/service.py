@@ -15,13 +15,13 @@
 #
 import proto  # type: ignore
 
-from google.protobuf import wrappers_pb2  # type: ignore
+from oceanbolt.com.polygonmanagement_v3.types import resources
 
 
 __protobuf__ = proto.module(
     package='oceanbolt.com.polygonmanagement.v3',
     manifest={
-        'RenameLayerRequest',
+        'ListLayersRequest',
         'CreateLayerRequest',
         'DeleteLayerRequest',
         'CopyLayerRequest',
@@ -29,52 +29,34 @@ __protobuf__ = proto.module(
         'ListPolygonsRequest',
         'ShareLayerRequest',
         'DropPolygonsRequest',
-        'BatchPolygonsRequest',
-        'Layers',
-        'Layer',
-        'PolygonParams',
+        'BatchAddPolygonsRequest',
+        'BatchAddPolygonsResponse',
+        'ReplacePolygonsRequest',
+        'ListLayersResponse',
         'AddPolygonRequest',
         'DeletePolygonRequest',
         'UpdatePolygonRequest',
-        'Polygons',
-        'Polygon',
-        'EmptyParams',
-        'EmptyResponse',
+        'ListPolygonsResponse',
     },
 )
 
 
-class RenameLayerRequest(proto.Message):
-    r"""LayerManagement requests ans responses
-
-    Attributes:
-        layer_id (str):
-
-        new_layer_name (str):
-
+class ListLayersRequest(proto.Message):
+    r"""LayerManagement requests and responses
     """
-
-    layer_id = proto.Field(
-        proto.STRING,
-        number=1,
-    )
-    new_layer_name = proto.Field(
-        proto.STRING,
-        number=2,
-    )
 
 
 class CreateLayerRequest(proto.Message):
     r"""
 
     Attributes:
-        layer_name (str):
+        layer_id (str):
 
     """
 
-    layer_name = proto.Field(
+    layer_id = proto.Field(
         proto.STRING,
-        number=2,
+        number=1,
     )
 
 
@@ -98,11 +80,17 @@ class CopyLayerRequest(proto.Message):
     Attributes:
         layer_id (str):
 
+        new_layer_id (str):
+
     """
 
     layer_id = proto.Field(
         proto.STRING,
         number=1,
+    )
+    new_layer_id = proto.Field(
+        proto.STRING,
+        number=2,
     )
 
 
@@ -162,13 +150,13 @@ class DropPolygonsRequest(proto.Message):
     )
 
 
-class BatchPolygonsRequest(proto.Message):
+class BatchAddPolygonsRequest(proto.Message):
     r"""
 
     Attributes:
         layer_id (str):
 
-        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.PolygonParams]):
+        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
 
         upsert (bool):
 
@@ -181,7 +169,7 @@ class BatchPolygonsRequest(proto.Message):
     polygons = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
-        message='PolygonParams',
+        message=resources.Polygon,
     )
     upsert = proto.Field(
         proto.BOOL,
@@ -189,45 +177,27 @@ class BatchPolygonsRequest(proto.Message):
     )
 
 
-class Layers(proto.Message):
+class BatchAddPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
-        layers (Sequence[oceanbolt.com.polygonmanagement_v3.types.Layer]):
-
-        predefined_layers (Sequence[oceanbolt.com.polygonmanagement_v3.types.Layer]):
+        errors (Sequence[str]):
 
     """
 
-    layers = proto.RepeatedField(
-        proto.MESSAGE,
+    errors = proto.RepeatedField(
+        proto.STRING,
         number=1,
-        message='Layer',
-    )
-    predefined_layers = proto.RepeatedField(
-        proto.MESSAGE,
-        number=2,
-        message='Layer',
     )
 
 
-class Layer(proto.Message):
+class ReplacePolygonsRequest(proto.Message):
     r"""
 
     Attributes:
         layer_id (str):
 
-        layer_name (str):
-
-        owner_user_id (str):
-
-        organization (str):
-
-        polygons_in_layer (google.protobuf.wrappers_pb2.Int32Value):
-
         polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
-
-        shared_with_org (google.protobuf.wrappers_pb2.BoolValue):
 
     """
 
@@ -235,60 +205,25 @@ class Layer(proto.Message):
         proto.STRING,
         number=1,
     )
-    layer_name = proto.Field(
-        proto.STRING,
-        number=2,
-    )
-    owner_user_id = proto.Field(
-        proto.STRING,
-        number=3,
-    )
-    organization = proto.Field(
-        proto.STRING,
-        number=6,
-    )
-    polygons_in_layer = proto.Field(
-        proto.MESSAGE,
-        number=4,
-        message=wrappers_pb2.Int32Value,
-    )
     polygons = proto.RepeatedField(
         proto.MESSAGE,
-        number=5,
-        message='Polygon',
-    )
-    shared_with_org = proto.Field(
-        proto.MESSAGE,
-        number=7,
-        message=wrappers_pb2.BoolValue,
+        number=2,
+        message=resources.Polygon,
     )
 
 
-class PolygonParams(proto.Message):
+class ListLayersResponse(proto.Message):
     r"""
 
     Attributes:
-        polygon_name (str):
-
-        geojson (str):
-            geojson format for geometry encoding,
-            https://en.wikipedia.org/wiki/GeoJSON
-        metadata (Mapping[str, str]):
+        layers (Sequence[oceanbolt.com.polygonmanagement_v3.types.Layer]):
 
     """
 
-    polygon_name = proto.Field(
-        proto.STRING,
-        number=2,
-    )
-    geojson = proto.Field(
-        proto.STRING,
-        number=11,
-    )
-    metadata = proto.MapField(
-        proto.STRING,
-        proto.STRING,
-        number=3,
+    layers = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=resources.Layer,
     )
 
 
@@ -298,7 +233,9 @@ class AddPolygonRequest(proto.Message):
     Attributes:
         layer_id (str):
 
-        polygon (oceanbolt.com.polygonmanagement_v3.types.PolygonParams):
+        polygon_id (str):
+
+        payload (oceanbolt.com.polygonmanagement_v3.types.Polygon):
 
     """
 
@@ -306,10 +243,14 @@ class AddPolygonRequest(proto.Message):
         proto.STRING,
         number=1,
     )
-    polygon = proto.Field(
-        proto.MESSAGE,
+    polygon_id = proto.Field(
+        proto.STRING,
         number=2,
-        message='PolygonParams',
+    )
+    payload = proto.Field(
+        proto.MESSAGE,
+        number=3,
+        message=resources.Polygon,
     )
 
 
@@ -341,7 +282,7 @@ class UpdatePolygonRequest(proto.Message):
 
         polygon_id (str):
 
-        polygon (oceanbolt.com.polygonmanagement_v3.types.PolygonParams):
+        payload (oceanbolt.com.polygonmanagement_v3.types.Polygon):
 
         upsert (bool):
 
@@ -355,10 +296,10 @@ class UpdatePolygonRequest(proto.Message):
         proto.STRING,
         number=2,
     )
-    polygon = proto.Field(
+    payload = proto.Field(
         proto.MESSAGE,
         number=3,
-        message='PolygonParams',
+        message=resources.Polygon,
     )
     upsert = proto.Field(
         proto.BOOL,
@@ -366,68 +307,19 @@ class UpdatePolygonRequest(proto.Message):
     )
 
 
-class Polygons(proto.Message):
+class ListPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
         polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
-
-        polygons_in_layer (int):
 
     """
 
     polygons = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
-        message='Polygon',
+        message=resources.Polygon,
     )
-    polygons_in_layer = proto.Field(
-        proto.INT32,
-        number=2,
-    )
-
-
-class Polygon(proto.Message):
-    r"""
-
-    Attributes:
-        layer_id (str):
-
-        polygon_id (str):
-
-        polygon_name (str):
-
-        metadata (Mapping[str, str]):
-
-    """
-
-    layer_id = proto.Field(
-        proto.STRING,
-        number=4,
-    )
-    polygon_id = proto.Field(
-        proto.STRING,
-        number=1,
-    )
-    polygon_name = proto.Field(
-        proto.STRING,
-        number=2,
-    )
-    metadata = proto.MapField(
-        proto.STRING,
-        proto.STRING,
-        number=3,
-    )
-
-
-class EmptyParams(proto.Message):
-    r"""
-    """
-
-
-class EmptyResponse(proto.Message):
-    r"""
-    """
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))

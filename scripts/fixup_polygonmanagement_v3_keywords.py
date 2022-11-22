@@ -39,20 +39,20 @@ def partition(
 class polygonmanagementCallTransformer(cst.CSTTransformer):
     CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')
     METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {
-        'add_polygon': ('layer_id', 'polygon', ),
+        'add_polygon': ('layer_id', 'polygon_id', 'payload', ),
         'batch_add_polygons': ('layer_id', 'polygons', 'upsert', ),
-        'create_layer': ('layer_name', ),
+        'copy_layer': ('layer_id', 'new_layer_id', ),
+        'create_layer': ('layer_id', ),
         'delete_layer': ('layer_id', ),
         'delete_polygon': ('layer_id', 'polygon_id', ),
         'describe_layer': ('layer_id', ),
         'drop_polygons': ('layer_id', ),
         'list_layers': (),
         'list_polygons': ('layer_id', ),
-        'rename_layer': ('layer_id', 'new_layer_name', ),
-        'replace_polygons': ('layer_id', 'polygons', 'upsert', ),
+        'replace_polygons': ('layer_id', 'polygons', ),
         'share_layer': ('layer_id', ),
         'unshare_layer': ('layer_id', ),
-        'update_polygon': ('layer_id', 'polygon_id', 'polygon', 'upsert', ),
+        'update_polygon': ('layer_id', 'polygon_id', 'payload', 'upsert', ),
     }
 
     def leave_Call(self, original: cst.Call, updated: cst.Call) -> cst.CSTNode:

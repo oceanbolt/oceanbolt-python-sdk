@@ -37,10 +37,10 @@ from google.api_core import path_template
 from google.auth import credentials as ga_credentials
 from google.auth.exceptions import MutualTLSChannelError
 from google.oauth2 import service_account
-from google.protobuf import wrappers_pb2  # type: ignore
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service import PolygonManagementServiceAsyncClient
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service import PolygonManagementServiceClient
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service import transports
+from oceanbolt.com.polygonmanagement_v3.types import resources
 from oceanbolt.com.polygonmanagement_v3.types import service
 import google.auth
 
@@ -517,7 +517,7 @@ def test_polygon_management_service_client_create_channel_credentials_file(clien
 
 
 @pytest.mark.parametrize("request_type", [
-  service.EmptyParams,
+  service.ListLayersRequest,
   dict,
 ])
 def test_list_layers(request_type, transport: str = 'grpc'):
@@ -535,17 +535,17 @@ def test_list_layers(request_type, transport: str = 'grpc'):
             type(client.transport.list_layers),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Layers(
+        call.return_value = service.ListLayersResponse(
         )
         response = client.list_layers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListLayersRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layers)
+    assert isinstance(response, service.ListLayersResponse)
 
 
 def test_list_layers_empty_call():
@@ -563,10 +563,10 @@ def test_list_layers_empty_call():
         client.list_layers()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListLayersRequest()
 
 @pytest.mark.asyncio
-async def test_list_layers_async(transport: str = 'grpc_asyncio', request_type=service.EmptyParams):
+async def test_list_layers_async(transport: str = 'grpc_asyncio', request_type=service.ListLayersRequest):
     client = PolygonManagementServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -581,17 +581,17 @@ async def test_list_layers_async(transport: str = 'grpc_asyncio', request_type=s
             type(client.transport.list_layers),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layers(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListLayersResponse(
         ))
         response = await client.list_layers(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.EmptyParams()
+        assert args[0] == service.ListLayersRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layers)
+    assert isinstance(response, service.ListLayersResponse)
 
 
 @pytest.mark.asyncio
@@ -618,11 +618,13 @@ def test_create_layer(request_type, transport: str = 'grpc'):
             type(client.transport.create_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Layer(
+        call.return_value = resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         )
         response = client.create_layer(request)
 
@@ -632,11 +634,13 @@ def test_create_layer(request_type, transport: str = 'grpc'):
         assert args[0] == service.CreateLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 def test_create_layer_empty_call():
@@ -672,11 +676,13 @@ async def test_create_layer_async(transport: str = 'grpc_asyncio', request_type=
             type(client.transport.create_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layer(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         ))
         response = await client.create_layer(request)
 
@@ -686,11 +692,13 @@ async def test_create_layer_async(transport: str = 'grpc_asyncio', request_type=
         assert args[0] == service.CreateLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 @pytest.mark.asyncio
@@ -717,8 +725,7 @@ def test_delete_layer(request_type, transport: str = 'grpc'):
             type(client.transport.delete_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.EmptyResponse(
-        )
+        call.return_value = None
         response = client.delete_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -727,7 +734,7 @@ def test_delete_layer(request_type, transport: str = 'grpc'):
         assert args[0] == service.DeleteLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 def test_delete_layer_empty_call():
@@ -763,8 +770,7 @@ async def test_delete_layer_async(transport: str = 'grpc_asyncio', request_type=
             type(client.transport.delete_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse(
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         response = await client.delete_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -773,7 +779,7 @@ async def test_delete_layer_async(transport: str = 'grpc_asyncio', request_type=
         assert args[0] == service.DeleteLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 @pytest.mark.asyncio
@@ -796,7 +802,7 @@ def test_delete_layer_field_headers():
     with mock.patch.object(
             type(client.transport.delete_layer),
             '__call__') as call:
-        call.return_value = service.EmptyResponse()
+        call.return_value = None
         client.delete_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -828,8 +834,178 @@ async def test_delete_layer_field_headers_async():
     with mock.patch.object(
             type(client.transport.delete_layer),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         await client.delete_layer(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'layer_id=layer_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.parametrize("request_type", [
+  service.CopyLayerRequest,
+  dict,
+])
+def test_copy_layer(request_type, transport: str = 'grpc'):
+    client = PolygonManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.copy_layer),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = resources.Layer(
+            name='name_value',
+            layer_id='layer_id_value',
+            owner_user_id='owner_user_id_value',
+            organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
+        )
+        response = client.copy_layer(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.CopyLayerRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
+    assert response.layer_id == 'layer_id_value'
+    assert response.owner_user_id == 'owner_user_id_value'
+    assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
+
+
+def test_copy_layer_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = PolygonManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.copy_layer),
+            '__call__') as call:
+        client.copy_layer()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.CopyLayerRequest()
+
+@pytest.mark.asyncio
+async def test_copy_layer_async(transport: str = 'grpc_asyncio', request_type=service.CopyLayerRequest):
+    client = PolygonManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.copy_layer),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer(
+            name='name_value',
+            layer_id='layer_id_value',
+            owner_user_id='owner_user_id_value',
+            organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
+        ))
+        response = await client.copy_layer(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.CopyLayerRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
+    assert response.layer_id == 'layer_id_value'
+    assert response.owner_user_id == 'owner_user_id_value'
+    assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
+
+
+@pytest.mark.asyncio
+async def test_copy_layer_async_from_dict():
+    await test_copy_layer_async(request_type=dict)
+
+
+def test_copy_layer_field_headers():
+    client = PolygonManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.CopyLayerRequest()
+
+    request.layer_id = 'layer_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.copy_layer),
+            '__call__') as call:
+        call.return_value = resources.Layer()
+        client.copy_layer(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'layer_id=layer_id_value',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_copy_layer_field_headers_async():
+    client = PolygonManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.CopyLayerRequest()
+
+    request.layer_id = 'layer_id_value'
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.copy_layer),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer())
+        await client.copy_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -863,11 +1039,13 @@ def test_describe_layer(request_type, transport: str = 'grpc'):
             type(client.transport.describe_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Layer(
+        call.return_value = resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         )
         response = client.describe_layer(request)
 
@@ -877,11 +1055,13 @@ def test_describe_layer(request_type, transport: str = 'grpc'):
         assert args[0] == service.GetLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 def test_describe_layer_empty_call():
@@ -917,11 +1097,13 @@ async def test_describe_layer_async(transport: str = 'grpc_asyncio', request_typ
             type(client.transport.describe_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layer(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         ))
         response = await client.describe_layer(request)
 
@@ -931,11 +1113,13 @@ async def test_describe_layer_async(transport: str = 'grpc_asyncio', request_typ
         assert args[0] == service.GetLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 @pytest.mark.asyncio
@@ -958,7 +1142,7 @@ def test_describe_layer_field_headers():
     with mock.patch.object(
             type(client.transport.describe_layer),
             '__call__') as call:
-        call.return_value = service.Layer()
+        call.return_value = resources.Layer()
         client.describe_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -990,170 +1174,8 @@ async def test_describe_layer_field_headers_async():
     with mock.patch.object(
             type(client.transport.describe_layer),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Layer())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer())
         await client.describe_layer(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'layer_id=layer_id_value',
-    ) in kw['metadata']
-
-
-@pytest.mark.parametrize("request_type", [
-  service.RenameLayerRequest,
-  dict,
-])
-def test_rename_layer(request_type, transport: str = 'grpc'):
-    client = PolygonManagementServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.rename_layer),
-            '__call__') as call:
-        # Designate an appropriate return value for the call.
-        call.return_value = service.Layer(
-            layer_id='layer_id_value',
-            layer_name='layer_name_value',
-            owner_user_id='owner_user_id_value',
-            organization='organization_value',
-        )
-        response = client.rename_layer(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == service.RenameLayerRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
-    assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
-    assert response.owner_user_id == 'owner_user_id_value'
-    assert response.organization == 'organization_value'
-
-
-def test_rename_layer_empty_call():
-    # This test is a coverage failsafe to make sure that totally empty calls,
-    # i.e. request == None and no flattened fields passed, work.
-    client = PolygonManagementServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport='grpc',
-    )
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.rename_layer),
-            '__call__') as call:
-        client.rename_layer()
-        call.assert_called()
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == service.RenameLayerRequest()
-
-@pytest.mark.asyncio
-async def test_rename_layer_async(transport: str = 'grpc_asyncio', request_type=service.RenameLayerRequest):
-    client = PolygonManagementServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
-    )
-
-    # Everything is optional in proto3 as far as the runtime is concerned,
-    # and we are mocking out the actual API, so just send an empty request.
-    request = request_type()
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.rename_layer),
-            '__call__') as call:
-        # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layer(
-            layer_id='layer_id_value',
-            layer_name='layer_name_value',
-            owner_user_id='owner_user_id_value',
-            organization='organization_value',
-        ))
-        response = await client.rename_layer(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls)
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == service.RenameLayerRequest()
-
-    # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
-    assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
-    assert response.owner_user_id == 'owner_user_id_value'
-    assert response.organization == 'organization_value'
-
-
-@pytest.mark.asyncio
-async def test_rename_layer_async_from_dict():
-    await test_rename_layer_async(request_type=dict)
-
-
-def test_rename_layer_field_headers():
-    client = PolygonManagementServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = service.RenameLayerRequest()
-
-    request.layer_id = 'layer_id_value'
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.rename_layer),
-            '__call__') as call:
-        call.return_value = service.Layer()
-        client.rename_layer(request)
-
-        # Establish that the underlying gRPC stub method was called.
-        assert len(call.mock_calls) == 1
-        _, args, _ = call.mock_calls[0]
-        assert args[0] == request
-
-    # Establish that the field header was sent.
-    _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'layer_id=layer_id_value',
-    ) in kw['metadata']
-
-
-@pytest.mark.asyncio
-async def test_rename_layer_field_headers_async():
-    client = PolygonManagementServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-
-    # Any value that is part of the HTTP/1.1 URI should be sent as
-    # a field header. Set these to a non-empty value.
-    request = service.RenameLayerRequest()
-
-    request.layer_id = 'layer_id_value'
-
-    # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-            type(client.transport.rename_layer),
-            '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Layer())
-        await client.rename_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
@@ -1187,11 +1209,13 @@ def test_share_layer(request_type, transport: str = 'grpc'):
             type(client.transport.share_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Layer(
+        call.return_value = resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         )
         response = client.share_layer(request)
 
@@ -1201,11 +1225,13 @@ def test_share_layer(request_type, transport: str = 'grpc'):
         assert args[0] == service.ShareLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 def test_share_layer_empty_call():
@@ -1241,11 +1267,13 @@ async def test_share_layer_async(transport: str = 'grpc_asyncio', request_type=s
             type(client.transport.share_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layer(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         ))
         response = await client.share_layer(request)
 
@@ -1255,11 +1283,13 @@ async def test_share_layer_async(transport: str = 'grpc_asyncio', request_type=s
         assert args[0] == service.ShareLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 @pytest.mark.asyncio
@@ -1282,7 +1312,7 @@ def test_share_layer_field_headers():
     with mock.patch.object(
             type(client.transport.share_layer),
             '__call__') as call:
-        call.return_value = service.Layer()
+        call.return_value = resources.Layer()
         client.share_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1314,7 +1344,7 @@ async def test_share_layer_field_headers_async():
     with mock.patch.object(
             type(client.transport.share_layer),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Layer())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer())
         await client.share_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1349,11 +1379,13 @@ def test_unshare_layer(request_type, transport: str = 'grpc'):
             type(client.transport.unshare_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Layer(
+        call.return_value = resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         )
         response = client.unshare_layer(request)
 
@@ -1363,11 +1395,13 @@ def test_unshare_layer(request_type, transport: str = 'grpc'):
         assert args[0] == service.ShareLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 def test_unshare_layer_empty_call():
@@ -1403,11 +1437,13 @@ async def test_unshare_layer_async(transport: str = 'grpc_asyncio', request_type
             type(client.transport.unshare_layer),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Layer(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer(
+            name='name_value',
             layer_id='layer_id_value',
-            layer_name='layer_name_value',
             owner_user_id='owner_user_id_value',
             organization='organization_value',
+            polygons_in_layer=1837,
+            shared_with_org=True,
         ))
         response = await client.unshare_layer(request)
 
@@ -1417,11 +1453,13 @@ async def test_unshare_layer_async(transport: str = 'grpc_asyncio', request_type
         assert args[0] == service.ShareLayerRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Layer)
+    assert isinstance(response, resources.Layer)
+    assert response.name == 'name_value'
     assert response.layer_id == 'layer_id_value'
-    assert response.layer_name == 'layer_name_value'
     assert response.owner_user_id == 'owner_user_id_value'
     assert response.organization == 'organization_value'
+    assert response.polygons_in_layer == 1837
+    assert response.shared_with_org is True
 
 
 @pytest.mark.asyncio
@@ -1444,7 +1482,7 @@ def test_unshare_layer_field_headers():
     with mock.patch.object(
             type(client.transport.unshare_layer),
             '__call__') as call:
-        call.return_value = service.Layer()
+        call.return_value = resources.Layer()
         client.unshare_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1476,7 +1514,7 @@ async def test_unshare_layer_field_headers_async():
     with mock.patch.object(
             type(client.transport.unshare_layer),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Layer())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Layer())
         await client.unshare_layer(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1511,8 +1549,7 @@ def test_list_polygons(request_type, transport: str = 'grpc'):
             type(client.transport.list_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Polygons(
-            polygons_in_layer=1837,
+        call.return_value = service.ListPolygonsResponse(
         )
         response = client.list_polygons(request)
 
@@ -1522,8 +1559,7 @@ def test_list_polygons(request_type, transport: str = 'grpc'):
         assert args[0] == service.ListPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygons)
-    assert response.polygons_in_layer == 1837
+    assert isinstance(response, service.ListPolygonsResponse)
 
 
 def test_list_polygons_empty_call():
@@ -1559,8 +1595,7 @@ async def test_list_polygons_async(transport: str = 'grpc_asyncio', request_type
             type(client.transport.list_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Polygons(
-            polygons_in_layer=1837,
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.ListPolygonsResponse(
         ))
         response = await client.list_polygons(request)
 
@@ -1570,8 +1605,7 @@ async def test_list_polygons_async(transport: str = 'grpc_asyncio', request_type
         assert args[0] == service.ListPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygons)
-    assert response.polygons_in_layer == 1837
+    assert isinstance(response, service.ListPolygonsResponse)
 
 
 @pytest.mark.asyncio
@@ -1594,7 +1628,7 @@ def test_list_polygons_field_headers():
     with mock.patch.object(
             type(client.transport.list_polygons),
             '__call__') as call:
-        call.return_value = service.Polygons()
+        call.return_value = service.ListPolygonsResponse()
         client.list_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1626,7 +1660,7 @@ async def test_list_polygons_field_headers_async():
     with mock.patch.object(
             type(client.transport.list_polygons),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Polygons())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.ListPolygonsResponse())
         await client.list_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1661,10 +1695,10 @@ def test_add_polygon(request_type, transport: str = 'grpc'):
             type(client.transport.add_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Polygon(
-            layer_id='layer_id_value',
+        call.return_value = resources.Polygon(
+            name='name_value',
             polygon_id='polygon_id_value',
-            polygon_name='polygon_name_value',
+            geojson='geojson_value',
         )
         response = client.add_polygon(request)
 
@@ -1674,10 +1708,10 @@ def test_add_polygon(request_type, transport: str = 'grpc'):
         assert args[0] == service.AddPolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygon)
-    assert response.layer_id == 'layer_id_value'
+    assert isinstance(response, resources.Polygon)
+    assert response.name == 'name_value'
     assert response.polygon_id == 'polygon_id_value'
-    assert response.polygon_name == 'polygon_name_value'
+    assert response.geojson == 'geojson_value'
 
 
 def test_add_polygon_empty_call():
@@ -1713,10 +1747,10 @@ async def test_add_polygon_async(transport: str = 'grpc_asyncio', request_type=s
             type(client.transport.add_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Polygon(
-            layer_id='layer_id_value',
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Polygon(
+            name='name_value',
             polygon_id='polygon_id_value',
-            polygon_name='polygon_name_value',
+            geojson='geojson_value',
         ))
         response = await client.add_polygon(request)
 
@@ -1726,10 +1760,10 @@ async def test_add_polygon_async(transport: str = 'grpc_asyncio', request_type=s
         assert args[0] == service.AddPolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygon)
-    assert response.layer_id == 'layer_id_value'
+    assert isinstance(response, resources.Polygon)
+    assert response.name == 'name_value'
     assert response.polygon_id == 'polygon_id_value'
-    assert response.polygon_name == 'polygon_name_value'
+    assert response.geojson == 'geojson_value'
 
 
 @pytest.mark.asyncio
@@ -1752,7 +1786,7 @@ def test_add_polygon_field_headers():
     with mock.patch.object(
             type(client.transport.add_polygon),
             '__call__') as call:
-        call.return_value = service.Polygon()
+        call.return_value = resources.Polygon()
         client.add_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1784,7 +1818,7 @@ async def test_add_polygon_field_headers_async():
     with mock.patch.object(
             type(client.transport.add_polygon),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Polygon())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Polygon())
         await client.add_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1819,10 +1853,10 @@ def test_update_polygon(request_type, transport: str = 'grpc'):
             type(client.transport.update_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.Polygon(
-            layer_id='layer_id_value',
+        call.return_value = resources.Polygon(
+            name='name_value',
             polygon_id='polygon_id_value',
-            polygon_name='polygon_name_value',
+            geojson='geojson_value',
         )
         response = client.update_polygon(request)
 
@@ -1832,10 +1866,10 @@ def test_update_polygon(request_type, transport: str = 'grpc'):
         assert args[0] == service.UpdatePolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygon)
-    assert response.layer_id == 'layer_id_value'
+    assert isinstance(response, resources.Polygon)
+    assert response.name == 'name_value'
     assert response.polygon_id == 'polygon_id_value'
-    assert response.polygon_name == 'polygon_name_value'
+    assert response.geojson == 'geojson_value'
 
 
 def test_update_polygon_empty_call():
@@ -1871,10 +1905,10 @@ async def test_update_polygon_async(transport: str = 'grpc_asyncio', request_typ
             type(client.transport.update_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Polygon(
-            layer_id='layer_id_value',
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(resources.Polygon(
+            name='name_value',
             polygon_id='polygon_id_value',
-            polygon_name='polygon_name_value',
+            geojson='geojson_value',
         ))
         response = await client.update_polygon(request)
 
@@ -1884,10 +1918,10 @@ async def test_update_polygon_async(transport: str = 'grpc_asyncio', request_typ
         assert args[0] == service.UpdatePolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.Polygon)
-    assert response.layer_id == 'layer_id_value'
+    assert isinstance(response, resources.Polygon)
+    assert response.name == 'name_value'
     assert response.polygon_id == 'polygon_id_value'
-    assert response.polygon_name == 'polygon_name_value'
+    assert response.geojson == 'geojson_value'
 
 
 @pytest.mark.asyncio
@@ -1911,7 +1945,7 @@ def test_update_polygon_field_headers():
     with mock.patch.object(
             type(client.transport.update_polygon),
             '__call__') as call:
-        call.return_value = service.Polygon()
+        call.return_value = resources.Polygon()
         client.update_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1944,7 +1978,7 @@ async def test_update_polygon_field_headers_async():
     with mock.patch.object(
             type(client.transport.update_polygon),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Polygon())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(resources.Polygon())
         await client.update_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1979,8 +2013,7 @@ def test_delete_polygon(request_type, transport: str = 'grpc'):
             type(client.transport.delete_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.EmptyResponse(
-        )
+        call.return_value = None
         response = client.delete_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1989,7 +2022,7 @@ def test_delete_polygon(request_type, transport: str = 'grpc'):
         assert args[0] == service.DeletePolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 def test_delete_polygon_empty_call():
@@ -2025,8 +2058,7 @@ async def test_delete_polygon_async(transport: str = 'grpc_asyncio', request_typ
             type(client.transport.delete_polygon),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse(
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         response = await client.delete_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2035,7 +2067,7 @@ async def test_delete_polygon_async(transport: str = 'grpc_asyncio', request_typ
         assert args[0] == service.DeletePolygonRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 @pytest.mark.asyncio
@@ -2059,7 +2091,7 @@ def test_delete_polygon_field_headers():
     with mock.patch.object(
             type(client.transport.delete_polygon),
             '__call__') as call:
-        call.return_value = service.EmptyResponse()
+        call.return_value = None
         client.delete_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2092,7 +2124,7 @@ async def test_delete_polygon_field_headers_async():
     with mock.patch.object(
             type(client.transport.delete_polygon),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         await client.delete_polygon(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2109,7 +2141,7 @@ async def test_delete_polygon_field_headers_async():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.BatchPolygonsRequest,
+  service.BatchAddPolygonsRequest,
   dict,
 ])
 def test_batch_add_polygons(request_type, transport: str = 'grpc'):
@@ -2127,17 +2159,19 @@ def test_batch_add_polygons(request_type, transport: str = 'grpc'):
             type(client.transport.batch_add_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.EmptyResponse(
+        call.return_value = service.BatchAddPolygonsResponse(
+            errors=['errors_value'],
         )
         response = client.batch_add_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.BatchAddPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert isinstance(response, service.BatchAddPolygonsResponse)
+    assert response.errors == ['errors_value']
 
 
 def test_batch_add_polygons_empty_call():
@@ -2155,10 +2189,10 @@ def test_batch_add_polygons_empty_call():
         client.batch_add_polygons()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.BatchAddPolygonsRequest()
 
 @pytest.mark.asyncio
-async def test_batch_add_polygons_async(transport: str = 'grpc_asyncio', request_type=service.BatchPolygonsRequest):
+async def test_batch_add_polygons_async(transport: str = 'grpc_asyncio', request_type=service.BatchAddPolygonsRequest):
     client = PolygonManagementServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -2173,17 +2207,19 @@ async def test_batch_add_polygons_async(transport: str = 'grpc_asyncio', request
             type(client.transport.batch_add_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse(
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.BatchAddPolygonsResponse(
+            errors=['errors_value'],
         ))
         response = await client.batch_add_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.BatchAddPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert isinstance(response, service.BatchAddPolygonsResponse)
+    assert response.errors == ['errors_value']
 
 
 @pytest.mark.asyncio
@@ -2198,7 +2234,7 @@ def test_batch_add_polygons_field_headers():
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = service.BatchPolygonsRequest()
+    request = service.BatchAddPolygonsRequest()
 
     request.layer_id = 'layer_id_value'
 
@@ -2206,7 +2242,7 @@ def test_batch_add_polygons_field_headers():
     with mock.patch.object(
             type(client.transport.batch_add_polygons),
             '__call__') as call:
-        call.return_value = service.EmptyResponse()
+        call.return_value = service.BatchAddPolygonsResponse()
         client.batch_add_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2230,7 +2266,7 @@ async def test_batch_add_polygons_field_headers_async():
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = service.BatchPolygonsRequest()
+    request = service.BatchAddPolygonsRequest()
 
     request.layer_id = 'layer_id_value'
 
@@ -2238,7 +2274,7 @@ async def test_batch_add_polygons_field_headers_async():
     with mock.patch.object(
             type(client.transport.batch_add_polygons),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.BatchAddPolygonsResponse())
         await client.batch_add_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2255,7 +2291,7 @@ async def test_batch_add_polygons_field_headers_async():
 
 
 @pytest.mark.parametrize("request_type", [
-  service.BatchPolygonsRequest,
+  service.ReplacePolygonsRequest,
   dict,
 ])
 def test_replace_polygons(request_type, transport: str = 'grpc'):
@@ -2273,17 +2309,16 @@ def test_replace_polygons(request_type, transport: str = 'grpc'):
             type(client.transport.replace_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.EmptyResponse(
-        )
+        call.return_value = None
         response = client.replace_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.ReplacePolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 def test_replace_polygons_empty_call():
@@ -2301,10 +2336,10 @@ def test_replace_polygons_empty_call():
         client.replace_polygons()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.ReplacePolygonsRequest()
 
 @pytest.mark.asyncio
-async def test_replace_polygons_async(transport: str = 'grpc_asyncio', request_type=service.BatchPolygonsRequest):
+async def test_replace_polygons_async(transport: str = 'grpc_asyncio', request_type=service.ReplacePolygonsRequest):
     client = PolygonManagementServiceAsyncClient(
         credentials=ga_credentials.AnonymousCredentials(),
         transport=transport,
@@ -2319,17 +2354,16 @@ async def test_replace_polygons_async(transport: str = 'grpc_asyncio', request_t
             type(client.transport.replace_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse(
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         response = await client.replace_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
-        assert args[0] == service.BatchPolygonsRequest()
+        assert args[0] == service.ReplacePolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 @pytest.mark.asyncio
@@ -2344,7 +2378,7 @@ def test_replace_polygons_field_headers():
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = service.BatchPolygonsRequest()
+    request = service.ReplacePolygonsRequest()
 
     request.layer_id = 'layer_id_value'
 
@@ -2352,7 +2386,7 @@ def test_replace_polygons_field_headers():
     with mock.patch.object(
             type(client.transport.replace_polygons),
             '__call__') as call:
-        call.return_value = service.EmptyResponse()
+        call.return_value = None
         client.replace_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2376,7 +2410,7 @@ async def test_replace_polygons_field_headers_async():
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
-    request = service.BatchPolygonsRequest()
+    request = service.ReplacePolygonsRequest()
 
     request.layer_id = 'layer_id_value'
 
@@ -2384,7 +2418,7 @@ async def test_replace_polygons_field_headers_async():
     with mock.patch.object(
             type(client.transport.replace_polygons),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         await client.replace_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2419,8 +2453,7 @@ def test_drop_polygons(request_type, transport: str = 'grpc'):
             type(client.transport.drop_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.EmptyResponse(
-        )
+        call.return_value = None
         response = client.drop_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2429,7 +2462,7 @@ def test_drop_polygons(request_type, transport: str = 'grpc'):
         assert args[0] == service.DropPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 def test_drop_polygons_empty_call():
@@ -2465,8 +2498,7 @@ async def test_drop_polygons_async(transport: str = 'grpc_asyncio', request_type
             type(client.transport.drop_polygons),
             '__call__') as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse(
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         response = await client.drop_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2475,7 +2507,7 @@ async def test_drop_polygons_async(transport: str = 'grpc_asyncio', request_type
         assert args[0] == service.DropPolygonsRequest()
 
     # Establish that the response is the type that we expect.
-    assert isinstance(response, service.EmptyResponse)
+    assert response is None
 
 
 @pytest.mark.asyncio
@@ -2498,7 +2530,7 @@ def test_drop_polygons_field_headers():
     with mock.patch.object(
             type(client.transport.drop_polygons),
             '__call__') as call:
-        call.return_value = service.EmptyResponse()
+        call.return_value = None
         client.drop_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2530,7 +2562,7 @@ async def test_drop_polygons_field_headers_async():
     with mock.patch.object(
             type(client.transport.drop_polygons),
             '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.EmptyResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(None)
         await client.drop_polygons(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -2674,8 +2706,8 @@ def test_polygon_management_service_base_transport():
         'list_layers',
         'create_layer',
         'delete_layer',
+        'copy_layer',
         'describe_layer',
-        'rename_layer',
         'share_layer',
         'unshare_layer',
         'list_polygons',
