@@ -31,7 +31,7 @@ In order to upgrade an existing installation, run the following:
 ## Docs
 Documentation : https://python-sdk.oceanbolt.com
 
-## Quick Example
+## Quick Example Dry Bulk
 
 ````python
 from oceanbolt.sdk.client import APIClient
@@ -39,7 +39,7 @@ from oceanbolt.sdk.data.port_calls import PortCalls
 from datetime import date, timedelta
 
 # Create the base API client using your token. Tokens can be created in the Oceanbolt App (app.oceanbolt.com)
-base_client = APIClient("<your API access token>")
+base_client = APIClient("<your API access token>","dry")
 
 # Connect to one of the Oceanbolt's data endpoints using the base client object, ie: PortCalls
 port_calls_client = PortCalls(base_client)
@@ -53,3 +53,25 @@ hedland_portcalls = port_calls_client.get(
 
 ````
 
+## Quick Example Tanker Data
+In order to extract tanker data, you have to specify the platform when instantiating the client:
+base_client = APIClient("<your API access token>","tank")
+
+````python
+from oceanbolt.sdk.client import APIClient
+from oceanbolt.sdk.data.port_calls import PortCalls
+from datetime import date, timedelta
+
+# Create the base API client using your token. Tokens can be created in the Oceanbolt App (app.oceanbolt.com)
+base_client = APIClient("<your API access token>","tank")
+
+# Connect to one of the Oceanbolt's data endpoints using the base client object, ie: PortCalls
+port_calls_client = PortCalls(base_client)
+
+# Get a list of Port Hedland exports over the last week
+hedland_portcalls = port_calls_client.get(
+    start_date=date.today() - timedelta(days=7),
+    unlocode=["USHOU"],
+)
+
+````

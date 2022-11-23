@@ -132,3 +132,21 @@ or in more compact way:
         end_date=date(2020,12,31)
         frequency="weekly"
     )
+
+
+Accessing Tanker data
+"""""""""""""""""""""
+By default the Oceanbolt Python SDK extract data for dry bulk vessels, but it also covers multiple other shipping segments, such as
+tankers, lng and lpg carriers.
+
+In order to extract tanker data from the platform, you will need to specify the platform to connect to when instantiating the client:
+
+.. code-block:: python
+
+    base_client = APIClient(<"your access token>", "tank") #here we are specifying to connect to the tanker platform
+
+If the platform is left out it will default to `dry` and connect to the dry bulk platform.
+
+
+
+
