@@ -915,6 +915,79 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Done; return the response.
         return response
 
+    def get_vessel(self,
+            request: Union[service.GetVesselRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.Vessel:
+        r"""Retrieves vessel in a Fleet by Fleet id and imo.
+
+        .. code-block:: python
+
+            from oceanbolt.com import fleetmanagement_v3
+
+            def sample_get_vessel():
+                # Create a client
+                client = fleetmanagement_v3.FleetManagementServiceClient()
+
+                # Initialize request argument(s)
+                request = fleetmanagement_v3.GetVesselRequest(
+                )
+
+                # Make the request
+                response = client.get_vessel(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.fleetmanagement_v3.types.GetVesselRequest, dict]):
+                The request object. Request object for retrieving a
+                Vessel in a Fleet
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.fleetmanagement_v3.types.Vessel:
+                Vessel object
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a service.GetVesselRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, service.GetVesselRequest):
+            request = service.GetVesselRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[self._transport.get_vessel]
+
+         # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
+
+        # Send the request.
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     def list_vessels_with_status(self,
             request: Union[service.ListVesselsWithStatusRequest, dict] = None,
             *,

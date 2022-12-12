@@ -728,6 +728,78 @@ class FleetManagementServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def get_vessel(self,
+            request: Union[service.GetVesselRequest, dict] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.Vessel:
+        r"""Retrieves vessel in a Fleet by Fleet id and imo.
+
+        .. code-block:: python
+
+            from oceanbolt.com import fleetmanagement_v3
+
+            async def sample_get_vessel():
+                # Create a client
+                client = fleetmanagement_v3.FleetManagementServiceAsyncClient()
+
+                # Initialize request argument(s)
+                request = fleetmanagement_v3.GetVesselRequest(
+                )
+
+                # Make the request
+                response = await client.get_vessel(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Union[oceanbolt.com.fleetmanagement_v3.types.GetVesselRequest, dict]):
+                The request object. Request object for retrieving a
+                Vessel in a Fleet
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.fleetmanagement_v3.types.Vessel:
+                Vessel object
+        """
+        # Create or coerce a protobuf request object.
+        request = service.GetVesselRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_vessel,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((
+                ("fleet_id", request.fleet_id),
+                ("imo", request.imo),
+            )),
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def list_vessels_with_status(self,
             request: Union[service.ListVesselsWithStatusRequest, dict] = None,
             *,

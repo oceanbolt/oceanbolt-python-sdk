@@ -1663,6 +1663,190 @@ async def test_list_vessels_field_headers_async():
 
 
 @pytest.mark.parametrize("request_type", [
+  service.GetVesselRequest,
+  dict,
+])
+def test_get_vessel(request_type, transport: str = 'grpc'):
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessel),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value = service.Vessel(
+            imo=325,
+            dwt=0.335,
+            built=544,
+            vessel_name='vessel_name_value',
+            segment='segment_value',
+            sub_segment='sub_segment_value',
+            flag_code='flag_code_value',
+            ex_name='ex_name_value',
+            type_='type__value',
+        )
+        response = client.get_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.Vessel)
+    assert response.imo == 325
+    assert math.isclose(response.dwt, 0.335, rel_tol=1e-6)
+    assert response.built == 544
+    assert response.vessel_name == 'vessel_name_value'
+    assert response.segment == 'segment_value'
+    assert response.sub_segment == 'sub_segment_value'
+    assert response.flag_code == 'flag_code_value'
+    assert response.ex_name == 'ex_name_value'
+    assert response.type_ == 'type__value'
+
+
+def test_get_vessel_empty_call():
+    # This test is a coverage failsafe to make sure that totally empty calls,
+    # i.e. request == None and no flattened fields passed, work.
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport='grpc',
+    )
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessel),
+            '__call__') as call:
+        client.get_vessel()
+        call.assert_called()
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselRequest()
+
+@pytest.mark.asyncio
+async def test_get_vessel_async(transport: str = 'grpc_asyncio', request_type=service.GetVesselRequest):
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+        transport=transport,
+    )
+
+    # Everything is optional in proto3 as far as the runtime is concerned,
+    # and we are mocking out the actual API, so just send an empty request.
+    request = request_type()
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessel),
+            '__call__') as call:
+        # Designate an appropriate return value for the call.
+        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(service.Vessel(
+            imo=325,
+            dwt=0.335,
+            built=544,
+            vessel_name='vessel_name_value',
+            segment='segment_value',
+            sub_segment='sub_segment_value',
+            flag_code='flag_code_value',
+            ex_name='ex_name_value',
+            type_='type__value',
+        ))
+        response = await client.get_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == service.GetVesselRequest()
+
+    # Establish that the response is the type that we expect.
+    assert isinstance(response, service.Vessel)
+    assert response.imo == 325
+    assert math.isclose(response.dwt, 0.335, rel_tol=1e-6)
+    assert response.built == 544
+    assert response.vessel_name == 'vessel_name_value'
+    assert response.segment == 'segment_value'
+    assert response.sub_segment == 'sub_segment_value'
+    assert response.flag_code == 'flag_code_value'
+    assert response.ex_name == 'ex_name_value'
+    assert response.type_ == 'type__value'
+
+
+@pytest.mark.asyncio
+async def test_get_vessel_async_from_dict():
+    await test_get_vessel_async(request_type=dict)
+
+
+def test_get_vessel_field_headers():
+    client = FleetManagementServiceClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.GetVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessel),
+            '__call__') as call:
+        call.return_value = service.Vessel()
+        client.get_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls) == 1
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
+
+
+@pytest.mark.asyncio
+async def test_get_vessel_field_headers_async():
+    client = FleetManagementServiceAsyncClient(
+        credentials=ga_credentials.AnonymousCredentials(),
+    )
+
+    # Any value that is part of the HTTP/1.1 URI should be sent as
+    # a field header. Set these to a non-empty value.
+    request = service.GetVesselRequest()
+
+    request.fleet_id = 'fleet_id_value'
+    request.imo = 325
+
+    # Mock the actual call within the gRPC stub, and fake the request.
+    with mock.patch.object(
+            type(client.transport.get_vessel),
+            '__call__') as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(service.Vessel())
+        await client.get_vessel(request)
+
+        # Establish that the underlying gRPC stub method was called.
+        assert len(call.mock_calls)
+        _, args, _ = call.mock_calls[0]
+        assert args[0] == request
+
+    # Establish that the field header was sent.
+    _, _, kw = call.mock_calls[0]
+    assert (
+        'x-goog-request-params',
+        'fleet_id=fleet_id_value&imo=325',
+    ) in kw['metadata']
+
+
+@pytest.mark.parametrize("request_type", [
   service.ListVesselsWithStatusRequest,
   dict,
 ])
@@ -3067,6 +3251,7 @@ def test_fleet_management_service_base_transport():
         'share_fleet',
         'unshare_fleet',
         'list_vessels',
+        'get_vessel',
         'list_vessels_with_status',
         'add_vessel',
         'update_vessel',

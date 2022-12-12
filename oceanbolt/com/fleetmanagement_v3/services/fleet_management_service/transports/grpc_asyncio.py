@@ -438,6 +438,32 @@ class FleetManagementServiceGrpcAsyncIOTransport(FleetManagementServiceTransport
         return self._stubs['list_vessels']
 
     @property
+    def get_vessel(self) -> Callable[
+            [service.GetVesselRequest],
+            Awaitable[service.Vessel]]:
+        r"""Return a callable for the get vessel method over gRPC.
+
+        Retrieves vessel in a Fleet by Fleet id and imo.
+
+        Returns:
+            Callable[[~.GetVesselRequest],
+                    Awaitable[~.Vessel]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'get_vessel' not in self._stubs:
+            self._stubs['get_vessel'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.fleetmanagement.v3.FleetManagementService/GetVessel',
+                request_serializer=service.GetVesselRequest.serialize,
+                response_deserializer=service.Vessel.deserialize,
+            )
+        return self._stubs['get_vessel']
+
+    @property
     def list_vessels_with_status(self) -> Callable[
             [service.ListVesselsWithStatusRequest],
             Awaitable[service.Vessels]]:

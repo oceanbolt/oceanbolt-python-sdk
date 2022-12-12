@@ -26,6 +26,7 @@ __protobuf__ = proto.module(
         'DeleteFleetRequest',
         'GetFleetRequest',
         'ListVesselsRequest',
+        'GetVesselRequest',
         'ListVesselsWithStatusRequest',
         'ShareFleetRequest',
         'DropVesselsRequest',
@@ -127,6 +128,27 @@ class ListVesselsRequest(proto.Message):
     fleet_id = proto.Field(
         proto.STRING,
         number=1,
+    )
+
+
+class GetVesselRequest(proto.Message):
+    r"""Request object for retrieving a Vessel in a Fleet
+
+    Attributes:
+        fleet_id (str):
+            Identifier of the Fleet resource which
+            vessels to be retrieved.
+        imo (int):
+            Imo of the vessel.
+    """
+
+    fleet_id = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    imo = proto.Field(
+        proto.INT32,
+        number=2,
     )
 
 

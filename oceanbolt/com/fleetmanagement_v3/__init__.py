@@ -31,6 +31,7 @@ from .types.service import GetFleetListRequest
 from .types.service import GetFleetLiveMapRequest
 from .types.service import GetFleetLiveMapResponse
 from .types.service import GetFleetRequest
+from .types.service import GetVesselRequest
 from .types.service import ListVesselsRequest
 from .types.service import ListVesselsWithStatusRequest
 from .types.service import RenameFleetRequest
@@ -60,6 +61,7 @@ __all__ = (
 'GetFleetLiveMapRequest',
 'GetFleetLiveMapResponse',
 'GetFleetRequest',
+'GetVesselRequest',
 'ListVesselsRequest',
 'ListVesselsWithStatusRequest',
 'RenameFleetRequest',
