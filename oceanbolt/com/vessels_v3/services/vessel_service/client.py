@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union, cast
+
+from oceanbolt.com.vessels_v3 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -53,7 +54,7 @@ class VesselServiceClientMeta(type):
     _transport_registry["grpc_asyncio"] = VesselServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
-            label: str = None,
+            label: Optional[str] = None,
         ) -> Type[VesselServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -228,7 +229,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -275,8 +276,8 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, VesselServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
+            transport: Optional[Union[str, VesselServiceTransport]] = None,
+            client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the vessel service client.
@@ -290,7 +291,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
             transport (Union[str, VesselServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -320,6 +321,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
@@ -361,10 +363,10 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
             )
 
     def list_vessels(self,
-            request: Union[service.ListVesselsRequest, dict] = None,
+            request: Optional[Union[service.ListVesselsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListVesselsResponse:
         r"""Vessels gets a list of vessels for the given filter
@@ -372,6 +374,13 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vessels_v3
 
             def sample_list_vessels():
@@ -425,16 +434,23 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         return response
 
     def list_stoppage_events(self,
-            request: Union[service.ListStoppageEventsRequest, dict] = None,
+            request: Optional[Union[service.ListStoppageEventsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListStoppageEventsResponse:
         r"""Fetches ais based stoppage events for a single vessel
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vessels_v3
 
             def sample_list_stoppage_events():
@@ -488,10 +504,10 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         return response
 
     def list_dark_period_events(self,
-            request: Union[service.ListDarkPeriodEventsRequest, dict] = None,
+            request: Optional[Union[service.ListDarkPeriodEventsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListDarkPeriodEventsResponse:
         r"""Fetches ais based dark period events for a single
@@ -500,6 +516,13 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vessels_v3
 
             def sample_list_dark_period_events():
@@ -553,10 +576,10 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         return response
 
     def get_ais_summary(self,
-            request: Union[service.GetAisSummaryRequest, dict] = None,
+            request: Optional[Union[service.GetAisSummaryRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetAisSummaryResponse:
         r"""Generates summary data regarding AIS received during
@@ -564,6 +587,13 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vessels_v3
 
             def sample_get_ais_summary():
@@ -619,7 +649,7 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
         # Done; return the response.
         return response
 
-    def __enter__(self):
+    def __enter__(self) -> "VesselServiceClient":
         return self
 
     def __exit__(self, type, value, traceback):
@@ -637,14 +667,8 @@ class VesselServiceClient(metaclass=VesselServiceClientMeta):
 
 
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-vessels",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

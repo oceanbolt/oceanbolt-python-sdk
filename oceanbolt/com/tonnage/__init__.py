@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.tonnage import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.tonnage_v3.services.tonnage_service.client import TonnageServiceClient
 from oceanbolt.com.tonnage_v3.services.tonnage_service.async_client import TonnageServiceAsyncClient

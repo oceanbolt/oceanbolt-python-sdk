@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
@@ -36,11 +38,11 @@ class BatchDistanceRequest(proto.Message):
     r"""Request object for BatchCalculateDistance method
 
     Attributes:
-        requests (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceRequest]):
+        requests (MutableSequence[oceanbolt.com.distancecalculator_v3.types.DistanceRequest]):
             Array of distance requests
     """
 
-    requests = proto.RepeatedField(
+    requests: MutableSequence['DistanceRequest'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DistanceRequest',
@@ -51,11 +53,11 @@ class BatchDistanceResponse(proto.Message):
     r"""Response object for BatchCalculateDistance method
 
     Attributes:
-        responses (Sequence[oceanbolt.com.distancecalculator_v3.types.DistanceResponse]):
+        responses (MutableSequence[oceanbolt.com.distancecalculator_v3.types.DistanceResponse]):
             Array of distance requests
     """
 
-    responses = proto.RepeatedField(
+    responses: MutableSequence['DistanceResponse'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DistanceResponse',
@@ -100,23 +102,23 @@ class Location(proto.Message):
             This field is a member of `oneof`_ ``Data``.
     """
 
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.UINT32,
         number=1,
         oneof='Data',
     )
-    unlocode = proto.Field(
+    unlocode: str = proto.Field(
         proto.STRING,
         number=2,
         oneof='Data',
     )
-    point = proto.Field(
+    point: 'Point' = proto.Field(
         proto.MESSAGE,
         number=3,
         oneof='Data',
         message='Point',
     )
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.UINT32,
         number=4,
         oneof='Data',
@@ -127,7 +129,7 @@ class DistanceRequest(proto.Message):
     r"""Request object for CalculateDistance method
 
     Attributes:
-        locations (Sequence[oceanbolt.com.distancecalculator_v3.types.Location]):
+        locations (MutableSequence[oceanbolt.com.distancecalculator_v3.types.Location]):
             List of locations to calculate the shortest
             route between. If more than 2 locations are
             specified, then routing will be calculated
@@ -157,28 +159,28 @@ class DistanceRequest(proto.Message):
             through the Panama Canal
     """
 
-    locations = proto.RepeatedField(
+    locations: MutableSequence['Location'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Location',
     )
-    speed = proto.Field(
+    speed: float = proto.Field(
         proto.DOUBLE,
         number=2,
     )
-    transform = proto.Field(
+    transform: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    longitude_adjustment = proto.Field(
+    longitude_adjustment: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    block_suez = proto.Field(
+    block_suez: bool = proto.Field(
         proto.BOOL,
         number=5,
     )
-    block_panama = proto.Field(
+    block_panama: bool = proto.Field(
         proto.BOOL,
         number=6,
     )
@@ -193,7 +195,7 @@ class Leg(proto.Message):
         duration_hours (float):
             Expected duration of the leg, given a certain
             speed supplied by the user.
-        shortest_path (Sequence[oceanbolt.com.distancecalculator_v3.types.Point]):
+        shortest_path (MutableSequence[oceanbolt.com.distancecalculator_v3.types.Point]):
             The calculated shortest path between the
             start/end point of the leg.
         starting_point_modified (google.protobuf.wrappers_pb2.BoolValue):
@@ -202,20 +204,20 @@ class Leg(proto.Message):
             original point supplied was over land.
     """
 
-    distance = proto.Field(
+    distance: float = proto.Field(
         proto.DOUBLE,
         number=1,
     )
-    duration_hours = proto.Field(
+    duration_hours: float = proto.Field(
         proto.DOUBLE,
         number=2,
     )
-    shortest_path = proto.RepeatedField(
+    shortest_path: MutableSequence['Point'] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
         message='Point',
     )
-    starting_point_modified = proto.Field(
+    starting_point_modified: wrappers_pb2.BoolValue = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.BoolValue,
@@ -232,40 +234,49 @@ class DistanceResponse(proto.Message):
         total_duration_hours (float):
             Total expected duration of the entire voyage,
             given a certain speed supplied by the user.
-        total_shortest_path (Sequence[oceanbolt.com.distancecalculator_v3.types.Point]):
+        total_shortest_path (MutableSequence[oceanbolt.com.distancecalculator_v3.types.Point]):
             The calculated shortest path between the
             start/end point of the entire voyage.
-        individual_legs (Sequence[oceanbolt.com.distancecalculator_v3.types.Leg]):
+        individual_legs (MutableSequence[oceanbolt.com.distancecalculator_v3.types.Leg]):
             Array of the individual legs that compose the
             voyage
         status (oceanbolt.com.distancecalculator_v3.types.DistanceResponse.DistanceAlgorithmStatus):
             Status
     """
     class DistanceAlgorithmStatus(proto.Enum):
-        r""""""
+        r"""
+
+        Values:
+            ALGORITHM_ERROR (0):
+                No description available.
+            PLANAR (1):
+                No description available.
+            SPHERICAL (2):
+                No description available.
+        """
         ALGORITHM_ERROR = 0
         PLANAR = 1
         SPHERICAL = 2
 
-    total_distance = proto.Field(
+    total_distance: float = proto.Field(
         proto.DOUBLE,
         number=1,
     )
-    total_duration_hours = proto.Field(
+    total_duration_hours: float = proto.Field(
         proto.DOUBLE,
         number=2,
     )
-    total_shortest_path = proto.RepeatedField(
+    total_shortest_path: MutableSequence['Point'] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
         message='Point',
     )
-    individual_legs = proto.RepeatedField(
+    individual_legs: MutableSequence['Leg'] = proto.RepeatedField(
         proto.MESSAGE,
         number=4,
         message='Leg',
     )
-    status = proto.Field(
+    status: DistanceAlgorithmStatus = proto.Field(
         proto.ENUM,
         number=5,
         enum=DistanceAlgorithmStatus,
@@ -282,12 +293,12 @@ class Point(proto.Message):
             Latitude
     """
 
-    lon = proto.Field(
+    lon: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=1,
         message=wrappers_pb2.DoubleValue,
     )
-    lat = proto.Field(
+    lat: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,

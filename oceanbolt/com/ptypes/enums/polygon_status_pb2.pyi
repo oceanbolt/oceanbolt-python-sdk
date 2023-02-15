@@ -5,14 +5,20 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
+import sys
 import typing
-import typing_extensions
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _PolygonStatus:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
+
 class _PolygonStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_PolygonStatus.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     UNDEFINED_POLYGON_STATUS: _PolygonStatus.ValueType  # 0
@@ -21,8 +27,8 @@ class _PolygonStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._
     IN_BERTH: _PolygonStatus.ValueType  # 3
     IN_SHIPYARD: _PolygonStatus.ValueType  # 4
     AT_SEA: _PolygonStatus.ValueType  # 5
-class PolygonStatus(_PolygonStatus, metaclass=_PolygonStatusEnumTypeWrapper):
-    pass
+
+class PolygonStatus(_PolygonStatus, metaclass=_PolygonStatusEnumTypeWrapper): ...
 
 UNDEFINED_POLYGON_STATUS: PolygonStatus.ValueType  # 0
 IN_PORT: PolygonStatus.ValueType  # 1
@@ -31,4 +37,3 @@ IN_BERTH: PolygonStatus.ValueType  # 3
 IN_SHIPYARD: PolygonStatus.ValueType  # 4
 AT_SEA: PolygonStatus.ValueType  # 5
 global___PolygonStatus = PolygonStatus
-

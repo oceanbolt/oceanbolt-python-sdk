@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.custompolygon_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -105,7 +106,7 @@ class CustomPolygonServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -137,9 +138,9 @@ class CustomPolygonServiceAsyncClient:
     get_transport_class = functools.partial(type(CustomPolygonServiceClient).get_transport_class, type(CustomPolygonServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, CustomPolygonServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the custom polygon service client.
@@ -183,10 +184,10 @@ class CustomPolygonServiceAsyncClient:
         )
 
     async def get_polygon_counts(self,
-            request: Union[service.CustomPolygonRequest, dict] = None,
+            request: Optional[Union[service.CustomPolygonRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.CustomPolygonResponse:
         r"""GetPolygonCounts returns vessels counts (points) in
@@ -194,6 +195,13 @@ class CustomPolygonServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import custompolygon_v3
 
             async def sample_get_polygon_counts():
@@ -211,7 +219,7 @@ class CustomPolygonServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.custompolygon_v3.types.CustomPolygonRequest, dict]):
+            request (Optional[Union[oceanbolt.com.custompolygon_v3.types.CustomPolygonRequest, dict]]):
                 The request object. Request object for GetPolygonCounts
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -251,14 +259,7 @@ class CustomPolygonServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-custompolygon",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

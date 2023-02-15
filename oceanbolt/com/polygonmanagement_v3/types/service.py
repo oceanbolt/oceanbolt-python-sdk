@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from oceanbolt.com.polygonmanagement_v3.types import resources
@@ -54,7 +56,7 @@ class CreateLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -68,7 +70,7 @@ class DeleteLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -84,11 +86,11 @@ class CopyLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    new_layer_id = proto.Field(
+    new_layer_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -102,7 +104,7 @@ class GetLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -116,7 +118,7 @@ class ListPolygonsRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -130,7 +132,7 @@ class ShareLayerRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -144,7 +146,7 @@ class DropPolygonsRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -156,22 +158,22 @@ class BatchAddPolygonsRequest(proto.Message):
     Attributes:
         layer_id (str):
 
-        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
+        polygons (MutableSequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
 
         upsert (bool):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    polygons = proto.RepeatedField(
+    polygons: MutableSequence[resources.Polygon] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message=resources.Polygon,
     )
-    upsert = proto.Field(
+    upsert: bool = proto.Field(
         proto.BOOL,
         number=4,
     )
@@ -181,11 +183,11 @@ class BatchAddPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
-        errors (Sequence[str]):
+        errors (MutableSequence[str]):
 
     """
 
-    errors = proto.RepeatedField(
+    errors: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=1,
     )
@@ -197,15 +199,15 @@ class ReplacePolygonsRequest(proto.Message):
     Attributes:
         layer_id (str):
 
-        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
+        polygons (MutableSequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    polygons = proto.RepeatedField(
+    polygons: MutableSequence[resources.Polygon] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message=resources.Polygon,
@@ -216,11 +218,11 @@ class ListLayersResponse(proto.Message):
     r"""
 
     Attributes:
-        layers (Sequence[oceanbolt.com.polygonmanagement_v3.types.Layer]):
+        layers (MutableSequence[oceanbolt.com.polygonmanagement_v3.types.Layer]):
 
     """
 
-    layers = proto.RepeatedField(
+    layers: MutableSequence[resources.Layer] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message=resources.Layer,
@@ -239,15 +241,15 @@ class AddPolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    polygon_id = proto.Field(
+    polygon_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    payload = proto.Field(
+    payload: resources.Polygon = proto.Field(
         proto.MESSAGE,
         number=3,
         message=resources.Polygon,
@@ -264,11 +266,11 @@ class DeletePolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    polygon_id = proto.Field(
+    polygon_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -288,20 +290,20 @@ class UpdatePolygonRequest(proto.Message):
 
     """
 
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    polygon_id = proto.Field(
+    polygon_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    payload = proto.Field(
+    payload: resources.Polygon = proto.Field(
         proto.MESSAGE,
         number=3,
         message=resources.Polygon,
     )
-    upsert = proto.Field(
+    upsert: bool = proto.Field(
         proto.BOOL,
         number=4,
     )
@@ -311,11 +313,11 @@ class ListPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
-        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
+        polygons (MutableSequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
 
     """
 
-    polygons = proto.RepeatedField(
+    polygons: MutableSequence[resources.Polygon] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message=resources.Polygon,

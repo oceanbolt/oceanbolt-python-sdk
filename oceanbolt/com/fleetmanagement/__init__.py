@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.fleetmanagement import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.fleetmanagement_v3.services.fleet_management_service.client import FleetManagementServiceClient
 from oceanbolt.com.fleetmanagement_v3.services.fleet_management_service.async_client import FleetManagementServiceAsyncClient

@@ -6,13 +6,19 @@ import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
 import oceanbolt.com.ptypes.enums.platforms_pb2
-import typing
-import typing_extensions
+import sys
+
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class Vessel(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     IMO_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     EX_NAME_FIELD_NUMBER: builtins.int
@@ -26,31 +32,33 @@ class Vessel(google.protobuf.message.Message):
     LOA_FIELD_NUMBER: builtins.int
     BEAM_FIELD_NUMBER: builtins.int
     imo: builtins.int
-    name: typing.Text
-    ex_name: typing.Text
+    name: builtins.str
+    ex_name: builtins.str
     platform: oceanbolt.com.ptypes.enums.platforms_pb2.Platform.ValueType
-    segment: typing.Text
-    sub_segment: typing.Text
-    vessel_type: typing.Text
+    segment: builtins.str
+    sub_segment: builtins.str
+    vessel_type: builtins.str
     dwt: builtins.float
     max_draught: builtins.float
     built: builtins.int
     loa: builtins.float
     beam: builtins.float
-    def __init__(self,
+    def __init__(
+        self,
         *,
         imo: builtins.int = ...,
-        name: typing.Text = ...,
-        ex_name: typing.Text = ...,
+        name: builtins.str = ...,
+        ex_name: builtins.str = ...,
         platform: oceanbolt.com.ptypes.enums.platforms_pb2.Platform.ValueType = ...,
-        segment: typing.Text = ...,
-        sub_segment: typing.Text = ...,
-        vessel_type: typing.Text = ...,
+        segment: builtins.str = ...,
+        sub_segment: builtins.str = ...,
+        vessel_type: builtins.str = ...,
         dwt: builtins.float = ...,
         max_draught: builtins.float = ...,
         built: builtins.int = ...,
         loa: builtins.float = ...,
         beam: builtins.float = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["beam",b"beam","built",b"built","dwt",b"dwt","ex_name",b"ex_name","imo",b"imo","loa",b"loa","max_draught",b"max_draught","name",b"name","platform",b"platform","segment",b"segment","sub_segment",b"sub_segment","vessel_type",b"vessel_type"]) -> None: ...
+    ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["beam", b"beam", "built", b"built", "dwt", b"dwt", "ex_name", b"ex_name", "imo", b"imo", "loa", b"loa", "max_draught", b"max_draught", "name", b"name", "platform", b"platform", "segment", b"segment", "sub_segment", b"sub_segment", "vessel_type", b"vessel_type"]) -> None: ...
+
 global___Vessel = Vessel

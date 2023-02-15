@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
@@ -48,45 +50,45 @@ class GetCongestionRequest(proto.Message):
     r"""Congestion request object.
 
     Attributes:
-        port_id (Sequence[int]):
+        port_id (MutableSequence[int]):
             List of Oceanbolt port ids to filter on.
             This filters on the port where the vessel is
             currently congested.
-        port_unlocode (Sequence[str]):
+        port_unlocode (MutableSequence[str]):
             List of five letter UNLOCODEs for to filter
             on.
-        country_code (Sequence[str]):
+        country_code (MutableSequence[str]):
             The list of 2-letter ISO countries to get
             congestion data for. This filters on the country
             where the vessel is currently congested. Country
             code can be obtained either from the
             /entities/countries endpoint.
-        region_id (Sequence[str]):
+        region_id (MutableSequence[str]):
             The list of regionIds to get congestion data
             for. This filters on the region where the vessel
             is currently congested. Region Id can be
             obtained either from the /entities/regions
             endpoint.
-        operation (Sequence[str]):
+        operation (MutableSequence[str]):
             List of port call operation types to filter on. Allowed
             values are: \**["load","discharge";"yard","unknown"].
-        commodity (Sequence[str]):
+        commodity (MutableSequence[str]):
             List of commodities to get data for (get a list of all
             commodities from **/entities/commodities**).
-        commodity_group (Sequence[str]):
+        commodity_group (MutableSequence[str]):
             List of commodity groups to get data for (get a list of all
             commodity groups from **/entities/commodities**).
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
             Laden status to filter on. Allowed values are ['laden',
             'ballast'].
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             List of IMO numbers to include in the
             congestion data results.
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
@@ -96,13 +98,13 @@ class GetCongestionRequest(proto.Message):
             endpoint.
         frequency (str):
             Not implemented.
-        last_load_country_code (Sequence[str]):
+        last_load_country_code (MutableSequence[str]):
             The list of 2-letter ISO countries to get
             congestion data for. This filters on the country
             where the vessel loaded its prior cargo. Country
             code can be obtained either from the
             /entities/countries endpoint.
-        last_load_port_id (Sequence[int]):
+        last_load_port_id (MutableSequence[int]):
             List of Oceanbolt port ids to filter on.
             This filters on the ports where the vessel
             loaded its prior cargo.
@@ -145,7 +147,7 @@ class GetCongestionRequest(proto.Message):
             Parameter used to display historical vessel
             lists for congested vessels. It is only
             applicable to the CongestionVessels method.
-        dwt (Sequence[float]):
+        dwt (MutableSequence[float]):
             DWT range to filter on. Example: [60000,90000] - this would
             filter only to only include dwt between 60k and 90k (both
             values inclusive).
@@ -153,111 +155,111 @@ class GetCongestionRequest(proto.Message):
             Specifies vessel parameters to filter on.
     """
 
-    port_id = proto.RepeatedField(
+    port_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    port_unlocode = proto.RepeatedField(
+    port_unlocode: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=18,
     )
-    country_code = proto.RepeatedField(
+    country_code: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    region_id = proto.RepeatedField(
+    region_id: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    operation = proto.RepeatedField(
+    operation: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=4,
     )
-    commodity = proto.RepeatedField(
+    commodity: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=5,
     )
-    commodity_group = proto.RepeatedField(
+    commodity_group: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=19,
     )
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=26,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=7,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=8,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    frequency = proto.Field(
+    frequency: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    last_load_country_code = proto.RepeatedField(
+    last_load_country_code: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=12,
     )
-    last_load_port_id = proto.RepeatedField(
+    last_load_port_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=13,
     )
-    exclude = proto.Field(
+    exclude: int = proto.Field(
         proto.INT32,
         number=14,
     )
-    max_stay_length = proto.Field(
+    max_stay_length: int = proto.Field(
         proto.INT32,
         number=23,
     )
-    include_vessels_currently_at_berth = proto.Field(
+    include_vessels_currently_at_berth: bool = proto.Field(
         proto.BOOL,
         number=24,
     )
-    include_vessels_previously_berthed = proto.Field(
+    include_vessels_previously_berthed: bool = proto.Field(
         proto.BOOL,
         number=25,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    last_n_days = proto.Field(
+    last_n_days: int = proto.Field(
         proto.INT32,
         number=20,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=21,
     )
-    display_date = proto.Field(
+    display_date: str = proto.Field(
         proto.STRING,
         number=22,
     )
-    dwt = proto.RepeatedField(
+    dwt: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=33,
     )
-    vessel_filter = proto.Field(
+    vessel_filter: vessel_filter_pb2.VesselFilter = proto.Field(
         proto.MESSAGE,
         number=34,
         message=vessel_filter_pb2.VesselFilter,
@@ -271,15 +273,15 @@ class CongestionTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.congestion_v3.types.CongestionTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['CongestionTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='CongestionTimeseriesRow',
@@ -305,26 +307,26 @@ class CongestionTimeseriesRow(proto.Message):
             congested on the date.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vessel_count = proto.Field(
+    vessel_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.Int32Value,
     )
-    vessel_dwt = proto.Field(
+    vessel_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
     )
-    avg_waiting_days = proto.Field(
+    avg_waiting_days: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.DoubleValue,
     )
-    median_waiting_days = proto.Field(
+    median_waiting_days: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=5,
         message=wrappers_pb2.DoubleValue,
@@ -337,20 +339,20 @@ class CongestionResponse(proto.Message):
     Attributes:
         number_of_current_vessels (int):
             Number of vessels currently congested.
-        current_top_ports (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
+        current_top_ports (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
             List of top ports by amount of congested.
-        current_top_sub_segments (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
+        current_top_sub_segments (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
             List of top segments by amount of congested.
-        current_top_commodity_groups (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
+        current_top_commodity_groups (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
             List of top commodities by amount of
             congested.
-        current_top_load_countries (Sequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
+        current_top_load_countries (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionSplitRow]):
             List of top countries by amount of congested.
         timeseriesDefault (oceanbolt.com.congestion_v3.types.CongestionTimeseriesGroup):
             Ungrouped timeseries response.
-        current_vessels (Sequence[oceanbolt.com.congestion_v3.types.CongestionStay]):
+        current_vessels (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionStay]):
             List of vessels currently congested.
-        timeseries (Sequence[oceanbolt.com.congestion_v3.types.CongestionTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.congestion_v3.types.CongestionTimeseriesGroup]):
             Congestion timeseries response.
         csv (str):
             Link to download csv file, if format was
@@ -360,50 +362,50 @@ class CongestionResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    number_of_current_vessels = proto.Field(
+    number_of_current_vessels: int = proto.Field(
         proto.INT32,
         number=3,
     )
-    current_top_ports = proto.RepeatedField(
+    current_top_ports: MutableSequence['CongestionSplitRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=4,
         message='CongestionSplitRow',
     )
-    current_top_sub_segments = proto.RepeatedField(
+    current_top_sub_segments: MutableSequence['CongestionSplitRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=5,
         message='CongestionSplitRow',
     )
-    current_top_commodity_groups = proto.RepeatedField(
+    current_top_commodity_groups: MutableSequence['CongestionSplitRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=6,
         message='CongestionSplitRow',
     )
-    current_top_load_countries = proto.RepeatedField(
+    current_top_load_countries: MutableSequence['CongestionSplitRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=7,
         message='CongestionSplitRow',
     )
-    timeseriesDefault = proto.Field(
+    timeseriesDefault: 'CongestionTimeseriesGroup' = proto.Field(
         proto.MESSAGE,
         number=9,
         message='CongestionTimeseriesGroup',
     )
-    current_vessels = proto.RepeatedField(
+    current_vessels: MutableSequence['CongestionStay'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='CongestionStay',
     )
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['CongestionTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='CongestionTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=10,
     )
@@ -425,26 +427,26 @@ class CongestionSplitRow(proto.Message):
 
     """
 
-    item = proto.Field(
+    item: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    count = proto.Field(
+    count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.Int32Value,
     )
-    dwt = proto.Field(
+    dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
     )
-    count_percent = proto.Field(
+    count_percent: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
     )
-    dwt_percent = proto.Field(
+    dwt_percent: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=5,
         message=wrappers_pb2.DoubleValue,
@@ -522,107 +524,107 @@ class CongestionStay(proto.Message):
             ballast).
     """
 
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    vessel_name = proto.Field(
+    vessel_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    dwt = proto.Field(
+    dwt: float = proto.Field(
         proto.DOUBLE,
         number=21,
     )
-    current_port_id = proto.Field(
+    current_port_id: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    current_port_name = proto.Field(
+    current_port_name: str = proto.Field(
         proto.STRING,
         number=18,
     )
-    current_country = proto.Field(
+    current_country: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    current_country_code = proto.Field(
+    current_country_code: str = proto.Field(
         proto.STRING,
         number=20,
     )
-    arrived_at = proto.Field(
+    arrived_at: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    waiting_time_days = proto.Field(
+    waiting_time_days: float = proto.Field(
         proto.DOUBLE,
         number=10,
     )
-    last_load_country = proto.Field(
+    last_load_country: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    last_load_country_code = proto.Field(
+    last_load_country_code: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    last_load_port_name = proto.Field(
+    last_load_port_name: str = proto.Field(
         proto.STRING,
         number=13,
     )
-    last_load_berth_name = proto.Field(
+    last_load_berth_name: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    last_port_departed_at = proto.Field(
+    last_port_departed_at: str = proto.Field(
         proto.STRING,
         number=14,
     )
-    last_load_port_id = proto.Field(
+    last_load_port_id: int = proto.Field(
         proto.INT32,
         number=9,
     )
-    commodity_group = proto.Field(
+    commodity_group: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    commodity = proto.Field(
+    commodity: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    volume = proto.Field(
+    volume: float = proto.Field(
         proto.DOUBLE,
         number=19,
     )
-    lat = proto.Field(
+    lat: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=22,
         message=wrappers_pb2.DoubleValue,
     )
-    lng = proto.Field(
+    lng: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=23,
         message=wrappers_pb2.DoubleValue,
     )
-    course = proto.Field(
+    course: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=25,
         message=wrappers_pb2.DoubleValue,
     )
-    speed = proto.Field(
+    speed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=24,
         message=wrappers_pb2.DoubleValue,
     )
-    laden_status = proto.Field(
+    laden_status: str = proto.Field(
         proto.STRING,
         number=26,
     )

@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.vesselstates_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -105,7 +106,7 @@ class VesselStateServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -137,9 +138,9 @@ class VesselStateServiceAsyncClient:
     get_transport_class = functools.partial(type(VesselStateServiceClient).get_transport_class, type(VesselStateServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, VesselStateServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the vessel state service client.
@@ -183,10 +184,10 @@ class VesselStateServiceAsyncClient:
         )
 
     async def get_vessel_states(self,
-            request: Union[service.GetVesselStatesRequest, dict] = None,
+            request: Optional[Union[service.GetVesselStatesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.VesselStatesResponse:
         r"""Returns historical vessel states for the given dates
@@ -194,6 +195,13 @@ class VesselStateServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vesselstates_v3
 
             async def sample_get_vessel_states():
@@ -211,7 +219,7 @@ class VesselStateServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.vesselstates_v3.types.GetVesselStatesRequest, dict]):
+            request (Optional[Union[oceanbolt.com.vesselstates_v3.types.GetVesselStatesRequest, dict]]):
                 The request object. Request message for
                 VesselStateService.GetVesselStates
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -250,10 +258,10 @@ class VesselStateServiceAsyncClient:
         return response
 
     async def get_vessel_states_for_date(self,
-            request: Union[service.GetVesselStatesForDateRequest, dict] = None,
+            request: Optional[Union[service.GetVesselStatesForDateRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.VesselStatesResponse:
         r"""Returns all historical states for the entire fleet
@@ -261,6 +269,13 @@ class VesselStateServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import vesselstates_v3
 
             async def sample_get_vessel_states_for_date():
@@ -278,7 +293,7 @@ class VesselStateServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.vesselstates_v3.types.GetVesselStatesForDateRequest, dict]):
+            request (Optional[Union[oceanbolt.com.vesselstates_v3.types.GetVesselStatesForDateRequest, dict]]):
                 The request object. Request message for
                 VesselStateService.GetVesselStatesForDate
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -322,14 +337,7 @@ class VesselStateServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-vesselstates",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

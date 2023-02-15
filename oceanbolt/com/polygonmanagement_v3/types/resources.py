@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 
@@ -39,38 +41,38 @@ class Layer(proto.Message):
 
         polygons_in_layer (int):
 
-        polygons (Sequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
+        polygons (MutableSequence[oceanbolt.com.polygonmanagement_v3.types.Polygon]):
 
         shared_with_org (bool):
 
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    layer_id = proto.Field(
+    layer_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    owner_user_id = proto.Field(
+    owner_user_id: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    organization = proto.Field(
+    organization: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    polygons_in_layer = proto.Field(
+    polygons_in_layer: int = proto.Field(
         proto.INT32,
         number=4,
     )
-    polygons = proto.RepeatedField(
+    polygons: MutableSequence['Polygon'] = proto.RepeatedField(
         proto.MESSAGE,
         number=5,
         message='Polygon',
     )
-    shared_with_org = proto.Field(
+    shared_with_org: bool = proto.Field(
         proto.BOOL,
         number=7,
     )
@@ -86,23 +88,23 @@ class Polygon(proto.Message):
 
         geojson (str):
 
-        metadata (Mapping[str, str]):
+        metadata (MutableMapping[str, str]):
 
     """
 
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    polygon_id = proto.Field(
+    polygon_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    geojson = proto.Field(
+    geojson: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    metadata = proto.MapField(
+    metadata: MutableMapping[str, str] = proto.MapField(
         proto.STRING,
         proto.STRING,
         number=3,

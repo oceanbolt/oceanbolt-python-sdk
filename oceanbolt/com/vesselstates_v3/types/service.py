@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 
@@ -31,7 +33,7 @@ class GetVesselStatesRequest(proto.Message):
     r"""Request message for VesselStateService.GetVesselStates
 
     Attributes:
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             included vessel imos
         start_date (str):
 
@@ -39,15 +41,15 @@ class GetVesselStatesRequest(proto.Message):
 
     """
 
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -61,7 +63,7 @@ class GetVesselStatesForDateRequest(proto.Message):
 
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -72,12 +74,12 @@ class VesselStatesResponse(proto.Message):
     VesselStateService.GetVesselStatesForDate.
 
     Attributes:
-        vessel_states (Sequence[oceanbolt.com.vesselstates_v3.types.VesselState]):
+        vessel_states (MutableSequence[oceanbolt.com.vesselstates_v3.types.VesselState]):
             A collection of VesselState objects that is
             returned by the API.
     """
 
-    vessel_states = proto.RepeatedField(
+    vessel_states: MutableSequence['VesselState'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='VesselState',
@@ -144,6 +146,8 @@ class VesselState(proto.Message):
             Destination as reported by the crew
         destination_port_id (int):
             Parsed destination port id
+        destination_port_unlocode (str):
+            Parsed destination port unlocode
         destination_port_name (str):
             Parsed destination port name
         destination_region (str):
@@ -155,6 +159,8 @@ class VesselState(proto.Message):
             result
         predicted_destination_port_id (int):
             Predicted destination port id
+        predicted_destination_port_unlocode (str):
+            Predicted destination port unlocode
         predicted_destination_port_name (str):
             Predicted destination port name
         predicted_destination_region (str):
@@ -216,207 +222,215 @@ class VesselState(proto.Message):
             been carried forward.
     """
 
-    vessel_name = proto.Field(
+    vessel_name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.UINT32,
         number=2,
     )
-    mmsi = proto.Field(
+    mmsi: int = proto.Field(
         proto.UINT32,
         number=3,
     )
-    timestamp = proto.Field(
+    timestamp: str = proto.Field(
         proto.STRING,
         number=38,
     )
-    dwt = proto.Field(
+    dwt: float = proto.Field(
         proto.DOUBLE,
         number=6,
     )
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    vessel_type = proto.Field(
+    vessel_type: str = proto.Field(
         proto.STRING,
         number=40,
     )
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.UINT32,
         number=9,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=27,
     )
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.UINT32,
         number=28,
     )
-    port_name = proto.Field(
+    port_name: str = proto.Field(
         proto.STRING,
         number=29,
     )
-    anchorage_id = proto.Field(
+    anchorage_id: int = proto.Field(
         proto.UINT32,
         number=30,
     )
-    anchorage_name = proto.Field(
+    anchorage_name: str = proto.Field(
         proto.STRING,
         number=31,
     )
-    berth_id = proto.Field(
+    berth_id: int = proto.Field(
         proto.UINT32,
         number=32,
     )
-    berth_name = proto.Field(
+    berth_name: str = proto.Field(
         proto.STRING,
         number=33,
     )
-    shipyard_id = proto.Field(
+    shipyard_id: int = proto.Field(
         proto.UINT32,
         number=34,
     )
-    shipyard_name = proto.Field(
+    shipyard_name: str = proto.Field(
         proto.STRING,
         number=35,
     )
-    related_port_id = proto.Field(
+    related_port_id: int = proto.Field(
         proto.UINT32,
         number=36,
     )
-    related_port_name = proto.Field(
+    related_port_name: str = proto.Field(
         proto.STRING,
         number=37,
     )
-    vessel_status = proto.Field(
+    vessel_status: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    laden_status_model = proto.Field(
+    laden_status_model: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    laden_status_draught = proto.Field(
+    laden_status_draught: str = proto.Field(
         proto.STRING,
         number=12,
     )
-    destination = proto.Field(
+    destination: str = proto.Field(
         proto.STRING,
         number=13,
     )
-    destination_port_id = proto.Field(
+    destination_port_id: int = proto.Field(
         proto.UINT32,
         number=51,
     )
-    destination_port_name = proto.Field(
+    destination_port_unlocode: str = proto.Field(
+        proto.STRING,
+        number=62,
+    )
+    destination_port_name: str = proto.Field(
         proto.STRING,
         number=14,
     )
-    destination_region = proto.Field(
+    destination_region: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    destination_country_code = proto.Field(
+    destination_country_code: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    destination_score = proto.Field(
+    destination_score: float = proto.Field(
         proto.DOUBLE,
         number=41,
     )
-    predicted_destination_port_id = proto.Field(
+    predicted_destination_port_id: int = proto.Field(
         proto.UINT32,
         number=52,
     )
-    predicted_destination_port_name = proto.Field(
+    predicted_destination_port_unlocode: str = proto.Field(
+        proto.STRING,
+        number=63,
+    )
+    predicted_destination_port_name: str = proto.Field(
         proto.STRING,
         number=53,
     )
-    predicted_destination_region = proto.Field(
+    predicted_destination_region: str = proto.Field(
         proto.STRING,
         number=54,
     )
-    predicted_destination_country_code = proto.Field(
+    predicted_destination_country_code: str = proto.Field(
         proto.STRING,
         number=55,
     )
-    predicted_destination_score = proto.Field(
+    predicted_destination_score: float = proto.Field(
         proto.DOUBLE,
         number=56,
     )
-    prediction_destination_description = proto.Field(
+    prediction_destination_description: str = proto.Field(
         proto.STRING,
         number=60,
     )
-    predicted_arrival = proto.Field(
+    predicted_arrival: str = proto.Field(
         proto.STRING,
         number=61,
     )
-    eta = proto.Field(
+    eta: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    navigational_status = proto.Field(
+    navigational_status: str = proto.Field(
         proto.STRING,
         number=18,
     )
-    navigational_status_code = proto.Field(
+    navigational_status_code: int = proto.Field(
         proto.UINT32,
         number=45,
     )
-    port_call_status = proto.Field(
+    port_call_status: str = proto.Field(
         proto.STRING,
         number=22,
     )
-    commodity_id = proto.Field(
+    commodity_id: int = proto.Field(
         proto.UINT32,
         number=57,
     )
-    commodity_group = proto.Field(
+    commodity_group: str = proto.Field(
         proto.STRING,
         number=23,
     )
-    commodity_name = proto.Field(
+    commodity_name: str = proto.Field(
         proto.STRING,
         number=24,
     )
-    direction = proto.Field(
+    direction: str = proto.Field(
         proto.STRING,
         number=25,
     )
-    speed_status = proto.Field(
+    speed_status: str = proto.Field(
         proto.STRING,
         number=26,
     )
-    last_visited_port_id = proto.Field(
+    last_visited_port_id: int = proto.Field(
         proto.UINT32,
         number=46,
     )
-    last_visited_port_name = proto.Field(
+    last_visited_port_name: str = proto.Field(
         proto.STRING,
         number=47,
     )
-    last_ops_port_id = proto.Field(
+    last_ops_port_id: int = proto.Field(
         proto.UINT32,
         number=48,
     )
-    last_ops_port_name = proto.Field(
+    last_ops_port_name: str = proto.Field(
         proto.STRING,
         number=49,
     )
-    volume_on_board = proto.Field(
+    volume_on_board: float = proto.Field(
         proto.DOUBLE,
         number=50,
     )
-    hours_carried_forward = proto.Field(
+    hours_carried_forward: int = proto.Field(
         proto.UINT32,
         number=43,
     )

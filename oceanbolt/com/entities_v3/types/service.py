@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 
@@ -59,11 +61,11 @@ class ListSegmentsResponse(proto.Message):
     r"""
 
     Attributes:
-        segments (Sequence[oceanbolt.com.entities_v3.types.Segment]):
+        segments (MutableSequence[oceanbolt.com.entities_v3.types.Segment]):
 
     """
 
-    segments = proto.RepeatedField(
+    segments: MutableSequence['Segment'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Segment',
@@ -100,51 +102,51 @@ class Segment(proto.Message):
 
     """
 
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    segment_key = proto.Field(
+    segment_key: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    segment_int = proto.Field(
+    segment_int: int = proto.Field(
         proto.INT32,
         number=3,
     )
-    sub_segment_int = proto.Field(
+    sub_segment_int: int = proto.Field(
         proto.INT32,
         number=4,
     )
-    sub_segment_key = proto.Field(
+    sub_segment_key: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    cutoff_low_dwt = proto.Field(
+    cutoff_low_dwt: float = proto.Field(
         proto.DOUBLE,
         number=7,
     )
-    cutoff_high_dwt = proto.Field(
+    cutoff_high_dwt: float = proto.Field(
         proto.DOUBLE,
         number=8,
     )
-    cutoff_low_cbm = proto.Field(
+    cutoff_low_cbm: float = proto.Field(
         proto.DOUBLE,
         number=11,
     )
-    cutoff_high_cbm = proto.Field(
+    cutoff_high_cbm: float = proto.Field(
         proto.DOUBLE,
         number=12,
     )
-    platform = proto.Field(
+    platform: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    highlevel_type = proto.Field(
+    highlevel_type: str = proto.Field(
         proto.STRING,
         number=10,
     )
@@ -159,11 +161,11 @@ class ListPortsResponse(proto.Message):
     r"""
 
     Attributes:
-        ports (Sequence[oceanbolt.com.entities_v3.types.Port]):
+        ports (MutableSequence[oceanbolt.com.entities_v3.types.Port]):
 
     """
 
-    ports = proto.RepeatedField(
+    ports: MutableSequence['Port'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Port',
@@ -184,9 +186,9 @@ class Port(proto.Message):
 
         unlocode (str):
 
-        unlocode_alias (Sequence[str]):
+        unlocode_alias (MutableSequence[str]):
 
-        port_name_alias (Sequence[str]):
+        port_name_alias (MutableSequence[str]):
 
         longitude (float):
 
@@ -194,39 +196,39 @@ class Port(proto.Message):
 
     """
 
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    port_name = proto.Field(
+    port_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    country_code = proto.Field(
+    country_code: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    region = proto.Field(
+    region: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    unlocode = proto.Field(
+    unlocode: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    unlocode_alias = proto.RepeatedField(
+    unlocode_alias: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    port_name_alias = proto.RepeatedField(
+    port_name_alias: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=7,
     )
-    longitude = proto.Field(
+    longitude: float = proto.Field(
         proto.DOUBLE,
         number=8,
     )
-    latitude = proto.Field(
+    latitude: float = proto.Field(
         proto.DOUBLE,
         number=9,
     )
@@ -241,11 +243,11 @@ class ListTonnageZonesWithPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
-        zones (Sequence[oceanbolt.com.entities_v3.types.ZoneWithPolygon]):
+        zones (MutableSequence[oceanbolt.com.entities_v3.types.ZoneWithPolygon]):
 
     """
 
-    zones = proto.RepeatedField(
+    zones: MutableSequence['ZoneWithPolygon'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='ZoneWithPolygon',
@@ -272,31 +274,31 @@ class ZoneWithPolygon(proto.Message):
 
     """
 
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    zone_basin = proto.Field(
+    zone_basin: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    geom_polygon_wkt = proto.Field(
+    geom_polygon_wkt: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    geom_polygon_geojson = proto.Field(
+    geom_polygon_geojson: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    geom_coordinate_wkt = proto.Field(
+    geom_coordinate_wkt: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    geom_coordinate_geojson = proto.Field(
+    geom_coordinate_geojson: str = proto.Field(
         proto.STRING,
         number=7,
     )
@@ -312,11 +314,11 @@ class Zone(proto.Message):
 
     """
 
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -326,11 +328,11 @@ class ListTonnageZonesResponse(proto.Message):
     r"""
 
     Attributes:
-        zones (Sequence[oceanbolt.com.entities_v3.types.Zone]):
+        zones (MutableSequence[oceanbolt.com.entities_v3.types.Zone]):
 
     """
 
-    zones = proto.RepeatedField(
+    zones: MutableSequence['Zone'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Zone',
@@ -352,11 +354,11 @@ class Region(proto.Message):
 
     """
 
-    region_id = proto.Field(
+    region_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    region_name = proto.Field(
+    region_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -366,11 +368,11 @@ class ListRegionsResponse(proto.Message):
     r"""
 
     Attributes:
-        regions (Sequence[oceanbolt.com.entities_v3.types.Region]):
+        regions (MutableSequence[oceanbolt.com.entities_v3.types.Region]):
 
     """
 
-    regions = proto.RepeatedField(
+    regions: MutableSequence['Region'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Region',
@@ -389,15 +391,15 @@ class RegionWithPolygon(proto.Message):
 
     """
 
-    region_id = proto.Field(
+    region_id: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    region_name = proto.Field(
+    region_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    geojson = proto.Field(
+    geojson: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -407,11 +409,11 @@ class ListRegionsWithPolygonResponse(proto.Message):
     r"""
 
     Attributes:
-        regions (Sequence[oceanbolt.com.entities_v3.types.RegionWithPolygon]):
+        regions (MutableSequence[oceanbolt.com.entities_v3.types.RegionWithPolygon]):
 
     """
 
-    regions = proto.RepeatedField(
+    regions: MutableSequence['RegionWithPolygon'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='RegionWithPolygon',
@@ -433,11 +435,11 @@ class Country(proto.Message):
 
     """
 
-    country = proto.Field(
+    country: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    country_code = proto.Field(
+    country_code: str = proto.Field(
         proto.STRING,
         number=2,
     )
@@ -447,11 +449,11 @@ class ListCountriesResponse(proto.Message):
     r"""
 
     Attributes:
-        countries (Sequence[oceanbolt.com.entities_v3.types.Country]):
+        countries (MutableSequence[oceanbolt.com.entities_v3.types.Country]):
 
     """
 
-    countries = proto.RepeatedField(
+    countries: MutableSequence['Country'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Country',
@@ -479,23 +481,23 @@ class Commodity(proto.Message):
 
     """
 
-    commodity = proto.Field(
+    commodity: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    commodity_id = proto.Field(
+    commodity_id: int = proto.Field(
         proto.INT32,
         number=4,
     )
-    commodity_value = proto.Field(
+    commodity_value: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    commodity_group = proto.Field(
+    commodity_group: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    platform = proto.Field(
+    platform: str = proto.Field(
         proto.STRING,
         number=5,
     )
@@ -505,11 +507,11 @@ class ListCommoditiesResponse(proto.Message):
     r"""
 
     Attributes:
-        commodities (Sequence[oceanbolt.com.entities_v3.types.Commodity]):
+        commodities (MutableSequence[oceanbolt.com.entities_v3.types.Commodity]):
 
     """
 
-    commodities = proto.RepeatedField(
+    commodities: MutableSequence['Commodity'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Commodity',
@@ -524,7 +526,7 @@ class SearchRequest(proto.Message):
 
     """
 
-    q = proto.Field(
+    q: str = proto.Field(
         proto.STRING,
         number=1,
     )
@@ -534,11 +536,11 @@ class SearchPolygonsResponse(proto.Message):
     r"""
 
     Attributes:
-        polygons (Sequence[oceanbolt.com.entities_v3.types.Polygon]):
+        polygons (MutableSequence[oceanbolt.com.entities_v3.types.Polygon]):
 
     """
 
-    polygons = proto.RepeatedField(
+    polygons: MutableSequence['Polygon'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Polygon',
@@ -567,35 +569,35 @@ class Polygon(proto.Message):
             string geom_point = 8; double mbc_radius = 9;
     """
 
-    berth_id = proto.Field(
+    berth_id: int = proto.Field(
         proto.UINT32,
         number=1,
     )
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.UINT32,
         number=2,
     )
-    port_name = proto.Field(
+    port_name: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    berth_name = proto.Field(
+    berth_name: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    country_code = proto.Field(
+    country_code: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    unlocode = proto.Field(
+    unlocode: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    entity_type = proto.Field(
+    entity_type: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    alias = proto.Field(
+    alias: str = proto.Field(
         proto.STRING,
         number=10,
     )
@@ -605,11 +607,11 @@ class SearchVesselsResponse(proto.Message):
     r"""
 
     Attributes:
-        vessels (Sequence[oceanbolt.com.entities_v3.types.Vessel]):
+        vessels (MutableSequence[oceanbolt.com.entities_v3.types.Vessel]):
 
     """
 
-    vessels = proto.RepeatedField(
+    vessels: MutableSequence['Vessel'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Vessel',
@@ -650,59 +652,59 @@ class Vessel(proto.Message):
 
     """
 
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.UINT32,
         number=1,
     )
-    highlevel_type = proto.Field(
+    highlevel_type: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    dwt = proto.Field(
+    dwt: float = proto.Field(
         proto.DOUBLE,
         number=5,
     )
-    max_draught = proto.Field(
+    max_draught: float = proto.Field(
         proto.DOUBLE,
         number=6,
     )
-    name = proto.Field(
+    name: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    ex_name = proto.Field(
+    ex_name: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    built = proto.Field(
+    built: int = proto.Field(
         proto.UINT32,
         number=9,
     )
-    type_ = proto.Field(
+    type_: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    mpv = proto.Field(
+    mpv: bool = proto.Field(
         proto.BOOL,
         number=11,
     )
-    loa = proto.Field(
+    loa: float = proto.Field(
         proto.DOUBLE,
         number=12,
     )
-    beam = proto.Field(
+    beam: float = proto.Field(
         proto.DOUBLE,
         number=13,
     )
-    holds_total = proto.Field(
+    holds_total: float = proto.Field(
         proto.DOUBLE,
         number=14,
     )

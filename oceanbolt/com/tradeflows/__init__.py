@@ -13,28 +13,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.tradeflows import gapic_version as package_version
 
-from oceanbolt.com.tradeflows_v3.services.trade_flow_service.client import TradeFlowServiceClient
-from oceanbolt.com.tradeflows_v3.services.trade_flow_service.async_client import TradeFlowServiceAsyncClient
+__version__ = package_version.__version__
 
-from oceanbolt.com.tradeflows_v3.types.service import AggregationGroup
-from oceanbolt.com.tradeflows_v3.types.service import AggregationRow
-from oceanbolt.com.tradeflows_v3.types.service import EmptyParams
-from oceanbolt.com.tradeflows_v3.types.service import EmptyResponse
-from oceanbolt.com.tradeflows_v3.types.service import GeoPoint
-from oceanbolt.com.tradeflows_v3.types.service import GetLocationVolumeResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowAggregationResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowHistogramResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowsResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeFlowTimeseriesResponse
-from oceanbolt.com.tradeflows_v3.types.service import GetTradeLaneMetricsResponse
-from oceanbolt.com.tradeflows_v3.types.service import HistogramGroup
-from oceanbolt.com.tradeflows_v3.types.service import LocationVolume
-from oceanbolt.com.tradeflows_v3.types.service import TimeseriesGroup
-from oceanbolt.com.tradeflows_v3.types.service import TimeseriesRow
-from oceanbolt.com.tradeflows_v3.types.service import TradeFlow
-from oceanbolt.com.tradeflows_v3.types.service import TradeFlowDataRequest
-from oceanbolt.com.tradeflows_v3.types.service import TradeLaneMetric
+
+from oceanbolt.com.tradeflows_v4.services.trade_flow_service.client import TradeFlowServiceClient
+from oceanbolt.com.tradeflows_v4.services.trade_flow_service.async_client import TradeFlowServiceAsyncClient
+
+from oceanbolt.com.tradeflows_v4.types.service import AggregationGroup
+from oceanbolt.com.tradeflows_v4.types.service import AggregationRow
+from oceanbolt.com.tradeflows_v4.types.service import EmptyParams
+from oceanbolt.com.tradeflows_v4.types.service import EmptyResponse
+from oceanbolt.com.tradeflows_v4.types.service import GeoPoint
+from oceanbolt.com.tradeflows_v4.types.service import GetLocationVolumeResponse
+from oceanbolt.com.tradeflows_v4.types.service import GetTradeFlowAggregationResponse
+from oceanbolt.com.tradeflows_v4.types.service import GetTradeFlowHistogramResponse
+from oceanbolt.com.tradeflows_v4.types.service import GetTradeFlowsResponse
+from oceanbolt.com.tradeflows_v4.types.service import GetTradeFlowTimeseriesResponse
+from oceanbolt.com.tradeflows_v4.types.service import GetTradeLaneMetricsResponse
+from oceanbolt.com.tradeflows_v4.types.service import HistogramGroup
+from oceanbolt.com.tradeflows_v4.types.service import LocationVolume
+from oceanbolt.com.tradeflows_v4.types.service import TimeseriesGroup
+from oceanbolt.com.tradeflows_v4.types.service import TimeseriesRow
+from oceanbolt.com.tradeflows_v4.types.service import TradeFlow
+from oceanbolt.com.tradeflows_v4.types.service import TradeFlowDataRequest
+from oceanbolt.com.tradeflows_v4.types.service import TradeLaneMetric
 
 __all__ = ('TradeFlowServiceClient',
     'TradeFlowServiceAsyncClient',

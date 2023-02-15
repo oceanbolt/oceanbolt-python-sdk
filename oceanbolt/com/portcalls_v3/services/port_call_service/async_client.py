@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.portcalls_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -103,7 +104,7 @@ class PortCallServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -135,9 +136,9 @@ class PortCallServiceAsyncClient:
     get_transport_class = functools.partial(type(PortCallServiceClient).get_transport_class, type(PortCallServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, PortCallServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the port call service client.
@@ -181,10 +182,10 @@ class PortCallServiceAsyncClient:
         )
 
     async def get_port_calls(self,
-            request: Union[service.GetPortCallsRequest, dict] = None,
+            request: Optional[Union[service.GetPortCallsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetPortCallsResponse:
         r"""ListPortCalls retrieves lists all port calls for a
@@ -196,6 +197,13 @@ class PortCallServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import portcalls_v3
 
             async def sample_get_port_calls():
@@ -213,7 +221,7 @@ class PortCallServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.portcalls_v3.types.GetPortCallsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.portcalls_v3.types.GetPortCallsRequest, dict]]):
                 The request object. Port calls data requests object.
                 This is shared between all port calls queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -249,10 +257,10 @@ class PortCallServiceAsyncClient:
         return response
 
     async def get_port_call_timeseries(self,
-            request: Union[service.GetPortCallsRequest, dict] = None,
+            request: Optional[Union[service.GetPortCallsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetPortCallTimeseriesResponse:
         r"""GetPortCallTimeseries retrieves aggregated counts for
@@ -260,6 +268,13 @@ class PortCallServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import portcalls_v3
 
             async def sample_get_port_call_timeseries():
@@ -277,7 +292,7 @@ class PortCallServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.portcalls_v3.types.GetPortCallsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.portcalls_v3.types.GetPortCallsRequest, dict]]):
                 The request object. Port calls data requests object.
                 This is shared between all port calls queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -315,10 +330,10 @@ class PortCallServiceAsyncClient:
         return response
 
     async def get_port_particulars(self,
-            request: Union[service.GetPortParticularsRequest, dict] = None,
+            request: Optional[Union[service.GetPortParticularsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetPortParticularsResponse:
         r"""ListPortCalls retrieves lists all port calls for a
@@ -330,6 +345,13 @@ class PortCallServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import portcalls_v3
 
             async def sample_get_port_particulars():
@@ -347,7 +369,7 @@ class PortCallServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.portcalls_v3.types.GetPortParticularsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.portcalls_v3.types.GetPortParticularsRequest, dict]]):
                 The request object. Request object for
                 GetPortParticulars
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -385,10 +407,10 @@ class PortCallServiceAsyncClient:
         return response
 
     async def get_vessels_in_port(self,
-            request: Union[service.GetVesselsInPortRequest, dict] = None,
+            request: Optional[Union[service.GetVesselsInPortRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetVesselsInPortResponse:
         r"""GetVesselsInPort lists all vessels that were within a
@@ -396,6 +418,13 @@ class PortCallServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import portcalls_v3
 
             async def sample_get_vessels_in_port():
@@ -413,7 +442,7 @@ class PortCallServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.portcalls_v3.types.GetVesselsInPortRequest, dict]):
+            request (Optional[Union[oceanbolt.com.portcalls_v3.types.GetVesselsInPortRequest, dict]]):
                 The request object. Request object for GetVesselsInPort
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -453,14 +482,7 @@ class PortCallServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-portcalls",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

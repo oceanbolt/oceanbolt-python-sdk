@@ -3,91 +3,104 @@
 isort:skip_file
 """
 import builtins
+import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import typing
-import typing_extensions
+import sys
+
+if sys.version_info >= (3, 8):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
+@typing_extensions.final
 class Geofence(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     GEOFENCE_ID_FIELD_NUMBER: builtins.int
     CENTER_RADIUS_FIELD_NUMBER: builtins.int
     POLYGON_FIELD_NUMBER: builtins.int
-    geofence_id: typing.Text
+    geofence_id: builtins.str
     @property
     def center_radius(self) -> global___CenterRadius: ...
     @property
     def polygon(self) -> global___Polygon: ...
-    def __init__(self,
+    def __init__(
+        self,
         *,
-        geofence_id: typing.Text = ...,
-        center_radius: typing.Optional[global___CenterRadius] = ...,
-        polygon: typing.Optional[global___Polygon] = ...,
-        ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","geometry",b"geometry","polygon",b"polygon"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","geofence_id",b"geofence_id","geometry",b"geometry","polygon",b"polygon"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing_extensions.Literal["geometry",b"geometry"]) -> typing.Optional[typing_extensions.Literal["center_radius","polygon"]]: ...
+        geofence_id: builtins.str = ...,
+        center_radius: global___CenterRadius | None = ...,
+        polygon: global___Polygon | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["center_radius", b"center_radius", "geometry", b"geometry", "polygon", b"polygon"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["center_radius", b"center_radius", "geofence_id", b"geofence_id", "geometry", b"geometry", "polygon", b"polygon"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["geometry", b"geometry"]) -> typing_extensions.Literal["center_radius", "polygon"] | None: ...
+
 global___Geofence = Geofence
 
+@typing_extensions.final
 class Geofences(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     GEOFENCES_FIELD_NUMBER: builtins.int
     @property
     def geofences(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Geofence]: ...
-    def __init__(self,
+    def __init__(
+        self,
         *,
-        geofences: typing.Optional[typing.Iterable[global___Geofence]] = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["geofences",b"geofences"]) -> None: ...
+        geofences: collections.abc.Iterable[global___Geofence] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["geofences", b"geofences"]) -> None: ...
+
 global___Geofences = Geofences
 
+@typing_extensions.final
 class GeofenceFilter(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     WKT_FIELD_NUMBER: builtins.int
     GEOJSON_FIELD_NUMBER: builtins.int
     WKB_FIELD_NUMBER: builtins.int
     ESRI_SHAPE_FIELD_NUMBER: builtins.int
     CENTER_RADIUS_FIELD_NUMBER: builtins.int
     POLYGON_FIELD_NUMBER: builtins.int
-    wkt: typing.Text
+    wkt: builtins.str
     """well known text format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry"""
-
-    geojson: typing.Text
+    geojson: builtins.str
     """geojson format for geometry encoding, https://en.wikipedia.org/wiki/GeoJSON"""
-
     wkb: builtins.bytes
     """well known binary format for geometry encoding, https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry#Well-known_binary"""
-
     esri_shape: builtins.bytes
     """ESRI shape binary format for geometry encoding (fastest decoding and encoding for geometry service) https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf"""
-
     @property
     def center_radius(self) -> global___CenterRadius:
         """center radius format for geometric encoding of circular geofences, consists of a center point and a radius (in meters) around the center point"""
-        pass
     @property
     def polygon(self) -> global___Polygon:
         """Polygon format for submitting a geofence as a list of points."""
-        pass
-    def __init__(self,
+    def __init__(
+        self,
         *,
-        wkt: typing.Text = ...,
-        geojson: typing.Text = ...,
+        wkt: builtins.str = ...,
+        geojson: builtins.str = ...,
         wkb: builtins.bytes = ...,
         esri_shape: builtins.bytes = ...,
-        center_radius: typing.Optional[global___CenterRadius] = ...,
-        polygon: typing.Optional[global___Polygon] = ...,
-        ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","data",b"data","esri_shape",b"esri_shape","geojson",b"geojson","polygon",b"polygon","wkb",b"wkb","wkt",b"wkt"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["center_radius",b"center_radius","data",b"data","esri_shape",b"esri_shape","geojson",b"geojson","polygon",b"polygon","wkb",b"wkb","wkt",b"wkt"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing_extensions.Literal["data",b"data"]) -> typing.Optional[typing_extensions.Literal["wkt","geojson","wkb","esri_shape","center_radius","polygon"]]: ...
+        center_radius: global___CenterRadius | None = ...,
+        polygon: global___Polygon | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing_extensions.Literal["center_radius", b"center_radius", "data", b"data", "esri_shape", b"esri_shape", "geojson", b"geojson", "polygon", b"polygon", "wkb", b"wkb", "wkt", b"wkt"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing_extensions.Literal["center_radius", b"center_radius", "data", b"data", "esri_shape", b"esri_shape", "geojson", b"geojson", "polygon", b"polygon", "wkb", b"wkb", "wkt", b"wkt"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing_extensions.Literal["data", b"data"]) -> typing_extensions.Literal["wkt", "geojson", "wkb", "esri_shape", "center_radius", "polygon"] | None: ...
+
 global___GeofenceFilter = GeofenceFilter
 
+@typing_extensions.final
 class CenterRadius(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     LON_FIELD_NUMBER: builtins.int
     LAT_FIELD_NUMBER: builtins.int
     RADIUS_FIELD_NUMBER: builtins.int
@@ -95,38 +108,47 @@ class CenterRadius(google.protobuf.message.Message):
     lat: builtins.float
     radius: builtins.float
     """Radius in meters"""
-
-    def __init__(self,
+    def __init__(
+        self,
         *,
         lon: builtins.float = ...,
         lat: builtins.float = ...,
         radius: builtins.float = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["lat",b"lat","lon",b"lon","radius",b"radius"]) -> None: ...
+    ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["lat", b"lat", "lon", b"lon", "radius", b"radius"]) -> None: ...
+
 global___CenterRadius = CenterRadius
 
+@typing_extensions.final
 class Polygon(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     POINTS_FIELD_NUMBER: builtins.int
     @property
     def points(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Point]: ...
-    def __init__(self,
+    def __init__(
+        self,
         *,
-        points: typing.Optional[typing.Iterable[global___Point]] = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["points",b"points"]) -> None: ...
+        points: collections.abc.Iterable[global___Point] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["points", b"points"]) -> None: ...
+
 global___Polygon = Polygon
 
+@typing_extensions.final
 class Point(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
     LON_FIELD_NUMBER: builtins.int
     LAT_FIELD_NUMBER: builtins.int
     lon: builtins.float
     lat: builtins.float
-    def __init__(self,
+    def __init__(
+        self,
         *,
         lon: builtins.float = ...,
         lat: builtins.float = ...,
-        ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal["lat",b"lat","lon",b"lon"]) -> None: ...
+    ) -> None: ...
+    def ClearField(self, field_name: typing_extensions.Literal["lat", b"lat", "lon", b"lon"]) -> None: ...
+
 global___Point = Point

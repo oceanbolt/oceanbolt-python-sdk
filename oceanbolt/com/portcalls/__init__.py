@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.portcalls import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.portcalls_v3.services.port_call_service.client import PortCallServiceClient
 from oceanbolt.com.portcalls_v3.services.port_call_service.async_client import PortCallServiceAsyncClient

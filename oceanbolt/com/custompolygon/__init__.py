@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.custompolygon import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.custompolygon_v3.services.custom_polygon_service.client import CustomPolygonServiceClient
 from oceanbolt.com.custompolygon_v3.services.custom_polygon_service.async_client import CustomPolygonServiceAsyncClient

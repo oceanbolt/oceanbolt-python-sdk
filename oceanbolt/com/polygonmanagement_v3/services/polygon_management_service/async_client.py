@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.polygonmanagement_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -106,7 +107,7 @@ class PolygonManagementServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -138,9 +139,9 @@ class PolygonManagementServiceAsyncClient:
     get_transport_class = functools.partial(type(PolygonManagementServiceClient).get_transport_class, type(PolygonManagementServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, PolygonManagementServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the polygon management service client.
@@ -184,16 +185,23 @@ class PolygonManagementServiceAsyncClient:
         )
 
     async def list_layers(self,
-            request: Union[service.ListLayersRequest, dict] = None,
+            request: Optional[Union[service.ListLayersRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListLayersResponse:
         r"""ListLayers lists layers for the current user
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_list_layers():
@@ -211,7 +219,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.ListLayersRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.ListLayersRequest, dict]]):
                 The request object. LayerManagement requests and
                 responses
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -247,16 +255,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def create_layer(self,
-            request: Union[service.CreateLayerRequest, dict] = None,
+            request: Optional[Union[service.CreateLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Layer:
         r"""CreateLayer creates new layer for the current user
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_create_layer():
@@ -274,7 +289,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.CreateLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.CreateLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -309,16 +324,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def delete_layer(self,
-            request: Union[service.DeleteLayerRequest, dict] = None,
+            request: Optional[Union[service.DeleteLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> None:
         r"""DeleteLayer deletes layer for the current user
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_delete_layer():
@@ -333,7 +355,7 @@ class PolygonManagementServiceAsyncClient:
                 await client.delete_layer(request=request)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.DeleteLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.DeleteLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -369,10 +391,10 @@ class PolygonManagementServiceAsyncClient:
         )
 
     async def copy_layer(self,
-            request: Union[service.CopyLayerRequest, dict] = None,
+            request: Optional[Union[service.CopyLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Layer:
         r"""CopyLayer creates a copy of the existing layer for
@@ -380,6 +402,13 @@ class PolygonManagementServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_copy_layer():
@@ -397,7 +426,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.CopyLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.CopyLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -440,16 +469,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def describe_layer(self,
-            request: Union[service.GetLayerRequest, dict] = None,
+            request: Optional[Union[service.GetLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Layer:
         r"""GetLayer gets fleed by layer id for the current user
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_describe_layer():
@@ -467,7 +503,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.GetLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.GetLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -510,10 +546,10 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def share_layer(self,
-            request: Union[service.ShareLayerRequest, dict] = None,
+            request: Optional[Union[service.ShareLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Layer:
         r"""Sets the shared status of the layer to be either
@@ -521,6 +557,13 @@ class PolygonManagementServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_share_layer():
@@ -538,7 +581,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -581,10 +624,10 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def unshare_layer(self,
-            request: Union[service.ShareLayerRequest, dict] = None,
+            request: Optional[Union[service.ShareLayerRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Layer:
         r"""Sets the shared status of the layer to be either
@@ -592,6 +635,13 @@ class PolygonManagementServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_unshare_layer():
@@ -609,7 +659,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.ShareLayerRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -652,16 +702,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def list_polygons(self,
-            request: Union[service.ListPolygonsRequest, dict] = None,
+            request: Optional[Union[service.ListPolygonsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListPolygonsResponse:
         r"""GetLayerPolygons gets polygons for a given layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_list_polygons():
@@ -679,7 +736,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.ListPolygonsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.ListPolygonsRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -722,16 +779,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def add_polygon(self,
-            request: Union[service.AddPolygonRequest, dict] = None,
+            request: Optional[Union[service.AddPolygonRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Polygon:
         r"""AddPolygon adds new polygon to a layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_add_polygon():
@@ -749,7 +813,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.AddPolygonRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.AddPolygonRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -792,16 +856,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def update_polygon(self,
-            request: Union[service.UpdatePolygonRequest, dict] = None,
+            request: Optional[Union[service.UpdatePolygonRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> resources.Polygon:
         r"""UpdatePolygon updates a polygon in a given layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_update_polygon():
@@ -819,7 +890,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.UpdatePolygonRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.UpdatePolygonRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -863,16 +934,23 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def delete_polygon(self,
-            request: Union[service.DeletePolygonRequest, dict] = None,
+            request: Optional[Union[service.DeletePolygonRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> None:
         r"""DeletePolygon removes a polygon from a given layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_delete_polygon():
@@ -887,7 +965,7 @@ class PolygonManagementServiceAsyncClient:
                 await client.delete_polygon(request=request)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.DeletePolygonRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.DeletePolygonRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -924,16 +1002,23 @@ class PolygonManagementServiceAsyncClient:
         )
 
     async def batch_add_polygons(self,
-            request: Union[service.BatchAddPolygonsRequest, dict] = None,
+            request: Optional[Union[service.BatchAddPolygonsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.BatchAddPolygonsResponse:
         r"""BatchAddPolygons adds a batch of polygons to a layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_batch_add_polygons():
@@ -951,7 +1036,7 @@ class PolygonManagementServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.BatchAddPolygonsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.BatchAddPolygonsRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -994,10 +1079,10 @@ class PolygonManagementServiceAsyncClient:
         return response
 
     async def replace_polygons(self,
-            request: Union[service.ReplacePolygonsRequest, dict] = None,
+            request: Optional[Union[service.ReplacePolygonsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> None:
         r"""ReplacePolygons replaces all existing polygons in a
@@ -1005,6 +1090,13 @@ class PolygonManagementServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_replace_polygons():
@@ -1019,7 +1111,7 @@ class PolygonManagementServiceAsyncClient:
                 await client.replace_polygons(request=request)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.ReplacePolygonsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.ReplacePolygonsRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1055,16 +1147,23 @@ class PolygonManagementServiceAsyncClient:
         )
 
     async def drop_polygons(self,
-            request: Union[service.DropPolygonsRequest, dict] = None,
+            request: Optional[Union[service.DropPolygonsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> None:
         r"""Drop polygons drops all polygons from a layer
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import polygonmanagement_v3
 
             async def sample_drop_polygons():
@@ -1079,7 +1178,7 @@ class PolygonManagementServiceAsyncClient:
                 await client.drop_polygons(request=request)
 
         Args:
-            request (Union[oceanbolt.com.polygonmanagement_v3.types.DropPolygonsRequest, dict]):
+            request (Optional[Union[oceanbolt.com.polygonmanagement_v3.types.DropPolygonsRequest, dict]]):
                 The request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -1120,14 +1219,7 @@ class PolygonManagementServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-polygonmanagement",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

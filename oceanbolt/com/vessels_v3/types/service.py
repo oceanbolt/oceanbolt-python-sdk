@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import timestamp_pb2  # type: ignore
@@ -42,37 +44,37 @@ class ListVesselsRequest(proto.Message):
     r"""Vessels
 
     Attributes:
-        dwt (Sequence[float]):
+        dwt (MutableSequence[float]):
             min,max on the dwt columns
-        eta (Sequence[str]):
+        eta (MutableSequence[str]):
             before,after on the eta columns
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             included segments
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             included sub segments
-        load_region (Sequence[str]):
+        load_region (MutableSequence[str]):
             included load regions
-        load_country (Sequence[str]):
+        load_country (MutableSequence[str]):
             included load countries
-        load_port (Sequence[str]):
+        load_port (MutableSequence[str]):
             included load ports
-        destination_region (Sequence[str]):
+        destination_region (MutableSequence[str]):
             included discharge regions
-        destination_country (Sequence[str]):
+        destination_country (MutableSequence[str]):
             included discharge countries
-        destination_port (Sequence[str]):
+        destination_port (MutableSequence[str]):
             included discharge ports
-        destination_unlocode (Sequence[str]):
+        destination_unlocode (MutableSequence[str]):
             included discharge port unlocodes
-        cargo_status (Sequence[str]):
+        cargo_status (MutableSequence[str]):
             included cargo states
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
             included laden states
-        laden_status_draught (Sequence[str]):
+        laden_status_draught (MutableSequence[str]):
             included laden states
-        speed (Sequence[float]):
+        speed (MutableSequence[float]):
             min,max on the speed column
-        draught (Sequence[float]):
+        draught (MutableSequence[float]):
             min,max on the draught column
         exclude_unknown_destination (bool):
             include rows where destination_country is blank
@@ -84,25 +86,25 @@ class ListVesselsRequest(proto.Message):
         flow_date (str):
             flow date (of load/discharge) for timeseries
             request
-        commodity (Sequence[str]):
+        commodity (MutableSequence[str]):
             included commodity values
-        commodity_group (Sequence[str]):
+        commodity_group (MutableSequence[str]):
             included commodity values
-        zone_id (Sequence[int]):
+        zone_id (MutableSequence[int]):
             included zone ids
-        port_id (Sequence[int]):
+        port_id (MutableSequence[int]):
             included port ids
-        anchorage_id (Sequence[int]):
+        anchorage_id (MutableSequence[int]):
             included anchorage ids
-        berth_id (Sequence[int]):
+        berth_id (MutableSequence[int]):
             included berth ids
-        shipyard_id (Sequence[int]):
+        shipyard_id (MutableSequence[int]):
             included shipyard ids
-        direction (Sequence[str]):
+        direction (MutableSequence[str]):
             included diretions
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             included diretions
-        port_status (Sequence[str]):
+        port_status (MutableSequence[str]):
 
         exclude_mpv (bool):
 
@@ -115,139 +117,139 @@ class ListVesselsRequest(proto.Message):
             csv)
     """
 
-    dwt = proto.RepeatedField(
+    dwt: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=1,
     )
-    eta = proto.RepeatedField(
+    eta: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=4,
     )
-    load_region = proto.RepeatedField(
+    load_region: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=5,
     )
-    load_country = proto.RepeatedField(
+    load_country: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    load_port = proto.RepeatedField(
+    load_port: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=7,
     )
-    destination_region = proto.RepeatedField(
+    destination_region: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=8,
     )
-    destination_country = proto.RepeatedField(
+    destination_country: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=9,
     )
-    destination_port = proto.RepeatedField(
+    destination_port: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=10,
     )
-    destination_unlocode = proto.RepeatedField(
+    destination_unlocode: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=35,
     )
-    cargo_status = proto.RepeatedField(
+    cargo_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=11,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=12,
     )
-    laden_status_draught = proto.RepeatedField(
+    laden_status_draught: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=29,
     )
-    speed = proto.RepeatedField(
+    speed: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=13,
     )
-    draught = proto.RepeatedField(
+    draught: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=14,
     )
-    exclude_unknown_destination = proto.Field(
+    exclude_unknown_destination: bool = proto.Field(
         proto.BOOL,
         number=15,
     )
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    range_ = proto.Field(
+    range_: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    flow_date = proto.Field(
+    flow_date: str = proto.Field(
         proto.STRING,
         number=18,
     )
-    commodity = proto.RepeatedField(
+    commodity: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=19,
     )
-    commodity_group = proto.RepeatedField(
+    commodity_group: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=30,
     )
-    zone_id = proto.RepeatedField(
+    zone_id: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=21,
     )
-    port_id = proto.RepeatedField(
+    port_id: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=22,
     )
-    anchorage_id = proto.RepeatedField(
+    anchorage_id: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=23,
     )
-    berth_id = proto.RepeatedField(
+    berth_id: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=24,
     )
-    shipyard_id = proto.RepeatedField(
+    shipyard_id: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=25,
     )
-    direction = proto.RepeatedField(
+    direction: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=26,
     )
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.UINT32,
         number=28,
     )
-    port_status = proto.RepeatedField(
+    port_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=31,
     )
-    exclude_mpv = proto.Field(
+    exclude_mpv: bool = proto.Field(
         proto.BOOL,
         number=32,
     )
-    limit = proto.Field(
+    limit: int = proto.Field(
         proto.UINT32,
         number=33,
     )
-    hours_since_last = proto.Field(
+    hours_since_last: int = proto.Field(
         proto.UINT32,
         number=34,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=27,
     )
@@ -257,7 +259,7 @@ class ListVesselsResponse(proto.Message):
     r"""
 
     Attributes:
-        vessels (Sequence[oceanbolt.com.vessels_v3.types.Vessel]):
+        vessels (MutableSequence[oceanbolt.com.vessels_v3.types.Vessel]):
 
         csv (str):
 
@@ -265,16 +267,16 @@ class ListVesselsResponse(proto.Message):
 
     """
 
-    vessels = proto.RepeatedField(
+    vessels: MutableSequence['Vessel'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='Vessel',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -284,7 +286,7 @@ class ListStoppageEventsRequest(proto.Message):
     r"""VesselStoppageEvents
 
     Attributes:
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             included vessel imos
         start_date (str):
 
@@ -295,19 +297,19 @@ class ListStoppageEventsRequest(proto.Message):
             csv, xlsx)
     """
 
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=4,
     )
@@ -317,7 +319,7 @@ class ListStoppageEventsResponse(proto.Message):
     r"""
 
     Attributes:
-        stoppage_events (Sequence[oceanbolt.com.vessels_v3.types.StoppageEvent]):
+        stoppage_events (MutableSequence[oceanbolt.com.vessels_v3.types.StoppageEvent]):
 
         csv (str):
 
@@ -325,16 +327,16 @@ class ListStoppageEventsResponse(proto.Message):
 
     """
 
-    stoppage_events = proto.RepeatedField(
+    stoppage_events: MutableSequence['StoppageEvent'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='StoppageEvent',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -344,7 +346,7 @@ class ListDarkPeriodEventsRequest(proto.Message):
     r"""
 
     Attributes:
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             included vessel imos
         start_date (str):
 
@@ -355,19 +357,19 @@ class ListDarkPeriodEventsRequest(proto.Message):
             csv, xlsx)
     """
 
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=4,
     )
@@ -377,7 +379,7 @@ class ListDarkPeriodEventsResponse(proto.Message):
     r"""
 
     Attributes:
-        dark_period_events (Sequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
+        dark_period_events (MutableSequence[oceanbolt.com.vessels_v3.types.DarkPeriodEvent]):
 
         csv (str):
 
@@ -385,16 +387,16 @@ class ListDarkPeriodEventsResponse(proto.Message):
 
     """
 
-    dark_period_events = proto.RepeatedField(
+    dark_period_events: MutableSequence['DarkPeriodEvent'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='DarkPeriodEvent',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -480,151 +482,151 @@ class Vessel(proto.Message):
 
     """
 
-    vessel_name = proto.Field(
+    vessel_name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.UINT32,
         number=2,
     )
-    mmsi = proto.Field(
+    mmsi: int = proto.Field(
         proto.UINT32,
         number=3,
     )
-    last_position_received = proto.Field(
+    last_position_received: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    last_static_received = proto.Field(
+    last_static_received: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    dwt = proto.Field(
+    dwt: float = proto.Field(
         proto.DOUBLE,
         number=6,
     )
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.UINT32,
         number=9,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=27,
     )
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.UINT32,
         number=28,
     )
-    port_name = proto.Field(
+    port_name: str = proto.Field(
         proto.STRING,
         number=29,
     )
-    anchorage_id = proto.Field(
+    anchorage_id: int = proto.Field(
         proto.UINT32,
         number=30,
     )
-    anchorage_name = proto.Field(
+    anchorage_name: str = proto.Field(
         proto.STRING,
         number=31,
     )
-    berth_id = proto.Field(
+    berth_id: int = proto.Field(
         proto.UINT32,
         number=32,
     )
-    berth_name = proto.Field(
+    berth_name: str = proto.Field(
         proto.STRING,
         number=33,
     )
-    shipyard_id = proto.Field(
+    shipyard_id: int = proto.Field(
         proto.UINT32,
         number=34,
     )
-    shipyard_name = proto.Field(
+    shipyard_name: str = proto.Field(
         proto.STRING,
         number=35,
     )
-    related_port_id = proto.Field(
+    related_port_id: int = proto.Field(
         proto.UINT32,
         number=36,
     )
-    related_port_name = proto.Field(
+    related_port_name: str = proto.Field(
         proto.STRING,
         number=37,
     )
-    cargo_status = proto.Field(
+    cargo_status: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    laden_status = proto.Field(
+    laden_status: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    laden_status_draught = proto.Field(
+    laden_status_draught: str = proto.Field(
         proto.STRING,
         number=12,
     )
-    destination = proto.Field(
+    destination: str = proto.Field(
         proto.STRING,
         number=13,
     )
-    destination_port_name = proto.Field(
+    destination_port_name: str = proto.Field(
         proto.STRING,
         number=14,
     )
-    destination_region = proto.Field(
+    destination_region: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    destination_country_code = proto.Field(
+    destination_country_code: str = proto.Field(
         proto.STRING,
         number=16,
     )
-    eta = proto.Field(
+    eta: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    navigational_status = proto.Field(
+    navigational_status: int = proto.Field(
         proto.UINT32,
         number=18,
     )
-    last_port_name = proto.Field(
+    last_port_name: str = proto.Field(
         proto.STRING,
         number=19,
     )
-    last_country_code = proto.Field(
+    last_country_code: str = proto.Field(
         proto.STRING,
         number=20,
     )
-    last_region = proto.Field(
+    last_region: str = proto.Field(
         proto.STRING,
         number=21,
     )
-    port_call_status = proto.Field(
+    port_call_status: str = proto.Field(
         proto.STRING,
         number=22,
     )
-    commodity_group = proto.Field(
+    commodity_group: str = proto.Field(
         proto.STRING,
         number=23,
     )
-    commodity_name = proto.Field(
+    commodity_name: str = proto.Field(
         proto.STRING,
         number=24,
     )
-    direction = proto.Field(
+    direction: str = proto.Field(
         proto.STRING,
         number=25,
     )
-    speed = proto.Field(
+    speed: float = proto.Field(
         proto.DOUBLE,
         number=26,
     )
@@ -660,53 +662,53 @@ class StoppageEvent(proto.Message):
 
     """
 
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    started_at = proto.Field(
+    started_at: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    ended_at = proto.Field(
+    ended_at: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    port_id = proto.Field(
+    port_id: int = proto.Field(
         proto.INT32,
         number=4,
     )
-    port_name = proto.Field(
+    port_name: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.INT32,
         number=6,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    min_speed_observed = proto.Field(
+    min_speed_observed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=8,
         message=wrappers_pb2.DoubleValue,
     )
-    duration_hours = proto.Field(
+    duration_hours: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=9,
         message=wrappers_pb2.DoubleValue,
     )
-    lat = proto.Field(
+    lat: float = proto.Field(
         proto.DOUBLE,
         number=10,
     )
-    lon = proto.Field(
+    lon: float = proto.Field(
         proto.DOUBLE,
         number=11,
     )
-    classification = proto.Field(
+    classification: str = proto.Field(
         proto.STRING,
         number=12,
     )
@@ -746,60 +748,60 @@ class DarkPeriodEvent(proto.Message):
 
     """
 
-    platform = proto.Field(
+    platform: platforms_pb2.Platform = proto.Field(
         proto.ENUM,
         number=1,
         enum=platforms_pb2.Platform,
     )
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.INT32,
         number=2,
     )
-    vessel_name = proto.Field(
+    vessel_name: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    started_at = proto.Field(
+    started_at: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    ended_at = proto.Field(
+    ended_at: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    start_zone_id = proto.Field(
+    start_zone_id: int = proto.Field(
         proto.INT32,
         number=6,
     )
-    start_zone_name = proto.Field(
+    start_zone_name: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    end_zone_id = proto.Field(
+    end_zone_id: int = proto.Field(
         proto.INT32,
         number=8,
     )
-    end_zone_name = proto.Field(
+    end_zone_name: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    start_lat = proto.Field(
+    start_lat: float = proto.Field(
         proto.DOUBLE,
         number=10,
     )
-    start_lon = proto.Field(
+    start_lon: float = proto.Field(
         proto.DOUBLE,
         number=11,
     )
-    end_lat = proto.Field(
+    end_lat: float = proto.Field(
         proto.DOUBLE,
         number=12,
     )
-    end_lon = proto.Field(
+    end_lon: float = proto.Field(
         proto.DOUBLE,
         number=13,
     )
-    duration_hours = proto.Field(
+    duration_hours: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=14,
         message=wrappers_pb2.DoubleValue,
@@ -821,27 +823,38 @@ class GetAisSummaryRequest(proto.Message):
             it will default to hourly.
     """
     class Resolution(proto.Enum):
-        r""""""
+        r"""
+
+        Values:
+            UNDEFINED_RESOLUTION (0):
+                No description available.
+            DAILY (1):
+                No description available.
+            HOURLY (2):
+                No description available.
+            FULL (3):
+                No description available.
+        """
         UNDEFINED_RESOLUTION = 0
         DAILY = 1
         HOURLY = 2
         FULL = 3
 
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.UINT32,
         number=1,
     )
-    start_time = proto.Field(
+    start_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=2,
         message=timestamp_pb2.Timestamp,
     )
-    end_time = proto.Field(
+    end_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=3,
         message=timestamp_pb2.Timestamp,
     )
-    resolution = proto.Field(
+    resolution: Resolution = proto.Field(
         proto.ENUM,
         number=4,
         enum=Resolution,
@@ -875,34 +888,34 @@ class GetAisSummaryResponse(proto.Message):
             to timestamp in request.
     """
 
-    distance_traveled_nm = proto.Field(
+    distance_traveled_nm: float = proto.Field(
         proto.DOUBLE,
         number=1,
     )
-    average_speed_knots = proto.Field(
+    average_speed_knots: float = proto.Field(
         proto.DOUBLE,
         number=2,
     )
-    number_of_positions = proto.Field(
+    number_of_positions: int = proto.Field(
         proto.UINT32,
         number=3,
     )
-    initial_timestamp_for_period = proto.Field(
+    initial_timestamp_for_period: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=4,
         message=timestamp_pb2.Timestamp,
     )
-    last_timestamp_for_period = proto.Field(
+    last_timestamp_for_period: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=5,
         message=timestamp_pb2.Timestamp,
     )
-    requested_start_time = proto.Field(
+    requested_start_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=6,
         message=timestamp_pb2.Timestamp,
     )
-    requested_end_time = proto.Field(
+    requested_end_time: timestamp_pb2.Timestamp = proto.Field(
         proto.MESSAGE,
         number=7,
         message=timestamp_pb2.Timestamp,

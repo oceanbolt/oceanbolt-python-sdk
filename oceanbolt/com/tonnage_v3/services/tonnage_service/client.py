@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union, cast
+
+from oceanbolt.com.tonnage_v3 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -52,7 +53,7 @@ class TonnageServiceClientMeta(type):
     _transport_registry["grpc_asyncio"] = TonnageServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
-            label: str = None,
+            label: Optional[str] = None,
         ) -> Type[TonnageServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -227,7 +228,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -274,8 +275,8 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, TonnageServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
+            transport: Optional[Union[str, TonnageServiceTransport]] = None,
+            client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the tonnage service client.
@@ -289,7 +290,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             transport (Union[str, TonnageServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -319,6 +320,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
@@ -360,16 +362,23 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
             )
 
     def get_tonnage_zone_count(self,
-            request: Union[service.GetTonnageDataRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneCountResponse:
         r"""Fetches tonnage counts timeseries.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_zone_count():
@@ -426,16 +435,23 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_speed(self,
-            request: Union[service.GetTonnageDataRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetFleetSpeedResponse:
         r"""Fetches fleet speed timeseries.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_fleet_speed():
@@ -490,16 +506,23 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_global_tonnage_status(self,
-            request: Union[service.GetTonnageDataRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetGlobalTonnageStatusResponse:
         r"""Fetches global tonnage status timeseries.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_global_tonnage_status():
@@ -554,10 +577,10 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_status(self,
-            request: Union[service.GetTonnageFleetRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageFleetStatusResponse:
         r"""Provides fleet status timeseries of how the fleet
@@ -566,6 +589,13 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_fleet_status():
@@ -622,10 +652,10 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_fleet_growth(self,
-            request: Union[service.GetTonnageFleetRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageFleetGrowthResponse:
         r"""Provides fleet growth timeseries of how the fleet
@@ -635,6 +665,13 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_fleet_growth():
@@ -691,10 +728,10 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_chinese_waters(self,
-            request: Union[service.TonnageChineseWatersRequest, dict] = None,
+            request: Optional[Union[service.TonnageChineseWatersRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.TonnageChineseWatersResponse:
         r"""Provides chinese waters tonnage timeseries data. This
@@ -704,6 +741,13 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_chinese_waters():
@@ -760,10 +804,10 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_zone_changes(self,
-            request: Union[service.GetTonnageZoneChangesRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageZoneChangesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageZoneChangesResponse:
         r"""Provides timeseries data on the number of vessels
@@ -771,6 +815,13 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_zone_changes():
@@ -824,10 +875,10 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         return response
 
     def get_tonnage_basin_count(self,
-            request: Union[service.GetTonnageBasinRequest, dict] = None,
+            request: Optional[Union[service.GetTonnageBasinRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTonnageBasinResponse:
         r"""Provides timeseries data on the number of vessels
@@ -835,6 +886,13 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tonnage_v3
 
             def sample_get_tonnage_basin_count():
@@ -887,7 +945,7 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
         # Done; return the response.
         return response
 
-    def __enter__(self):
+    def __enter__(self) -> "TonnageServiceClient":
         return self
 
     def __exit__(self, type, value, traceback):
@@ -905,14 +963,8 @@ class TonnageServiceClient(metaclass=TonnageServiceClientMeta):
 
 
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-tonnage",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

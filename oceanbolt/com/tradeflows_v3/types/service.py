@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
@@ -52,19 +54,19 @@ class GetTradeLaneMetricsResponse(proto.Message):
 
         number_of_groups (int):
 
-        trade_lane_metrics (Sequence[oceanbolt.com.tradeflows_v3.types.TradeLaneMetric]):
+        trade_lane_metrics (MutableSequence[oceanbolt.com.tradeflows_v3.types.TradeLaneMetric]):
 
     """
 
-    grouping_variable = proto.Field(
+    grouping_variable: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    number_of_groups = proto.Field(
+    number_of_groups: int = proto.Field(
         proto.INT32,
         number=2,
     )
-    trade_lane_metrics = proto.RepeatedField(
+    trade_lane_metrics: MutableSequence['TradeLaneMetric'] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
         message='TradeLaneMetric',
@@ -123,95 +125,95 @@ class TradeLaneMetric(proto.Message):
 
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    avg_days_at_sea = proto.Field(
+    avg_days_at_sea: float = proto.Field(
         proto.DOUBLE,
         number=1,
     )
-    avg_load_port_days_waiting = proto.Field(
+    avg_load_port_days_waiting: float = proto.Field(
         proto.DOUBLE,
         number=3,
     )
-    avg_load_port_days_berthed = proto.Field(
+    avg_load_port_days_berthed: float = proto.Field(
         proto.DOUBLE,
         number=4,
     )
-    avg_discharge_port_days_waiting = proto.Field(
+    avg_discharge_port_days_waiting: float = proto.Field(
         proto.DOUBLE,
         number=5,
     )
-    avg_discharge_port_days_berthed = proto.Field(
+    avg_discharge_port_days_berthed: float = proto.Field(
         proto.DOUBLE,
         number=6,
     )
-    avg_voyage_durations_days = proto.Field(
+    avg_voyage_durations_days: float = proto.Field(
         proto.DOUBLE,
         number=17,
     )
-    avg_speed = proto.Field(
+    avg_speed: float = proto.Field(
         proto.DOUBLE,
         number=18,
     )
-    avg_volume = proto.Field(
+    avg_volume: float = proto.Field(
         proto.DOUBLE,
         number=7,
     )
-    avg_distance_nm = proto.Field(
+    avg_distance_nm: float = proto.Field(
         proto.DOUBLE,
         number=8,
     )
-    avg_distance_calculated_nm = proto.Field(
+    avg_distance_calculated_nm: float = proto.Field(
         proto.DOUBLE,
         number=19,
     )
-    median_days_at_sea = proto.Field(
+    median_days_at_sea: float = proto.Field(
         proto.DOUBLE,
         number=16,
     )
-    median_load_port_days_waiting = proto.Field(
+    median_load_port_days_waiting: float = proto.Field(
         proto.DOUBLE,
         number=10,
     )
-    median_load_port_days_berthed = proto.Field(
+    median_load_port_days_berthed: float = proto.Field(
         proto.DOUBLE,
         number=11,
     )
-    median_discharge_port_days_waiting = proto.Field(
+    median_discharge_port_days_waiting: float = proto.Field(
         proto.DOUBLE,
         number=12,
     )
-    median_discharge_port_days_berthed = proto.Field(
+    median_discharge_port_days_berthed: float = proto.Field(
         proto.DOUBLE,
         number=13,
     )
-    median_volume = proto.Field(
+    median_volume: float = proto.Field(
         proto.DOUBLE,
         number=14,
     )
-    median_distance_nm = proto.Field(
+    median_distance_nm: float = proto.Field(
         proto.DOUBLE,
         number=15,
     )
-    number_of_voyages = proto.Field(
+    number_of_voyages: int = proto.Field(
         proto.INT32,
         number=20,
     )
-    sum_of_volume = proto.Field(
+    sum_of_volume: float = proto.Field(
         proto.DOUBLE,
         number=21,
     )
-    unique_vessels = proto.Field(
+    unique_vessels: int = proto.Field(
         proto.INT32,
         number=22,
     )
-    unique_load_ports = proto.Field(
+    unique_load_ports: int = proto.Field(
         proto.INT32,
         number=23,
     )
-    unique_discharge_ports = proto.Field(
+    unique_discharge_ports: int = proto.Field(
         proto.INT32,
         number=24,
     )
@@ -238,10 +240,10 @@ class TradeFlowDataRequest(proto.Message):
             "monthly","quarterly", "yearly"]**. Default value is
             "monthly". This parameter only applies to the
             **/tradeflows/timeseries** endpoint.
-        commodity (Sequence[str]):
+        commodity (MutableSequence[str]):
             List of commodities to get data for (get a list of all
             commodities from **/entities/commodities**).
-        commodity_group (Sequence[str]):
+        commodity_group (MutableSequence[str]):
             List of commodity groups to get data for (get a list of all
             commodity groups from **/entities/commodities**).
         flow_direction (str):
@@ -249,33 +251,33 @@ class TradeFlowDataRequest(proto.Message):
             date/import date. Allowed values are \**["export","import"].
             Default value is "export". This parameter only applies to
             the **/tradeflows/timeseries** endpoint.
-        imo (Sequence[int]):
+        imo (MutableSequence[int]):
             List of unique vessel identifiers (IMO numbers). This allows
             filtering to show data only for a subset of vessels.
             Example: [1234567,7654321].
-        load_port_id (Sequence[int]):
+        load_port_id (MutableSequence[int]):
             Oceanbolt database identifier of the load
             port.
-        load_port_unlocode (Sequence[str]):
+        load_port_unlocode (MutableSequence[str]):
             List of five letter UNLOCODEs for load
             (export) ports to filter on.
-        load_berth_id (Sequence[int]):
+        load_berth_id (MutableSequence[int]):
             Oceanbolt database identifier of the load
             berth/terminal.
-        discharge_port_id (Sequence[int]):
+        discharge_port_id (MutableSequence[int]):
             Oceanbolt database identifier of the
             discharge port.
-        discharge_port_unlocode (Sequence[str]):
+        discharge_port_unlocode (MutableSequence[str]):
             List of five letter UNLOCODEs for discharge
             (import) ports to filter on.
-        discharge_berth_id (Sequence[int]):
+        discharge_berth_id (MutableSequence[int]):
             Oceanbolt database identifier of the
             discharge berth/terminal.
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
@@ -283,19 +285,19 @@ class TradeFlowDataRequest(proto.Message):
             The UTC start date of the date filter.
         end_date (str):
             The UTC end date of the date filter.
-        load_country_code (Sequence[str]):
+        load_country_code (MutableSequence[str]):
             List of two letter ISO country codes for
             loading (export) countries to filter on.
-        discharge_country_code (Sequence[str]):
+        discharge_country_code (MutableSequence[str]):
             List of two letter ISO country codes for
             discharge (import) countries to filter on.
-        load_region (Sequence[str]):
+        load_region (MutableSequence[str]):
             List of loading regions to filter on. Allowed values can be
             obtained from the **/entities/regions** endpoint.
-        discharge_region (Sequence[str]):
+        discharge_region (MutableSequence[str]):
             List of discharge regions to filter on. Allowed values can
             be obtained from the **/entities/regions** endpoint.
-        status (Sequence[str]):
+        status (MutableSequence[str]):
 
         exclude_intra_country (bool):
             Determines whether to include/exclude intra
@@ -332,7 +334,7 @@ class TradeFlowDataRequest(proto.Message):
             values:
             ["volume","count","ton_mile_calculated","ton_mile_actual","average_haul","average_speed",
             "volume_times_duration"]. Default is "volume".
-        parceling (Sequence[str]):
+        parceling (MutableSequence[str]):
             List of parceling statuses to retrieve. Allowed values are:
             ["include","exclude","only"].
         limit_groups (bool):
@@ -348,7 +350,7 @@ class TradeFlowDataRequest(proto.Message):
         sort (str):
             Specifies whether results should be sorted in ascending or
             descending order. Allowed values: ["asc","desc"].
-        dwt (Sequence[float]):
+        dwt (MutableSequence[float]):
             DWT range to filter on. Example: [60000,90000] - this would
             filter only to only include dwt between 60k and 90k (both
             values inclusive).
@@ -361,155 +363,155 @@ class TradeFlowDataRequest(proto.Message):
             Specifies vessel parameters to filter on.
     """
 
-    frequency = proto.Field(
+    frequency: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    commodity = proto.RepeatedField(
+    commodity: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    commodity_group = proto.RepeatedField(
+    commodity_group: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=30,
     )
-    flow_direction = proto.Field(
+    flow_direction: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    imo = proto.RepeatedField(
+    imo: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=4,
     )
-    load_port_id = proto.RepeatedField(
+    load_port_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=19,
     )
-    load_port_unlocode = proto.RepeatedField(
+    load_port_unlocode: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=28,
     )
-    load_berth_id = proto.RepeatedField(
+    load_berth_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=5,
     )
-    discharge_port_id = proto.RepeatedField(
+    discharge_port_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=20,
     )
-    discharge_port_unlocode = proto.RepeatedField(
+    discharge_port_unlocode: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=29,
     )
-    discharge_berth_id = proto.RepeatedField(
+    discharge_berth_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=18,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=27,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    load_country_code = proto.RepeatedField(
+    load_country_code: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=9,
     )
-    discharge_country_code = proto.RepeatedField(
+    discharge_country_code: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=10,
     )
-    load_region = proto.RepeatedField(
+    load_region: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=11,
     )
-    discharge_region = proto.RepeatedField(
+    discharge_region: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=12,
     )
-    status = proto.RepeatedField(
+    status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=32,
     )
-    exclude_intra_country = proto.Field(
+    exclude_intra_country: bool = proto.Field(
         proto.BOOL,
         number=13,
     )
-    exclude_unknown_destinations = proto.Field(
+    exclude_unknown_destinations: bool = proto.Field(
         proto.BOOL,
         number=14,
     )
-    exclude_missing_load_berth = proto.Field(
+    exclude_missing_load_berth: bool = proto.Field(
         proto.BOOL,
         number=24,
     )
-    exclude_missing_discharge_berth = proto.Field(
+    exclude_missing_discharge_berth: bool = proto.Field(
         proto.BOOL,
         number=25,
     )
-    next_token = proto.Field(
+    next_token: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    max_results = proto.Field(
+    max_results: int = proto.Field(
         proto.INT32,
         number=16,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=21,
     )
-    pivot_by = proto.Field(
+    pivot_by: str = proto.Field(
         proto.STRING,
         number=34,
     )
-    tall_format = proto.Field(
+    tall_format: bool = proto.Field(
         proto.BOOL,
         number=35,
     )
-    metric = proto.Field(
+    metric: str = proto.Field(
         proto.STRING,
         number=22,
     )
-    parceling = proto.RepeatedField(
+    parceling: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=26,
     )
-    limit_groups = proto.Field(
+    limit_groups: bool = proto.Field(
         proto.BOOL,
         number=31,
     )
-    last_n_days = proto.Field(
+    last_n_days: int = proto.Field(
         proto.INT32,
         number=33,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=36,
     )
-    dwt = proto.RepeatedField(
+    dwt: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=37,
     )
-    category = proto.Field(
+    category: str = proto.Field(
         proto.STRING,
         number=38,
     )
-    vessel_filter = proto.Field(
+    vessel_filter: vessel_filter_pb2.VesselFilter = proto.Field(
         proto.MESSAGE,
         number=39,
         message=vessel_filter_pb2.VesselFilter,
@@ -520,7 +522,7 @@ class GetTradeFlowsResponse(proto.Message):
     r"""Response object for trade flow queries
 
     Attributes:
-        data (Sequence[oceanbolt.com.tradeflows_v3.types.TradeFlow]):
+        data (MutableSequence[oceanbolt.com.tradeflows_v3.types.TradeFlow]):
             List of trade flows.
         next_token (str):
             Pagination token indicating the presence of
@@ -536,24 +538,24 @@ class GetTradeFlowsResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    data = proto.RepeatedField(
+    data: MutableSequence['TradeFlow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=7,
         message='TradeFlow',
     )
-    next_token = proto.Field(
+    next_token: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    prev_token = proto.Field(
+    prev_token: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=9,
     )
@@ -563,11 +565,11 @@ class GetLocationVolumeResponse(proto.Message):
     r"""
 
     Attributes:
-        data (Sequence[oceanbolt.com.tradeflows_v3.types.LocationVolume]):
+        data (MutableSequence[oceanbolt.com.tradeflows_v3.types.LocationVolume]):
             List of locations.
     """
 
-    data = proto.RepeatedField(
+    data: MutableSequence['LocationVolume'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='LocationVolume',
@@ -592,28 +594,28 @@ class LocationVolume(proto.Message):
             Coordinates for the location.
     """
 
-    location_name = proto.Field(
+    location_name: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    location_id = proto.Field(
+    location_id: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    location_type = proto.Field(
+    location_type: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    country_code = proto.Field(
+    country_code: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    value = proto.Field(
+    value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.DoubleValue,
     )
-    coords = proto.Field(
+    coords: 'GeoPoint' = proto.Field(
         proto.MESSAGE,
         number=5,
         message='GeoPoint',
@@ -624,7 +626,7 @@ class GetTradeFlowAggregationResponse(proto.Message):
     r"""
 
     Attributes:
-        data (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationGroup]):
+        data (MutableSequence[oceanbolt.com.tradeflows_v3.types.AggregationGroup]):
             List of aggregation rows.
         csv (str):
             Link to download csv file, if format was
@@ -634,16 +636,16 @@ class GetTradeFlowAggregationResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    data = proto.RepeatedField(
+    data: MutableSequence['AggregationGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='AggregationGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=9,
     )
@@ -655,15 +657,15 @@ class AggregationGroup(proto.Message):
     Attributes:
         group (str):
             Name of the aggregation group.
-        rows (Sequence[oceanbolt.com.tradeflows_v3.types.AggregationRow]):
+        rows (MutableSequence[oceanbolt.com.tradeflows_v3.types.AggregationRow]):
             List of categories within the group.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['AggregationRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='AggregationRow',
@@ -680,11 +682,11 @@ class AggregationRow(proto.Message):
             Value of the aggregation row.
     """
 
-    category = proto.Field(
+    category: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    value = proto.Field(
+    value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
@@ -695,7 +697,7 @@ class GetTradeFlowTimeseriesResponse(proto.Message):
     r"""Response object for trade flow timeseries queries
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tradeflows_v3.types.TimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -705,16 +707,16 @@ class GetTradeFlowTimeseriesResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=5,
     )
@@ -730,20 +732,20 @@ class TimeseriesGroup(proto.Message):
         group_value (google.protobuf.wrappers_pb2.DoubleValue):
             Helper variable to calculate top groups. Not
             returned.
-        rows (Sequence[oceanbolt.com.tradeflows_v3.types.TimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tradeflows_v3.types.TimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    group_value = proto.Field(
+    group_value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['TimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=3,
         message='TimeseriesRow',
@@ -760,11 +762,11 @@ class TimeseriesRow(proto.Message):
             The value of the timeseries row.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    value = proto.Field(
+    value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
@@ -781,11 +783,11 @@ class GeoPoint(proto.Message):
             Longitude.
     """
 
-    lat = proto.Field(
+    lat: float = proto.Field(
         proto.DOUBLE,
         number=1,
     )
-    lon = proto.Field(
+    lon: float = proto.Field(
         proto.DOUBLE,
         number=2,
     )
@@ -943,242 +945,242 @@ class TradeFlow(proto.Message):
             Name of the ballast region.
     """
 
-    voyage_id = proto.Field(
+    voyage_id: str = proto.Field(
         proto.STRING,
         number=52,
     )
-    flow_id = proto.Field(
+    flow_id: str = proto.Field(
         proto.STRING,
         number=51,
     )
-    imo = proto.Field(
+    imo: int = proto.Field(
         proto.INT32,
         number=1,
     )
-    vessel_name = proto.Field(
+    vessel_name: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    segment = proto.Field(
+    segment: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.Field(
+    sub_segment: str = proto.Field(
         proto.STRING,
         number=49,
     )
-    dwt = proto.Field(
+    dwt: float = proto.Field(
         proto.DOUBLE,
         number=37,
     )
-    commodity = proto.Field(
+    commodity: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    commodity_value = proto.Field(
+    commodity_value: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    commodity_group = proto.Field(
+    commodity_group: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    volume = proto.Field(
+    volume: float = proto.Field(
         proto.DOUBLE,
         number=7,
     )
-    load_port_id = proto.Field(
+    load_port_id: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=8,
         message=wrappers_pb2.Int32Value,
     )
-    load_port_name = proto.Field(
+    load_port_name: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    load_port_unlocode = proto.Field(
+    load_port_unlocode: str = proto.Field(
         proto.STRING,
         number=35,
     )
-    load_berth_id = proto.Field(
+    load_berth_id: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=10,
         message=wrappers_pb2.Int32Value,
     )
-    load_berth_name = proto.Field(
+    load_berth_name: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    load_country_code = proto.Field(
+    load_country_code: str = proto.Field(
         proto.STRING,
         number=12,
     )
-    load_country = proto.Field(
+    load_country: str = proto.Field(
         proto.STRING,
         number=13,
     )
-    load_region = proto.Field(
+    load_region: str = proto.Field(
         proto.STRING,
         number=14,
     )
-    load_port_arrived_at = proto.Field(
+    load_port_arrived_at: str = proto.Field(
         proto.STRING,
         number=15,
     )
-    load_port_berthed_at = proto.Field(
+    load_port_berthed_at: str = proto.Field(
         proto.STRING,
         number=17,
     )
-    load_port_unberthed_at = proto.Field(
+    load_port_unberthed_at: str = proto.Field(
         proto.STRING,
         number=31,
     )
-    load_port_departed_at = proto.Field(
+    load_port_departed_at: str = proto.Field(
         proto.STRING,
         number=18,
     )
-    load_port_days_total = proto.Field(
+    load_port_days_total: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=46,
         message=wrappers_pb2.DoubleValue,
     )
-    load_port_days_berthed = proto.Field(
+    load_port_days_berthed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=47,
         message=wrappers_pb2.DoubleValue,
     )
-    load_port_days_waiting = proto.Field(
+    load_port_days_waiting: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=48,
         message=wrappers_pb2.DoubleValue,
     )
-    discharge_port_id = proto.Field(
+    discharge_port_id: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=21,
         message=wrappers_pb2.Int32Value,
     )
-    discharge_port_name = proto.Field(
+    discharge_port_name: str = proto.Field(
         proto.STRING,
         number=22,
     )
-    discharge_port_unlocode = proto.Field(
+    discharge_port_unlocode: str = proto.Field(
         proto.STRING,
         number=36,
     )
-    discharge_berth_id = proto.Field(
+    discharge_berth_id: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=53,
         message=wrappers_pb2.Int32Value,
     )
-    discharge_berth_name = proto.Field(
+    discharge_berth_name: str = proto.Field(
         proto.STRING,
         number=23,
     )
-    discharge_country_code = proto.Field(
+    discharge_country_code: str = proto.Field(
         proto.STRING,
         number=24,
     )
-    discharge_country = proto.Field(
+    discharge_country: str = proto.Field(
         proto.STRING,
         number=25,
     )
-    discharge_region = proto.Field(
+    discharge_region: str = proto.Field(
         proto.STRING,
         number=26,
     )
-    discharge_port_arrived_at = proto.Field(
+    discharge_port_arrived_at: str = proto.Field(
         proto.STRING,
         number=27,
     )
-    discharge_port_berthed_at = proto.Field(
+    discharge_port_berthed_at: str = proto.Field(
         proto.STRING,
         number=29,
     )
-    discharge_port_unberthed_at = proto.Field(
+    discharge_port_unberthed_at: str = proto.Field(
         proto.STRING,
         number=32,
     )
-    discharge_port_departed_at = proto.Field(
+    discharge_port_departed_at: str = proto.Field(
         proto.STRING,
         number=30,
     )
-    discharge_port_days_total = proto.Field(
+    discharge_port_days_total: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=40,
         message=wrappers_pb2.DoubleValue,
     )
-    discharge_port_days_berthed = proto.Field(
+    discharge_port_days_berthed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=41,
         message=wrappers_pb2.DoubleValue,
     )
-    discharge_port_days_waiting = proto.Field(
+    discharge_port_days_waiting: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=42,
         message=wrappers_pb2.DoubleValue,
     )
-    days_steaming = proto.Field(
+    days_steaming: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=43,
         message=wrappers_pb2.DoubleValue,
     )
-    days_total_duration = proto.Field(
+    days_total_duration: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=50,
         message=wrappers_pb2.DoubleValue,
     )
-    distance_calculated = proto.Field(
+    distance_calculated: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=44,
         message=wrappers_pb2.DoubleValue,
     )
-    distance_actual = proto.Field(
+    distance_actual: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=45,
         message=wrappers_pb2.DoubleValue,
     )
-    eta = proto.Field(
+    eta: str = proto.Field(
         proto.STRING,
         number=33,
     )
-    destination = proto.Field(
+    destination: str = proto.Field(
         proto.STRING,
         number=34,
     )
-    status = proto.Field(
+    status: str = proto.Field(
         proto.STRING,
         number=38,
     )
-    parceling = proto.Field(
+    parceling: bool = proto.Field(
         proto.BOOL,
         number=39,
     )
-    ballast_started_at = proto.Field(
+    ballast_started_at: str = proto.Field(
         proto.STRING,
         number=54,
     )
-    ballast_port_name = proto.Field(
+    ballast_port_name: str = proto.Field(
         proto.STRING,
         number=55,
     )
-    ballast_port_id = proto.Field(
+    ballast_port_id: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=56,
         message=wrappers_pb2.Int32Value,
     )
-    ballast_port_unlocode = proto.Field(
+    ballast_port_unlocode: str = proto.Field(
         proto.STRING,
         number=57,
     )
-    ballast_country = proto.Field(
+    ballast_country: str = proto.Field(
         proto.STRING,
         number=58,
     )
-    ballast_country_code = proto.Field(
+    ballast_country_code: str = proto.Field(
         proto.STRING,
         number=59,
     )
-    ballast_region = proto.Field(
+    ballast_region: str = proto.Field(
         proto.STRING,
         number=61,
     )
@@ -1193,19 +1195,19 @@ class GetTradeFlowHistogramResponse(proto.Message):
             grouped by.
         number_of_groups (int):
             The number of groups returned.
-        groups (Sequence[oceanbolt.com.tradeflows_v3.types.HistogramGroup]):
+        groups (MutableSequence[oceanbolt.com.tradeflows_v3.types.HistogramGroup]):
             List of histogram groups.
     """
 
-    grouping_variable = proto.Field(
+    grouping_variable: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    number_of_groups = proto.Field(
+    number_of_groups: int = proto.Field(
         proto.INT32,
         number=3,
     )
-    groups = proto.RepeatedField(
+    groups: MutableSequence['HistogramGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='HistogramGroup',
@@ -1221,19 +1223,19 @@ class HistogramGroup(proto.Message):
             no grouping was specified in the query.
         number_of_values (int):
             Number of observations within the group.
-        values (Sequence[float]):
+        values (MutableSequence[float]):
             Array of the observed values.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    number_of_values = proto.Field(
+    number_of_values: int = proto.Field(
         proto.INT32,
         number=3,
     )
-    values = proto.RepeatedField(
+    values: MutableSequence[float] = proto.RepeatedField(
         proto.DOUBLE,
         number=2,
     )

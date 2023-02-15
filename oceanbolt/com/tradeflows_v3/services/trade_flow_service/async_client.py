@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.tradeflows_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -103,7 +104,7 @@ class TradeFlowServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -135,9 +136,9 @@ class TradeFlowServiceAsyncClient:
     get_transport_class = functools.partial(type(TradeFlowServiceClient).get_transport_class, type(TradeFlowServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, TradeFlowServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the trade flow service client.
@@ -181,10 +182,10 @@ class TradeFlowServiceAsyncClient:
         )
 
     async def get_trade_flows(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowsResponse:
         r"""GetVoyages retrieves all the individual voyages for
@@ -195,6 +196,13 @@ class TradeFlowServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_flows():
@@ -212,7 +220,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -250,16 +258,23 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_trade_flow_aggregation(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowAggregationResponse:
         r"""Aggregates tradeflow data across multiple dimensions.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_flow_aggregation():
@@ -277,7 +292,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -313,16 +328,23 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_trade_flow_timeseries(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowTimeseriesResponse:
         r"""Gets aggregated trade flow timeseries by period.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_flow_timeseries():
@@ -340,7 +362,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -378,10 +400,10 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_trade_flow_on_the_water(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowTimeseriesResponse:
         r"""Gets aggregated trade flow timeseries (on the water)
@@ -389,6 +411,13 @@ class TradeFlowServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_flow_on_the_water():
@@ -406,7 +435,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -444,10 +473,10 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_trade_flow_histogram(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeFlowHistogramResponse:
         r"""GetTradeFlowHistogramValues gets trade flow histogram
@@ -455,6 +484,13 @@ class TradeFlowServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_flow_histogram():
@@ -472,7 +508,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -508,10 +544,10 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_location_volume(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetLocationVolumeResponse:
         r"""GetLocationVolume gets location
@@ -520,6 +556,13 @@ class TradeFlowServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_location_volume():
@@ -537,7 +580,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -573,10 +616,10 @@ class TradeFlowServiceAsyncClient:
         return response
 
     async def get_trade_lane_metrics(self,
-            request: Union[service.TradeFlowDataRequest, dict] = None,
+            request: Optional[Union[service.TradeFlowDataRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetTradeLaneMetricsResponse:
         r"""GetTradeflowModelVoyage gets trade flow model voyage
@@ -584,6 +627,13 @@ class TradeFlowServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import tradeflows_v3
 
             async def sample_get_trade_lane_metrics():
@@ -601,7 +651,7 @@ class TradeFlowServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]):
+            request (Optional[Union[oceanbolt.com.tradeflows_v3.types.TradeFlowDataRequest, dict]]):
                 The request object. Trade flow data requests object.
                 This is shared between all trade flows queries
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -642,14 +692,7 @@ class TradeFlowServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-tradeflows",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

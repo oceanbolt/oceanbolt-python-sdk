@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.polygonmanagement import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service.client import PolygonManagementServiceClient
 from oceanbolt.com.polygonmanagement_v3.services.polygon_management_service.async_client import PolygonManagementServiceAsyncClient

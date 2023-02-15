@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.congestion import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.congestion_v3.services.congestion_service.client import CongestionServiceClient
 from oceanbolt.com.congestion_v3.services.congestion_service.async_client import CongestionServiceAsyncClient

@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union, cast
+
+from oceanbolt.com.custompolygon_v3 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -52,7 +53,7 @@ class CustomPolygonServiceClientMeta(type):
     _transport_registry["grpc_asyncio"] = CustomPolygonServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
-            label: str = None,
+            label: Optional[str] = None,
         ) -> Type[CustomPolygonServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -229,7 +230,7 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -276,8 +277,8 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, CustomPolygonServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
+            transport: Optional[Union[str, CustomPolygonServiceTransport]] = None,
+            client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the custom polygon service client.
@@ -291,7 +292,7 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
             transport (Union[str, CustomPolygonServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -321,6 +322,7 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
@@ -362,10 +364,10 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
             )
 
     def get_polygon_counts(self,
-            request: Union[service.CustomPolygonRequest, dict] = None,
+            request: Optional[Union[service.CustomPolygonRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.CustomPolygonResponse:
         r"""GetPolygonCounts returns vessels counts (points) in
@@ -373,6 +375,13 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import custompolygon_v3
 
             def sample_get_polygon_counts():
@@ -425,7 +434,7 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
         # Done; return the response.
         return response
 
-    def __enter__(self):
+    def __enter__(self) -> "CustomPolygonServiceClient":
         return self
 
     def __exit__(self, type, value, traceback):
@@ -443,14 +452,8 @@ class CustomPolygonServiceClient(metaclass=CustomPolygonServiceClientMeta):
 
 
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-custompolygon",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

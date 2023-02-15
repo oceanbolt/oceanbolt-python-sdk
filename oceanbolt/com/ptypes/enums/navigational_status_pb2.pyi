@@ -5,14 +5,20 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
+import sys
 import typing
-import typing_extensions
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _NavigationalStatus:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
+
 class _NavigationalStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_NavigationalStatus.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     UNKNOWN_NAVIGATIONAL_STATUS: _NavigationalStatus.ValueType  # 0
@@ -28,8 +34,8 @@ class _NavigationalStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrap
     POWER_DRIVEN_VESSEL_TOWING_ASTERN: _NavigationalStatus.ValueType  # 11
     POWER_DRIVEN_VESSEL_PUSHING_AHEAD_OR_TOWING_ALONGSIDE: _NavigationalStatus.ValueType  # 12
     UNDEFINED: _NavigationalStatus.ValueType  # 15
-class NavigationalStatus(_NavigationalStatus, metaclass=_NavigationalStatusEnumTypeWrapper):
-    pass
+
+class NavigationalStatus(_NavigationalStatus, metaclass=_NavigationalStatusEnumTypeWrapper): ...
 
 UNKNOWN_NAVIGATIONAL_STATUS: NavigationalStatus.ValueType  # 0
 UNDER_WAY_USING_ENGINE: NavigationalStatus.ValueType  # 100
@@ -45,4 +51,3 @@ POWER_DRIVEN_VESSEL_TOWING_ASTERN: NavigationalStatus.ValueType  # 11
 POWER_DRIVEN_VESSEL_PUSHING_AHEAD_OR_TOWING_ALONGSIDE: NavigationalStatus.ValueType  # 12
 UNDEFINED: NavigationalStatus.ValueType  # 15
 global___NavigationalStatus = NavigationalStatus
-

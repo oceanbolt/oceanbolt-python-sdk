@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.entities import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.entities_v3.services.entity_service.client import EntityServiceClient
 from oceanbolt.com.entities_v3.services.entity_service.async_client import EntityServiceAsyncClient

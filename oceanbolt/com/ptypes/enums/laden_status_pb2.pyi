@@ -5,24 +5,29 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
+import sys
 import typing
-import typing_extensions
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _LadenStatus:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
+
 class _LadenStatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_LadenStatus.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     UNDEFINED_LADEN_STATUS: _LadenStatus.ValueType  # 0
     LADEN: _LadenStatus.ValueType  # 1
     BALLAST: _LadenStatus.ValueType  # 2
-class LadenStatus(_LadenStatus, metaclass=_LadenStatusEnumTypeWrapper):
-    pass
+
+class LadenStatus(_LadenStatus, metaclass=_LadenStatusEnumTypeWrapper): ...
 
 UNDEFINED_LADEN_STATUS: LadenStatus.ValueType  # 0
 LADEN: LadenStatus.ValueType  # 1
 BALLAST: LadenStatus.ValueType  # 2
 global___LadenStatus = LadenStatus
-

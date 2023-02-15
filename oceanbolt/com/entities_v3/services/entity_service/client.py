@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union, cast
+
+from oceanbolt.com.entities_v3 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -52,7 +53,7 @@ class EntityServiceClientMeta(type):
     _transport_registry["grpc_asyncio"] = EntityServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
-            label: str = None,
+            label: Optional[str] = None,
         ) -> Type[EntityServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -227,7 +228,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -274,8 +275,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, EntityServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
+            transport: Optional[Union[str, EntityServiceTransport]] = None,
+            client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the entity service client.
@@ -289,7 +290,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
             transport (Union[str, EntityServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -319,6 +320,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
@@ -360,16 +362,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
             )
 
     def list_segments(self,
-            request: Union[service.ListSegmentsRequest, dict] = None,
+            request: Optional[Union[service.ListSegmentsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListSegmentsResponse:
         r"""ListSegments retrieves all available vessel segments
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_segments():
@@ -423,16 +432,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_zones(self,
-            request: Union[service.ListZonesRequest, dict] = None,
+            request: Optional[Union[service.ListZonesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListTonnageZonesResponse:
         r"""ListZones retrieves all zones
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_zones():
@@ -486,10 +502,10 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_zones_with_polygons(self,
-            request: Union[service.ListZonesRequest, dict] = None,
+            request: Optional[Union[service.ListZonesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListTonnageZonesWithPolygonsResponse:
         r"""ListZonesWithPolygons retrieves all zones with
@@ -497,6 +513,13 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_zones_with_polygons():
@@ -550,16 +573,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_regions(self,
-            request: Union[service.ListRegionsRequest, dict] = None,
+            request: Optional[Union[service.ListRegionsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListRegionsResponse:
         r"""ListRegions retrives all regions
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_regions():
@@ -613,16 +643,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_commodities(self,
-            request: Union[service.ListCommoditiesRequest, dict] = None,
+            request: Optional[Union[service.ListCommoditiesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListCommoditiesResponse:
         r"""ListCommodities retrives all commodities
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_commodities():
@@ -676,16 +713,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_countries(self,
-            request: Union[service.ListCountriesRequest, dict] = None,
+            request: Optional[Union[service.ListCountriesRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListCountriesResponse:
         r"""ListCountries retrives all countries
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_countries():
@@ -739,10 +783,10 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_regions_with_polygons(self,
-            request: Union[service.ListRegionsRequest, dict] = None,
+            request: Optional[Union[service.ListRegionsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListRegionsWithPolygonResponse:
         r"""ListRegionsWithPolygons retrives all regions with geo
@@ -750,6 +794,13 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_regions_with_polygons():
@@ -803,16 +854,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def list_ports(self,
-            request: Union[service.ListPortsRequest, dict] = None,
+            request: Optional[Union[service.ListPortsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.ListPortsResponse:
         r"""ListPorts retrieves all ports
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_list_ports():
@@ -866,16 +924,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def search_polygons(self,
-            request: Union[service.SearchRequest, dict] = None,
+            request: Optional[Union[service.SearchRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.SearchPolygonsResponse:
         r"""
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_search_polygons():
@@ -929,16 +994,23 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         return response
 
     def search_vessels(self,
-            request: Union[service.SearchRequest, dict] = None,
+            request: Optional[Union[service.SearchRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.SearchVesselsResponse:
         r"""
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import entities_v3
 
             def sample_search_vessels():
@@ -991,7 +1063,7 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
         # Done; return the response.
         return response
 
-    def __enter__(self):
+    def __enter__(self) -> "EntityServiceClient":
         return self
 
     def __exit__(self, type, value, traceback):
@@ -1009,14 +1081,8 @@ class EntityServiceClient(metaclass=EntityServiceClientMeta):
 
 
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-entities",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

@@ -5,14 +5,20 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.internal.enum_type_wrapper
+import sys
 import typing
-import typing_extensions
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 class _Direction:
-    ValueType = typing.NewType('ValueType', builtins.int)
+    ValueType = typing.NewType("ValueType", builtins.int)
     V: typing_extensions.TypeAlias = ValueType
+
 class _DirectionEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Direction.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     UNDEFINED_DIRECTION: _Direction.ValueType  # 0
@@ -24,8 +30,8 @@ class _DirectionEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._Enum
     SW: _Direction.ValueType  # 6
     W: _Direction.ValueType  # 7
     NW: _Direction.ValueType  # 8
-class Direction(_Direction, metaclass=_DirectionEnumTypeWrapper):
-    pass
+
+class Direction(_Direction, metaclass=_DirectionEnumTypeWrapper): ...
 
 UNDEFINED_DIRECTION: Direction.ValueType  # 0
 N: Direction.ValueType  # 1
@@ -37,4 +43,3 @@ SW: Direction.ValueType  # 6
 W: Direction.ValueType  # 7
 NW: Direction.ValueType  # 8
 global___Direction = Direction
-

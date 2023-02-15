@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
@@ -35,14 +37,14 @@ class CustomPolygonRequest(proto.Message):
     Attributes:
         geojson (str):
             GeoJSON formatted string with polygon data
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
             Laden status to filter on. Allowed values are ['laden',
             'ballast']
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment
@@ -52,27 +54,27 @@ class CustomPolygonRequest(proto.Message):
             The UTC end date of the date filter
     """
 
-    geojson = proto.Field(
+    geojson: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=5,
     )
@@ -82,11 +84,11 @@ class CustomPolygonResponse(proto.Message):
     r"""Response object for GetPolygonCounts
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.custompolygon_v3.types.TimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.custompolygon_v3.types.TimeseriesGroup]):
             Timeseries rows
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TimeseriesGroup',
@@ -100,15 +102,15 @@ class TimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.custompolygon_v3.types.TimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.custompolygon_v3.types.TimeseriesRow]):
             Rows of timeseries data
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['TimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='TimeseriesRow',
@@ -125,11 +127,11 @@ class TimeseriesRow(proto.Message):
             Value of the timeseries row
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    value = proto.Field(
+    value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,

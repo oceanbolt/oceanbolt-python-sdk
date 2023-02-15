@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from oceanbolt.com.drydock import gapic_version as package_version
+
+__version__ = package_version.__version__
+
 
 from oceanbolt.com.drydock_v3.services.drydock_service.client import DrydockServiceClient
 from oceanbolt.com.drydock_v3.services.drydock_service.async_client import DrydockServiceAsyncClient

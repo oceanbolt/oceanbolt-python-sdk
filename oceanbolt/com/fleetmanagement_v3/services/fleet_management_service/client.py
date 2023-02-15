@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union, cast
+
+from oceanbolt.com.fleetmanagement_v3 import gapic_version as package_version
 
 from google.api_core import client_options as client_options_lib
 from google.api_core import exceptions as core_exceptions
@@ -53,7 +54,7 @@ class FleetManagementServiceClientMeta(type):
     _transport_registry["grpc_asyncio"] = FleetManagementServiceGrpcAsyncIOTransport
 
     def get_transport_class(cls,
-            label: str = None,
+            label: Optional[str] = None,
         ) -> Type[FleetManagementServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -228,7 +229,7 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -275,8 +276,8 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
     def __init__(self, *,
             credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, FleetManagementServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
+            transport: Optional[Union[str, FleetManagementServiceTransport]] = None,
+            client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the fleet management service client.
@@ -290,7 +291,7 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             transport (Union[str, FleetManagementServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
+            client_options (Optional[Union[google.api_core.client_options.ClientOptions, dict]]): Custom options for the
                 client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
@@ -320,6 +321,7 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
             client_options = client_options_lib.ClientOptions()
+        client_options = cast(client_options_lib.ClientOptions, client_options)
 
         api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
 
@@ -361,10 +363,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
             )
 
     def list_fleets(self,
-            request: Union[service.EmptyParams, dict] = None,
+            request: Optional[Union[service.EmptyParams, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleets:
         r"""Lists Fleets for the current user (or fleets that are
@@ -372,6 +374,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_list_fleets():
@@ -425,16 +434,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def create_fleet(self,
-            request: Union[service.CreateFleetRequest, dict] = None,
+            request: Optional[Union[service.CreateFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleet:
         r"""Creates a new Fleet for the current user.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_create_fleet():
@@ -488,16 +504,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def delete_fleet(self,
-            request: Union[service.DeleteFleetRequest, dict] = None,
+            request: Optional[Union[service.DeleteFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Deletes a Fleet for the current user.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_delete_fleet():
@@ -559,16 +582,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def describe_fleet(self,
-            request: Union[service.GetFleetRequest, dict] = None,
+            request: Optional[Union[service.GetFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleet:
         r"""Retrieves fleet by Fleet id.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_describe_fleet():
@@ -631,16 +661,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def rename_fleet(self,
-            request: Union[service.RenameFleetRequest, dict] = None,
+            request: Optional[Union[service.RenameFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleet:
         r"""Changes the name of a Fleet.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_rename_fleet():
@@ -702,16 +739,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def share_fleet(self,
-            request: Union[service.ShareFleetRequest, dict] = None,
+            request: Optional[Union[service.ShareFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleet:
         r"""Sets the shared status of the Fleet to be shared.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_share_fleet():
@@ -773,16 +817,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def unshare_fleet(self,
-            request: Union[service.ShareFleetRequest, dict] = None,
+            request: Optional[Union[service.ShareFleetRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Fleet:
         r"""Sets the shared status of the Fleet to be not shared.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_unshare_fleet():
@@ -844,16 +895,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def list_vessels(self,
-            request: Union[service.ListVesselsRequest, dict] = None,
+            request: Optional[Union[service.ListVesselsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Vessels:
         r"""Retrieves list of vessels in a Fleet.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_list_vessels():
@@ -916,16 +974,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def get_vessel(self,
-            request: Union[service.GetVesselRequest, dict] = None,
+            request: Optional[Union[service.GetVesselRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Vessel:
         r"""Retrieves vessel in a Fleet by Fleet id and imo.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_get_vessel():
@@ -989,16 +1054,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def list_vessels_with_status(self,
-            request: Union[service.ListVesselsWithStatusRequest, dict] = None,
+            request: Optional[Union[service.ListVesselsWithStatusRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Vessels:
         r"""Retrieves list of vessels in a Fleet.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_list_vessels_with_status():
@@ -1061,10 +1133,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def add_vessel(self,
-            request: Union[service.AddVesselRequest, dict] = None,
+            request: Optional[Union[service.AddVesselRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Vessel:
         r"""Adds new vessel to a Fleet. A maximum of 1000 vessels
@@ -1072,6 +1144,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_add_vessel():
@@ -1134,16 +1213,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def update_vessel(self,
-            request: Union[service.UpdateVesselRequest, dict] = None,
+            request: Optional[Union[service.UpdateVesselRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.Vessel:
         r"""Updates existing metadata for a Vessel.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_update_vessel():
@@ -1206,16 +1292,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def delete_vessel(self,
-            request: Union[service.DeleteVesselRequest, dict] = None,
+            request: Optional[Union[service.DeleteVesselRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Removes a vessel from a Fleet.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_delete_vessel():
@@ -1279,10 +1372,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def batch_add_vessels(self,
-            request: Union[service.BatchVesselsRequest, dict] = None,
+            request: Optional[Union[service.BatchVesselsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Batch adds vessels into a Fleet. A maximum of 1000
@@ -1290,6 +1383,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_batch_add_vessels():
@@ -1352,10 +1452,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def replace_vessels(self,
-            request: Union[service.BatchVesselsRequest, dict] = None,
+            request: Optional[Union[service.BatchVesselsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Replaces the existing vessels in a Fleet with a batch
@@ -1365,6 +1465,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_replace_vessels():
@@ -1427,16 +1534,23 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def drop_vessels(self,
-            request: Union[service.DropVesselsRequest, dict] = None,
+            request: Optional[Union[service.DropVesselsRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Drops all the vessels currently in a fleet.
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_drop_vessels():
@@ -1499,10 +1613,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def get_fleet_live_map(self,
-            request: Union[service.GetFleetLiveMapRequest, dict] = None,
+            request: Optional[Union[service.GetFleetLiveMapRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetFleetLiveMapResponse:
         r"""GetFleetLiveMap display static location for vessels
@@ -1510,6 +1624,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_get_fleet_live_map():
@@ -1566,10 +1687,10 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         return response
 
     def upload_fleet_list(self,
-            request: Union[service.GetFleetListRequest, dict] = None,
+            request: Optional[Union[service.GetFleetListRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.EmptyResponse:
         r"""Uploads file containing fleet data to be parsed into
@@ -1577,6 +1698,13 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import fleetmanagement_v3
 
             def sample_upload_fleet_list():
@@ -1630,7 +1758,7 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
         # Done; return the response.
         return response
 
-    def __enter__(self):
+    def __enter__(self) -> "FleetManagementServiceClient":
         return self
 
     def __exit__(self, type, value, traceback):
@@ -1648,14 +1776,8 @@ class FleetManagementServiceClient(metaclass=FleetManagementServiceClientMeta):
 
 
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-fleetmanagement",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

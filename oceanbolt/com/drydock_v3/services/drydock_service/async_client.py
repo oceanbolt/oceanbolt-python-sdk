@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.drydock_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -103,7 +104,7 @@ class DrydockServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -135,9 +136,9 @@ class DrydockServiceAsyncClient:
     get_transport_class = functools.partial(type(DrydockServiceClient).get_transport_class, type(DrydockServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, DrydockServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the drydock service client.
@@ -181,10 +182,10 @@ class DrydockServiceAsyncClient:
         )
 
     async def get_dry_dock_stays(self,
-            request: Union[service.GetDryDockStaysRequest, dict] = None,
+            request: Optional[Union[service.GetDryDockStaysRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.GetDryDockStaysResponse:
         r"""GetDryDockStays retrives individual historical dry
@@ -192,6 +193,13 @@ class DrydockServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import drydock_v3
 
             async def sample_get_dry_dock_stays():
@@ -209,7 +217,7 @@ class DrydockServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockStaysRequest, dict]):
+            request (Optional[Union[oceanbolt.com.drydock_v3.types.GetDryDockStaysRequest, dict]]):
                 The request object. DryDockstays
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -244,10 +252,10 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_timeseries(self,
-            request: Union[service.GetDryDockRequest, dict] = None,
+            request: Optional[Union[service.GetDryDockRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockTimeseries retrieves dry dock timeseries data for a
@@ -255,6 +263,13 @@ class DrydockServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import drydock_v3
 
             async def sample_get_dry_dock_timeseries():
@@ -272,7 +287,7 @@ class DrydockServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+            request (Optional[Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]]):
                 The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -307,10 +322,10 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_web(self,
-            request: Union[service.GetDryDockRequest, dict] = None,
+            request: Optional[Union[service.GetDryDockRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockWeb retrieves current and live dry dock data for a
@@ -318,6 +333,13 @@ class DrydockServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import drydock_v3
 
             async def sample_get_dry_dock_web():
@@ -335,7 +357,7 @@ class DrydockServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+            request (Optional[Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]]):
                 The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -370,10 +392,10 @@ class DrydockServiceAsyncClient:
         return response
 
     async def get_dry_dock_vessels(self,
-            request: Union[service.GetDryDockRequest, dict] = None,
+            request: Optional[Union[service.GetDryDockRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DryDockResponse:
         r"""GetDryDockVessels retrieves list of currently active dry dock
@@ -381,6 +403,13 @@ class DrydockServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import drydock_v3
 
             async def sample_get_dry_dock_vessels():
@@ -398,7 +427,7 @@ class DrydockServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]):
+            request (Optional[Union[oceanbolt.com.drydock_v3.types.GetDryDockRequest, dict]]):
                 The request object. DryDock request object.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
@@ -438,14 +467,7 @@ class DrydockServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-drydock",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

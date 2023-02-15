@@ -16,8 +16,9 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
-import pkg_resources
+from typing import Dict, Mapping, MutableMapping, MutableSequence, Optional, Sequence, Tuple, Type, Union
+
+from oceanbolt.com.distancecalculator_v3 import gapic_version as package_version
 
 from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
@@ -105,7 +106,7 @@ class DistanceCalculatorServiceAsyncClient:
         The API endpoint is determined in the following order:
         (1) if `client_options.api_endpoint` if provided, use the provided one.
         (2) if `GOOGLE_API_USE_CLIENT_CERTIFICATE` environment variable is "always", use the
-        default mTLS endpoint; if the environment variabel is "never", use the default API
+        default mTLS endpoint; if the environment variable is "never", use the default API
         endpoint; otherwise if client cert source exists, use the default mTLS endpoint, otherwise
         use the default API endpoint.
 
@@ -137,9 +138,9 @@ class DistanceCalculatorServiceAsyncClient:
     get_transport_class = functools.partial(type(DistanceCalculatorServiceClient).get_transport_class, type(DistanceCalculatorServiceClient))
 
     def __init__(self, *,
-            credentials: ga_credentials.Credentials = None,
+            credentials: Optional[ga_credentials.Credentials] = None,
             transport: Union[str, DistanceCalculatorServiceTransport] = "grpc_asyncio",
-            client_options: ClientOptions = None,
+            client_options: Optional[ClientOptions] = None,
             client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
             ) -> None:
         """Instantiates the distance calculator service client.
@@ -183,10 +184,10 @@ class DistanceCalculatorServiceAsyncClient:
         )
 
     async def calculate_distance(self,
-            request: Union[service.DistanceRequest, dict] = None,
+            request: Optional[Union[service.DistanceRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.DistanceResponse:
         r"""Calculates distances for the shortest route between a
@@ -198,6 +199,13 @@ class DistanceCalculatorServiceAsyncClient:
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import distancecalculator_v3
 
             async def sample_calculate_distance():
@@ -215,7 +223,7 @@ class DistanceCalculatorServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.distancecalculator_v3.types.DistanceRequest, dict]):
+            request (Optional[Union[oceanbolt.com.distancecalculator_v3.types.DistanceRequest, dict]]):
                 The request object. Request object for CalculateDistance
                 method
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -253,16 +261,23 @@ class DistanceCalculatorServiceAsyncClient:
         return response
 
     async def batch_calculate_distance(self,
-            request: Union[service.BatchDistanceRequest, dict] = None,
+            request: Optional[Union[service.BatchDistanceRequest, dict]] = None,
             *,
             retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
             metadata: Sequence[Tuple[str, str]] = (),
             ) -> service.BatchDistanceResponse:
         r"""
 
         .. code-block:: python
 
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
             from oceanbolt.com import distancecalculator_v3
 
             async def sample_batch_calculate_distance():
@@ -280,7 +295,7 @@ class DistanceCalculatorServiceAsyncClient:
                 print(response)
 
         Args:
-            request (Union[oceanbolt.com.distancecalculator_v3.types.BatchDistanceRequest, dict]):
+            request (Optional[Union[oceanbolt.com.distancecalculator_v3.types.BatchDistanceRequest, dict]]):
                 The request object. Request object for
                 BatchCalculateDistance method
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -323,14 +338,7 @@ class DistanceCalculatorServiceAsyncClient:
     async def __aexit__(self, exc_type, exc, tb):
         await self.transport.close()
 
-try:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "oceanbolt-com-distancecalculator",
-        ).version,
-    )
-except pkg_resources.DistributionNotFound:
-    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
+DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(gapic_version=package_version.__version__)
 
 
 __all__ = (

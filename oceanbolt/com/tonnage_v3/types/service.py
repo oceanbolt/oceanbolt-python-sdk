@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import MutableMapping, MutableSequence
+
 import proto  # type: ignore
 
 from google.protobuf import wrappers_pb2  # type: ignore
@@ -60,28 +62,28 @@ class GetTonnageDataRequest(proto.Message):
     data.
 
     Attributes:
-        zone_id (Sequence[int]):
+        zone_id (MutableSequence[int]):
             List of zones ids to filter on.
             Allowed values can be obtained from the
             /entities/zones endpoint.
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
-        direction (Sequence[str]):
+        direction (MutableSequence[str]):
             The list of directions to get tonnage data for. The
             following directions are allowed:
             **["NNE","ENE","ESE","SSE","SSW","WSW","WNW","NNW"]**.
             Directions can also be obtained from the interactive
             direction selector found at app.oceanbolt.com.
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
             The laden status to get tonnage data for. The following
             values are allowed: **["laden","ballast"]**.
-        port_status (Sequence[str]):
+        port_status (MutableSequence[str]):
             The port status to get tonnage data for. The following
             values are allowed: **["in_port","at_sea"]**.
         group_by (str):
@@ -105,55 +107,55 @@ class GetTonnageDataRequest(proto.Message):
             descing order. Allowed values: ["asc","desc"].
     """
 
-    zone_id = proto.RepeatedField(
+    zone_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=7,
     )
-    direction = proto.RepeatedField(
+    direction: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=4,
     )
-    port_status = proto.RepeatedField(
+    port_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=13,
     )
-    exclude_mpv = proto.Field(
+    exclude_mpv: bool = proto.Field(
         proto.BOOL,
         number=8,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    last_n_days = proto.Field(
+    last_n_days: int = proto.Field(
         proto.INT32,
         number=11,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=12,
     )
@@ -163,7 +165,7 @@ class GetTonnageZoneCountResponse(proto.Message):
     r"""Response object for tonnage zone counts
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -173,16 +175,16 @@ class GetTonnageZoneCountResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TonnageTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TonnageTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -192,7 +194,7 @@ class GetFleetSpeedResponse(proto.Message):
     r"""Response object for FleetSpeed
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -202,16 +204,16 @@ class GetFleetSpeedResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TonnageTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TonnageTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -224,15 +226,15 @@ class TonnageTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['TonnageTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='TonnageTimeseriesRow',
@@ -254,21 +256,21 @@ class TonnageTimeseriesRow(proto.Message):
             row.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vessel_count = proto.Field(
+    vessel_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.Int32Value,
     )
-    vessel_dwt = proto.Field(
+    vessel_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
     )
-    avg_speed = proto.Field(
+    avg_speed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.DoubleValue,
@@ -279,17 +281,17 @@ class GetGlobalTonnageStatusRequest(proto.Message):
     r"""GetGlobalTonnageStatus
 
     Attributes:
-        direction (Sequence[str]):
+        direction (MutableSequence[str]):
 
         format_ (str):
 
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
 
         period (int):
 
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
 
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
 
         sort (str):
 
@@ -299,39 +301,39 @@ class GetGlobalTonnageStatusRequest(proto.Message):
 
     """
 
-    direction = proto.RepeatedField(
+    direction: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=1,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    period = proto.Field(
+    period: int = proto.Field(
         proto.INT32,
         number=4,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=5,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=7,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=9,
     )
@@ -341,7 +343,7 @@ class GetGlobalTonnageStatusResponse(proto.Message):
     r"""
 
     Attributes:
-        global_tonnage_zone_counts (Sequence[oceanbolt.com.tonnage_v3.types.GlobalTonnageZoneCount]):
+        global_tonnage_zone_counts (MutableSequence[oceanbolt.com.tonnage_v3.types.GlobalTonnageZoneCount]):
 
         csv (str):
 
@@ -349,16 +351,16 @@ class GetGlobalTonnageStatusResponse(proto.Message):
 
     """
 
-    global_tonnage_zone_counts = proto.RepeatedField(
+    global_tonnage_zone_counts: MutableSequence['GlobalTonnageZoneCount'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='GlobalTonnageZoneCount',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -382,29 +384,29 @@ class GlobalTonnageZoneCount(proto.Message):
 
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    zone_id = proto.Field(
+    zone_id: int = proto.Field(
         proto.INT32,
         number=2,
     )
-    zone_name = proto.Field(
+    zone_name: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    vessel_count = proto.Field(
+    vessel_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.Int32Value,
     )
-    vessel_dwt = proto.Field(
+    vessel_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=5,
         message=wrappers_pb2.DoubleValue,
     )
-    avg_speed = proto.Field(
+    avg_speed: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=6,
         message=wrappers_pb2.DoubleValue,
@@ -421,11 +423,11 @@ class GetTonnageFleetRequest(proto.Message):
             timeseries. Allowed values are: **["daily", "weekly",
             "monthly","quarterly "yearly"]**. Default value is
             "monthly".
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
@@ -451,43 +453,43 @@ class GetTonnageFleetRequest(proto.Message):
             The UTC end date of the date filter.
     """
 
-    frequency = proto.Field(
+    frequency: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=6,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=3,
     )
-    metric = proto.Field(
+    metric: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    exclude_mpv = proto.Field(
+    exclude_mpv: bool = proto.Field(
         proto.BOOL,
         number=7,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=10,
     )
@@ -497,7 +499,7 @@ class GetTonnageFleetStatusResponse(proto.Message):
     r"""Response object for GetTonnageFleetStatus
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.TimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -507,16 +509,16 @@ class GetTonnageFleetStatusResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -526,7 +528,7 @@ class GetTonnageFleetGrowthResponse(proto.Message):
     r"""Response object for GetTonnageFleetGrowth
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -536,16 +538,16 @@ class GetTonnageFleetGrowthResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['FleetGrowthTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='FleetGrowthTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -558,15 +560,15 @@ class FleetGrowthTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.FleetGrowthTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['FleetGrowthTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='FleetGrowthTimeseriesRow',
@@ -591,21 +593,21 @@ class FleetGrowthTimeseriesRow(proto.Message):
             period.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    scrapped = proto.Field(
+    scrapped: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
     )
-    delivered = proto.Field(
+    delivered: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
     )
-    net = proto.Field(
+    net: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.DoubleValue,
@@ -619,15 +621,15 @@ class TimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.TimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.TimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['TimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='TimeseriesRow',
@@ -644,11 +646,11 @@ class TimeseriesRow(proto.Message):
             Value of the timeseries row.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    value = proto.Field(
+    value: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.DoubleValue,
@@ -663,11 +665,11 @@ class TonnageChineseWatersRequest(proto.Message):
             The UTC start date of the date filter.
         end_date (str):
             The UTC end date of the date filter.
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
@@ -682,31 +684,31 @@ class TonnageChineseWatersRequest(proto.Message):
             Default is "json".
     """
 
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=4,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=7,
     )
@@ -716,7 +718,7 @@ class TonnageChineseWatersResponse(proto.Message):
     r"""Response object for TonnageChineseWaters
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -726,16 +728,16 @@ class TonnageChineseWatersResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['ChineseWatersTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='ChineseWatersTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -748,15 +750,15 @@ class ChineseWatersTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.ChineseWatersTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['ChineseWatersTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='ChineseWatersTimeseriesRow',
@@ -783,26 +785,26 @@ class ChineseWatersTimeseriesRow(proto.Message):
             Chinese waters.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    inside_chinese_waters_count = proto.Field(
+    inside_chinese_waters_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.Int32Value,
     )
-    inside_chinese_waters_dwt = proto.Field(
+    inside_chinese_waters_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
     )
-    outside_chinese_waters_count = proto.Field(
+    outside_chinese_waters_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=4,
         message=wrappers_pb2.Int32Value,
     )
-    outside_chinese_waters_dwt = proto.Field(
+    outside_chinese_waters_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=5,
         message=wrappers_pb2.DoubleValue,
@@ -813,19 +815,19 @@ class GetTonnageZoneChangesRequest(proto.Message):
     r"""Request object for TonnageZoneChange
 
     Attributes:
-        from_zone_id (Sequence[int]):
+        from_zone_id (MutableSequence[int]):
 
-        to_zone_id (Sequence[int]):
+        to_zone_id (MutableSequence[int]):
 
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
             List of vessel segments to filter on. Allowed values can be
             obtained from the **/entities/segments** endpoint. Cannot be
             supplied alongside subSegment.
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
             List of vessel sub segments to filter on. Allowed values can
             be obtained from the **/entities/segments** endpoint. Cannot
             be supplied alongside segment.
-        laden_status (Sequence[str]):
+        laden_status (MutableSequence[str]):
             The laden status to get tonnage data for. The following
             values are allowed: **["laden","ballast"]**.
         start_date (str):
@@ -850,51 +852,51 @@ class GetTonnageZoneChangesRequest(proto.Message):
             Specifies vessel parameters to filter on.
     """
 
-    from_zone_id = proto.RepeatedField(
+    from_zone_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=1,
     )
-    to_zone_id = proto.RepeatedField(
+    to_zone_id: MutableSequence[int] = proto.RepeatedField(
         proto.INT32,
         number=2,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=4,
     )
-    laden_status = proto.RepeatedField(
+    laden_status: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=5,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=6,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=7,
     )
-    group_by = proto.Field(
+    group_by: str = proto.Field(
         proto.STRING,
         number=8,
     )
-    sort = proto.Field(
+    sort: str = proto.Field(
         proto.STRING,
         number=9,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=10,
     )
-    frequency = proto.Field(
+    frequency: str = proto.Field(
         proto.STRING,
         number=11,
     )
-    vessel_filter = proto.Field(
+    vessel_filter: vessel_filter_pb2.VesselFilter = proto.Field(
         proto.MESSAGE,
         number=12,
         message=vessel_filter_pb2.VesselFilter,
@@ -905,7 +907,7 @@ class GetTonnageZoneChangesResponse(proto.Message):
     r"""Response object for TonnageZoneChange
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesGroup]):
             Timeseries data groups.
         csv (str):
             Link to download csv file, if format was
@@ -915,16 +917,16 @@ class GetTonnageZoneChangesResponse(proto.Message):
             specified to be "xlsx".
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['ZoneChangesTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='ZoneChangesTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -937,15 +939,15 @@ class ZoneChangesTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.ZoneChangesTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['ZoneChangesTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='ZoneChangesTimeseriesRow',
@@ -964,16 +966,16 @@ class ZoneChangesTimeseriesRow(proto.Message):
             The sum of dwt for the timeseries row.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vessel_count = proto.Field(
+    vessel_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.Int32Value,
     )
-    vessel_dwt = proto.Field(
+    vessel_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
@@ -984,11 +986,11 @@ class GetTonnageBasinRequest(proto.Message):
     r"""GetTonnageBasin
 
     Attributes:
-        basin (Sequence[str]):
+        basin (MutableSequence[str]):
 
-        segment (Sequence[str]):
+        segment (MutableSequence[str]):
 
-        sub_segment (Sequence[str]):
+        sub_segment (MutableSequence[str]):
 
         start_date (str):
 
@@ -1002,35 +1004,35 @@ class GetTonnageBasinRequest(proto.Message):
 
     """
 
-    basin = proto.RepeatedField(
+    basin: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=1,
     )
-    segment = proto.RepeatedField(
+    segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=2,
     )
-    sub_segment = proto.RepeatedField(
+    sub_segment: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
     )
-    start_date = proto.Field(
+    start_date: str = proto.Field(
         proto.STRING,
         number=4,
     )
-    end_date = proto.Field(
+    end_date: str = proto.Field(
         proto.STRING,
         number=5,
     )
-    exclude_mpv = proto.Field(
+    exclude_mpv: bool = proto.Field(
         proto.BOOL,
         number=6,
     )
-    last_n_days = proto.Field(
+    last_n_days: int = proto.Field(
         proto.INT32,
         number=7,
     )
-    format_ = proto.Field(
+    format_: str = proto.Field(
         proto.STRING,
         number=8,
     )
@@ -1040,7 +1042,7 @@ class GetTonnageBasinResponse(proto.Message):
     r"""
 
     Attributes:
-        timeseries (Sequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
+        timeseries (MutableSequence[oceanbolt.com.tonnage_v3.types.TonnageTimeseriesGroup]):
 
         csv (str):
 
@@ -1048,16 +1050,16 @@ class GetTonnageBasinResponse(proto.Message):
 
     """
 
-    timeseries = proto.RepeatedField(
+    timeseries: MutableSequence['TonnageTimeseriesGroup'] = proto.RepeatedField(
         proto.MESSAGE,
         number=1,
         message='TonnageTimeseriesGroup',
     )
-    csv = proto.Field(
+    csv: str = proto.Field(
         proto.STRING,
         number=2,
     )
-    xlsx = proto.Field(
+    xlsx: str = proto.Field(
         proto.STRING,
         number=3,
     )
@@ -1070,15 +1072,15 @@ class TonnageBasinTimeseriesGroup(proto.Message):
         group (str):
             Name of the group. This will be "default", if
             no grouping was specified in the query.
-        rows (Sequence[oceanbolt.com.tonnage_v3.types.TonnageBasinTimeseriesRow]):
+        rows (MutableSequence[oceanbolt.com.tonnage_v3.types.TonnageBasinTimeseriesRow]):
             Rows of timeseries data.
     """
 
-    group = proto.Field(
+    group: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    rows = proto.RepeatedField(
+    rows: MutableSequence['TonnageBasinTimeseriesRow'] = proto.RepeatedField(
         proto.MESSAGE,
         number=2,
         message='TonnageBasinTimeseriesRow',
@@ -1097,16 +1099,16 @@ class TonnageBasinTimeseriesRow(proto.Message):
             The sum of dwt for the timeseries row.
     """
 
-    date = proto.Field(
+    date: str = proto.Field(
         proto.STRING,
         number=1,
     )
-    vessel_count = proto.Field(
+    vessel_count: wrappers_pb2.Int32Value = proto.Field(
         proto.MESSAGE,
         number=2,
         message=wrappers_pb2.Int32Value,
     )
-    vessel_dwt = proto.Field(
+    vessel_dwt: wrappers_pb2.DoubleValue = proto.Field(
         proto.MESSAGE,
         number=3,
         message=wrappers_pb2.DoubleValue,
