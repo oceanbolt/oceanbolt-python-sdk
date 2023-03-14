@@ -18,20 +18,20 @@ from oceanbolt.com.vessels import gapic_version as package_version
 __version__ = package_version.__version__
 
 
-from oceanbolt.com.vessels_v4.services.vessel_service.client import VesselServiceClient
-from oceanbolt.com.vessels_v4.services.vessel_service.async_client import VesselServiceAsyncClient
+from oceanbolt.com.vessels_v3.services.vessel_service.client import VesselServiceClient
+from oceanbolt.com.vessels_v3.services.vessel_service.async_client import VesselServiceAsyncClient
 
-from oceanbolt.com.vessels_v4.types.service import DarkPeriodEvent
-from oceanbolt.com.vessels_v4.types.service import GetAisSummaryRequest
-from oceanbolt.com.vessels_v4.types.service import GetAisSummaryResponse
-from oceanbolt.com.vessels_v4.types.service import ListDarkPeriodEventsRequest
-from oceanbolt.com.vessels_v4.types.service import ListDarkPeriodEventsResponse
-from oceanbolt.com.vessels_v4.types.service import ListStoppageEventsRequest
-from oceanbolt.com.vessels_v4.types.service import ListStoppageEventsResponse
-from oceanbolt.com.vessels_v4.types.service import ListVesselsRequest
-from oceanbolt.com.vessels_v4.types.service import ListVesselsResponse
-from oceanbolt.com.vessels_v4.types.service import StoppageEvent
-from oceanbolt.com.vessels_v4.types.service import Vessel
+from oceanbolt.com.vessels_v3.types.service import DarkPeriodEvent
+from oceanbolt.com.vessels_v3.types.service import GetAisSummaryRequest
+from oceanbolt.com.vessels_v3.types.service import GetAisSummaryResponse
+from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodEventsRequest
+from oceanbolt.com.vessels_v3.types.service import ListDarkPeriodEventsResponse
+from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsRequest
+from oceanbolt.com.vessels_v3.types.service import ListStoppageEventsResponse
+from oceanbolt.com.vessels_v3.types.service import ListVesselsRequest
+from oceanbolt.com.vessels_v3.types.service import ListVesselsResponse
+from oceanbolt.com.vessels_v3.types.service import StoppageEvent
+from oceanbolt.com.vessels_v3.types.service import Vessel
 
 __all__ = ('VesselServiceClient',
     'VesselServiceAsyncClient',

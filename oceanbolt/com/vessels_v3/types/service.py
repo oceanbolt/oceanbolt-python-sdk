@@ -20,6 +20,7 @@ import proto  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 from google.protobuf import wrappers_pb2  # type: ignore
 from oceanbolt.com.ptypes.enums import platforms_pb2  # type: ignore
+from oceanbolt.com.ptypes.enums import polygon_status_pb2  # type: ignore
 
 
 __protobuf__ = proto.module(
@@ -746,6 +747,8 @@ class DarkPeriodEvent(proto.Message):
 
         duration_hours (google.protobuf.wrappers_pb2.DoubleValue):
 
+        classification (oceanbolt.com.ptypes.enums.polygon_status_pb2.PolygonStatus):
+
     """
 
     platform: platforms_pb2.Platform = proto.Field(
@@ -805,6 +808,11 @@ class DarkPeriodEvent(proto.Message):
         proto.MESSAGE,
         number=14,
         message=wrappers_pb2.DoubleValue,
+    )
+    classification: polygon_status_pb2.PolygonStatus = proto.Field(
+        proto.ENUM,
+        number=15,
+        enum=polygon_status_pb2.PolygonStatus,
     )
 
 
