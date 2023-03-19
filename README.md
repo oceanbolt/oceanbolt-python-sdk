@@ -18,7 +18,7 @@ The python SDK is available to all Oceanbolt API clients (API authentication tok
 
 ## Setup
 
-The SDK supports the following python versions: 3.8, 3.9 and 3.10
+The SDK supports the following python versions: 3.9, 3.10 and 3.11
 
 In order to install, run the following:
 
