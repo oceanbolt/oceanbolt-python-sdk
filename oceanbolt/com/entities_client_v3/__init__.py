@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from oceanbolt.com.entities import gapic_version as package_version
+from oceanbolt.com.entities_client_v3 import gapic_version as package_version
 
 __version__ = package_version.__version__
 
