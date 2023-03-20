@@ -31,7 +31,7 @@ setuptools.setup(
     author="Oceanbolt",
     author_email="support@oceanbolt.com",
     license="MIT",
-    version='0.4.1',
+    version='0.5.1',
     packages=setuptools.PEP420PackageFinder.find(),
     platforms='Posix; MacOS X; Windows',
     include_package_data=True,
