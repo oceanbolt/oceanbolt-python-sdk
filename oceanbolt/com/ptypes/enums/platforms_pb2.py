@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cptypes/enums/platforms.proto\x12\x1aoceanbolt.com.ptypes.enums*d\n\x08Platform\x12\x16\n\x12UNDEFINED_PLATFORM\x10\x00\x12\x0c\n\x08\x44RY_BULK\x10\x01\x12\n\n\x06TANKER\x10\x02\x12\r\n\tCONTAINER\x10\x03\x12\x08\n\x04RORO\x10\x04\x12\r\n\tAUXILIARY\x10\x05\x42:Z8gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/enumsb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1cptypes/enums/platforms.proto\x12\x1aoceanbolt.com.ptypes.enums*\x89\x01\n\x08Platform\x12\x16\n\x12UNDEFINED_PLATFORM\x10\x00\x12\x0c\n\x08\x44RY_BULK\x10\x01\x12\n\n\x06TANKER\x10\x02\x12\r\n\tCONTAINER\x10\x03\x12\x08\n\x04RORO\x10\x04\x12\r\n\tAUXILIARY\x10\x05\x12\x07\n\x03LNG\x10\x06\x12\x07\n\x03LPG\x10\x07\x12\x11\n\rGENERAL_CARGO\x10\x08\x42:Z8gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/enumsb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ptypes.enums.platforms_pb2', globals())
@@ -21,6 +21,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'Z8gitlab.com/veson/oceanbolt/gen-proto-go/gen/ptypes/enums'
-  _PLATFORM._serialized_start=60
-  _PLATFORM._serialized_end=160
+  _PLATFORM._serialized_start=61
+  _PLATFORM._serialized_end=198
 # @@protoc_insertion_point(module_scope)

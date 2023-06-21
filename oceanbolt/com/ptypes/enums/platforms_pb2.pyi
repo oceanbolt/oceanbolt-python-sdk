@@ -27,6 +27,9 @@ class _PlatformEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumT
     CONTAINER: _Platform.ValueType  # 3
     RORO: _Platform.ValueType  # 4
     AUXILIARY: _Platform.ValueType  # 5
+    LNG: _Platform.ValueType  # 6
+    LPG: _Platform.ValueType  # 7
+    GENERAL_CARGO: _Platform.ValueType  # 8
 
 class Platform(_Platform, metaclass=_PlatformEnumTypeWrapper): ...
 
@@ -36,4 +39,7 @@ TANKER: Platform.ValueType  # 2
 CONTAINER: Platform.ValueType  # 3
 RORO: Platform.ValueType  # 4
 AUXILIARY: Platform.ValueType  # 5
+LNG: Platform.ValueType  # 6
+LPG: Platform.ValueType  # 7
+GENERAL_CARGO: Platform.ValueType  # 8
 global___Platform = Platform
