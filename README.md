@@ -75,3 +75,50 @@ hedland_portcalls = port_calls_client.get(
 )
 
 ````
+
+## Quick Example LNG Data
+In order to extract lng data, you have to specify the platform when instantiating the client:
+base_client = APIClient("<your API access token>","lng")
+
+````python
+from oceanbolt.sdk.client import APIClient
+from oceanbolt.sdk.data.port_calls import PortCalls
+from datetime import date, timedelta
+
+# Create the base API client using your token. Tokens can be created in the Oceanbolt App (app.oceanbolt.com)
+base_client = APIClient("<your API access token>","tank")
+
+# Connect to one of the Oceanbolt's data endpoints using the base client object, ie: PortCalls
+port_calls_client = PortCalls(base_client)
+
+# Get a list of Port Hedland exports over the last week
+hedland_portcalls = port_calls_client.get(
+    start_date=date.today() - timedelta(days=7),
+    unlocode=["USHOU"],
+)
+
+````
+
+
+## Quick Example LPG Data
+In order to extract lng data, you have to specify the platform when instantiating the client:
+base_client = APIClient("<your API access token>","lpg")
+
+````python
+from oceanbolt.sdk.client import APIClient
+from oceanbolt.sdk.data.port_calls import PortCalls
+from datetime import date, timedelta
+
+# Create the base API client using your token. Tokens can be created in the Oceanbolt App (app.oceanbolt.com)
+base_client = APIClient("<your API access token>","lpg")
+
+# Connect to one of the Oceanbolt's data endpoints using the base client object, ie: PortCalls
+port_calls_client = PortCalls(base_client)
+
+# Get a list of Port Hedland exports over the last week
+hedland_portcalls = port_calls_client.get(
+    start_date=date.today() - timedelta(days=7),
+    unlocode=["USHOU"],
+)
+
+````
