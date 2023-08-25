@@ -72,3 +72,40 @@ Response
 .. autoclass:: oceanbolt.com.distancecalculator_v3.types.DistanceResponse
     :members:
     :noindex:
+
+
+Batch Calculations
+------------------
+The distance calculator also supports batch calculations. The primary usage differences from non-batch calculations are
+in the client's method name, prefixed with "batch\_", and in the request object, where each request to be calculated is
+an element of a ``requests`` array.
+
+Batch methods include:
+
+- batch_distance()
+- batch_duration()
+- batch_shortest_route()
+- batch_get_raw()
+
+Example
+#######
+
+.. code-block:: python
+
+    distances = DistanceCalculator(base_client).batch_distance(
+        requests=[
+            {
+                "locations": [
+                    {"unlocode": "AUPHE"},
+                    {"unlocode": "HKHKG"},
+                    {"unlocode": "USHOU"}
+                ]
+            },
+            {
+                "locations": [
+                    {"point": {"lon":-75.522015,"lat":10.298378}},
+                    {"point": {"lon":-95.127000,"lat":29.727500}}
+                ]
+            }
+        ]
+    )
