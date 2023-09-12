@@ -25,6 +25,7 @@ Calculating the shortest distance
 Example
 #######
 .. code-block:: python
+
     from oceanbolt.sdk.client import APIClient
     from oceanbolt.sdk.distance import DistanceCalculator
     from oceanbolt.sdk.data.entities import Search
@@ -95,6 +96,7 @@ Example
 #######
 
 .. code-block:: python
+
     from oceanbolt.sdk.client import APIClient
     from oceanbolt.sdk.distance import DistanceCalculator
     from oceanbolt.sdk.data.entities import Search
