@@ -91,7 +91,11 @@ Example
 #######
 
 .. code-block:: python
-
+    from oceanbolt.sdk.client import APIClient
+    from oceanbolt.sdk.distance import DistanceCalculator
+    from oceanbolt.sdk.data.entities import Search
+    base_client = APIClient("<TOKEN>")
+    
     distances = DistanceCalculator(base_client).batch_distance(
         requests=[
             {
