@@ -25,7 +25,11 @@ Calculating the shortest distance
 Example
 #######
 .. code-block:: python
-
+    from oceanbolt.sdk.client import APIClient
+    from oceanbolt.sdk.distance import DistanceCalculator
+    from oceanbolt.sdk.data.entities import Search
+    base_client = APIClient("<TOKEN>")
+    
     #Distance between ports
     distance = DistanceCalculator(base_client).distance(
         locations=[
