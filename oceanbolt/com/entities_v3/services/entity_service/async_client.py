@@ -873,6 +873,75 @@ class EntityServiceAsyncClient:
         # Done; return the response.
         return response
 
+    async def list_shipyards(self,
+            request: Optional[Union[service.ListShipyardsRequest, dict]] = None,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Union[float, object] = gapic_v1.method.DEFAULT,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> service.ListShipyardsResponse:
+        r"""
+
+        .. code-block:: python
+
+            # This snippet has been automatically generated and should be regarded as a
+            # code template only.
+            # It will require modifications to work:
+            # - It may require correct/in-range values for request initialization.
+            # - It may require specifying regional endpoints when creating the service
+            #   client as shown in:
+            #   https://googleapis.dev/python/google-api-core/latest/client_options.html
+            from oceanbolt.com import entities_v3
+
+            async def sample_list_shipyards():
+                # Create a client
+                client = entities_v3.EntityServiceAsyncClient()
+
+                # Initialize request argument(s)
+                request = entities_v3.ListShipyardsRequest(
+                )
+
+                # Make the request
+                response = await client.list_shipyards(request=request)
+
+                # Handle the response
+                print(response)
+
+        Args:
+            request (Optional[Union[oceanbolt.com.entities_v3.types.ListShipyardsRequest, dict]]):
+                The request object. Request object for ListShipyards
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+
+        Returns:
+            oceanbolt.com.entities_v3.types.ListShipyardsResponse:
+                Response object for ListShipyards
+        """
+        # Create or coerce a protobuf request object.
+        request = service.ListShipyardsRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.list_shipyards,
+            default_timeout=None,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
+
+        # Send the request.
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
+        # Done; return the response.
+        return response
+
     async def __aenter__(self):
         return self
 

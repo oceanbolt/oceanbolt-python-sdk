@@ -45,6 +45,7 @@ class entitiesCallTransformer(cst.CSTTransformer):
         'list_regions': (),
         'list_regions_with_polygons': (),
         'list_segments': (),
+        'list_shipyards': (),
         'list_zones': (),
         'list_zones_with_polygons': (),
         'search_polygons': ('q', ),

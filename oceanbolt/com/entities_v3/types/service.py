@@ -48,6 +48,9 @@ __protobuf__ = proto.module(
         'Polygon',
         'SearchVesselsResponse',
         'Vessel',
+        'ListShipyardsRequest',
+        'ListShipyardsResponse',
+        'Shipyard',
     },
 )
 
@@ -707,6 +710,52 @@ class Vessel(proto.Message):
     holds_total: float = proto.Field(
         proto.DOUBLE,
         number=14,
+    )
+
+
+class ListShipyardsRequest(proto.Message):
+    r"""Request object for ListShipyards
+    """
+
+
+class ListShipyardsResponse(proto.Message):
+    r"""Response object for ListShipyards
+
+    Attributes:
+        shipyards (MutableSequence[oceanbolt.com.entities_v3.types.Shipyard]):
+
+    """
+
+    shipyards: MutableSequence['Shipyard'] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message='Shipyard',
+    )
+
+
+class Shipyard(proto.Message):
+    r"""Shipyard entity in the Oceanbolt data model.
+
+    Attributes:
+        shipyard_id (int):
+
+        shipyard_name (str):
+
+        port_id (int):
+
+    """
+
+    shipyard_id: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+    shipyard_name: str = proto.Field(
+        proto.STRING,
+        number=2,
+    )
+    port_id: int = proto.Field(
+        proto.INT32,
+        number=3,
     )
 
 

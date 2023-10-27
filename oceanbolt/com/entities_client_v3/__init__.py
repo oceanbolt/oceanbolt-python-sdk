@@ -34,6 +34,8 @@ from oceanbolt.com.entities_v3.types.service import ListRegionsResponse
 from oceanbolt.com.entities_v3.types.service import ListRegionsWithPolygonResponse
 from oceanbolt.com.entities_v3.types.service import ListSegmentsRequest
 from oceanbolt.com.entities_v3.types.service import ListSegmentsResponse
+from oceanbolt.com.entities_v3.types.service import ListShipyardsRequest
+from oceanbolt.com.entities_v3.types.service import ListShipyardsResponse
 from oceanbolt.com.entities_v3.types.service import ListTonnageZonesResponse
 from oceanbolt.com.entities_v3.types.service import ListTonnageZonesWithPolygonsResponse
 from oceanbolt.com.entities_v3.types.service import ListZonesRequest
@@ -45,6 +47,7 @@ from oceanbolt.com.entities_v3.types.service import SearchPolygonsResponse
 from oceanbolt.com.entities_v3.types.service import SearchRequest
 from oceanbolt.com.entities_v3.types.service import SearchVesselsResponse
 from oceanbolt.com.entities_v3.types.service import Segment
+from oceanbolt.com.entities_v3.types.service import Shipyard
 from oceanbolt.com.entities_v3.types.service import Vessel
 from oceanbolt.com.entities_v3.types.service import Zone
 from oceanbolt.com.entities_v3.types.service import ZoneWithPolygon
@@ -64,6 +67,8 @@ __all__ = ('EntityServiceClient',
     'ListRegionsWithPolygonResponse',
     'ListSegmentsRequest',
     'ListSegmentsResponse',
+    'ListShipyardsRequest',
+    'ListShipyardsResponse',
     'ListTonnageZonesResponse',
     'ListTonnageZonesWithPolygonsResponse',
     'ListZonesRequest',
@@ -75,6 +80,7 @@ __all__ = ('EntityServiceClient',
     'SearchRequest',
     'SearchVesselsResponse',
     'Segment',
+    'Shipyard',
     'Vessel',
     'Zone',
     'ZoneWithPolygon',

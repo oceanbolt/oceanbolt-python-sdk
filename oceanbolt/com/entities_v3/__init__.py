@@ -34,6 +34,8 @@ from .types.service import ListRegionsResponse
 from .types.service import ListRegionsWithPolygonResponse
 from .types.service import ListSegmentsRequest
 from .types.service import ListSegmentsResponse
+from .types.service import ListShipyardsRequest
+from .types.service import ListShipyardsResponse
 from .types.service import ListTonnageZonesResponse
 from .types.service import ListTonnageZonesWithPolygonsResponse
 from .types.service import ListZonesRequest
@@ -45,6 +47,7 @@ from .types.service import SearchPolygonsResponse
 from .types.service import SearchRequest
 from .types.service import SearchVesselsResponse
 from .types.service import Segment
+from .types.service import Shipyard
 from .types.service import Vessel
 from .types.service import Zone
 from .types.service import ZoneWithPolygon
@@ -65,6 +68,8 @@ __all__ = (
 'ListRegionsWithPolygonResponse',
 'ListSegmentsRequest',
 'ListSegmentsResponse',
+'ListShipyardsRequest',
+'ListShipyardsResponse',
 'ListTonnageZonesResponse',
 'ListTonnageZonesWithPolygonsResponse',
 'ListZonesRequest',
@@ -76,6 +81,7 @@ __all__ = (
 'SearchRequest',
 'SearchVesselsResponse',
 'Segment',
+'Shipyard',
 'Vessel',
 'Zone',
 'ZoneWithPolygon',

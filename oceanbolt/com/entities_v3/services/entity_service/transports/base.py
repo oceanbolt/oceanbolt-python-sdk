@@ -162,6 +162,11 @@ class EntityServiceTransport(abc.ABC):
                 default_timeout=None,
                 client_info=client_info,
             ),
+            self.list_shipyards: gapic_v1.method.wrap_method(
+                self.list_shipyards,
+                default_timeout=None,
+                client_info=client_info,
+            ),
          }
 
     def close(self):
@@ -260,6 +265,15 @@ class EntityServiceTransport(abc.ABC):
             Union[
                 service.SearchVesselsResponse,
                 Awaitable[service.SearchVesselsResponse]
+            ]]:
+        raise NotImplementedError()
+
+    @property
+    def list_shipyards(self) -> Callable[
+            [service.ListShipyardsRequest],
+            Union[
+                service.ListShipyardsResponse,
+                Awaitable[service.ListShipyardsResponse]
             ]]:
         raise NotImplementedError()
 

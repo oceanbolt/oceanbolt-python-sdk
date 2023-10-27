@@ -486,6 +486,30 @@ class EntityServiceGrpcAsyncIOTransport(EntityServiceTransport):
             )
         return self._stubs['search_vessels']
 
+    @property
+    def list_shipyards(self) -> Callable[
+            [service.ListShipyardsRequest],
+            Awaitable[service.ListShipyardsResponse]]:
+        r"""Return a callable for the list shipyards method over gRPC.
+
+        Returns:
+            Callable[[~.ListShipyardsRequest],
+                    Awaitable[~.ListShipyardsResponse]]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if 'list_shipyards' not in self._stubs:
+            self._stubs['list_shipyards'] = self.grpc_channel.unary_unary(
+                '/oceanbolt.com.entities.v3.EntityService/ListShipyards',
+                request_serializer=service.ListShipyardsRequest.serialize,
+                response_deserializer=service.ListShipyardsResponse.deserialize,
+            )
+        return self._stubs['list_shipyards']
+
     def close(self):
         return self.grpc_channel.close()
 
