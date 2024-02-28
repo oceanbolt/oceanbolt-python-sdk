@@ -1,6 +1,6 @@
 List Dark Period Events
 =======================
-Retrieve list of dark period events for vessels. Stoppage Events are defined as events where vessels do not emit AIS data for a period of 48 hours or longer. See methodology for more details.
+Retrieve list of dark period events for vessels. Stoppage Events are defined as events where vessels do not emit AIS data for a period of 6 hours or longer. See methodology for more details.
 Currently this API only supports filtering by IMO numbers.
 
 Example questions that can be answered with this endpoint:

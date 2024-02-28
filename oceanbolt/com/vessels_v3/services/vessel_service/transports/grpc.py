@@ -286,7 +286,7 @@ class VesselServiceGrpcTransport(VesselServiceTransport):
 
         Fetches ais based dark period events for a single
         vessel. A dark period event, is where a vessel has not
-        transmitted AIS data for a period greater than 48 hours.
+        transmitted AIS data for a period greater than 6 hours.
 
         Returns:
             Callable[[~.ListDarkPeriodEventsRequest],
