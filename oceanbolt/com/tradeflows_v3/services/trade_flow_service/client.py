@@ -106,7 +106,7 @@ class TradeFlowServiceClient(metaclass=TradeFlowServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "api.oceanbolt.com"
+    DEFAULT_ENDPOINT = "sdk.oceanbolt.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )

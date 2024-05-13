@@ -37,7 +37,7 @@ class VesselServiceTransport(abc.ABC):
     AUTH_SCOPES = (
     )
 
-    DEFAULT_HOST: str = 'api.oceanbolt.com'
+    DEFAULT_HOST: str = 'sdk.oceanbolt.com'
     def __init__(
             self, *,
             host: str = DEFAULT_HOST,

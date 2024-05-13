@@ -48,7 +48,7 @@ class VesselStateServiceGrpcAsyncIOTransport(VesselStateServiceTransport):
 
     @classmethod
     def create_channel(cls,
-                       host: str = 'api.oceanbolt.com',
+                       host: str = 'sdk.oceanbolt.com',
                        credentials: Optional[ga_credentials.Credentials] = None,
                        credentials_file: Optional[str] = None,
                        scopes: Optional[Sequence[str]] = None,
@@ -88,7 +88,7 @@ class VesselStateServiceGrpcAsyncIOTransport(VesselStateServiceTransport):
         )
 
     def __init__(self, *,
-            host: str = 'api.oceanbolt.com',
+            host: str = 'sdk.oceanbolt.com',
             credentials: Optional[ga_credentials.Credentials] = None,
             credentials_file: Optional[str] = None,
             scopes: Optional[Sequence[str]] = None,
