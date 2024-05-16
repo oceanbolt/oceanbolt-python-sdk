@@ -84,7 +84,7 @@ def test_entity_service_client_from_service_account_info(client_class, transport
         assert isinstance(client, client_class)
 
         assert client.transport._host == (
-            'api.oceanbolt.com:443'
+            'sdk.oceanbolt.com:443'
         )
 
 
@@ -121,7 +121,7 @@ def test_entity_service_client_from_service_account_file(client_class, transport
         assert isinstance(client, client_class)
 
         assert client.transport._host == (
-            'api.oceanbolt.com:443'
+            'sdk.oceanbolt.com:443'
         )
 
 
@@ -499,14 +499,14 @@ def test_entity_service_client_create_channel_credentials_file(client_class, tra
         adc.return_value = (creds, None)
         client = client_class(client_options=options, transport=transport_name)
         create_channel.assert_called_with(
-            "api.oceanbolt.com:443",
+            "sdk.oceanbolt.com:443",
             credentials=file_creds,
             credentials_file=None,
             quota_project_id=None,
             default_scopes=(
 ),
             scopes=None,
-            default_host="api.oceanbolt.com",
+            default_host="sdk.oceanbolt.com",
             ssl_credentials=None,
             options=[
                 ("grpc.max_send_message_length", -1),
@@ -1683,14 +1683,14 @@ def test_entity_service_transport_create_channel(transport_class, grpc_helpers):
         )
 
         create_channel.assert_called_with(
-            "api.oceanbolt.com:443",
+            "sdk.oceanbolt.com:443",
             credentials=creds,
             credentials_file=None,
             quota_project_id="octopus",
             default_scopes=(
 ),
             scopes=["1", "2"],
-            default_host="api.oceanbolt.com",
+            default_host="sdk.oceanbolt.com",
             ssl_credentials=None,
             options=[
                 ("grpc.max_send_message_length", -1),
@@ -1748,11 +1748,11 @@ def test_entity_service_grpc_transport_client_cert_source_for_mtls(
 def test_entity_service_host_no_port(transport_name):
     client = EntityServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com'),
+        client_options=client_options.ClientOptions(api_endpoint='sdk.oceanbolt.com'),
          transport=transport_name,
     )
     assert client.transport._host == (
-        'api.oceanbolt.com:443'
+        'sdk.oceanbolt.com:443'
     )
 
 @pytest.mark.parametrize("transport_name", [
@@ -1762,11 +1762,11 @@ def test_entity_service_host_no_port(transport_name):
 def test_entity_service_host_with_port(transport_name):
     client = EntityServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='api.oceanbolt.com:8000'),
+        client_options=client_options.ClientOptions(api_endpoint='sdk.oceanbolt.com:8000'),
         transport=transport_name,
     )
     assert client.transport._host == (
-        'api.oceanbolt.com:8000'
+        'sdk.oceanbolt.com:8000'
     )
 
 def test_entity_service_grpc_transport_channel():
