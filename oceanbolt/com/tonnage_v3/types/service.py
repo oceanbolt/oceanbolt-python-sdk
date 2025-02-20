@@ -87,7 +87,8 @@ class GetTonnageDataRequest(proto.Message):
             The port status to get tonnage data for. The following
             values are allowed: **["in_port","at_sea"]**.
         group_by (str):
-            Not Implemented Yet //TODO
+            Determines the grouping of the timeseries
+            data.
         exclude_mpv (bool):
             Flag to specify whether or not MPV vessels
             should be included/excluded. Default is to
